@@ -2,7 +2,7 @@
 using UnityEditor;
 using UnityEngine;
 
-namespace JAssets.Scripts_SC.Editor
+namespace Editor
 {
     [CustomEditor(typeof(Consumable_SO))]
     public class ConsumableEditor : UnityEditor.Editor
