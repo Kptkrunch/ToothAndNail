@@ -3,7 +3,18 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - New tag
+  - Player1
+  - Player2
+  - Player3
+  - Player4
+  - Ground
+  - Walls
+  - Particles
+  - Background
+  - EditorStuff
+  - Transforms
   layers:
   - Default
   - TransparentFX
@@ -13,16 +24,16 @@ TagManager:
   - UI
   - 
   - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Background
+  - Player1
+  - Player2
+  - Player3
+  - Player4
+  - Ground
+  - Walls
+  - Particles
+  - EditorStuff
+  - Transforms
   - 
   - 
   - 
@@ -40,4 +51,34 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Player1
+    uniqueID: 3413144399
+    locked: 0
+  - name: Player2
+    uniqueID: 1810047713
+    locked: 0
+  - name: Player3
+    uniqueID: 3589223195
+    locked: 0
+  - name: Player4
+    uniqueID: 1705410817
+    locked: 0
+  - name: Ground
+    uniqueID: 3814233365
+    locked: 0
+  - name: Walls
+    uniqueID: 3270627527
+    locked: 0
+  - name: Particles
+    uniqueID: 234152495
+    locked: 0
+  - name: EditorStuff
+    uniqueID: 572814919
+    locked: 0
+  - name: Background
+    uniqueID: 2601957561
+    locked: 0
+  - name: Transforms
+    uniqueID: 4061882341
     locked: 0
