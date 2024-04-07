@@ -82,7 +82,10 @@ namespace JAssets.Scripts_SC
             if (photonView.IsMine)
             {
                 mainCamera.transform.position = new Vector3(transform.position.x, transform.position.y, -10);
-                if (Mathf.Abs(velocity) <= .01f) animator.SetFloat("Walking", 0);
+                
+                if (!(Mathf.Abs(velocity) <= .01f)) return;
+                rb2d.velocity = Vector2.MoveTowards(rb2d.velocity, Vector2.zero, deceleration * Time.deltaTime);
+                animator.SetFloat("Walking", 0);
             }
         }
 
@@ -94,6 +97,8 @@ namespace JAssets.Scripts_SC
         {
             velocity = context.ReadValue<Vector2>().x;
             var newVelocity = new Vector2(velocity, rb2d.velocity.y);
+            newVelocity.Set(maxSpeed * velocity, 0.0f);
+            rb2d.velocity = newVelocity;
 
             if (_isGrounded && !_onSlope && !_isJumping)
             {
