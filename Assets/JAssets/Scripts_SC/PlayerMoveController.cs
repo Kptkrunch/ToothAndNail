@@ -1,7 +1,6 @@
 using System;
 using System.Collections;
 using UnityEngine;
-using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
 namespace JAssets.Scripts_SC
@@ -87,7 +86,7 @@ namespace JAssets.Scripts_SC
         }
         
         
-        private void Jump(InputAction.CallbackContext context)
+        public void Jump(InputAction.CallbackContext context)
         {
             if (!context.performed) return;
             if (isTouchingGround || Time.time < coyoteTime)
@@ -103,7 +102,7 @@ namespace JAssets.Scripts_SC
             }
         }
         
-        private void Crouch(InputAction.CallbackContext context)
+        public void Crouch(InputAction.CallbackContext context)
         {
             if (!context.performed) return;
             isCrouching = !isCrouching;
@@ -134,7 +133,7 @@ namespace JAssets.Scripts_SC
         }
 
         // This will rotate a vector by a given angle
-        public static Vector2 RotateVectorByAngle(Vector2 vector, float angle)
+        private static Vector2 RotateVectorByAngle(Vector2 vector, float angle)
         {
             var radian = angle * Mathf.Deg2Rad;
 
@@ -144,7 +143,7 @@ namespace JAssets.Scripts_SC
             return new Vector2(_x, _y);
         }
 
-        private void LedgeGrab(InputAction.CallbackContext context)
+        public void LedgeGrab(InputAction.CallbackContext context)
         {
             // Check for ledge grabbing conditions (reusing WallSlide logic)
             WallSlide();
@@ -193,7 +192,7 @@ namespace JAssets.Scripts_SC
             }
         }
 
-        private void WallJump(InputAction.CallbackContext context)
+        public void WallJump(InputAction.CallbackContext context)
         {
             if (!context.performed) return;
             if (isWallSliding || isTouchingWall)
@@ -205,7 +204,7 @@ namespace JAssets.Scripts_SC
             // onWallJump?.Invoke();
         }
 
-        private void Attack(InputAction.CallbackContext context)
+        public void Attack(InputAction.CallbackContext context)
         {
             if (!context.performed) return;
             // Implement attack logic here
