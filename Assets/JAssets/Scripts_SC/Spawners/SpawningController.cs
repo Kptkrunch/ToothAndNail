@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using Sirenix.OdinInspector;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -11,7 +10,7 @@ namespace JAssets.Scripts_SC.Spawners
 
         public GameObject[] locationArray;
 
-        [ShowInInspector] [Header("Spawn Locations")]
+        [Header("Spawn Locations")]
         public Dictionary<string, GameObject> locationDictionary = new();
 
         private void Awake()

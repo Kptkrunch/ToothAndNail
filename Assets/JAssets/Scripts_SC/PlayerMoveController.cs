@@ -104,8 +104,11 @@ namespace JAssets.Scripts_SC
         
         public void Crouch(InputAction.CallbackContext context)
         {
-            if (!context.performed) return;
-            isCrouching = !isCrouching;
+            if (context.performed)
+                isCrouching = true;
+
+            if (context.canceled)
+                isCrouching = false;
             // onCrouch?.Invoke();
         }
 
