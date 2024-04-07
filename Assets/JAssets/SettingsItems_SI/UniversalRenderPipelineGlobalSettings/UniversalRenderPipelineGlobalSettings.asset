@@ -16,7 +16,9 @@ MonoBehaviour:
   m_RenderingLayerNames:
   - Default
   - Render
-  m_ValidRenderingLayers: 3
+  - Player
+  - Ground
+  m_ValidRenderingLayers: 15
   lightLayerName0: 
   lightLayerName1: 
   lightLayerName2: 

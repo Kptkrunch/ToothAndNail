@@ -2,14 +2,14 @@ using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.InputSystem;
 
 namespace JAssets.Scripts_SC
 {
-    // Add up to 4 colliders for predictive ground checkouts. You can add more if need.
-
     public class PlayerMoveController : MonoBehaviour
     {
         [SerializeField] private float moveSpeed = 5f;
+        [SerializeField] private float velocity;
         [SerializeField] private float massFactor = 0.05f;
         [SerializeField] private float jumpForce = 5f;
         [SerializeField] private float crouchHeight = 0.5f;
@@ -38,10 +38,7 @@ namespace JAssets.Scripts_SC
         [SerializeField] private PhysicsMaterial2D MatGrippy;
         private bool canHang;
         private float coyoteTime;
-
-
-        private PlayerInputActions inputActions;
-
+        
         private bool isCrouching;
         private bool isOnLedge;
         private bool isTouchingGround;
@@ -50,32 +47,12 @@ namespace JAssets.Scripts_SC
         private float jumpBufferCount;
         private readonly CustomRaycast[] predictiveGroundCheckRays = new CustomRaycast[5];
 
-
-        private void Awake()
-        {
-            rb = GetComponent<Rigidbody2D>();
-            inputActions = new PlayerInputActions();
-
-            // Registering input callbacks
-            inputActions.Jump.performed += _ => Jump();
-            inputActions.Crouch.performed += _ => Crouch();
-            inputActions.Move.performed += ctx => Move(ctx.ReadValue<Vector2>());
-            inputActions.LedgeGrab.performed += _ => LedgeGrab();
-            inputActions.WallSlide.performed += _ => WallSlide();
-            inputActions.WallJump.performed += _ => WallJump();
-            inputActions.Attack.performed += _ => Attack();
-
-            inputActions.Jump.performed += context => OnJumpPerformed();
-        }
-
         private void Update()
         {
             isTouchingWall = Physics2D.OverlapCircle(wallCheckPoint.position, wallCheckRadius, wallLayerMask);
             // Check for the ground
             isTouchingGround = Physics2D.OverlapCircle(groundCheckPoint.position, groundCheckRadius, groundLayerMask);
-
-            //...Prior Update Logic...
-
+            
             // Coyote Time Calculation
             if (isTouchingGround)
                 coyoteTime = Time.time + coyoteDuration;
@@ -102,26 +79,18 @@ namespace JAssets.Scripts_SC
                 transform.localScale = new Vector3(transform.localScale.x, crouchHeight, transform.localScale.z);
         }
 
-        private void OnEnable()
+        public void Move(InputAction.CallbackContext context)
         {
-            inputActions.Enable();
-        }
-
-        private void OnDisable()
-        {
-            inputActions.Disable();
-        }
-
-        private void Move(Vector2 direction)
-        {
-            rb.velocity = new Vector2(direction.x * moveSpeed - massFactor * rb.mass, rb.velocity.y);
+            if (!context.performed) return;
+            velocity = context.ReadValue<Vector2>().x;
+            rb.velocity = new Vector2(velocity * moveSpeed - massFactor * rb.mass, rb.velocity.y);
         }
 
         private void SlopeScan()
         {
             foreach (GroundCastDirection direction in Enum.GetValues(typeof(GroundCastDirection)))
             {
-                var endPosition = RotateVectorByAngle(Vector2.down, (float)direction) * cc.size.y * 0.5f;
+                var endPosition = RotateVectorByAngle(Vector2.down, (float)direction) * (cc.size.y * 0.5f);
                 var groundHit = Physics2D.Raycast(transform.position, endPosition, 1, groundLayerMask);
 
                 if (groundHit.collider)
@@ -151,8 +120,9 @@ namespace JAssets.Scripts_SC
             return new Vector2(_x, _y);
         }
 
-        private void Jump()
+        private void Jump(InputAction.CallbackContext context)
         {
+            if (!context.performed) return;
             if (isTouchingGround || Time.time < coyoteTime)
             {
                 rb.AddForce(new Vector2(0, jumpForce), ForceMode2D.Impulse);
@@ -166,13 +136,14 @@ namespace JAssets.Scripts_SC
             }
         }
 
-        private void Crouch()
+        private void Crouch(InputAction.CallbackContext context)
         {
+            if (!context.performed) return;
             isCrouching = !isCrouching;
             onCrouch?.Invoke();
         }
 
-        private void LedgeGrab()
+        private void LedgeGrab(InputAction.CallbackContext context)
         {
             // Check for ledge grabbing conditions (reusing WallSlide logic)
             WallSlide();
@@ -180,10 +151,13 @@ namespace JAssets.Scripts_SC
             // Check if the player can hang and if they're wall sliding
             if (canHang && isWallSliding)
             {
-                // Freeze y velocity to essentially 'grab'
-                rb.velocity = new Vector2(rb.velocity.x, 0f);
-                isOnLedge = true;
-                onLedgeGrab?.Invoke();
+                if (context.performed)
+                {
+                    // Freeze y velocity to essentially 'grab'
+                    rb.velocity = new Vector2(rb.velocity.x, 0f);
+                    isOnLedge = true;
+                    onLedgeGrab?.Invoke();
+                }
             }
             else if (isOnLedge && !canHang)
             {
@@ -192,25 +166,23 @@ namespace JAssets.Scripts_SC
             }
         }
 
-        private IEnumerator LedgeClimb()
+        private IEnumerator LedgeClimb(InputAction.CallbackContext context)
         {
+            yield return LedgeClimb(context);
             Vector3 targetPos = new Vector2(ledgeCheckPoint.position.x, ledgeCheckPoint.position.y + ledgeClimbSpeed);
             while (Vector3.Distance(transform.position, targetPos) > 0.05)
             {
                 transform.position = Vector2.Lerp(transform.position, targetPos, Time.deltaTime * ledgeClimbSpeed);
                 yield return null;
             }
-
             isOnLedge = false;
         }
 
-        private void OnJumpPerformed()
+        private void OnJumpPerformed(InputAction.CallbackContext context)
         {
-            if (isOnLedge)
-            {
-                onJump?.Invoke();
-                StartCoroutine(LedgeClimb());
-            }
+            if (!isOnLedge) return;
+            onJump?.Invoke();
+            StartCoroutine(LedgeClimb(context));
         }
 
         private void WallSlide()
@@ -227,7 +199,7 @@ namespace JAssets.Scripts_SC
             }
         }
 
-        private void WallJump()
+        private void WallJump(InputAction.CallbackContext context)
         {
             if (isWallSliding || isTouchingWall)
             {
@@ -235,12 +207,12 @@ namespace JAssets.Scripts_SC
                                wallJumpForce;
                 rb.AddForce(forceAdd, ForceMode2D.Impulse);
             }
-
             onWallJump?.Invoke();
         }
 
-        private void Attack()
+        private void Attack(InputAction.CallbackContext context)
         {
+            if (!context.performed) return;
             // Implement attack logic here
             onAttack?.Invoke();
         }
