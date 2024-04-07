@@ -30,7 +30,7 @@ namespace JAssets.Scripts_SC
         [SerializeField] private float coyoteDuration = 0.15f; // Duration for Coyote Time
         [SerializeField] private float jumpBufferLength = 0.15f; // Duration for Jump Buffer
 
-        [SerializeField] private UnityEvent onJump, onCrouch, onLedgeGrab, onWallSlide, onWallJump, onAttack;
+        // [SerializeField] private UnityEvent onJump, onCrouch, onLedgeGrab, onWallSlide, onWallJump, onAttack;
 
         [SerializeField] private Rigidbody2D rb;
         [SerializeField] private CapsuleCollider2D cc;
@@ -85,6 +85,30 @@ namespace JAssets.Scripts_SC
             velocity = context.ReadValue<Vector2>().x;
             rb.velocity = new Vector2(velocity * moveSpeed - massFactor * rb.mass, rb.velocity.y);
         }
+        
+        
+        private void Jump(InputAction.CallbackContext context)
+        {
+            if (!context.performed) return;
+            if (isTouchingGround || Time.time < coyoteTime)
+            {
+                rb.AddForce(new Vector2(0, jumpForce), ForceMode2D.Impulse);
+                // onJump?.Invoke();
+                isTouchingGround = false;
+                coyoteTime = Time.time;
+            }
+            else
+            {
+                jumpBufferCount = jumpBufferLength;
+            }
+        }
+        
+        private void Crouch(InputAction.CallbackContext context)
+        {
+            if (!context.performed) return;
+            isCrouching = !isCrouching;
+            // onCrouch?.Invoke();
+        }
 
         private void SlopeScan()
         {
@@ -120,29 +144,6 @@ namespace JAssets.Scripts_SC
             return new Vector2(_x, _y);
         }
 
-        private void Jump(InputAction.CallbackContext context)
-        {
-            if (!context.performed) return;
-            if (isTouchingGround || Time.time < coyoteTime)
-            {
-                rb.AddForce(new Vector2(0, jumpForce), ForceMode2D.Impulse);
-                onJump?.Invoke();
-                isTouchingGround = false;
-                coyoteTime = Time.time;
-            }
-            else
-            {
-                jumpBufferCount = jumpBufferLength;
-            }
-        }
-
-        private void Crouch(InputAction.CallbackContext context)
-        {
-            if (!context.performed) return;
-            isCrouching = !isCrouching;
-            onCrouch?.Invoke();
-        }
-
         private void LedgeGrab(InputAction.CallbackContext context)
         {
             // Check for ledge grabbing conditions (reusing WallSlide logic)
@@ -156,7 +157,7 @@ namespace JAssets.Scripts_SC
                     // Freeze y velocity to essentially 'grab'
                     rb.velocity = new Vector2(rb.velocity.x, 0f);
                     isOnLedge = true;
-                    onLedgeGrab?.Invoke();
+                    // onLedgeGrab?.Invoke();
                 }
             }
             else if (isOnLedge && !canHang)
@@ -178,20 +179,13 @@ namespace JAssets.Scripts_SC
             isOnLedge = false;
         }
 
-        private void OnJumpPerformed(InputAction.CallbackContext context)
-        {
-            if (!isOnLedge) return;
-            onJump?.Invoke();
-            StartCoroutine(LedgeClimb(context));
-        }
-
         private void WallSlide()
         {
             if (isTouchingWall && !isOnLedge)
             {
                 rb.velocity = new Vector2(rb.velocity.x, -wallSlideSpeed);
                 isWallSliding = true;
-                onWallSlide?.Invoke();
+                // onWallSlide?.Invoke();
             }
             else
             {
@@ -201,20 +195,21 @@ namespace JAssets.Scripts_SC
 
         private void WallJump(InputAction.CallbackContext context)
         {
+            if (!context.performed) return;
             if (isWallSliding || isTouchingWall)
             {
                 var forceAdd = new Vector2(wallJumpDirection.x * transform.localScale.x, wallJumpDirection.y) *
                                wallJumpForce;
                 rb.AddForce(forceAdd, ForceMode2D.Impulse);
             }
-            onWallJump?.Invoke();
+            // onWallJump?.Invoke();
         }
 
         private void Attack(InputAction.CallbackContext context)
         {
             if (!context.performed) return;
             // Implement attack logic here
-            onAttack?.Invoke();
+            // onAttack?.Invoke();
         }
     }
 }
