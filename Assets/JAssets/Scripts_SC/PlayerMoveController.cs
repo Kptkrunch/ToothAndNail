@@ -23,18 +23,24 @@ namespace JAssets.Scripts_SC
         
         [SerializeField] private float ledgeClimbSpeed = 1f;
         [SerializeField] private float slopeDownAngle = 45.0f;
+        [SerializeField] private double slopeDownAngleOld;
+        [SerializeField] private float slopeMaxAngle = 45.0f;
+        [SerializeField] private float slopeSideAngle = 45.0f;
         [SerializeField] private Vector2 slopeNormalPerp;
-        
      
         [SerializeField] private float ledgeCheckDistance;
         [SerializeField] private float wallCheckDistance;
         [SerializeField] private float groundCheckDistance;
         [SerializeField] private float slopeCheckDistance;
+        [SerializeField] private Vector2 colliderSize;
+        
+        
 
         [SerializeField] private Transform wallCheckPoint;
         [SerializeField] private Transform ledgeCheckPoint;
         [SerializeField] private Transform groundCheckPoint;
         [SerializeField] private Transform groundCheckPointOrigin;
+        [SerializeField] private Transform slopeCheckPoint;
         
         
         [SerializeField] private LayerMask groundLayerMask;
@@ -61,39 +67,36 @@ namespace JAssets.Scripts_SC
         private bool isTouchingWall;
         private bool isWallSliding;
         private bool isOnSlope;
+        private bool canWalkOnSlope;
         private bool isFacingRight = true;
 
         private void Start()
         {
             mainCamera = FindObjectOfType<Camera>();
+            colliderSize = cc2d.size;
         }
 
         private void Update()
         {
-            animator.SetFloat("Walking", Mathf.Abs(rb2d.velocity.x));
-
             GroundCheck();
             WallCheck();
             CoyoteJumpAndBufferTimers();
-            
+
+
             if (isGrounded && animator.GetBool("Jumping")) animator.SetBool("Jumping", false);
             if (isWallSliding) animator.SetBool("WallSlide", true);
+            SlopeCheck();
+
         }
 
         private void FixedUpdate()
         {
+
+            animator.SetFloat("Walking", Mathf.Abs(rb2d.velocity.x));
+
             targetVelocity = velocity * maxSpeed;
             rb2d.velocity = Vector2.MoveTowards(rb2d.velocity, new Vector2(targetVelocity, rb2d.velocity.y),
                 acceleration * Time.deltaTime);
-            
-            if (isOnSlope && velocity != 0)
-            {
-                cc2d.sharedMaterial = null;
-            }
-            else
-            {
-                cc2d.sharedMaterial = new PhysicsMaterial2D { friction = 0.05f };
-            }
             FlipX();
         }
 
@@ -101,7 +104,7 @@ namespace JAssets.Scripts_SC
         {
             mainCamera.transform.position = new Vector3(transform.position.x, transform.position.y, -10);
 
-            if (!(Mathf.Abs(velocity) <= .1f)) return;
+            if (!(Mathf.Abs(velocity) <= .001f)) return;
             rb2d.velocity = Vector2.MoveTowards(rb2d.velocity, Vector2.zero, deceleration * Time.deltaTime);
             animator.SetFloat("Walking", 0);
             
@@ -114,12 +117,12 @@ namespace JAssets.Scripts_SC
                 var newVelocity = new Vector2(velocity, rb2d.velocity.y);
                 newVelocity.Set(maxSpeed * velocity, 0.0f);
                 rb2d.velocity = newVelocity;
+
             } else if (!isGrounded)
             {
                 targetVelocity = velocity * maxSpeed;
                 rb2d.velocity = Vector2.MoveTowards(rb2d.velocity, new Vector2(targetVelocity, rb2d.velocity.y),
                     acceleration * Time.deltaTime);
-
                 cc2d.sharedMaterial = slippery_MT;
             }
         }
@@ -159,8 +162,10 @@ namespace JAssets.Scripts_SC
         
         private void GroundCheck()
         {
-            RaycastHit2D isHit = Physics2D.Raycast(groundCheckPoint.position, Vector2.down, groundCheckDistance, groundLayerMask);
-            Debug.DrawRay(groundCheckPoint.position, Vector2.down, Color.red);
+            Vector2 positionCheck = transform.position - new Vector3(0.0f, colliderSize.y / 2);
+
+            RaycastHit2D isHit = Physics2D.Raycast(positionCheck, Vector2.down, slopeCheckDistance, groundLayerMask);
+            Debug.DrawRay(positionCheck, Vector2.down, Color.red);
 
             if (isHit.collider != null) 
             {
@@ -169,37 +174,74 @@ namespace JAssets.Scripts_SC
             {
                 isGrounded = false;
             }
-            
-            if (isGrounded) CheckSlope(); 
         }
-        
-        private void CheckSlope()
+
+        private void SlopeCheck()
         {
-            Vector2 checkPos = transform.position - new Vector3(0.0f, 0.5f);
+            Vector2 positionCheck = transform.position - new Vector3(0.0f, colliderSize.y / 2);
+            VerticalCheck(positionCheck);
+            HorizontalCheck(positionCheck);
+        }
 
-            RaycastHit2D hit = Physics2D.Raycast(checkPos, Vector2.down, slopeCheckDistance, groundLayerMask);
+        private void HorizontalCheck(Vector2 checkPosition)
+        {
+            var slopeHitFront = Physics2D.Raycast(checkPosition, transform.right, slopeCheckDistance, groundLayerMask);
+            var slopeHitBack = Physics2D.Raycast(checkPosition, -transform.right, slopeCheckDistance, groundLayerMask);
 
+            if (slopeHitFront)
+            {
+                isOnSlope = true;
+                slopeSideAngle = Vector2.Angle(slopeHitFront.normal, Vector2.up);
+            }
+            
+            else if (slopeHitBack)
+            {
+                isOnSlope = true;
+                slopeSideAngle = Vector2.Angle(slopeHitBack.normal, Vector2.up);
+            }
+            else
+            {
+                slopeSideAngle = 0.0f;
+                isOnSlope = false;
+            }
+        }
+
+        private void VerticalCheck(Vector2 checkPosition)
+        {
+            var hit = Physics2D.Raycast(checkPosition, Vector2.down, slopeCheckDistance, groundLayerMask);
             if (hit)
             {
                 slopeNormalPerp = Vector2.Perpendicular(hit.normal).normalized;
-
                 slopeDownAngle = Vector2.Angle(hit.normal, Vector2.up);
 
-                if (slopeDownAngle != 0 && slopeDownAngle <= 75)
-                {
-                    isOnSlope = true;
-                }
-                else
-                {
-                    isOnSlope = false;
-                }
+                if (slopeDownAngle != slopeDownAngleOld) isOnSlope = true;
 
-                if (isOnSlope && hit.normal.x != 0)
-                {
-                    rb2d.sharedMaterial = grippy_MT;
-                }
+                slopeDownAngleOld = slopeDownAngle;
+
+                Debug.DrawRay(hit.point, hit.normal, Color.green);
+                Debug.DrawRay(hit.point, slopeNormalPerp, Color.red);
             }
-        }
+
+            if (slopeDownAngle > slopeMaxAngle)
+                canWalkOnSlope = false;
+            else
+                canWalkOnSlope = true;
+
+            if (isOnSlope && velocity == 0.0f && canWalkOnSlope)
+            {
+                cc2d.sharedMaterial = grippy_MT;
+            }
+            else if (isOnSlope && Mathf.Abs(velocity) > 0.0f)
+            {
+                cc2d.sharedMaterial = new PhysicsMaterial2D() {friction = .1f};
+                rb2d.gravityScale = .5f;
+            } else
+            {
+                cc2d.sharedMaterial = slippery_MT;
+                rb2d.gravityScale = 5;
+            }
+
+        }   
 
         private void WallCheck()
         {
