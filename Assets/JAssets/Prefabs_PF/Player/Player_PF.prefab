@@ -128,7 +128,7 @@ GameObject:
   m_Layer: 17
   m_Name: GroundCheckPoint
   m_TagString: Transforms
-  m_Icon: {fileID: 7148428337604731935, guid: 0000000000000000d000000000000000, type: 0}
+  m_Icon: {fileID: 2974397684917235467, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -159,7 +159,7 @@ GameObject:
   m_Layer: 13
   m_Name: GroundCheckRayOrigin
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 2488908585195742037, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -313,7 +313,7 @@ GameObject:
   m_Layer: 17
   m_Name: LedgeCheckPoint
   m_TagString: Transforms
-  m_Icon: {fileID: 7866945982896999795, guid: 0000000000000000d000000000000000, type: 0}
+  m_Icon: {fileID: 4162164826716764455, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -387,7 +387,7 @@ MonoBehaviour:
   targetVelocity: 0
   acceleration: 6
   deceleration: 22
-  massFactor: 0.1
+  massFactor: 0
   jumpForce: 15
   wallSlideSpeed: 0.5
   wallJumpForce: 10
@@ -625,7 +625,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 0.0001
+  m_Mass: 100
   m_LinearDrag: 0
   m_AngularDrag: 0
   m_GravityScale: 5
@@ -684,9 +684,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3313696294208906775}
-  m_Layer: 13
+  m_Layer: 16
   m_Name: CheckTransforms
-  m_TagString: Untagged
+  m_TagString: EditorOnly
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -722,7 +722,7 @@ GameObject:
   m_Layer: 17
   m_Name: WallCheckPoint
   m_TagString: Transforms
-  m_Icon: {fileID: 3306451490063965843, guid: 0000000000000000d000000000000000, type: 0}
+  m_Icon: {fileID: -5487077368411116049, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1

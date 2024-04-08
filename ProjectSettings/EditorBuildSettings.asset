@@ -12,4 +12,4 @@ EditorBuildSettings:
     path: Assets/JAssets/MainMenu.unity
     guid: a0a554c925529054cb50d0911eb45eca
   m_configObjects:
-    com.unity.input.settings: {fileID: 11400000, guid: deeef0f06614a8844b0cdebe433b052e, type: 2}
+    com.unity.input.settings: {fileID: 11400000, guid: 32d89d3c0091b5c408f149535913b663, type: 2}

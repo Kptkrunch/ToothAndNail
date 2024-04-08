@@ -22,11 +22,14 @@ namespace JAssets.Scripts_SC
         [SerializeField] private Vector2 wallJumpDirection = new(1f, 2f);
         
         [SerializeField] private float ledgeClimbSpeed = 1f;
-        [SerializeField] private float maxSlopeAngle = 45.0f;
+        [SerializeField] private float slopeDownAngle = 45.0f;
+        [SerializeField] private Vector2 slopeNormalPerp;
+        
      
         [SerializeField] private float ledgeCheckDistance;
         [SerializeField] private float wallCheckDistance;
         [SerializeField] private float groundCheckDistance;
+        [SerializeField] private float slopeCheckDistance;
 
         [SerializeField] private Transform wallCheckPoint;
         [SerializeField] private Transform ledgeCheckPoint;
@@ -57,6 +60,7 @@ namespace JAssets.Scripts_SC
         private bool isGrounded;
         private bool isTouchingWall;
         private bool isWallSliding;
+        private bool isOnSlope;
         private bool isFacingRight = true;
 
         private void Start()
@@ -81,6 +85,15 @@ namespace JAssets.Scripts_SC
             targetVelocity = velocity * maxSpeed;
             rb2d.velocity = Vector2.MoveTowards(rb2d.velocity, new Vector2(targetVelocity, rb2d.velocity.y),
                 acceleration * Time.deltaTime);
+            
+            if (isOnSlope && velocity != 0)
+            {
+                cc2d.sharedMaterial = null;
+            }
+            else
+            {
+                cc2d.sharedMaterial = new PhysicsMaterial2D { friction = 0.05f };
+            }
             FlipX();
         }
 
@@ -106,6 +119,8 @@ namespace JAssets.Scripts_SC
                 targetVelocity = velocity * maxSpeed;
                 rb2d.velocity = Vector2.MoveTowards(rb2d.velocity, new Vector2(targetVelocity, rb2d.velocity.y),
                     acceleration * Time.deltaTime);
+
+                cc2d.sharedMaterial = slippery_MT;
             }
         }
         
@@ -150,10 +165,39 @@ namespace JAssets.Scripts_SC
             if (isHit.collider != null) 
             {
                 isGrounded = true;
-            } 
-            else
+            } else
             {
                 isGrounded = false;
+            }
+            
+            if (isGrounded) CheckSlope(); 
+        }
+        
+        private void CheckSlope()
+        {
+            Vector2 checkPos = transform.position - new Vector3(0.0f, 0.5f);
+
+            RaycastHit2D hit = Physics2D.Raycast(checkPos, Vector2.down, slopeCheckDistance, groundLayerMask);
+
+            if (hit)
+            {
+                slopeNormalPerp = Vector2.Perpendicular(hit.normal).normalized;
+
+                slopeDownAngle = Vector2.Angle(hit.normal, Vector2.up);
+
+                if (slopeDownAngle != 0 && slopeDownAngle <= 75)
+                {
+                    isOnSlope = true;
+                }
+                else
+                {
+                    isOnSlope = false;
+                }
+
+                if (isOnSlope && hit.normal.x != 0)
+                {
+                    rb2d.sharedMaterial = grippy_MT;
+                }
             }
         }
 

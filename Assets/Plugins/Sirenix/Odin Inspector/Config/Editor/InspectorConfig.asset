@@ -16,4 +16,40 @@ MonoBehaviour:
   defaultEditorBehaviour: 11
   processMouseMoveInInspector: 1
   drawingConfig:
-    configs: []
+    configs:
+    - DrawnTypeName: Sirenix.OdinInspector.Editor.EmittedAnimationCurveContainer,
+        Sirenix.OdinInspector.Editor
+      EditorTypeName: Sirenix.OdinInspector.Editor.OdinEditor, Sirenix.OdinInspector.Editor
+    - DrawnTypeName: Sirenix.OdinInspector.Editor.EmittedGradientContainer, Sirenix.OdinInspector.Editor
+      EditorTypeName: Sirenix.OdinInspector.Editor.OdinEditor, Sirenix.OdinInspector.Editor
+    - DrawnTypeName: Sirenix.OdinInspector.Editor.ImportSettingsConfig, Sirenix.OdinInspector.Editor
+      EditorTypeName: Sirenix.OdinInspector.Editor.OdinEditor, Sirenix.OdinInspector.Editor
+    - DrawnTypeName: Sirenix.OdinInspector.Editor.UndoTracker, Sirenix.OdinInspector.Editor
+      EditorTypeName: Sirenix.OdinInspector.Editor.OdinEditor, Sirenix.OdinInspector.Editor
+    - DrawnTypeName: Sirenix.OdinInspector.Editor.UndoTrackerStateContainer, Sirenix.OdinInspector.Editor
+      EditorTypeName: Sirenix.OdinInspector.Editor.OdinEditor, Sirenix.OdinInspector.Editor
+    - DrawnTypeName: Sirenix.OdinInspector.Editor.Examples.DisabledInInlineEditorScriptableObject,
+        Sirenix.OdinInspector.Editor
+      EditorTypeName: Sirenix.OdinInspector.Editor.OdinEditor, Sirenix.OdinInspector.Editor
+    - DrawnTypeName: Sirenix.OdinInspector.Editor.Examples.ExampleTransform, Sirenix.OdinInspector.Editor
+      EditorTypeName: Sirenix.OdinInspector.Editor.OdinEditor, Sirenix.OdinInspector.Editor
+    - DrawnTypeName: Sirenix.OdinInspector.Editor.Examples.HideMonoScriptScriptableObject,
+        Sirenix.OdinInspector.Editor
+      EditorTypeName: Sirenix.OdinInspector.Editor.OdinEditor, Sirenix.OdinInspector.Editor
+    - DrawnTypeName: Sirenix.OdinInspector.Editor.Examples.MyInlineScriptableObject,
+        Sirenix.OdinInspector.Editor
+      EditorTypeName: Sirenix.OdinInspector.Editor.OdinEditor, Sirenix.OdinInspector.Editor
+    - DrawnTypeName: Sirenix.OdinInspector.Editor.Examples.MyScriptyScriptableObject,
+        Sirenix.OdinInspector.Editor
+      EditorTypeName: Sirenix.OdinInspector.Editor.OdinEditor, Sirenix.OdinInspector.Editor
+    - DrawnTypeName: Sirenix.OdinInspector.Editor.Examples.ShowMonoScriptScriptableObject,
+        Sirenix.OdinInspector.Editor
+      EditorTypeName: Sirenix.OdinInspector.Editor.OdinEditor, Sirenix.OdinInspector.Editor
+    - DrawnTypeName: Sirenix.OdinInspector.Editor.Modules.OdinModuleConfig, Sirenix.OdinInspector.Editor
+      EditorTypeName: Sirenix.OdinInspector.Editor.OdinEditor, Sirenix.OdinInspector.Editor
+    - DrawnTypeName: Sirenix.OdinValidator.Editor.AutomationConfig, Sirenix.OdinValidator.Editor
+      EditorTypeName: Sirenix.OdinInspector.Editor.OdinEditor, Sirenix.OdinInspector.Editor
+    - DrawnTypeName: Sirenix.OdinValidator.Editor.RuleConfig, Sirenix.OdinValidator.Editor
+      EditorTypeName: Sirenix.OdinInspector.Editor.OdinEditor, Sirenix.OdinInspector.Editor
+    - DrawnTypeName: Sirenix.Utilities.ProjectPathFinder, Sirenix.Utilities
+      EditorTypeName: Sirenix.OdinInspector.Editor.OdinEditor, Sirenix.OdinInspector.Editor

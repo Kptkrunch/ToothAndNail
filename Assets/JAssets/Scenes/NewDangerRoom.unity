@@ -25624,8 +25624,8 @@ Camera:
     serializedVersion: 2
     x: 0
     y: 0
-    width: 1
-    height: 1
+    width: 1920
+    height: 1080
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 60
@@ -25761,9 +25761,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1014901562}
   - component: {fileID: 1014901561}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: Global Volume
-  m_TagString: Untagged
+  m_TagString: EditorOnly
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -26092,14 +26092,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 118402608363395826, guid: 45853bd733d0bde4c8d623908c79ba34, type: 3}
-      propertyPath: jumpForce
-      value: 15
-      objectReference: {fileID: 0}
-    - target: {fileID: 118402608363395826, guid: 45853bd733d0bde4c8d623908c79ba34, type: 3}
-      propertyPath: massFactor
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 1924860911577716861, guid: 45853bd733d0bde4c8d623908c79ba34, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -26140,22 +26132,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4999955045626842682, guid: 45853bd733d0bde4c8d623908c79ba34, type: 3}
-      propertyPath: m_Mass
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 4999955045626842682, guid: 45853bd733d0bde4c8d623908c79ba34, type: 3}
-      propertyPath: m_LinearDrag
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4999955045626842682, guid: 45853bd733d0bde4c8d623908c79ba34, type: 3}
-      propertyPath: m_GravityScale
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 4999955045626842682, guid: 45853bd733d0bde4c8d623908c79ba34, type: 3}
-      propertyPath: m_SleepingMode
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 6586553155627788150, guid: 45853bd733d0bde4c8d623908c79ba34, type: 3}
       propertyPath: m_Name
       value: Player_PF
@@ -26170,7 +26146,7 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 1002499772}
+  - {fileID: 1014901562}
   - {fileID: 696487291}
   - {fileID: 1659483774}
   - {fileID: 1176749503202141833}
-  - {fileID: 1014901562}
