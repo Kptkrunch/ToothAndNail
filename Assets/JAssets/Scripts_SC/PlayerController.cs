@@ -245,12 +245,10 @@ namespace JAssets.Scripts_SC
         {
             if (_isGrounded)
             {
-                rb2d.gravityScale = 0;
                 coyoteTimeTimer = coyoteTime;
             }
             else
             {
-                rb2d.gravityScale = 5;
                 coyoteTimeTimer -= Time.deltaTime;
             }
         }
