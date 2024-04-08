@@ -66,23 +66,21 @@ namespace JAssets.Scripts_SC
 
         private void Update()
         {
+            animator.SetFloat("Walking", Mathf.Abs(rb2d.velocity.x));
+
             GroundCheck();
             WallCheck();
+            CoyoteJumpAndBufferTimers();
+            
+            if (isGrounded && animator.GetBool("Jumping")) animator.SetBool("Jumping", false);
+            if (isWallSliding) animator.SetBool("WallSlide", true);
         }
 
         private void FixedUpdate()
         {
-            CoyoteJumpAndBufferTimers();
-
-            animator.SetFloat("Walking", Mathf.Abs(rb2d.velocity.x));
-            animator.SetBool("Grounded", isGrounded);
-            if (isGrounded && animator.GetBool("Jumping")) animator.SetBool("Jumping", false);
-            if (isWallSliding) animator.SetBool("WallSlide", true);
-
             targetVelocity = velocity * maxSpeed;
             rb2d.velocity = Vector2.MoveTowards(rb2d.velocity, new Vector2(targetVelocity, rb2d.velocity.y),
                 acceleration * Time.deltaTime);
-
             FlipX();
         }
 
@@ -90,7 +88,7 @@ namespace JAssets.Scripts_SC
         {
             mainCamera.transform.position = new Vector3(transform.position.x, transform.position.y, -10);
 
-            if (!(Mathf.Abs(velocity) <= .01f)) return;
+            if (!(Mathf.Abs(velocity) <= .1f)) return;
             rb2d.velocity = Vector2.MoveTowards(rb2d.velocity, Vector2.zero, deceleration * Time.deltaTime);
             animator.SetFloat("Walking", 0);
             
@@ -146,7 +144,9 @@ namespace JAssets.Scripts_SC
         
         private void GroundCheck()
         {
-            RaycastHit2D isHit = Physics2D.Raycast(groundCheckPointOrigin.position, Vector2.down, groundCheckDistance, groundLayerMask);
+            RaycastHit2D isHit = Physics2D.Raycast(groundCheckPoint.position, Vector2.down, groundCheckDistance, groundLayerMask);
+            Debug.DrawRay(groundCheckPoint.position, Vector2.down, Color.red);
+
             if (isHit.collider != null) 
             {
                 isGrounded = true;
@@ -174,6 +174,8 @@ namespace JAssets.Scripts_SC
                 {
                     canLedgeHang = false;
                 }
+                
+                Debug.DrawRay(wallCheckPoint.position, Vector2.right, Color.green);
             }
         }
 
@@ -194,63 +196,15 @@ namespace JAssets.Scripts_SC
             transform.localScale = newScale;
         }
 
-        // This will rotate a vector by a given angle
-        // private static Vector2 RotateVectorb2dyAngle(Vector2 vector, float angle)
-        // {
-        //     var radian = angle * Mathf.Deg2Rad;
-        //
-        //     var _x = vector.x * Mathf.Cos(radian) - vector.y * Mathf.Sin(radian);
-        //     var _y = vector.x * Mathf.Sin(radian) + vector.y * Mathf.Cos(radian);
-        //
-        //     return new Vector2(_x, _y);
-        // }
-
-        // public void LedgeGrab(InputAction.CallbackContext context)
-        // {
-        //     // Check for ledge grabbing conditions (reusing WallSlide logic)
-        //
-        //     // Check if the player can hang and if they're wall sliding
-        //     if (canLedgeHang && isWallSliding)
-        //     {
-        //         if (context.performed)
-        //         {
-        //             // Freeze y velocity to essentially 'grab'
-        //             rb2d.velocity = new Vector2(rb2d.velocity.x, 0f);
-        //             isOnLedge = true;
-        //             animator.SetBool("OnLedge", true);
-        //         }
-        //     }
-        //     else if (isOnLedge && !canLedgeHang)
-        //     {
-        //         // If moving from a hang to a slide
-        //         isOnLedge = false;
-        //         animator.SetBool("OnLedge", false);
-        //     }
-        // }
-
-        // private IEnumerator LedgeClimb(InputAction.CallbackContext context)
-        // {
-        //     yield return LedgeClimb(context);
-        //     Vector3 targetPos = new Vector2(ledgeCheckPoint.position.x, ledgeCheckPoint.position.y + ledgeClimbSpeed);
-        //     while (Vector3.Distance(transform.position, targetPos) > 0.05)
-        //     {
-        //         transform.position = Vector2.Lerp(transform.position, targetPos, Time.deltaTime * ledgeClimbSpeed);
-        //         yield return null;
-        //     }
-        //     isOnLedge = false;
-        // }
-
         private void CoyoteJumpAndBufferTimers()
         {
             // Coyote Time Calculation
             if (isGrounded)
             {
                 coyoteTime = Time.time + coyoteDuration;
-                rb2d.gravityScale = 0;
             } else if (Time.time > coyoteTime)
             {
                 isGrounded = false;
-                rb2d.gravityScale = 5;
             }
             
             if (jumpBufferCount > 0)
@@ -291,5 +245,6 @@ namespace JAssets.Scripts_SC
             
             animator.SetBool("Attack", true);
         }
+        
     }
 }

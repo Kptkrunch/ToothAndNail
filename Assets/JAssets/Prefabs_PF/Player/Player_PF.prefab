@@ -9,9 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5625265172435703104}
-  m_Layer: 13
+  m_Layer: 16
   m_Name: Lights
-  m_TagString: Untagged
+  m_TagString: EditorOnly
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -44,9 +44,9 @@ GameObject:
   m_Component:
   - component: {fileID: 8889157895758572092}
   - component: {fileID: 6820856576406288085}
-  m_Layer: 13
+  m_Layer: 16
   m_Name: SurroundingLight
-  m_TagString: Untagged
+  m_TagString: EditorOnly
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -93,7 +93,7 @@ MonoBehaviour:
   m_AlphaBlendOnOverlap: 0
   m_OverlapOperation: 0
   m_NormalMapDistance: 3
-  m_NormalMapQuality: 2
+  m_NormalMapQuality: 0
   m_UseNormalMap: 0
   m_ShadowIntensityEnabled: 0
   m_ShadowIntensity: 0.75
@@ -141,7 +141,7 @@ Transform:
   m_GameObject: {fileID: 1231788840220461394}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.549, z: 0}
+  m_LocalPosition: {x: 0, y: -0.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -190,9 +190,9 @@ GameObject:
   - component: {fileID: 1923597245666244881}
   - component: {fileID: 8026851493964775783}
   - component: {fileID: 5754819982995325203}
-  m_Layer: 13
+  m_Layer: 16
   m_Name: VisualController
-  m_TagString: Player1
+  m_TagString: EditorOnly
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -271,8 +271,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -881822897
-  m_SortingLayer: 6
+  m_SortingLayerID: 572814919
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: -1637910214, guid: 6606d2b5f34be634b87d2ea95985c040, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -385,35 +385,36 @@ MonoBehaviour:
   maxSpeed: 4
   velocity: 0
   targetVelocity: 0
-  acceleration: 4
+  acceleration: 6
   deceleration: 22
   massFactor: 0.1
   jumpForce: 15
   wallSlideSpeed: 0.5
   wallJumpForce: 10
+  wallJumpDirection: {x: 1, y: 2}
   ledgeClimbSpeed: 1
   maxSlopeAngle: 45
-  wallJumpDirection: {x: 1, y: 2}
+  ledgeCheckDistance: 1
+  wallCheckDistance: 0.1
+  groundCheckDistance: 0.1
   wallCheckPoint: {fileID: 4504205441877230025}
   ledgeCheckPoint: {fileID: 4095056347227682920}
-  ledgeCheckDistance: 1
-  wallCheckRadius: 0.15
-  groundCheckRadius: 0.15
-  wallLayerMask:
-    serializedVersion: 2
-    m_Bits: 16384
   groundCheckPoint: {fileID: 2299428266029935614}
+  groundCheckPointOrigin: {fileID: 1765954745519938073}
   groundLayerMask:
     serializedVersion: 2
     m_Bits: 512
-  coyoteDuration: 0.15
-  jumpBufferLength: 0.15
-  rb2d: {fileID: 0}
-  cc: {fileID: 2861738768540275569}
+  wallLayerMask:
+    serializedVersion: 2
+    m_Bits: 16384
+  coyoteDuration: 0.2
+  jumpBufferLength: 0.2
+  rb2d: {fileID: 4999955045626842682}
+  cc2d: {fileID: 2861738768540275569}
   animator: {fileID: 1923597245666244881}
   mainCamera: {fileID: 0}
-  MatSlippery: {fileID: 6200000, guid: 2f141d95dea4b864982e7bf41344a2e9, type: 2}
-  MatGrippy: {fileID: 6200000, guid: 4781a5cd7acb052478f208e92056a8a4, type: 2}
+  slippery_MT: {fileID: 6200000, guid: 2f141d95dea4b864982e7bf41344a2e9, type: 2}
+  grippy_MT: {fileID: 6200000, guid: 4781a5cd7acb052478f208e92056a8a4, type: 2}
 --- !u!114 &182531352617407405
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -624,7 +625,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 100
+  m_Mass: 0.0001
   m_LinearDrag: 0
   m_AngularDrag: 0
   m_GravityScale: 5
@@ -734,7 +735,7 @@ Transform:
   m_GameObject: {fileID: 7455479545841566080}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.267, y: -0.121, z: 0}
+  m_LocalPosition: {x: 0.25, y: 0.15, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -750,9 +751,9 @@ GameObject:
   m_Component:
   - component: {fileID: 8810539770250375550}
   - component: {fileID: 8331653813371736574}
-  m_Layer: 13
+  m_Layer: 16
   m_Name: ViewLight
-  m_TagString: Untagged
+  m_TagString: EditorOnly
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -791,7 +792,7 @@ MonoBehaviour:
   m_Color: {r: 0.8915094, g: 1, b: 0.96650374, a: 1}
   m_Intensity: 1
   m_LightVolumeIntensity: 0.03
-  m_LightVolumeIntensityEnabled: 1
+  m_LightVolumeIntensityEnabled: 0
   m_ApplyToSortingLayers: 00000000b9b8169b159558e3c7d0f1c247762422e5671bf24f7370cbe122e36b1b33efd50181a6652fe2f40d
   m_LightCookieSprite: {fileID: 21300000, guid: 4090289b14081c74d9929da1e8cd9bb9, type: 3}
   m_DeprecatedPointLightCookieSprite: {fileID: 0}
