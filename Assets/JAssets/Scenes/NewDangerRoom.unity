@@ -32319,14 +32319,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 118402608363395826, guid: 062944fb02db8b84eaac386d6a522ee5, type: 3}
-      propertyPath: moveSpeed
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 118402608363395826, guid: 062944fb02db8b84eaac386d6a522ee5, type: 3}
-      propertyPath: deceleration
-      value: 20
-      objectReference: {fileID: 0}
     - target: {fileID: 182531352617407405, guid: 062944fb02db8b84eaac386d6a522ee5, type: 3}
       propertyPath: m_ActionEvents.Array.data[1].m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -32370,14 +32362,6 @@ PrefabInstance:
     - target: {fileID: 1924860911577716861, guid: 062944fb02db8b84eaac386d6a522ee5, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4999955045626842682, guid: 062944fb02db8b84eaac386d6a522ee5, type: 3}
-      propertyPath: m_LinearDrag
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4999955045626842682, guid: 062944fb02db8b84eaac386d6a522ee5, type: 3}
-      propertyPath: m_AngularDrag
-      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 6586553155627788150, guid: 062944fb02db8b84eaac386d6a522ee5, type: 3}
       propertyPath: m_Name

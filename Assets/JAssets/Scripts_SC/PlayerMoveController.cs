@@ -103,15 +103,23 @@ namespace JAssets.Scripts_SC
         public void Move(InputAction.CallbackContext context)
         {
             if (!context.performed) return;
-            
-            if (isGrounded) {
+            float currentAcceleration;
+
+            if (isGrounded)
+            {
+                currentAcceleration = acceleration;
                 velocity = context.ReadValue<Vector2>().x;
-                var newVelocity = new Vector2(velocity, rb2d.velocity.y);
-                newVelocity.Set(maxSpeed * velocity, 0.0f);
-                rb2d.velocity = newVelocity;
+                
+                targetVelocity = velocity * maxSpeed;
+                rb2d.velocity = Vector2.MoveTowards(rb2d.velocity, new Vector2(targetVelocity, rb2d.velocity.y),
+                    acceleration * Time.deltaTime);
+                
 
             } else if (!isGrounded)
             {
+                currentAcceleration = acceleration * 0.5f;
+                velocity = context.ReadValue<Vector2>().x;
+
                 targetVelocity = velocity * maxSpeed;
                 rb2d.velocity = Vector2.MoveTowards(rb2d.velocity, new Vector2(targetVelocity, rb2d.velocity.y),
                     acceleration * Time.deltaTime);
@@ -200,6 +208,8 @@ namespace JAssets.Scripts_SC
         private void LedgeCheck()
         {
             RaycastHit2D ledgeCheckHit = Physics2D.Raycast(ledgeCheckPoint.position, Vector2.right, ledgeCheckDistance, wallLayerMask);
+            Debug.DrawRay(ledgeCheckPoint.position, Vector2.right, Color.yellow);
+
             if (!ledgeCheckHit.collider && isTouchingWall)
             {
                 canLedgeHang = true;
@@ -253,7 +263,7 @@ namespace JAssets.Scripts_SC
             RaycastHit2D wallCheckHit = Physics2D.Raycast(wallCheckPoint.position, direction, wallCheckDistance, wallLayerMask);     
             Debug.DrawRay(wallCheckPoint.position, direction, Color.green);
 
-            if (wallCheckHit.collider)
+            if (wallCheckHit.collider && !isGrounded)
             {
                 isTouchingWall = true;
                 WallSlide();
@@ -269,7 +279,7 @@ namespace JAssets.Scripts_SC
         
         private void WallSlide()
         {
-            if (isTouchingWall && !isOnLedge)
+            if (isTouchingWall)
             {
                 isWallSliding = true;
                 rb2d.velocity = new Vector2(rb2d.velocity.x, -wallSlideSpeed);
@@ -283,10 +293,10 @@ namespace JAssets.Scripts_SC
         public void WallJump(InputAction.CallbackContext context)
         {
             if (!context.performed) return;
-            if (isWallSliding || isTouchingWall)
+            if (isWallSliding)
             {
                 var forceAdd = new Vector2(
-                    wallJumpDirection.x * transform.localScale.x, wallJumpDirection.y) * wallJumpForce;
+                    wallJumpDirection.x * -transform.localScale.x, wallJumpDirection.y) * wallJumpForce;
 
                 rb2d.velocity = forceAdd;
                 animator.SetBool("WallJump", true);
