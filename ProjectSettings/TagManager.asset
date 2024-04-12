@@ -39,7 +39,7 @@ TagManager:
   - Particles
   - EditorStuff
   - Transforms
-  - 
+  - Player
   - 
   - 
   - 
@@ -86,4 +86,7 @@ TagManager:
     locked: 0
   - name: Particles
     uniqueID: 234152495
+    locked: 0
+  - name: Player
+    uniqueID: 1388011171
     locked: 0
