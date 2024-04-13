@@ -49,7 +49,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 20a6fc528c2444e4db2aef2ef3b11807, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parent: {fileID: 0}
+  parent: {fileID: 4578394708835662227}
   gearName: BattleAx
   isWeapon: 1
   isTool: 0
@@ -93,8 +93,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 132148973
-  m_SortingLayer: 4
+  m_SortingLayerID: -1459862473
+  m_SortingLayer: 12
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 9d6401c38717e744190dff3a7a2f47e5, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -224,7 +224,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &5463299922561261387
 Transform:
   m_ObjectHideFlags: 0
@@ -249,6 +249,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 6495262099662444287}
     m_Modifications:
+    - target: {fileID: 1431524522856451246, guid: 302b15f9b2cc68e428834e8ce57b2961, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.044
+      objectReference: {fileID: 0}
+    - target: {fileID: 5355933885024790224, guid: 302b15f9b2cc68e428834e8ce57b2961, type: 3}
+      propertyPath: m_Name
+      value: PickupAura
+      objectReference: {fileID: 0}
     - target: {fileID: 182753893679185091, guid: c044585625fab3c478437a2e67237feb, type: 3}
       propertyPath: ShapeModule.m_Rotation.y
       value: 45
@@ -292,14 +300,6 @@ PrefabInstance:
     - target: {fileID: 1431524522856451246, guid: c044585625fab3c478437a2e67237feb, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1431524522856451246, guid: 302b15f9b2cc68e428834e8ce57b2961, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0.044
-      objectReference: {fileID: 0}
-    - target: {fileID: 5355933885024790224, guid: 302b15f9b2cc68e428834e8ce57b2961, type: 3}
-      propertyPath: m_Name
-      value: PickupAura
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

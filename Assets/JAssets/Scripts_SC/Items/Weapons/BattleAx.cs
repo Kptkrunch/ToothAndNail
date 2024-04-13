@@ -36,26 +36,26 @@ namespace JAssets.Scripts_SC.Items.Weapons
 
         public void MegaChopOff()
         {
-            animator.SetBool("MegaChop", false);
+            rtso.animator.SetBool("MegaChop", false);
         }
 
         public override void Attack()
         {
             if (!_specialTrigger)
             {
-                animator.SetBool(attackAnimString, true);
-                animator.SetBool(specAnimString, false);
+                rtso.animator.SetBool(rtso.attackAnimString, true);
+                rtso.animator.SetBool(rtso.specAnimString, false);
             }
             else if (_specialTrigger)
             {
-                animator.SetBool("MegaChop", true);
+                rtso.animator.SetBool("MegaChop", true);
                 _specialTrigger = false;
             }
         }
 
         public override void Special()
         {
-            if (!_specialTrigger) animator.SetBool(specAnimString, true);
+            if (!_specialTrigger) rtso.animator.SetBool(rtso.specAnimString, true);
         }
     }
 }

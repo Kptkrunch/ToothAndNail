@@ -1,24 +1,21 @@
 using JAssets.Scripts_SC.Spawners;
 using MoreMountains.Feedbacks;
+using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace JAssets.Scripts_SC.Items
 {
     public class Weapon : MonoBehaviour
     {
+        public Weapon_SO weapon_so;
+        internal Weapon_SO rtso;
         public GearController controller;
-        public float weight;
-        public int damage;
-        public int durability, fullDurability = 3;
-
         public Collider2D hitBox;
 
-        public Animator animator;
-        public string attackAnimString;
-        public string specAnimString;
-
-        public float attackCd;
-        public float specialCd;
+        private void Start()
+        {
+            rtso = Instantiate(weapon_so);
+        }
 
         public virtual void OnCollisionEnter2D(Collision2D other)
         {
@@ -26,20 +23,20 @@ namespace JAssets.Scripts_SC.Items
             {
                 DealDamageAndSpawnDmgText(other);
                 HitParticleSpawner.instance.GetRandomBlood(other.transform.position);
-                controller.activeWeaponDurability = durability;
+                controller.activeWeaponDurability = rtso.durability;
             }
             else if (other.gameObject.CompareTag("Weapon"))
             {
                 DealDamageAndSpawnDmgText(other);
                 HitParticleSpawner.instance.GetRandomClash(other.transform.position);
-                controller.activeWeaponDurability = durability;
+                controller.activeWeaponDurability = rtso.durability;
             }
         }
 
         public virtual void AttackOff()
         {
-            animator.SetBool(attackAnimString, false);
-            if (durability <= 0)
+            rtso.animator.SetBool(rtso.attackAnimString, false);
+            if (rtso.durability <= 0)
             {
                 gameObject.SetActive(false);
                 controller.activeWeapon = "";
@@ -51,7 +48,7 @@ namespace JAssets.Scripts_SC.Items
 
         public virtual void SpecialOff()
         {
-            animator.SetBool(specAnimString, false);
+            rtso.animator.SetBool(rtso.specAnimString, false);
         }
 
         public virtual void Attack()
@@ -66,22 +63,22 @@ namespace JAssets.Scripts_SC.Items
 
         public void DealDamageAndSpawnDmgText(Collision2D other)
         {
-            durability--;
+            rtso.durability--;
             var otherPlayer = other.gameObject.GetComponentInChildren<PlayerHealthController>();
-            otherPlayer.GetDamaged(damage);
+            otherPlayer.GetDamaged(rtso.damage);
 
             var dmgText = DamageTextController.instance.player.GetFeedbackOfType<MMF_FloatingText>();
-            dmgText.Value = damage.ToString();
+            dmgText.Value = rtso.damage.ToString();
             DamageTextController.instance.player.PlayFeedbacks(otherPlayer.transform.position);
         }
 
         public virtual void DurabilityCheck()
         {
-            if (durability <= 0)
+            if (rtso.durability <= 0)
             {
                 Debug.Log("dur");
-                durability = fullDurability;
-                Debug.Log(durability);
+                rtso.durability = rtso.fullDurability;
+                Debug.Log(rtso.durability);
                 gameObject.SetActive(false);
                 controller.activeWeapon = "";
                 var particle = WorldParticleSpawner.instance.weaponPickupParticle.GetPooledGameObject();

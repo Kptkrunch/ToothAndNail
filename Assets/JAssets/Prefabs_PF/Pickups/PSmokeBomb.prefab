@@ -90,8 +90,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -778423849
-  m_SortingLayer: 5
+  m_SortingLayerID: -1459862473
+  m_SortingLayer: 12
   m_SortingOrder: 0
   m_Sprite: {fileID: 1131613045, guid: ab89f83c8bdef264d87a425bad76f378, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -164,7 +164,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &7073712126103600303
 Transform:
   m_ObjectHideFlags: 0

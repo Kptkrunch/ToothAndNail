@@ -49,17 +49,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2e3b4514f268cb448f9a1a8cd330d3c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  weapon_so: {fileID: 11400000, guid: ae21be490a889a742ad913638e76aa56, type: 2}
   controller: {fileID: 0}
-  weight: 10
-  damage: 1
-  durability: 0
-  fullDurability: 3
   hitBox: {fileID: 6316306351680601167}
-  animator: {fileID: 301197388363239041}
-  attackAnimString: Thrust
-  specAnimString: Throw
-  attackCd: 3
-  specialCd: 3
 --- !u!95 &301197388363239041
 Animator:
   serializedVersion: 5
@@ -120,7 +112,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 132148973
-  m_SortingLayer: 4
+  m_SortingLayer: 0
   m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: 99108e30be60ddd428ba6f415b095f07, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
