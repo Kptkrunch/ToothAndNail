@@ -5,10 +5,11 @@ using UnityEngine.InputSystem;
 
 namespace JAssets.Scripts_SC
 {
-    public class GearController : MonoBehaviour
+    public class ItemController : MonoBehaviour
     {
         public EquippedGear gear;
         public LayerMask pickupLayer;
+        public CraftingController crafter;
         public string activeWeapon;
         public string activeTool;
 
@@ -33,42 +34,77 @@ namespace JAssets.Scripts_SC
             _canTool = true;
         }
 
-        public void GetGear(InputAction.CallbackContext context)
+        public void GetWeaponOrConsumable(InputAction.CallbackContext context)
         {
             if (context.performed)
             {
-                var gearPickup = Physics2D.OverlapCircle(transform.position, 1f, pickupLayer);
-                if (!gearPickup) return;
-                var newGear = gearPickup.GetComponent<Pickup>();
-                newGear.PickupGear();
+                var pickup = Physics2D.OverlapCircle(transform.position, 1f, pickupLayer);
+                if (!pickup) return;
+                var item = pickup.GetComponent<Pickup>();
+                item.PickupItem();
 
-                if (newGear.isWeapon)
+                if (item.itemType == "Weapon")
                 {
-                    if (activeWeapon != "") DropEquippedGear(true);
-                    gear.weapons[newGear.gearName].gameObject.SetActive(true);
-                    activeWeapon = newGear.gearName;
+                    if (activeWeapon != "") DropEquippedGear("Weapon", true);
+                    gear.weapons[item.itemName].gameObject.SetActive(true);
+                    activeWeapon = item.itemName;
 
                     var getGearParticle = Library.instance.particleDict["PickupFlash"].GetPooledGameObject();
                     getGearParticle.SetActive(true);
-                    getGearParticle.transform.position = gearPickup.transform.position;
+                    getGearParticle.transform.position = pickup.transform.position;
                     UpdateWeapon();
 
                 }
-                else if (newGear.isTool)
+                else if (item.itemType == "Consumable")
                 {
-                    if (activeTool != "") DropEquippedGear(false);
-                    gear.tools[newGear.gearName].gameObject.SetActive(true);
-                    activeTool = newGear.gearName;
+                    if (activeTool != "") DropEquippedGear("Consumable", true);
+                    gear.tools[item.itemName].gameObject.SetActive(true);
+                    activeTool = item.itemName;
+
+                    UpdateTool();
+
+                    var getItemParticle = Library.instance.particleDict["PickupFlash"].GetPooledGameObject();
+                    getItemParticle.SetActive(true);
+                    getItemParticle.transform.position = pickup.transform.position;
+                }
+            }
+        }
+        public void GetToolOrConsumable(InputAction.CallbackContext context)
+        {
+            if (context.performed)
+            {
+                var pickup = Physics2D.OverlapCircle(transform.position, 1f, pickupLayer);
+                if (!pickup) return;
+                var item = pickup.GetComponent<Pickup>();
+                item.PickupItem();
+                
+                if (item.itemType == "Tool")
+                {
+                    if (activeTool != "") DropEquippedGear("Tool", false);
+                    gear.tools[item.itemName].gameObject.SetActive(true);
+                    activeTool = item.itemName;
 
                     UpdateTool();
 
                     var getGearParticle = Library.instance.particleDict["PickupFlash"].GetPooledGameObject();
                     getGearParticle.SetActive(true);
-                    getGearParticle.transform.position = gearPickup.transform.position;
+                    getGearParticle.transform.position = pickup.transform.position;
+                } 
+                else if (item.itemType == "Consumable")
+                {
+                    if (activeTool != "") DropEquippedGear("Consumable", false);
+                    gear.tools[item.itemName].gameObject.SetActive(true);
+                    activeTool = item.itemName;
+
+                    UpdateTool();
+
+                    var getItemParticle = Library.instance.particleDict["PickupFlash"].GetPooledGameObject();
+                    getItemParticle.SetActive(true);
+                    getItemParticle.transform.position = pickup.transform.position;
                 }
             }
         }
-
+        
         public void Attack(InputAction.CallbackContext context)
         {
             if (activeWeapon == "") return;
@@ -138,11 +174,11 @@ namespace JAssets.Scripts_SC
             _canTool = true;
         }
 
-        private void DropEquippedGear(bool isWeapon)
+        private void DropEquippedGear(string itemType, bool weaponSlot)
         {
-            switch (isWeapon)
+            switch (itemType)
             {
-                case true:
+                case "Weapon":
                 {
                     var weaponDrop = Library.instance.pickupsDict["P" + activeWeapon + "-0"];
                     gear.weapons[activeWeapon].gameObject.SetActive(false);
@@ -150,7 +186,7 @@ namespace JAssets.Scripts_SC
                     weaponDrop.transform.position = transform.position;
                     break;
                 }
-                case false:
+                case "Tool":
                 {
                     var toolDrop = Library.instance.pickupsDict["P" + activeTool + "-0"];
                     gear.tools[activeTool].gameObject.SetActive(false);
@@ -158,6 +194,15 @@ namespace JAssets.Scripts_SC
                     toolDrop.transform.position = transform.position;
                     break;
                 }
+                case "Consumable":
+                    var slot = activeWeapon;
+                    if (!weaponSlot) slot = activeTool;
+                    
+                    var consumableDrop = Library.instance.consumableDict["P" + slot + "-0"];
+                    gear.weapons[activeWeapon].gameObject.SetActive(false);
+                    consumableDrop.gameObject.SetActive(true);
+                    consumableDrop.transform.position = transform.position;
+                    break;
             }
         }
     }

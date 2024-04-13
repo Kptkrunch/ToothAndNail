@@ -11,7 +11,7 @@ namespace JAssets.Scripts_SC.Items
         public Animator animator;
         public Weapon_SO weapon_so;
         internal Weapon_SO rtso;
-        public GearController controller;
+        public ItemController controller;
         public Collider2D hitBox;
 
         private void OnEnable()

@@ -7,7 +7,7 @@ namespace JAssets.Scripts_SC.Items
     public class Tool : MonoBehaviour
     {
         public Animator animator;
-        public GearController controller;
+        public ItemController controller;
         public Tool_SO tool_so;
         internal Tool_SO rtso;
 

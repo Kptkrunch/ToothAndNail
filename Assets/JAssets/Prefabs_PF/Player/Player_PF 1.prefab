@@ -334,11 +334,14 @@ MonoBehaviour:
   pickupLayer:
     serializedVersion: 2
     m_Bits: 524288
+  crafter: {fileID: 0}
   activeWeapon: 
   activeTool: 
   attackCd: 0
   specialCd: 0
   toolCd: 0
+  _attackString: 
+  _specialString: 
 --- !u!1 &5048194426125159395
 GameObject:
   m_ObjectHideFlags: 0
@@ -532,8 +535,8 @@ MonoBehaviour:
     m_ActionName: Player/Crouch[/XInputControllerWindows/leftStick/down]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 7429358296062983697}
-        m_TargetAssemblyTypeName: JAssets.Scripts_SC.PlayerMoveController, Assembly-CSharp
+      - m_Target: {fileID: 7194919361019449515}
+        m_TargetAssemblyTypeName: JAssets.Scripts_SC.GearController, Assembly-CSharp
         m_MethodName: Attack
         m_Mode: 0
         m_Arguments:
@@ -548,13 +551,13 @@ MonoBehaviour:
     m_ActionName: Player/Attack[/XInputControllerWindows/buttonWest]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 5048194426125159395}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
-        m_Mode: 1
+      - m_Target: {fileID: 7194919361019449515}
+        m_TargetAssemblyTypeName: JAssets.Scripts_SC.GearController, Assembly-CSharp
+        m_MethodName: UseTool
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -564,13 +567,13 @@ MonoBehaviour:
     m_ActionName: Player/Tool[/XInputControllerWindows/buttonEast]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 5048194426125159395}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
-        m_Mode: 1
+      - m_Target: {fileID: 7194919361019449515}
+        m_TargetAssemblyTypeName: JAssets.Scripts_SC.GearController, Assembly-CSharp
+        m_MethodName: Special
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -580,13 +583,13 @@ MonoBehaviour:
     m_ActionName: Player/Special[/XInputControllerWindows/buttonNorth]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 5048194426125159395}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
-        m_Mode: 1
+      - m_Target: {fileID: 7194919361019449515}
+        m_TargetAssemblyTypeName: JAssets.Scripts_SC.GearController, Assembly-CSharp
+        m_MethodName: GetEquipmentOrConsumable
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -935,7 +938,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 558655202105039035, guid: 273d39da803e4a64189defddb9f2ec48, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6157654374845438397, guid: 273d39da803e4a64189defddb9f2ec48, type: 3}
       propertyPath: m_LocalPosition.x
@@ -978,6 +981,10 @@ PrefabInstance:
       value: 65
       objectReference: {fileID: 0}
     - target: {fileID: 7411575243187289058, guid: 273d39da803e4a64189defddb9f2ec48, type: 3}
+      propertyPath: animator
+      value: 
+      objectReference: {fileID: 5868960513555544380}
+    - target: {fileID: 7411575243187289058, guid: 273d39da803e4a64189defddb9f2ec48, type: 3}
       propertyPath: controller
       value: 
       objectReference: {fileID: 7194919361019449515}
@@ -986,10 +993,16 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 2955271893677271477, guid: 273d39da803e4a64189defddb9f2ec48, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 273d39da803e4a64189defddb9f2ec48, type: 3}
+--- !u!95 &5868960513555544380 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 7350426604627713735, guid: 273d39da803e4a64189defddb9f2ec48, type: 3}
+  m_PrefabInstance: {fileID: 3995619141706835963}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &5884091566841011225 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7411575243187289058, guid: 273d39da803e4a64189defddb9f2ec48, type: 3}
@@ -1062,6 +1075,18 @@ PrefabInstance:
       propertyPath: controller
       value: 
       objectReference: {fileID: 7194919361019449515}
+    - target: {fileID: 7743066416231613758, guid: 269bacdb0658e3e469968ae896cc7357, type: 3}
+      propertyPath: m_SortingLayer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 7743066416231613758, guid: 269bacdb0658e3e469968ae896cc7357, type: 3}
+      propertyPath: m_SortingLayerID
+      value: 1388011171
+      objectReference: {fileID: 0}
+    - target: {fileID: 7743066416231613758, guid: 269bacdb0658e3e469968ae896cc7357, type: 3}
+      propertyPath: m_RenderingLayerMask
+      value: 4294967295
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1140,14 +1165,32 @@ PrefabInstance:
       value: Sword
       objectReference: {fileID: 0}
     - target: {fileID: 8809128663622605688, guid: ab4eadc03c1141b4ba9adcfbf0ecff9b, type: 3}
+      propertyPath: animator
+      value: 
+      objectReference: {fileID: 2831706486710344714}
+    - target: {fileID: 8809128663622605688, guid: ab4eadc03c1141b4ba9adcfbf0ecff9b, type: 3}
       propertyPath: controller
       value: 
       objectReference: {fileID: 7194919361019449515}
+    - target: {fileID: 9104175695209754800, guid: ab4eadc03c1141b4ba9adcfbf0ecff9b, type: 3}
+      propertyPath: m_SortingLayer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 9104175695209754800, guid: ab4eadc03c1141b4ba9adcfbf0ecff9b, type: 3}
+      propertyPath: m_SortingLayerID
+      value: 1388011171
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 4780346615188641382, guid: ab4eadc03c1141b4ba9adcfbf0ecff9b, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ab4eadc03c1141b4ba9adcfbf0ecff9b, type: 3}
+--- !u!95 &2831706486710344714 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 8343379803038319267, guid: ab4eadc03c1141b4ba9adcfbf0ecff9b, type: 3}
+  m_PrefabInstance: {fileID: 6090447459904822953}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &3370331253111866833 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8809128663622605688, guid: ab4eadc03c1141b4ba9adcfbf0ecff9b, type: 3}
@@ -1249,6 +1292,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 8646996721005990824}
     m_Modifications:
+    - target: {fileID: 1960079656132061469, guid: c570b26bd097cad45a141f3d8426b97d, type: 3}
+      propertyPath: m_SortingLayer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 1960079656132061469, guid: c570b26bd097cad45a141f3d8426b97d, type: 3}
+      propertyPath: m_SortingLayerID
+      value: 1388011171
+      objectReference: {fileID: 0}
+    - target: {fileID: 2065033562016999060, guid: c570b26bd097cad45a141f3d8426b97d, type: 3}
+      propertyPath: animator
+      value: 
+      objectReference: {fileID: 8232978754557153707}
     - target: {fileID: 2065033562016999060, guid: c570b26bd097cad45a141f3d8426b97d, type: 3}
       propertyPath: controller
       value: 
@@ -1318,3 +1373,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2e3b4514f268cb448f9a1a8cd330d3c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!95 &8232978754557153707 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 301197388363239041, guid: c570b26bd097cad45a141f3d8426b97d, type: 3}
+  m_PrefabInstance: {fileID: 8534176035122257706}
+  m_PrefabAsset: {fileID: 0}

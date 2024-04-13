@@ -9,16 +9,19 @@ namespace JAssets.Scripts_SC
     public class Library : MonoBehaviour
     {
         public static Library instance;
+        
+        [Header("Tools")][ShowInInspector]
+        public Dictionary<string, Tool> toolsDict = new();
+        [Header("Weapons")] [ShowInInspector]
+        public Dictionary<string, Weapon> weaponsDict = new();
         [Header("Particles")][ShowInInspector]
         public Dictionary<string, MMSimpleObjectPooler> particleDict = new();
         [Header("Pickups")][ShowInInspector]
         public Dictionary<string, MMSimpleObjectPooler> pickupsDict = new();
         [Header("Tool Effects")][ShowInInspector]
         public Dictionary<string, MMSimpleObjectPooler> toolEffectsDict = new();
-        [Header("Tools")][ShowInInspector]
-        public Dictionary<string, Tool> toolsDict = new();
-        [Header("Weapons")][ShowInInspector]
-        public Dictionary<string, Weapon> weaponsDict = new();
+        [Header("Consumables")] [ShowInInspector]
+        public Dictionary<string, MMSimpleObjectPooler> consumableDict = new();
 
         private void Awake()
         {
@@ -56,6 +59,10 @@ namespace JAssets.Scripts_SC
         public void AddParticle(string name, MMSimpleObjectPooler particlePool)
         {
             particleDict.Add(name, particlePool);
+        }
+        public void AddConsumable(string name, MMSimpleObjectPooler consumablesPool)
+        {
+            particleDict.Add(name, consumablesPool);
         }
     }
 }

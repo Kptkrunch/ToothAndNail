@@ -7837,6 +7837,7 @@ MonoBehaviour:
   - {fileID: 712585927}
   - {fileID: 712585926}
   toolEffectsList: []
+  consumablesList: []
 --- !u!1 &712585924
 GameObject:
   m_ObjectHideFlags: 0
@@ -7963,6 +7964,52 @@ MonoBehaviour:
   GameObjectToPool: {fileID: 4578394708835662227, guid: 1cab5d508d309404d8d195e269606bf3, type: 3}
   PoolSize: 20
   PoolCanExpand: 1
+--- !u!1 &805611342
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 805611344}
+  - component: {fileID: 805611343}
+  m_Layer: 18
+  m_Name: CraftingController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &805611343
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 805611342}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba3166f4b1f9aa244b99c94e9c6e8d10, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weaponOrConsumable: 
+  toolOrConsumable: 
+--- !u!4 &805611344
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 805611342}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2005641401}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &818944265
 GameObject:
   m_ObjectHideFlags: 0
@@ -34596,7 +34643,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 643426437088945653, guid: c404db93ff488d444b9941f75f31f8c3, type: 3}
       propertyPath: m_ActionEvents.Array.data[8].m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 643426437088945653, guid: c404db93ff488d444b9941f75f31f8c3, type: 3}
       propertyPath: m_ActionEvents.Array.data[1].m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -34632,7 +34679,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 643426437088945653, guid: c404db93ff488d444b9941f75f31f8c3, type: 3}
       propertyPath: m_ActionEvents.Array.data[8].m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: GetGear
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 643426437088945653, guid: c404db93ff488d444b9941f75f31f8c3, type: 3}
       propertyPath: m_ActionEvents.Array.data[5].m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
@@ -34715,6 +34762,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1732831260}
     - target: {fileID: 7194919361019449515, guid: c404db93ff488d444b9941f75f31f8c3, type: 3}
+      propertyPath: crafter
+      value: 
+      objectReference: {fileID: 805611343}
+    - target: {fileID: 7194919361019449515, guid: c404db93ff488d444b9941f75f31f8c3, type: 3}
       propertyPath: activeWeapon
       value: 
       objectReference: {fileID: 0}
@@ -34738,9 +34789,17 @@ PrefabInstance:
     m_RemovedGameObjects:
     - {fileID: 2193383111519866446, guid: c404db93ff488d444b9941f75f31f8c3, type: 3}
     - {fileID: 1644568513219774671, guid: c404db93ff488d444b9941f75f31f8c3, type: 3}
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 171538514925864091, guid: c404db93ff488d444b9941f75f31f8c3, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 805611344}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c404db93ff488d444b9941f75f31f8c3, type: 3}
+--- !u!4 &2005641401 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 171538514925864091, guid: c404db93ff488d444b9941f75f31f8c3, type: 3}
+  m_PrefabInstance: {fileID: 2005641400}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2083934821
 GameObject:
   m_ObjectHideFlags: 0
