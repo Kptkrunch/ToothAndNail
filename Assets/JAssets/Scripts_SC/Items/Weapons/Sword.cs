@@ -48,7 +48,7 @@ namespace JAssets.Scripts_SC.Items.Weapons
 
         public override void AttackOff()
         {
-            rtso.animator.SetBool(rtso.attackAnimString, false);
+            animator.SetBool(rtso.attackAnimString, false);
             rtso.damage = 1;
             if (rtso.durability <= 0)
             {
@@ -64,8 +64,8 @@ namespace JAssets.Scripts_SC.Items.Weapons
         {
             if (!_specialTrigger)
             {
-                rtso.animator.SetBool(rtso.attackAnimString, false);
-                rtso.animator.SetBool(rtso.specAnimString, true);
+                animator.SetBool(rtso.attackAnimString, false);
+                animator.SetBool(rtso.specAnimString, true);
                 rtso.damage = 0;
             }
         }

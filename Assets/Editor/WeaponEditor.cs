@@ -51,12 +51,6 @@ namespace JAssets.Scripts_SC.Editor
 
             EditorGUILayout.Space();
 
-            EditorGUILayout.LabelField("Animator Controller:", EditorStyles.boldLabel);
-            weaponSo.animator = (Animator)EditorGUILayout.ObjectField(weaponSo.animator,
-                typeof(RuntimeAnimatorController), false, GUILayout.Height(30));
-
-            EditorGUILayout.Space();
-
             if (GUI.changed) EditorUtility.SetDirty(weaponSo);
         }
     }

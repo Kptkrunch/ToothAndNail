@@ -1,3 +1,4 @@
+using System;
 using JAssets.Scripts_SC.Spawners;
 using UnityEngine;
 
@@ -5,11 +6,12 @@ namespace JAssets.Scripts_SC.Items
 {
     public class Tool : MonoBehaviour
     {
+        public Animator animator;
         public GearController controller;
         public Tool_SO tool_so;
         internal Tool_SO rtso;
 
-        private void Start()
+        private void OnEnable()
         {
             rtso = Instantiate(tool_so);
         }
@@ -17,8 +19,6 @@ namespace JAssets.Scripts_SC.Items
         public virtual void UseTool()
         {
             rtso.uses--;
-            controller.activeToolUses = rtso.uses;
-
             print(rtso.uses);
         }
 

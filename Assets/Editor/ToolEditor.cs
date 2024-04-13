@@ -36,12 +36,6 @@ namespace JAssets.Scripts_SC.Editor
 
             EditorGUILayout.Space();
 
-            EditorGUILayout.LabelField("Animator Controller:", EditorStyles.boldLabel);
-            toolSO.animator = (Animator)EditorGUILayout.ObjectField(toolSO.animator,
-                typeof(RuntimeAnimatorController), false, GUILayout.Height(30));
-
-            EditorGUILayout.Space();
-
             if (GUI.changed) EditorUtility.SetDirty(toolSO);
         }
     }

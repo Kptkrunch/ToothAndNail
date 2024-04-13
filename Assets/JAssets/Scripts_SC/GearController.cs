@@ -16,15 +16,13 @@ namespace JAssets.Scripts_SC
         public float attackCd;
         public float specialCd;
         public float toolCd;
-
-        public int activeWeaponDurability;
-        public int activeToolUses;
-        private string _attackString;
+        
+        [SerializeField] public string _attackString;
+        [SerializeField] public string _specialString;
 
         private bool _canAttack;
         private bool _canSpecial;
         private bool _canTool;
-        private string _specialString;
         private Animator _toolAnimator;
         private string _useToolString;
         private Animator _weaponAnimator;
@@ -51,11 +49,11 @@ namespace JAssets.Scripts_SC
                     gear.weapons[newGear.gearName].gameObject.SetActive(true);
                     activeWeapon = newGear.gearName;
 
-                    UpdateWeapon();
-
-                    var getGearParticle = WorldParticleSpawner.instance.weaponPickupParticle.GetPooledGameObject();
+                    var getGearParticle = Library.instance.particleDict["PickupFlash"].GetPooledGameObject();
                     getGearParticle.SetActive(true);
                     getGearParticle.transform.position = gearPickup.transform.position;
+                    UpdateWeapon();
+
                 }
                 else if (newGear.isTool)
                 {
@@ -65,7 +63,7 @@ namespace JAssets.Scripts_SC
 
                     UpdateTool();
 
-                    var getGearParticle = WorldParticleSpawner.instance.weaponPickupParticle.GetPooledGameObject();
+                    var getGearParticle = Library.instance.particleDict["PickupFlash"].GetPooledGameObject();
                     getGearParticle.SetActive(true);
                     getGearParticle.transform.position = gearPickup.transform.position;
                 }
@@ -105,15 +103,16 @@ namespace JAssets.Scripts_SC
 
         private void UpdateWeapon()
         {
-            _weaponAnimator = gear.weapons[activeWeapon].rtso.animator;
             _attackString = gear.weapons[activeWeapon].rtso.attackAnimString;
             _specialString = gear.weapons[activeWeapon].rtso.specAnimString;
+            _weaponAnimator = gear.weapons[activeWeapon].animator;
+
         }
 
         private void UpdateTool()
         {
-            _toolAnimator = gear.tools[activeTool].rtso.animator;
-            _attackString = gear.tools[activeTool].rtso.useToolString;
+            _toolAnimator = gear.tools[activeTool].animator;
+            _useToolString = gear.tools[activeTool].rtso.useToolString;
         }
 
         private IEnumerator AttackCooldownTimer()
