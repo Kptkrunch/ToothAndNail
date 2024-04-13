@@ -82,9 +82,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   parent: {fileID: 4097251909154221698}
-  gearName: Sword
-  isWeapon: 1
-  isTool: 0
+  itemName: Sword
+  itemType: Weapon
   remainingDurability: 3
   remainingUses: 3
 --- !u!212 &7122863616934949001

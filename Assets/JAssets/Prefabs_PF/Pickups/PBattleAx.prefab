@@ -50,8 +50,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   parent: {fileID: 4578394708835662227}
-  itemName: 
-  itemType: 
+  itemName: BattleAx
+  itemType: Weapon
   remainingDurability: 3
   remainingUses: 3
 --- !u!212 &8897239904252296947

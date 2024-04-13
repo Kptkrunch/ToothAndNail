@@ -41,6 +41,7 @@ namespace JAssets.Scripts_SC
                 var pickup = Physics2D.OverlapCircle(transform.position, 1f, pickupLayer);
                 if (!pickup) return;
                 var item = pickup.GetComponent<Pickup>();
+                if (item.itemType == "Tool") return;
                 item.PickupItem();
 
                 if (item.itemType == "Weapon")
@@ -76,6 +77,7 @@ namespace JAssets.Scripts_SC
                 var pickup = Physics2D.OverlapCircle(transform.position, 1f, pickupLayer);
                 if (!pickup) return;
                 var item = pickup.GetComponent<Pickup>();
+                if (item.itemType == "Weapon") return;
                 item.PickupItem();
                 
                 if (item.itemType == "Tool")
@@ -141,13 +143,14 @@ namespace JAssets.Scripts_SC
             _attackString = gear.weapons[activeWeapon].rtso.attackAnimString;
             _specialString = gear.weapons[activeWeapon].rtso.specAnimString;
             _weaponAnimator = gear.weapons[activeWeapon].animator;
-
+            crafter.weaponOrConsumable = activeWeapon;
         }
 
         private void UpdateTool()
         {
             _toolAnimator = gear.tools[activeTool].animator;
             _useToolString = gear.tools[activeTool].rtso.useToolString;
+            crafter.toolOrConsumable = activeTool;
         }
 
         private IEnumerator AttackCooldownTimer()

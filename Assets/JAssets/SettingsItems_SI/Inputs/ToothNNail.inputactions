@@ -78,7 +78,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Action",
+                    "name": "ActionWeapon",
                     "type": "Button",
                     "id": "4b3b3d6d-0945-4ad6-8b9a-ed36cafb888e",
                     "expectedControlType": "Button",
@@ -99,6 +99,15 @@
                     "name": "Throw",
                     "type": "Button",
                     "id": "a6482018-f6f2-4424-b3d2-eb4b76d4eae1",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "ActionTool",
+                    "type": "Button",
+                    "id": "5c47e030-eb5e-4466-b6f7-35602d582cc1",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -366,7 +375,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Action",
+                    "action": "ActionWeapon",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -389,6 +398,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "Throw",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "1c548a8e-281d-41f2-a1e8-e92de32b3926",
+                    "path": "<Gamepad>/leftShoulder",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ActionTool",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

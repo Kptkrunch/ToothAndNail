@@ -47,9 +47,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   parent: {fileID: 7995678139077362169}
-  gearName: Trap
-  isWeapon: 0
-  isTool: 1
+  itemName: Trap
+  itemType: Tool
   remainingDurability: 0
   remainingUses: 1
 --- !u!212 &2587942763246860822

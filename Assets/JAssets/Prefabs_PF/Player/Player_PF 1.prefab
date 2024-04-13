@@ -33,6 +33,52 @@ Transform:
   - {fileID: 278746122422316184}
   m_Father: {fileID: 1513674048286614378}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1359057248002192790
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7900219175404796432}
+  - component: {fileID: 7903166733735629795}
+  m_Layer: 18
+  m_Name: CraftingController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7900219175404796432
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1359057248002192790}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 171538514925864091}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7903166733735629795
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1359057248002192790}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba3166f4b1f9aa244b99c94e9c6e8d10, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weaponOrConsumable: 
+  toolOrConsumable: 
 --- !u!1 &1376191107032136345
 GameObject:
   m_ObjectHideFlags: 0
@@ -334,7 +380,7 @@ MonoBehaviour:
   pickupLayer:
     serializedVersion: 2
     m_Bits: 524288
-  crafter: {fileID: 0}
+  crafter: {fileID: 7903166733735629795}
   activeWeapon: 
   activeTool: 
   attackCd: 0
@@ -379,6 +425,7 @@ Transform:
   - {fileID: 1513674048286614378}
   - {fileID: 2106094774116715139}
   - {fileID: 3561151054357915203}
+  - {fileID: 7900219175404796432}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &7429358296062983697
@@ -584,8 +631,8 @@ MonoBehaviour:
   - m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 7194919361019449515}
-        m_TargetAssemblyTypeName: JAssets.Scripts_SC.GearController, Assembly-CSharp
-        m_MethodName: GetEquipmentOrConsumable
+        m_TargetAssemblyTypeName: JAssets.Scripts_SC.ItemController, Assembly-CSharp
+        m_MethodName: GetWeaponOrConsumable
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -645,6 +692,22 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 3039e17c-94aa-40ab-8e5f-916fd54a0825
     m_ActionName: UI/TrackedDeviceOrientation
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7194919361019449515}
+        m_TargetAssemblyTypeName: JAssets.Scripts_SC.ItemController, Assembly-CSharp
+        m_MethodName: GetToolOrConsumable
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 5c47e030-eb5e-4466-b6f7-35602d582cc1
+    m_ActionName: Player/ActionTool[/XInputControllerWindows1/leftShoulder]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player

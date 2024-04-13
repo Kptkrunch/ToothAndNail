@@ -52,6 +52,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9526b144963198f46af3deba94a221c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animator: {fileID: 0}
   weapon_so: {fileID: 11400000, guid: f269018b63bc5de4bbc34717d58a2f30, type: 2}
   controller: {fileID: 0}
   hitBox: {fileID: 2483649305644022711}

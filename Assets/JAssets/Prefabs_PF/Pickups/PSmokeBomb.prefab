@@ -47,9 +47,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   parent: {fileID: 4065500477459056169}
-  gearName: SmokeBomb
-  isWeapon: 0
-  isTool: 1
+  itemName: SmokeBomb
+  itemType: Tool
   remainingDurability: 0
   remainingUses: 1
 --- !u!212 &2256485177261401083
