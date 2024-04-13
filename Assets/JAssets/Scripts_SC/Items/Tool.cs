@@ -1,5 +1,4 @@
 using JAssets.Scripts_SC.Spawners;
-using JetBrains.Annotations;
 using UnityEngine;
 
 namespace JAssets.Scripts_SC.Items
@@ -7,25 +6,25 @@ namespace JAssets.Scripts_SC.Items
     public class Tool : MonoBehaviour
     {
         public GearController controller;
-        public float weight;
+        public Tool_SO tool_so;
+        internal Tool_SO rtso;
 
-        public int uses, fullUses;
-        public string useToolString;
-        public float toolCd;
-
-        [CanBeNull] public Animator animator;
+        private void Start()
+        {
+            rtso = Instantiate(tool_so);
+        }
 
         public virtual void UseTool()
         {
-            uses--;
-            controller.activeToolUses = uses;
+            rtso.uses--;
+            controller.activeToolUses = rtso.uses;
 
-            print(uses);
+            print(rtso.uses);
         }
 
         private void RemainingUsesCheck()
         {
-            if (uses <= 0)
+            if (rtso.uses <= 0)
             {
                 gameObject.SetActive(false);
                 controller.activeTool = "";

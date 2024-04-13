@@ -105,15 +105,15 @@ namespace JAssets.Scripts_SC
 
         private void UpdateWeapon()
         {
-            _weaponAnimator = gear.weapons[activeWeapon].animator;
-            _attackString = gear.weapons[activeWeapon].attackAnimString;
-            _specialString = gear.weapons[activeWeapon].specAnimString;
+            _weaponAnimator = gear.weapons[activeWeapon].rtso.animator;
+            _attackString = gear.weapons[activeWeapon].rtso.attackAnimString;
+            _specialString = gear.weapons[activeWeapon].rtso.specAnimString;
         }
 
         private void UpdateTool()
         {
-            _toolAnimator = gear.tools[activeTool].animator;
-            _attackString = gear.tools[activeTool].useToolString;
+            _toolAnimator = gear.tools[activeTool].rtso.animator;
+            _attackString = gear.tools[activeTool].rtso.useToolString;
         }
 
         private IEnumerator AttackCooldownTimer()

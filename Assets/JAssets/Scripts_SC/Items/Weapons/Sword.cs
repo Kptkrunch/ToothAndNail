@@ -12,7 +12,7 @@ namespace JAssets.Scripts_SC.Items.Weapons
 
         private void Start()
         {
-            weaponDamage = damage;
+            weaponDamage = rtso.damage;
         }
 
         public override void OnCollisionEnter2D(Collision2D other)
@@ -43,14 +43,14 @@ namespace JAssets.Scripts_SC.Items.Weapons
 
         public override void Attack()
         {
-            damage = 1;
+            rtso.damage = 1;
         }
 
         public override void AttackOff()
         {
-            animator.SetBool(attackAnimString, false);
-            damage = 1;
-            if (durability <= 0)
+            rtso.animator.SetBool(rtso.attackAnimString, false);
+            rtso.damage = 1;
+            if (rtso.durability <= 0)
             {
                 gameObject.SetActive(false);
                 controller.activeWeapon = "";
@@ -64,9 +64,9 @@ namespace JAssets.Scripts_SC.Items.Weapons
         {
             if (!_specialTrigger)
             {
-                animator.SetBool(attackAnimString, false);
-                animator.SetBool(specAnimString, true);
-                damage = 0;
+                rtso.animator.SetBool(rtso.attackAnimString, false);
+                rtso.animator.SetBool(rtso.specAnimString, true);
+                rtso.damage = 0;
             }
         }
     }

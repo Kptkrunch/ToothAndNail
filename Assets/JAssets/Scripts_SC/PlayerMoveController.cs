@@ -16,7 +16,7 @@ namespace JAssets.Scripts_SC
         [SerializeField] private float massFactor = 0.05f;
 
         [SerializeField] private float jumpForce = 5f;
-        [SerializeField] private readonly float jumpHoldMultiplier = 0.5f;
+        [SerializeField] private const float jumpHoldMultiplier = 0.5f;
         [SerializeField] private float wallSlideSpeed = 0.5f;
         [SerializeField] private float wallJumpForce = 10f;
         [SerializeField] private Vector2 wallJumpDirection = new(1f, 2f);
@@ -28,7 +28,6 @@ namespace JAssets.Scripts_SC
         [SerializeField] private float wallCheckDistance;
         [SerializeField] private float groundCheckDistance;
         [SerializeField] private float slopeCheckDistance;
-        [SerializeField] private Vector2 colliderSize;
 
         [SerializeField] private Transform wallCheckPoint;
         [SerializeField] private Transform ledgeCheckPoint;
@@ -38,9 +37,9 @@ namespace JAssets.Scripts_SC
         [SerializeField] private LayerMask wallLayerMask;
 
 
-        [SerializeField] private float coyoteTime = 0.15f; // Duration for Coyote Time
+        [SerializeField] private float coyoteTime = 0.15f;
         private float coyoteTimeTimer;
-        [SerializeField] private float preLandingJumpBuffer = 0.15f; // Duration for Jump Buffer
+        [SerializeField] private float preLandingJumpBuffer = 0.15f;
         private float jumpBufferTimer;
 
         [SerializeField] private Rigidbody2D rb2d;
@@ -53,22 +52,21 @@ namespace JAssets.Scripts_SC
         
         [SerializeField] private PhysicsMaterial2D slippery_MT;
         [SerializeField] private PhysicsMaterial2D grippy_MT;
-        
-        private bool canLedgeHang;
+
+        private bool isFacingRight = true;
         private bool isCrouching;
-        private bool canCrouch;
         private bool isOnLedge;
         private bool isGrounded;
         private bool isTouchingWall;
         private bool isWallSliding;
         private bool isOnSlope;
         private bool canWalkOnSlope;
-        private bool isFacingRight = true;
+        private bool canLedgeHang;
+
 
         private void Start()
         {
             mainCamera = FindObjectOfType<Camera>();
-            colliderSize = cc2d.size;
         }
 
         private void Update()

@@ -11,7 +11,8 @@ GameObject:
   - component: {fileID: 4492928487791868470}
   - component: {fileID: 2970777914909859165}
   - component: {fileID: 2414819623589851154}
-  m_Layer: 12
+  - component: {fileID: -7363719027487643862}
+  m_Layer: 19
   m_Name: SmokeBomb
   m_TagString: Tool
   m_Icon: {fileID: 0}
@@ -71,8 +72,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 132148973
-  m_SortingLayer: 4
+  m_SortingLayerID: -1459862473
+  m_SortingLayer: 12
   m_SortingOrder: 0
   m_Sprite: {fileID: 1131613045, guid: ab89f83c8bdef264d87a425bad76f378, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -106,3 +107,17 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &-7363719027487643862
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3575352118602916793}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27581925f12652b47a39628db7d7ec7a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  controller: {fileID: 0}
+  tool_so: {fileID: 11400000, guid: 3982bf8421f0aa842be7997da47f26d3, type: 2}

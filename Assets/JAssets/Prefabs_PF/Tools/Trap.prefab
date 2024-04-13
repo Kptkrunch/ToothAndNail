@@ -46,12 +46,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   controller: {fileID: 0}
-  weight: 0
-  uses: 0
-  fullUses: 0
-  useToolString: 
-  toolCd: 0
-  animator: {fileID: 0}
+  tool_so: {fileID: 11400000, guid: a9e43f75428f1c547b1e9773b8086ffa, type: 2}
 --- !u!212 &7743066416231613758
 SpriteRenderer:
   m_ObjectHideFlags: 0
