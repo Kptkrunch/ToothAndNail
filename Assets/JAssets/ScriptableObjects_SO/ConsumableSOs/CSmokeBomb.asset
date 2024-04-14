@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d362cb7228ea8654ebda8c55c6946e8d, type: 3}
   m_Name: CSmokeBomb
   m_EditorClassIdentifier: 
+  sprite: {fileID: 0}
   itemName: 
   primaryValue: 0
   secondaryValue: 0

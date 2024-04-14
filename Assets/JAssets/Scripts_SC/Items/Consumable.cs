@@ -7,6 +7,7 @@ namespace JAssets.Scripts_SC.Items
         public string name;
         public int primaryValue;
         public int SecondaryValue;
+        public Sprite sprite;
         public Animator animator;
 
         public void Consume()

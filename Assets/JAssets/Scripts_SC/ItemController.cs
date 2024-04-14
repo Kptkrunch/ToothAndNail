@@ -9,7 +9,6 @@ namespace JAssets.Scripts_SC
     {
         public EquippedGear gear;
         public LayerMask pickupLayer;
-        public CraftingController crafter;
         public string activeWeapon;
         public string activeTool;
 
@@ -143,14 +142,12 @@ namespace JAssets.Scripts_SC
             _attackString = gear.weapons[activeWeapon].rtso.attackAnimString;
             _specialString = gear.weapons[activeWeapon].rtso.specAnimString;
             _weaponAnimator = gear.weapons[activeWeapon].animator;
-            crafter.weaponOrConsumable = activeWeapon;
         }
 
         private void UpdateTool()
         {
             _toolAnimator = gear.tools[activeTool].animator;
             _useToolString = gear.tools[activeTool].rtso.useToolString;
-            crafter.toolOrConsumable = activeTool;
         }
 
         private IEnumerator AttackCooldownTimer()
