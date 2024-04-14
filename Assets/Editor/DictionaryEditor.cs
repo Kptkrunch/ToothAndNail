@@ -6,6 +6,7 @@ using System.Reflection;
 public class DictionaryEditor : EditorWindow
 {
     GridData gridData;
+    private bool gridLocked = false;
     float boxSpacing = 10f;
     GameObject currentSelectedGameObject = null;
     string searchField = "";
@@ -26,7 +27,8 @@ public class DictionaryEditor : EditorWindow
 
         GUILayout.BeginHorizontal();
         GUILayout.BeginVertical(GUILayout.MaxWidth(150));
-        
+        gridLocked = EditorGUILayout.Toggle("Grid Locked", gridLocked);
+
         GUILayout.Label("Grid size: ", GUILayout.ExpandWidth(false));
         gridData.gridWidth = EditorGUILayout.IntField("Width", gridData.gridWidth);
         gridData.gridHeight = EditorGUILayout.IntField("Height", gridData.gridHeight);
@@ -56,11 +58,14 @@ public class DictionaryEditor : EditorWindow
             currentSelectedGameObject = null;
             gridDataSearchResults.Clear();
             assetSearchResults.Clear();
+            currentSelectedGameObject = null;
+
         }
 
         if (GUILayout.Button("Close and Open New"))
         {
             Close();
+            currentSelectedGameObject = null;
             ShowWindow();
         }
 
@@ -150,20 +155,24 @@ public class DictionaryEditor : EditorWindow
                     image = go != null ? go.GetComponent<SpriteRenderer>().sprite.texture : null
                 };
 
-                if (GUILayout.Button(content, GUILayout.Width(64), GUILayout.Height(64)))
+                if (!gridLocked)
                 {
-                    Debug.Log("Button at position " + positionStr + " clicked.");
-                    var selectedObj = Selection.activeObject as GameObject;
-                    if (selectedObj != null)
+                    if (GUILayout.Button(content, GUILayout.Width(64), GUILayout.Height(64)))
                     {
-                        currentSelectedGameObject = selectedObj;
-                        gridData.grid[positionStr] = selectedObj;
-                        Debug.Log("Added new object: " + selectedObj.name);
+                        Debug.Log("Button at position " + positionStr + " clicked.");
+                        var selectedObj = Selection.activeObject as GameObject;
+                        if (selectedObj != null)
+                        {
+                            currentSelectedGameObject = selectedObj;
+                            if (!currentSelectedGameObject && !gridLocked) gridData.grid[positionStr] = selectedObj;
+                            Debug.Log("Added new object: " + selectedObj.name);
+                        }
                     }
-                }
                 
-                GUILayout.EndVertical();
+                    GUILayout.EndVertical();
+                }
             }
+
             
             GUILayout.EndHorizontal();
         }
