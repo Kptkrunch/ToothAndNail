@@ -18,8 +18,8 @@ namespace JAssets.Scripts_SC
         public float specialCd;
         public float toolCd;
         
-        [SerializeField] public string _attackString;
-        [SerializeField] public string _specialString;
+        [SerializeField] public string attackString;
+        [SerializeField] public string specialString;
 
         private bool _canAttack;
         private bool _canSpecial;
@@ -113,7 +113,7 @@ namespace JAssets.Scripts_SC
             if (activeWeapon == "") return;
             if (context.started && _canAttack)
             {
-                _weaponAnimator.SetBool(_attackString, true);
+                _weaponAnimator.SetBool(attackString, true);
                 StartCoroutine(AttackCooldownTimer());
             }
         }
@@ -123,7 +123,7 @@ namespace JAssets.Scripts_SC
             if (activeWeapon == "") return;
             if (context.started && _canSpecial)
             {
-                _weaponAnimator.SetBool(_specialString, true);
+                _weaponAnimator.SetBool(specialString, true);
                 StartCoroutine(SpecialCooldownTimer());
                 print("Special");
             }
@@ -141,15 +141,18 @@ namespace JAssets.Scripts_SC
 
         private void UpdateWeapon()
         {
-            _attackString = gear.weapons[activeWeapon].rtso.attackAnimString;
-            _specialString = gear.weapons[activeWeapon].rtso.specAnimString;
+            attackString = gear.weapons[activeWeapon].rtso.attackAnimString;
+            specialString = gear.weapons[activeWeapon].rtso.specAnimString;
             _weaponAnimator = gear.weapons[activeWeapon].animator;
+            Debug.Log("got here");
+            playerUi.UpdateItemsUi("Weapon", "Weapon", gear.weapons[activeWeapon].GetComponent<SpriteRenderer>().sprite);
         }
 
         private void UpdateTool()
         {
             _toolAnimator = gear.tools[activeTool].animator;
             _useToolString = gear.tools[activeTool].rtso.useToolString;
+            playerUi.UpdateItemsUi("Tool", "Tool", gear.tools[activeTool].GetComponent<SpriteRenderer>().sprite);
         }
 
         private IEnumerator AttackCooldownTimer()

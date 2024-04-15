@@ -38,10 +38,14 @@ namespace JAssets.Scripts_SC.UI
 
 		public void UpdateItemsUi(string itemType, string itemSlot, Sprite sprite)
 		{
+			Debug.Log(itemType);
+			Debug.Log(itemSlot);
 			switch (itemType)
 			{
 				case "Weapon":
 					weaponImage.sprite = sprite;
+					Debug.Log(sprite.name);
+					Debug.Log(weaponImage.sprite.name);
 					break;
 				case "Tool":
 					toolImage.sprite = sprite;
