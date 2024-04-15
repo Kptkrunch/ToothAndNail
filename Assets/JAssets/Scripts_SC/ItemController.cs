@@ -1,5 +1,6 @@
 using System.Collections;
 using JAssets.Scripts_SC.Items;
+using JAssets.Scripts_SC.UI;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -7,6 +8,7 @@ namespace JAssets.Scripts_SC
 {
     public class ItemController : MonoBehaviour
     {
+        public PlayerUI playerUi;
         public EquippedGear gear;
         public LayerMask pickupLayer;
         public string activeWeapon;
