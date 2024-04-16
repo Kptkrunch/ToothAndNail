@@ -10,8 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: be4192a2a959f00478fe351e2f555206, type: 3}
-  m_Name: RHalberd
+  m_Name: Bow
   m_EditorClassIdentifier: 
-  item1: BattleAx
-  item2: Stick
-  resultItem: Halberd
+  sprite: {fileID: 0}
+  item1: 
+  item2: 
+  resultItem: 

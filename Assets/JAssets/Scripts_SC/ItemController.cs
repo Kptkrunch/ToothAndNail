@@ -153,6 +153,8 @@ namespace JAssets.Scripts_SC
             _toolAnimator = gear.tools[activeTool].animator;
             _useToolString = gear.tools[activeTool].rtso.useToolString;
             playerUi.UpdateItemsUi("Tool", "Tool", gear.tools[activeTool].GetComponent<SpriteRenderer>().sprite);
+            var craftable = CraftingMatrix.instance.GetRecipeFromMatrix(activeWeapon, activeTool);
+            
         }
 
         private IEnumerator AttackCooldownTimer()
