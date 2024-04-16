@@ -1,4 +1,5 @@
 using Fusion;
+using JAssets.Scripts_SC.SOScripts;
 using Sirenix.OdinInspector;
 using UnityEngine;
 

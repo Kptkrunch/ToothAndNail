@@ -6,10 +6,10 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/JAssets/Scenes/MovementTestScene.unity
+    path: Assets/JAssets/SettingsItems_SI/Scenes/MovementTestScene.unity
     guid: 71b759f40ca9ea245b693dd7161d42f8
   - enabled: 0
-    path: Assets/JAssets/Scenes/MainMenu.unity
+    path: Assets/JAssets/SettingsItems_SI/Scenes/MainMenu.unity
     guid: a0a554c925529054cb50d0911eb45eca
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: 32d89d3c0091b5c408f149535913b663, type: 2}

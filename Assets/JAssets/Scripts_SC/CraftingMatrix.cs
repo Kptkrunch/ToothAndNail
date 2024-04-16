@@ -1,4 +1,5 @@
 using Fusion;
+using JAssets.Scripts_SC.SOScripts;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
@@ -24,10 +25,10 @@ namespace JAssets.Scripts_SC
 			}
 		}
 
-		public string GetRecipeFromMatrix(string row, string item)
+		public Recipe_SO GetRecipeFromMatrix(string row, string item)
 		{
 			var craftingDictionary = matrix[row];
-			var recipeItem = craftingDictionary.row[item].resultItem;
+			var recipeItem = craftingDictionary.row[item];
 			return recipeItem;
 		}
 	}

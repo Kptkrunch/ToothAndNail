@@ -1,6 +1,7 @@
 using System.Collections;
 using JAssets.Scripts_SC.Items;
 using JAssets.Scripts_SC.UI;
+using JetBrains.Annotations;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -13,6 +14,7 @@ namespace JAssets.Scripts_SC
         public LayerMask pickupLayer;
         public string activeWeapon;
         public string activeTool;
+        [CanBeNull] public string activeCraftable;
 
         public float attackCd;
         public float specialCd;
@@ -54,7 +56,7 @@ namespace JAssets.Scripts_SC
                     var getGearParticle = Library.instance.particleDict["PickupFlash"].GetPooledGameObject();
                     getGearParticle.SetActive(true);
                     getGearParticle.transform.position = pickup.transform.position;
-                    UpdateWeapon();
+                    UpdateWeapon(item.itemType);
 
                 }
                 else if (item.itemType == "Consumable")
@@ -63,7 +65,7 @@ namespace JAssets.Scripts_SC
                     gear.tools[item.itemName].gameObject.SetActive(true);
                     activeTool = item.itemName;
 
-                    UpdateTool();
+                    UpdateWeapon(item.itemType);
 
                     var getItemParticle = Library.instance.particleDict["PickupFlash"].GetPooledGameObject();
                     getItemParticle.SetActive(true);
@@ -71,6 +73,7 @@ namespace JAssets.Scripts_SC
                 }
             }
         }
+        
         public void GetToolOrConsumable(InputAction.CallbackContext context)
         {
             if (context.performed)
@@ -87,7 +90,7 @@ namespace JAssets.Scripts_SC
                     gear.tools[item.itemName].gameObject.SetActive(true);
                     activeTool = item.itemName;
 
-                    UpdateTool();
+                    UpdateTool(item.itemType);
 
                     var getGearParticle = Library.instance.particleDict["PickupFlash"].GetPooledGameObject();
                     getGearParticle.SetActive(true);
@@ -99,7 +102,7 @@ namespace JAssets.Scripts_SC
                     gear.tools[item.itemName].gameObject.SetActive(true);
                     activeTool = item.itemName;
 
-                    UpdateTool();
+                    UpdateTool(item.itemType);
 
                     var getItemParticle = Library.instance.particleDict["PickupFlash"].GetPooledGameObject();
                     getItemParticle.SetActive(true);
@@ -139,22 +142,19 @@ namespace JAssets.Scripts_SC
             }
         }
 
-        private void UpdateWeapon()
+        private void UpdateWeapon(string type)
         {
             attackString = gear.weapons[activeWeapon].rtso.attackAnimString;
             specialString = gear.weapons[activeWeapon].rtso.specAnimString;
             _weaponAnimator = gear.weapons[activeWeapon].animator;
-            Debug.Log("got here");
-            playerUi.UpdateItemsUi("Weapon", "Weapon", gear.weapons[activeWeapon].GetComponent<SpriteRenderer>().sprite);
+            UpdateUI(type, "Weapon");
         }
 
-        private void UpdateTool()
+        private void UpdateTool(string type)
         {
             _toolAnimator = gear.tools[activeTool].animator;
             _useToolString = gear.tools[activeTool].rtso.useToolString;
-            playerUi.UpdateItemsUi("Tool", "Tool", gear.tools[activeTool].GetComponent<SpriteRenderer>().sprite);
-            var craftable = CraftingMatrix.instance.GetRecipeFromMatrix(activeWeapon, activeTool);
-            
+            UpdateUI(type, "Tool");
         }
 
         private IEnumerator AttackCooldownTimer()
@@ -211,6 +211,15 @@ namespace JAssets.Scripts_SC
                     consumableDrop.transform.position = transform.position;
                     break;
             }
+        }
+
+        private void UpdateUI(string type, string slot)
+        {
+            playerUi.UpdateItemsUi(type, slot, gear.weapons[activeWeapon].GetComponent<SpriteRenderer>().sprite);
+            var craftable = CraftingMatrix.instance.GetRecipeFromMatrix(activeWeapon, activeTool);
+            Debug.Log(craftable);
+            if (craftable) playerUi.UpdateCraftable(craftable.sprite);
+            activeCraftable = craftable.resultItem;
         }
     }
 }

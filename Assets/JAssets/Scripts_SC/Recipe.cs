@@ -1,3 +1,4 @@
+using JAssets.Scripts_SC.SOScripts;
 using UnityEngine;
 
 public class Recipe : MonoBehaviour

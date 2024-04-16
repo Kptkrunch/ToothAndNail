@@ -67,5 +67,10 @@ namespace JAssets.Scripts_SC.UI
 			}
 
 		}
+		
+		public void UpdateCraftable(Sprite sprite)
+		{
+			craftableImage.sprite = sprite;
+		}
 	}
 }

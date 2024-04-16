@@ -54,9 +54,7 @@ namespace JAssets.Scripts_SC
             if (currentHealth > _maxHealth) currentHealth = _maxHealth;
             playerUi.HealDamage(healAmount);
         }
-
-
-
+        
         private void SetAllHealthValues()
         {
             currentHealth = _maxHealth;

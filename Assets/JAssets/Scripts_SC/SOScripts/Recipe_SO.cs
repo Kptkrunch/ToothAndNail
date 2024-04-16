@@ -1,8 +1,11 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "New Recipe", menuName = "Recipe")]
-public class Recipe_SO : ScriptableObject
+namespace JAssets.Scripts_SC.SOScripts
 {
-	public Sprite sprite;
-	public string resultItem;
+	[CreateAssetMenu(fileName = "New Recipe", menuName = "Recipe")]
+	public class Recipe_SO : ScriptableObject
+	{
+		public Sprite sprite;
+		public string resultItem;
+	}
 }

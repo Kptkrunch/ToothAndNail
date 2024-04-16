@@ -78,15 +78,6 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "ActionWeapon",
-                    "type": "Button",
-                    "id": "4b3b3d6d-0945-4ad6-8b9a-ed36cafb888e",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
                     "name": "Roll",
                     "type": "Button",
                     "id": "89a44786-934b-480a-896b-d26b097bbf26",
@@ -105,9 +96,36 @@
                     "initialStateCheck": false
                 },
                 {
+                    "name": "ActionWeapon",
+                    "type": "Button",
+                    "id": "4b3b3d6d-0945-4ad6-8b9a-ed36cafb888e",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
                     "name": "ActionTool",
                     "type": "Button",
                     "id": "5c47e030-eb5e-4466-b6f7-35602d582cc1",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Craft",
+                    "type": "Button",
+                    "id": "5d8a6850-b081-4265-a890-f8c1671e8b06",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Interact",
+                    "type": "Button",
+                    "id": "0b86e79a-cfd5-4bcb-963e-44a6e09d16a8",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -370,17 +388,6 @@
                 },
                 {
                     "name": "",
-                    "id": "4b989d6d-3d91-4e5b-80ac-bcce823548ae",
-                    "path": "<Gamepad>/rightShoulder",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "ActionWeapon",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "46c553d8-0dfe-4f97-bece-baec66db4429",
                     "path": "<Gamepad>/leftShoulder",
                     "interactions": "",
@@ -404,11 +411,44 @@
                 {
                     "name": "",
                     "id": "1c548a8e-281d-41f2-a1e8-e92de32b3926",
-                    "path": "<Gamepad>/leftShoulder",
+                    "path": "<Gamepad>/dpad/right",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
                     "action": "ActionTool",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "e794e7d4-5480-44cd-b683-4480d6e2e412",
+                    "path": "<Gamepad>/dpad/down",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Craft",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "a356a89f-9ef0-4e23-bbcb-9f6fd7ce7ab9",
+                    "path": "<Gamepad>/dpad/up",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Interact",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "4b989d6d-3d91-4e5b-80ac-bcce823548ae",
+                    "path": "<Gamepad>/dpad/left",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ActionWeapon",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
