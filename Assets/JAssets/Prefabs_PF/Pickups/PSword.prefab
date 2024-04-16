@@ -25,7 +25,7 @@ Transform:
   m_GameObject: {fileID: 4097251909154221698}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -7.7, y: 9.23, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -43,9 +43,9 @@ GameObject:
   - component: {fileID: 1217881617755804003}
   - component: {fileID: 4628158471137529627}
   - component: {fileID: 7122863616934949001}
+  - component: {fileID: 1814769995369643524}
   - component: {fileID: 212911156952991747}
   - component: {fileID: 2297694364135462356}
-  - component: {fileID: 1814769995369643524}
   m_Layer: 13
   m_Name: Sword
   m_TagString: Weapon
@@ -82,9 +82,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   parent: {fileID: 4097251909154221698}
-  gearName: Sword
-  isWeapon: 1
-  isTool: 0
+  itemName: Sword
+  itemType: Weapon
   remainingDurability: 3
   remainingUses: 3
 --- !u!212 &7122863616934949001
@@ -139,6 +138,22 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1814769995369643524
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5476346595147733621}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee158225ee1e59f4791627785501d950, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shaderTypes: 3
+  normalStrength: 5
+  normalSmoothing: 1
+  computingNormal: 0
 --- !u!50 &212911156952991747
 Rigidbody2D:
   serializedVersion: 4
@@ -228,22 +243,6 @@ PolygonCollider2D:
       - {x: -0.125, y: -0.171875}
       - {x: -0.0625, y: -0.109375}
   m_UseDelaunayMesh: 0
---- !u!114 &1814769995369643524
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5476346595147733621}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ee158225ee1e59f4791627785501d950, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  shaderTypes: 3
-  normalStrength: 5
-  normalSmoothing: 1
-  computingNormal: 0
 --- !u!1001 &8517578731406340449
 PrefabInstance:
   m_ObjectHideFlags: 0

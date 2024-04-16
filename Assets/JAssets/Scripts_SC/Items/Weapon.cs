@@ -1,3 +1,4 @@
+using System;
 using JAssets.Scripts_SC.Spawners;
 using MoreMountains.Feedbacks;
 using Sirenix.OdinInspector;
@@ -7,12 +8,13 @@ namespace JAssets.Scripts_SC.Items
 {
     public class Weapon : MonoBehaviour
     {
+        public Animator animator;
         public Weapon_SO weapon_so;
         internal Weapon_SO rtso;
-        public GearController controller;
+        public ItemController controller;
         public Collider2D hitBox;
 
-        private void Start()
+        private void OnEnable()
         {
             rtso = Instantiate(weapon_so);
         }
@@ -23,19 +25,17 @@ namespace JAssets.Scripts_SC.Items
             {
                 DealDamageAndSpawnDmgText(other);
                 HitParticleSpawner.instance.GetRandomBlood(other.transform.position);
-                controller.activeWeaponDurability = rtso.durability;
             }
             else if (other.gameObject.CompareTag("Weapon"))
             {
                 DealDamageAndSpawnDmgText(other);
                 HitParticleSpawner.instance.GetRandomClash(other.transform.position);
-                controller.activeWeaponDurability = rtso.durability;
             }
         }
 
         public virtual void AttackOff()
         {
-            rtso.animator.SetBool(rtso.attackAnimString, false);
+            animator.SetBool(rtso.attackAnimString, false);
             if (rtso.durability <= 0)
             {
                 gameObject.SetActive(false);
@@ -48,7 +48,7 @@ namespace JAssets.Scripts_SC.Items
 
         public virtual void SpecialOff()
         {
-            rtso.animator.SetBool(rtso.specAnimString, false);
+            animator.SetBool(rtso.specAnimString, false);
         }
 
         public virtual void Attack()

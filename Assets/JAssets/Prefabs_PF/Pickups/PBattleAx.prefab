@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 8384352733782212088}
   - component: {fileID: 1271532767457055857}
   - component: {fileID: 97343816422440513}
-  m_Layer: 13
+  m_Layer: 19
   m_Name: BattleAx
   m_TagString: Pickup
   m_Icon: {fileID: 0}
@@ -50,9 +50,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   parent: {fileID: 4578394708835662227}
-  gearName: BattleAx
-  isWeapon: 1
-  isTool: 0
+  itemName: BattleAx
+  itemType: Weapon
   remainingDurability: 3
   remainingUses: 3
 --- !u!212 &8897239904252296947
@@ -218,13 +217,13 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5463299922561261387}
-  m_Layer: 13
+  m_Layer: 19
   m_Name: PBattleAx
   m_TagString: Weapon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &5463299922561261387
 Transform:
   m_ObjectHideFlags: 0
@@ -233,8 +232,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4578394708835662227}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 11.43, y: 7.94, z: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -249,6 +248,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 6495262099662444287}
     m_Modifications:
+    - target: {fileID: 182753893698774511, guid: 302b15f9b2cc68e428834e8ce57b2961, type: 3}
+      propertyPath: m_Layer
+      value: 19
+      objectReference: {fileID: 0}
+    - target: {fileID: 182753893698781565, guid: 302b15f9b2cc68e428834e8ce57b2961, type: 3}
+      propertyPath: m_Layer
+      value: 19
+      objectReference: {fileID: 0}
     - target: {fileID: 1431524522856451246, guid: 302b15f9b2cc68e428834e8ce57b2961, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.044
@@ -256,6 +263,10 @@ PrefabInstance:
     - target: {fileID: 5355933885024790224, guid: 302b15f9b2cc68e428834e8ce57b2961, type: 3}
       propertyPath: m_Name
       value: PickupAura
+      objectReference: {fileID: 0}
+    - target: {fileID: 5355933885024790224, guid: 302b15f9b2cc68e428834e8ce57b2961, type: 3}
+      propertyPath: m_Layer
+      value: 19
       objectReference: {fileID: 0}
     - target: {fileID: 182753893679185091, guid: c044585625fab3c478437a2e67237feb, type: 3}
       propertyPath: ShapeModule.m_Rotation.y

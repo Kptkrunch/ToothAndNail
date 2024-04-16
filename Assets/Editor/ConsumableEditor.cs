@@ -26,12 +26,6 @@ namespace Editor
 
             EditorGUILayout.Space();
 
-            EditorGUILayout.LabelField("Animator Controller:", EditorStyles.boldLabel);
-            consumableSO.animator = (Animator)EditorGUILayout.ObjectField(consumableSO.animator,
-                typeof(RuntimeAnimatorController), false, GUILayout.Height(30));
-
-            EditorGUILayout.Space();
-
             if (GUI.changed) EditorUtility.SetDirty(consumableSO);
         }
     }

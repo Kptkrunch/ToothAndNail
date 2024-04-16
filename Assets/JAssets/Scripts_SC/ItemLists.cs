@@ -23,7 +23,10 @@ namespace JAssets.Scripts_SC
         public List<MMSimpleObjectPooler> pickupList = new();
 
         [Header("Tool Effects List")] [ShowInInspector]
-        public List<MMSimpleObjectPooler> toolEffectsList = new();
+        public List<MMSimpleObjectPooler> toolEffectsList = new();        
+        
+        [Header("Consumables List")] [ShowInInspector]
+        public List<MMSimpleObjectPooler> consumablesList = new();
 
         private void Awake()
         {
@@ -54,6 +57,8 @@ namespace JAssets.Scripts_SC
             foreach (var p in particleList) Library.instance.particleDict[p.GameObjectToPool.name] = p;
 
             foreach (var t in toolEffectsList) Library.instance.toolEffectsDict[t.GameObjectToPool.name] = t;
+            
+            foreach (var c in consumablesList) Library.instance.consumableDict[c.GameObjectToPool.name] =  c;
         }
     }
 }
