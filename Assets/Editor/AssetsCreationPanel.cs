@@ -25,7 +25,7 @@ public class AssetsCreationPanel : EditorWindow
     private static GUILayoutOption[] optionsField = { GUILayout.Width(200), GUILayout.Height(20) };
 
     [MenuItem("Window/Assets Creation Panel")]
-    public static void ShowWindow()
+    public static void ShowEditorWindow()
     {
         GetWindow<AssetsCreationPanel>("Assets Creation Panel");
     }

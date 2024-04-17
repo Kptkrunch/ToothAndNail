@@ -9,6 +9,8 @@ namespace JAssets.Scripts_SC.UI
 		private int _maxHealth = 100;
 		private int _currentHealth = 100;
 
+		[SerializeField] private Sprite emptyHand;
+
 		public MMProgressBar healthBar;
 		public Image decreaseBar;
 		public Image increaseBar;
@@ -38,10 +40,14 @@ namespace JAssets.Scripts_SC.UI
 
 		public void UpdateItemsUi(string itemType, string itemSlot, Sprite sprite)
 		{
-			Debug.Log(itemType);
-			Debug.Log(itemSlot);
+			
 			switch (itemType)
 			{
+				case "All":
+					weaponImage.sprite = null;
+					toolImage.sprite = null;
+					craftableImage = null;
+					break;
 				case "Weapon":
 					weaponImage.sprite = sprite;
 					Debug.Log(sprite.name);
@@ -70,6 +76,7 @@ namespace JAssets.Scripts_SC.UI
 		
 		public void UpdateCraftable(Sprite sprite)
 		{
+			Debug.Log(sprite.name);
 			craftableImage.sprite = sprite;
 		}
 	}

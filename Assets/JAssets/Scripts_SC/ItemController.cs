@@ -49,23 +49,25 @@ namespace JAssets.Scripts_SC
 
                 if (item.itemType == "Weapon")
                 {
-                    if (activeWeapon != "") DropEquippedGear("Weapon", true);
+                    Debug.Log(item.itemName);
+                    
+                    if (activeWeapon != "") DropEquippedGear("Weapon");
                     gear.weapons[item.itemName].gameObject.SetActive(true);
                     activeWeapon = item.itemName;
+                    UpdateWeapon(item.itemType);
 
                     var getGearParticle = Library.instance.particleDict["PickupFlash"].GetPooledGameObject();
                     getGearParticle.SetActive(true);
                     getGearParticle.transform.position = pickup.transform.position;
-                    UpdateWeapon(item.itemType);
-
                 }
                 else if (item.itemType == "Consumable")
                 {
-                    if (activeTool != "") DropEquippedGear("Consumable", true);
-                    gear.tools[item.itemName].gameObject.SetActive(true);
-                    activeTool = item.itemName;
-
-                    UpdateWeapon(item.itemType);
+                    Debug.Log("w consumable");
+                    
+                    if (activeTool != "") DropEquippedGear("Consumable");
+                    Consumable consumable = gear.consumables[item.itemName].GetComponent<Consumable>();
+                    activeWeapon = consumable.name;
+                    UpdateWeapon("Consumable");
 
                     var getItemParticle = Library.instance.particleDict["PickupFlash"].GetPooledGameObject();
                     getItemParticle.SetActive(true);
@@ -83,13 +85,12 @@ namespace JAssets.Scripts_SC
                 var item = pickup.GetComponent<Pickup>();
                 if (item.itemType == "Weapon") return;
                 item.PickupItem();
-                
+                Debug.Log(item.itemName);
                 if (item.itemType == "Tool")
                 {
-                    if (activeTool != "") DropEquippedGear("Tool", false);
+                    if (activeTool != "") DropEquippedGear("Tool");
                     gear.tools[item.itemName].gameObject.SetActive(true);
                     activeTool = item.itemName;
-
                     UpdateTool(item.itemType);
 
                     var getGearParticle = Library.instance.particleDict["PickupFlash"].GetPooledGameObject();
@@ -98,11 +99,11 @@ namespace JAssets.Scripts_SC
                 } 
                 else if (item.itemType == "Consumable")
                 {
-                    if (activeTool != "") DropEquippedGear("Consumable", false);
-                    gear.tools[item.itemName].gameObject.SetActive(true);
-                    activeTool = item.itemName;
-
-                    UpdateTool(item.itemType);
+                    if (activeTool != "") DropEquippedGear("Consumable");
+                    Consumable consumable = gear.consumables[item.itemName].GetComponent<Consumable>();
+                    Debug.Log(consumable);
+                    activeTool = consumable.name;
+                    UpdateTool("Consumable");
 
                     var getItemParticle = Library.instance.particleDict["PickupFlash"].GetPooledGameObject();
                     getItemParticle.SetActive(true);
@@ -144,16 +145,35 @@ namespace JAssets.Scripts_SC
 
         private void UpdateWeapon(string type)
         {
-            attackString = gear.weapons[activeWeapon].rtso.attackAnimString;
-            specialString = gear.weapons[activeWeapon].rtso.specAnimString;
-            _weaponAnimator = gear.weapons[activeWeapon].animator;
+            if (type == "Weapon")
+            {
+                attackString = gear.weapons[activeWeapon].rtso.attackAnimString;
+                specialString = gear.weapons[activeWeapon].rtso.specAnimString;
+                _weaponAnimator = gear.weapons[activeWeapon].animator;
+            }
+            else
+            {
+                attackString = "";
+                specialString = "";
+                _weaponAnimator = null;
+            }
+            Debug.Log("got this far");
             UpdateUI(type, "Weapon");
         }
 
         private void UpdateTool(string type)
         {
-            _toolAnimator = gear.tools[activeTool].animator;
-            _useToolString = gear.tools[activeTool].rtso.useToolString;
+            if (type == "Tool")
+            {
+                _toolAnimator = gear.tools[activeTool].animator;
+                _useToolString = gear.tools[activeTool].rtso.useToolString;
+            } 
+            else
+            {
+                _useToolString = "";
+	            _toolAnimator = null;
+            }
+
             UpdateUI(type, "Tool");
         }
 
@@ -181,7 +201,7 @@ namespace JAssets.Scripts_SC
             _canTool = true;
         }
 
-        private void DropEquippedGear(string itemType, bool weaponSlot)
+        private void DropEquippedGear(string itemType)
         {
             switch (itemType)
             {
@@ -202,11 +222,20 @@ namespace JAssets.Scripts_SC
                     break;
                 }
                 case "Consumable":
-                    var slot = activeWeapon;
-                    if (!weaponSlot) slot = activeTool;
+
+                    var slot = "";
+                    if (itemType == "Weapon")
+                    {
+                        slot = activeWeapon;
+                        gear.weapons[slot].gameObject.SetActive(false);
+                    }
+                    else
+                    {
+                        slot = activeTool;
+                        gear.tools[slot].gameObject.SetActive(false);
+                    }
                     
                     var consumableDrop = Library.instance.consumableDict["P" + slot + "-0"];
-                    gear.weapons[activeWeapon].gameObject.SetActive(false);
                     consumableDrop.gameObject.SetActive(true);
                     consumableDrop.transform.position = transform.position;
                     break;
@@ -215,11 +244,53 @@ namespace JAssets.Scripts_SC
 
         private void UpdateUI(string type, string slot)
         {
-            playerUi.UpdateItemsUi(type, slot, gear.weapons[activeWeapon].GetComponent<SpriteRenderer>().sprite);
+            if (type == "Weapon" && gear.weapons.ContainsKey(activeWeapon))
+            {
+	            playerUi.UpdateItemsUi(type, slot, gear.weapons[activeWeapon].GetComponent<SpriteRenderer>().sprite);
+            }
+            else if (type == "Tool" && gear.tools.ContainsKey(activeTool))
+            {
+	            playerUi.UpdateItemsUi(type, slot, gear.tools[activeTool].GetComponent<SpriteRenderer>().sprite);
+            } else if (type == "Consumable" && slot == "Weapon")
+            {
+                playerUi.UpdateItemsUi(type, slot, gear.consumables[activeWeapon].GetComponent<Consumable>().sprite);
+                Debug.Log("here");
+            } else if (type == "Consumable" && slot == "Tool")
+            {
+                playerUi.UpdateItemsUi(type, slot, gear.consumables[activeTool].GetComponent<Consumable>().sprite);
+            }
+            
             var craftable = CraftingMatrix.instance.GetRecipeFromMatrix(activeWeapon, activeTool);
             Debug.Log(craftable);
-            if (craftable) playerUi.UpdateCraftable(craftable.sprite);
-            activeCraftable = craftable.resultItem;
+            if (craftable != null)
+            {
+	            playerUi.UpdateCraftable(craftable.sprite);
+            } else
+            {
+                return;
+            }
+            activeCraftable = craftable.name;
+            Debug.Log(craftable);
+            Debug.Log("active craftable");
+        }
+
+        public void CraftItem(InputAction.CallbackContext context)
+        {
+            if (string.IsNullOrEmpty(activeCraftable)) return;
+            var newItem = Library.instance.pickupsDict["P" + activeCraftable].GetPooledGameObject();
+            Debug.Log(newItem);
+            Debug.Log("got past library");
+            if (newItem != null)
+            {
+	            newItem.transform.position = transform.position;
+                newItem.SetActive(true);
+                
+                activeWeapon = "";
+                activeTool = "";
+                activeCraftable = "";
+                
+                playerUi.UpdateItemsUi("All", "All", null);
+            }
         }
     }
 }
