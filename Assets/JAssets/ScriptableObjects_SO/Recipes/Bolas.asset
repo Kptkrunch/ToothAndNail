@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be4192a2a959f00478fe351e2f555206, type: 3}
   m_Name: Bolas
   m_EditorClassIdentifier: 
-  sprite: {fileID: 21300012, guid: 358b5d9f23bc9413e87c9948acc67ee1, type: 3}
+  sprite: {fileID: 26517425, guid: 6a665ba4c2951684bb1bff89bef10112, type: 3}
   resultItem: 

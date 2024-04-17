@@ -27,9 +27,10 @@ namespace JAssets.Scripts_SC
 
 		public Recipe_SO GetRecipeFromMatrix(string row, string item)
 		{
-			var craftingDictionary = matrix[row];
-			var recipeItem = craftingDictionary.row[item];
-			return recipeItem;
+			var thisRow = matrix[row];
+			Debug.Log(thisRow);
+			var recipe = thisRow.row[item];
+			return recipe;
 		}
 	}
 }
