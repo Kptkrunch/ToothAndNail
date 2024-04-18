@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using JAssets.Scripts_SC.SOScripts;
 using UnityEditor;
 using UnityEngine;
 
@@ -15,7 +16,7 @@ namespace Editor
         public string lootTableName;
         public string newFolderName;
 
-        public string itemName = "Item Name";
+        public string itemName = "Item itemName";
         public int itemWeight = 1;
 
         public string generatedItem = String.Empty;
@@ -58,13 +59,6 @@ namespace Editor
             weaponName = GUILayout.TextField(weaponName, optionsField);
             EditorGUILayout.EndHorizontal();
 
-            EditorGUILayout.BeginHorizontal();
-            if (GUILayout.Button("New Tool", optionsButton))
-            {
-                CreateNewScriptableObject<Tool_SO>(toolName);
-                ClearInputFields();
-            }
-
             toolName = GUILayout.TextField(toolName, optionsField);
             EditorGUILayout.EndHorizontal();
 
@@ -99,7 +93,7 @@ namespace Editor
             EditorGUILayout.EndHorizontal();
 
             EditorGUILayout.BeginVertical();
-            itemName = EditorGUILayout.TextField("LootItem Name:", itemName);
+            itemName = EditorGUILayout.TextField("LootItem itemName:", itemName);
             itemWeight = EditorGUILayout.IntField("LootItem Weight:", itemWeight);
 
             EditorGUILayout.BeginHorizontal();
@@ -120,7 +114,7 @@ namespace Editor
                 for (int i = 0; i < tempItemList.Count; i++)
                 {
                     EditorGUILayout.LabelField(
-                        $"{i + 1}: Name: {tempItemList[i].Name}, Weight: {tempItemList[i].Weight}.");
+                        $"{i + 1}: itemName: {tempItemList[i].itemName}, Weight: {tempItemList[i].itemWeight}.");
                 }
             }
 
@@ -128,7 +122,7 @@ namespace Editor
             if (GUILayout.Button("Generate Random Item", optionsButton))
             {
                 LootTable_SO lootTable = ScriptableObject.CreateInstance<LootTable_SO>();
-                lootTable.LootItems = new List<LootTable_SO.LootItem>(tempItemList);
+                lootTable.lootItems = new List<LootTable_SO.LootItem>(tempItemList);
                 string lootItem = lootTable.GetRandomLoot();
                 generatedItem = lootItem;
             }
@@ -138,7 +132,7 @@ namespace Editor
 
         private void AddItem()
         {
-            LootTable_SO.LootItem newItem = new LootTable_SO.LootItem { Name = itemName, Weight = itemWeight };
+            LootTable_SO.LootItem newItem = new LootTable_SO.LootItem { itemName = itemName, itemWeight = itemWeight };
             tempItemList.Add(newItem);
         }
 
@@ -167,7 +161,7 @@ namespace Editor
 
             if (asset is LootTable_SO lootTable)
             {
-                lootTable.LootItems = new List<LootTable_SO.LootItem>(tempItemList);
+                lootTable.lootItems = new List<LootTable_SO.LootItem>(tempItemList);
                 tempItemList.Clear();
             }
 

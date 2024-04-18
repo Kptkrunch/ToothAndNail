@@ -53,7 +53,7 @@ namespace JAssets.Scripts_SC.Items.Weapons
             if (rtso.durability <= 0)
             {
                 gameObject.SetActive(false);
-                controller.activeWeapon = "";
+                controller.weaponHand = "";
                 var particle = WorldParticleSpawner.instance.weaponsBreakParticle.GetPooledGameObject();
                 particle.SetActive(true);
                 particle.gameObject.transform.position = transform.position;

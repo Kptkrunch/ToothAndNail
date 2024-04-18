@@ -64,12 +64,12 @@
         </member>
         <member name="F:Fusion.Photon.Realtime.FusionRelayClient.FUSION_PLUGIN_NAME">
             <summary>
-            Fusion Plugin Name for request
+            Fusion Plugin itemName for request
             </summary>
         </member>
         <member name="F:Fusion.Photon.Realtime.FusionRelayClient.SERVER_HOST_CN">
             <summary>
-            Alternative Name Server for CN Region
+            Alternative itemName Server for CN Region
             </summary>
         </member>
         <member name="P:Fusion.Photon.Realtime.FusionRelayClient.IsReadyAndInRoom">
@@ -126,10 +126,10 @@
         </member>
         <member name="M:Fusion.Photon.Realtime.FusionRelayClient.BuildEnterRoomParams(Fusion.Photon.Realtime.TypedLobby,System.String,System.Int32,System.Collections.Generic.Dictionary{System.String,Fusion.SessionProperty},System.Boolean,System.Boolean,System.Boolean)">
             <summary>
-            Build a new EnterRoomParams ref using the default configs and optional Room Name
+            Build a new EnterRoomParams ref using the default configs and optional Room itemName
             </summary>
             <param name="typedLobby">Which lobby the Room should exits</param>
-            <param name="roomName">Room Name, if not set, a Random Name will be used</param>
+            <param name="roomName">Room itemName, if not set, a Random itemName will be used</param>
             <param name="maxPlayers">Set the max number of players per Session</param>
             <param name="customProperties">Optional Room Custom Properties</param>
             <param name="isOpen">Signal if the Session should be Open/Closed</param>
@@ -395,7 +395,7 @@
             <summary>The network level protocol to use.</summary>
         </member>
         <member name="F:Fusion.Photon.Realtime.AppSettings.EnableProtocolFallback">
-            <summary>Enables a fallback to another protocol in case a connect to the Name Server fails.</summary>
+            <summary>Enables a fallback to another protocol in case a connect to the itemName Server fails.</summary>
             <remarks>See: LoadBalancingClient.EnableProtocolFallback.</remarks>
         </member>
         <member name="F:Fusion.Photon.Realtime.AppSettings.AuthMode">
@@ -411,7 +411,7 @@
             <summary>If true, the Server field contains a Master Server address (if any address at all).</summary>
         </member>
         <member name="P:Fusion.Photon.Realtime.AppSettings.IsBestRegion">
-            <summary>If true, the client should fetch the region list from the Name Server and find the one with best ping.</summary>
+            <summary>If true, the client should fetch the region list from the itemName Server and find the one with best ping.</summary>
             <remarks>See "Best Region" in the online docs.</remarks>
         </member>
         <member name="P:Fusion.Photon.Realtime.AppSettings.IsDefaultNameServer">
@@ -665,7 +665,7 @@
             <summary>Clients disconnects (specifically) from the NameServer (usually to connect to the MasterServer).</summary>
         </member>
         <member name="F:Fusion.Photon.Realtime.ClientState.ConnectWithFallbackProtocol">
-            <summary>Client was unable to connect to Name Server and will attempt to connect with an alternative network protocol (TCP).</summary>
+            <summary>Client was unable to connect to itemName Server and will attempt to connect with an alternative network protocol (TCP).</summary>
         </member>
         <member name="T:Fusion.Photon.Realtime.JoinType">
             <summary>
@@ -758,7 +758,7 @@
         </member>
         <member name="T:Fusion.Photon.Realtime.ServerConnection">
             <summary>Available server (types) for internally used field: server.</summary>
-            <remarks>Photon uses 3 different roles of servers: Name Server, Master Server and Game Server.</remarks>
+            <remarks>Photon uses 3 different roles of servers: itemName Server, Master Server and Game Server.</remarks>
         </member>
         <member name="F:Fusion.Photon.Realtime.ServerConnection.MasterServer">
             <summary>This server is where matchmaking gets done and where clients can get lists of rooms in lobbies.</summary>
@@ -844,7 +844,7 @@
             <summary>The version of your client. A new version also creates a new "virtual app" to separate players from older client versions.</summary>
         </member>
         <member name="P:Fusion.Photon.Realtime.LoadBalancingClient.AppId">
-            <summary>The AppID as assigned from the Photon Cloud. If you host yourself, this is the "regular" Photon Server Application Name (most likely: "LoadBalancing").</summary>
+            <summary>The AppID as assigned from the Photon Cloud. If you host yourself, this is the "regular" Photon Server Application itemName (most likely: "LoadBalancing").</summary>
         </member>
         <member name="P:Fusion.Photon.Realtime.LoadBalancingClient.ClientType">
             <summary>The ClientAppType defines which sort of AppId should be expected. The LoadBalancingClient supports Realtime and Voice app types. Default: Realtime.</summary>
@@ -880,13 +880,13 @@
             <remarks>This value is public, despite being an internal value, which should only be set by this client.</remarks>
         </member>
         <member name="F:Fusion.Photon.Realtime.LoadBalancingClient.NameServerHost">
-            <summary>Name Server Host Name for Photon Cloud. Without port and without any prefix.</summary>
+            <summary>itemName Server Host itemName for Photon Cloud. Without port and without any prefix.</summary>
         </member>
         <member name="P:Fusion.Photon.Realtime.LoadBalancingClient.NameServerAddress">
-            <summary>Name Server Address for Photon Cloud (based on current protocol). You can use the default values and usually won't have to set this value.</summary>
+            <summary>itemName Server Address for Photon Cloud (based on current protocol). You can use the default values and usually won't have to set this value.</summary>
         </member>
         <member name="F:Fusion.Photon.Realtime.LoadBalancingClient.ProtocolToNameServerPort">
-            <summary>Name Server port per protocol (the UDP port is different than TCP, etc).</summary>
+            <summary>itemName Server port per protocol (the UDP port is different than TCP, etc).</summary>
         </member>
         <member name="P:Fusion.Photon.Realtime.LoadBalancingClient.UseAlternativeUdpPorts">
             <summary>Replaced by ServerPortOverrides.</summary>
@@ -907,12 +907,12 @@
              </remarks>
         </member>
         <member name="P:Fusion.Photon.Realtime.LoadBalancingClient.EnableProtocolFallback">
-             <summary>Enables a fallback to another protocol in case a connect to the Name Server fails.</summary>
+             <summary>Enables a fallback to another protocol in case a connect to the itemName Server fails.</summary>
              <remarks>
-             When connecting to the Name Server fails for a first time, the client will select an alternative
+             When connecting to the itemName Server fails for a first time, the client will select an alternative
              network protocol and re-try to connect.
             
-             The fallback will use the default Name Server port as defined by ProtocolToNameServerPort.
+             The fallback will use the default itemName Server port as defined by ProtocolToNameServerPort.
             
              The fallback for TCP is UDP. All other protocols fallback to TCP.
              </remarks>
@@ -924,7 +924,7 @@
             <summary>Your Master Server address. In PhotonCloud, call ConnectToRegionMaster() to find your Master Server.</summary>
             <remarks>
             In the Photon Cloud, explicit definition of a Master Server Address is not best practice.
-            The Photon Cloud has a "Name Server" which redirects clients to a specific Master Server (per Region and AppId).
+            The Photon Cloud has a "itemName Server" which redirects clients to a specific Master Server (per Region and AppId).
             </remarks>
         </member>
         <member name="P:Fusion.Photon.Realtime.LoadBalancingClient.GameServerAddress">
@@ -1131,10 +1131,10 @@
             <summary>The cloud region this client connects to. Set by ConnectToRegionMaster(). Not set if you don't use a NameServer!</summary>
         </member>
         <member name="P:Fusion.Photon.Realtime.LoadBalancingClient.CurrentCluster">
-            <summary>The cluster name provided by the Name Server.</summary>
+            <summary>The cluster name provided by the itemName Server.</summary>
             <remarks>
             The value is provided by the OpResponse for OpAuthenticate/OpAuthenticateOnce.
-            Default: null. This value only ever updates from the Name Server authenticate response.
+            Default: null. This value only ever updates from the itemName Server authenticate response.
             </remarks>
         </member>
         <member name="F:Fusion.Photon.Realtime.LoadBalancingClient.RegionHandler">
@@ -1199,7 +1199,7 @@
             - Low level connect and init (which establishes a connection that enables operations and responses for the Realtime API).<br/>
             - GetRegions and select best (unless FixedRegion is being used).<br/>
             - Authenticate user for a specific region (this provides a Master Server address to go to and a token).<br/>
-            - Disconnect Name Server and connect to Master Server (using the token).<br/>
+            - Disconnect itemName Server and connect to Master Server (using the token).<br/>
             - The callback OnConnectedToMaster gets called.<br/>
             <br/>
             Connecting to the servers is a process and this is a non-blocking method.<br/>
@@ -1247,11 +1247,11 @@
         </member>
         <member name="M:Fusion.Photon.Realtime.LoadBalancingClient.ConnectToRegionMaster(System.String)">
              <summary>
-             Connects you to a specific region's Master Server, using the Name Server to get the IP.
+             Connects you to a specific region's Master Server, using the itemName Server to get the IP.
              </summary>
              <remarks>
              If the region is null or empty, no connection will be made.
-             If the region (code) provided is not available, the connection process will fail on the Name Server.
+             If the region (code) provided is not available, the connection process will fail on the itemName Server.
              This method connects only to the region defined. Any "Best Region" pinging should get done beforehand.
             
              To support "sharding", a region string may contain a "/*" to pick a random cluster or "/clustername"
@@ -1259,7 +1259,7 @@
              With a "/" or no cluster postfix, the client connects to the default cluster (a specific one
              for a region).
             
-             By default, the region string provided by the Name Server does not contain a cluster (and only the
+             By default, the region string provided by the itemName Server does not contain a cluster (and only the
              default cluster is used).
              </remarks>
              <returns>If the operation could be sent. If false, no operation was sent.</returns>
@@ -1943,7 +1943,7 @@
         </member>
         <member name="M:Fusion.Photon.Realtime.IConnectionCallbacks.OnRegionListReceived(Fusion.Photon.Realtime.RegionHandler)">
              <summary>
-             Called when the Name Server provided a list of regions for your title.
+             Called when the itemName Server provided a list of regions for your title.
              </summary>
              <remarks>
              This callback is called as soon as the list is available. No pings were sent for Best Region selection yet.
@@ -2289,13 +2289,13 @@
                     case ErrorCode.Ok:
                         WebRpcResponse webRpcResponse = new WebRpcResponse(response);
                         Debug.LogFormat("Parsed WebRPC response {0}", response.ToStringFull());
-                        if (string.IsNullOrEmpty(webRpcResponse.Name))
+                        if (string.IsNullOrEmpty(webRpcResponse.itemName))
                         {
                             Debug.LogError("Unexpected: WebRPC response did not contain WebRPC method name");
                         }
                         if (webRpcResponse.ResultCode == 0) // success
                         {
-                            switch (webRpcResponse.Name)
+                            switch (webRpcResponse.itemName)
                             {
                                 // todo: add your code here
                              case GetGameListWebRpcMethodName: // example
@@ -2305,11 +2305,11 @@
                         }
                         else if (webRpcResponse.ResultCode == -1)
                         {
-                            Debug.LogErrorFormat("Web server did not return ResultCode for WebRPC method=\"{0}\", Message={1}", webRpcResponse.Name, webRpcResponse.Message);
+                            Debug.LogErrorFormat("Web server did not return ResultCode for WebRPC method=\"{0}\", Message={1}", webRpcResponse.itemName, webRpcResponse.Message);
                         }
                         else
                         {
-                            Debug.LogErrorFormat("Web server returned ResultCode={0} for WebRPC method=\"{1}\", Message={2}", webRpcResponse.ResultCode, webRpcResponse.Name, webRpcResponse.Message);
+                            Debug.LogErrorFormat("Web server returned ResultCode={0} for WebRPC method=\"{1}\", Message={2}", webRpcResponse.ResultCode, webRpcResponse.itemName, webRpcResponse.Message);
                         }
                         break;
                     case ErrorCode.ExternalHttpCallFailed: // web service unreachable
@@ -2904,7 +2904,7 @@
             </remarks>
         </member>
         <member name="F:Fusion.Photon.Realtime.ActorProperties.PlayerName">
-            <summary>(255) Name of a player/actor.</summary>
+            <summary>(255) itemName of a player/actor.</summary>
         </member>
         <member name="F:Fusion.Photon.Realtime.ActorProperties.IsInactive">
             <summary>(254) Tells you if the player is currently in this game (getting events live).</summary>
@@ -3184,7 +3184,7 @@
             <summary>(210) Used for region values in OpAuth and OpGetRegions.</summary>
         </member>
         <member name="F:Fusion.Photon.Realtime.ParameterCode.UriPath">
-            <summary>(209) Path of the WebRPC that got called. Also known as "WebRpc Name". Type: string.</summary>
+            <summary>(209) Path of the WebRPC that got called. Also known as "WebRpc itemName". Type: string.</summary>
         </member>
         <member name="F:Fusion.Photon.Realtime.ParameterCode.WebRpcParameters">
             <summary>(208) Parameters for a WebRPC as: Dictionary&lt;string, object&gt;. This will get serialized to JSon.</summary>
@@ -3465,7 +3465,7 @@
         <member name="F:Fusion.Photon.Realtime.RoomOptions.CustomRoomPropertiesForLobby">
              <summary>Defines the custom room properties that get listed in the lobby.</summary>
              <remarks>
-             Name the custom room properties that should be available to clients that are in a lobby.
+             itemName the custom room properties that should be available to clients that are in a lobby.
              Use with care. Unless a custom property is essential for matchmaking or user info, it should
              not be sent to the lobby, which causes traffic and delays for clients in the lobby.
             
@@ -3570,17 +3570,17 @@
         <member name="T:Fusion.Photon.Realtime.TypedLobby">
             <summary>Refers to a specific lobby on the server.</summary>
             <remarks>
-            Name and Type combined are the unique identifier for a lobby.<br/>
+            itemName and Type combined are the unique identifier for a lobby.<br/>
             The server will create lobbies "on demand", so no registration or setup is required.<br/>
-            An empty or null Name always points to the "default lobby" as special case.
+            An empty or null itemName always points to the "default lobby" as special case.
             </remarks>
         </member>
-        <member name="F:Fusion.Photon.Realtime.TypedLobby.Name">
+        <member name="F:Fusion.Photon.Realtime.TypedLobby.itemName">
             <summary>
-            Name of the lobby. Default: null, pointing to the "default lobby".
+            itemName of the lobby. Default: null, pointing to the "default lobby".
             </summary>
             <remarks>
-            If Name is null or empty, a TypedLobby will point to the "default lobby". This ignores the Type value and always acts as  <see cref="F:Fusion.Photon.Realtime.LobbyType.Default"/>.
+            If itemName is null or empty, a TypedLobby will point to the "default lobby". This ignores the Type value and always acts as  <see cref="F:Fusion.Photon.Realtime.LobbyType.Default"/>.
             </remarks>
         </member>
         <member name="F:Fusion.Photon.Realtime.TypedLobby.Type">
@@ -3588,7 +3588,7 @@
             Type (and behaviour) of the lobby.
             </summary>
             <remarks>
-            An empty or null Name always points to the "default lobby" as special case.
+            An empty or null itemName always points to the "default lobby" as special case.
             </remarks>
         </member>
         <member name="F:Fusion.Photon.Realtime.TypedLobby.Default">
@@ -3598,7 +3598,7 @@
             <remarks>
             There is only a single lobby with an empty name on the server. It is always of type  <see cref="F:Fusion.Photon.Realtime.LobbyType.Default"/>.<br/>
             On the other hand, this is a shortcut and reusable reference to the default lobby.<br/>
-            Do not change Name or Type.<br/>
+            Do not change itemName or Type.<br/>
             </remarks>
         </member>
         <member name="P:Fusion.Photon.Realtime.TypedLobby.IsDefault">
@@ -3606,18 +3606,18 @@
             Returns whether or not this instance points to the "default lobby" (<see cref="F:Fusion.Photon.Realtime.TypedLobby.Default"/>).
             </summary>
             <remarks>
-            This comes up to checking if the Name is null or empty.
+            This comes up to checking if the itemName is null or empty.
             <see cref="F:Fusion.Photon.Realtime.LobbyType.Default"/> is not the same thing as the "default lobby" (<see cref="F:Fusion.Photon.Realtime.TypedLobby.Default"/>).
             </remarks>
         </member>
         <member name="M:Fusion.Photon.Realtime.TypedLobby.#ctor">
             <summary>
-            Creates a TypedLobby instance. Unless Name is changed, this points to the "default lobby" (<see cref="F:Fusion.Photon.Realtime.TypedLobby.Default"/>).
+            Creates a TypedLobby instance. Unless itemName is changed, this points to the "default lobby" (<see cref="F:Fusion.Photon.Realtime.TypedLobby.Default"/>).
             </summary>
         </member>
         <member name="M:Fusion.Photon.Realtime.TypedLobby.#ctor(System.String,Fusion.Photon.Realtime.LobbyType)">
             <summary>
-            Sets Name and Type of the new instance. Make sure name is not empty or null, as that always points to the "default lobby" (<see cref="F:Fusion.Photon.Realtime.TypedLobby.Default"/>).
+            Sets itemName and Type of the new instance. Make sure name is not empty or null, as that always points to the "default lobby" (<see cref="F:Fusion.Photon.Realtime.TypedLobby.Default"/>).
             </summary>
             <param name="name">Some string to identify a lobby.</param>
             <param name="type">The type of a lobby defines it's capabilities and behaviour.</param>
@@ -4028,7 +4028,7 @@
              Provides methods to work with Photon's regions (Photon Cloud) and can be use to find the one with best ping.
              </summary>
              <remarks>
-             When a client uses a Name Server to fetch the list of available regions, the LoadBalancingClient will create a RegionHandler
+             When a client uses a itemName Server to fetch the list of available regions, the LoadBalancingClient will create a RegionHandler
              and provide it via the OnRegionListReceived callback, as soon as the list is available. No pings were sent for Best Region selection yet.
             
              Your logic can decide to either connect to one of those regional servers, or it may use PingMinimumOfRegions to test
@@ -4077,7 +4077,7 @@
             <summary>Provides a list of regions and their pings as string.</summary>
         </member>
         <member name="M:Fusion.Photon.Realtime.RegionHandler.SetRegions(ExitGames.Client.Photon.OperationResponse)">
-            <summary>Initializes the regions of this RegionHandler with values provided from the Name Server (as OperationResponse for OpGetRegions).</summary>
+            <summary>Initializes the regions of this RegionHandler with values provided from the itemName Server (as OperationResponse for OpGetRegions).</summary>
         </member>
         <member name="F:Fusion.Photon.Realtime.RegionHandler.PortToPingOverride">
             <summary>If non-zero, this port will be used to ping Master Servers on.</summary>
@@ -4200,7 +4200,7 @@
             A reference to the LoadBalancingClient which is currently keeping the connection and state.
             </summary>
         </member>
-        <member name="P:Fusion.Photon.Realtime.Room.Name">
+        <member name="P:Fusion.Photon.Realtime.Room.itemName">
             <summary>The name of a room. Unique identifier (per region and virtual appid) for a room/match.</summary>
             <remarks>The name can't be changed once it's set by the server.</remarks>
         </member>
@@ -4307,7 +4307,7 @@
         </member>
         <member name="M:Fusion.Photon.Realtime.Room.#ctor(System.String,Fusion.Photon.Realtime.RoomOptions,System.Boolean)">
             <summary>Creates a Room (representation) with given name and properties and the "listing options" as provided by parameters.</summary>
-            <param name="roomName">Name of the room (can be null until it's actually created on server).</param>
+            <param name="roomName">itemName of the room (can be null until it's actually created on server).</param>
             <param name="options">Room options.</param>
             <param name="isOffline">Signal if this room is only used locally.</param>
         </member>
@@ -4516,7 +4516,7 @@
             <remarks>All keys are string-typed and the values depend on the game/application.</remarks>
             <see cref="M:Fusion.Photon.Realtime.Room.SetCustomProperties(ExitGames.Client.Photon.Hashtable,ExitGames.Client.Photon.Hashtable,Fusion.Photon.Realtime.WebFlags)"/>
         </member>
-        <member name="P:Fusion.Photon.Realtime.RoomInfo.Name">
+        <member name="P:Fusion.Photon.Realtime.RoomInfo.itemName">
             <summary>The name of a room. Unique identifier for a room/match (per AppId + game-Version).</summary>
         </member>
         <member name="P:Fusion.Photon.Realtime.RoomInfo.PlayerCount">
@@ -4563,7 +4563,7 @@
             <summary>
             Constructs a RoomInfo to be used in room listings in lobby.
             </summary>
-            <param name="roomName">Name of the room and unique ID at the same time.</param>
+            <param name="roomName">itemName of the room and unique ID at the same time.</param>
             <param name="roomProperties">Properties for this room.</param>
         </member>
         <member name="M:Fusion.Photon.Realtime.RoomInfo.Equals(System.Object)">
@@ -4684,8 +4684,8 @@
             The operationResponse.OperationCode should be: OperationCode.WebRpc.<br/>
             </remarks>
         </member>
-        <member name="P:Fusion.Photon.Realtime.WebRpcResponse.Name">
-            <summary>Name of the WebRpc that was called.</summary>
+        <member name="P:Fusion.Photon.Realtime.WebRpcResponse.itemName">
+            <summary>itemName of the WebRpc that was called.</summary>
         </member>
         <member name="P:Fusion.Photon.Realtime.WebRpcResponse.ResultCode">
             <summary>ResultCode of the WebService that answered the WebRpc.</summary>

@@ -1,12 +1,15 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "New Pickup", menuName = "Pickup")]
-public class Pickup_SO : ScriptableObject
+namespace JAssets.Scripts_SC.SOScripts
 {
-    public Sprite sprite;
-    public string gearName;
-    public bool isWeapon, isTool;
+    [CreateAssetMenu(fileName = "New Pickup", menuName = "Pickup")]
+    public class Pickup_SO : ScriptableObject
+    {
+        public Sprite sprite;
+        public string gearName;
+        public bool isWeapon, isTool;
 
-    public int remainingDurability;
-    public int remainingUses;
+        public int remainingDurability;
+        public int remainingUses;
+    }
 }

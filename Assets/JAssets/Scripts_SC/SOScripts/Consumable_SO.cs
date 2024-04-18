@@ -1,16 +1,17 @@
 using Sirenix.OdinInspector;
 using UnityEngine;
-using UnityEngine.UI;
 
-[CreateAssetMenu(fileName = "New Consumable", menuName = "Consumable")]
-public class Consumable_SO : ScriptableObject
+namespace JAssets.Scripts_SC.SOScripts
 {
-    [ShowInInspector]
-    [SerializeField] public Sprite sprite;
-    public string itemName;
-    public int primaryValue;
-    public int secondaryValue;
-    [ShowInInspector]
-    public Animator animator;
+    [CreateAssetMenu(fileName = "New Consumable", menuName = "Consumable")]
+    public class Consumable_SO : ScriptableObject
+    {
+        [ShowInInspector]
+        [SerializeField] public Sprite sprite;
+        [ShowInInspector]
+        public string itemName;
+        [ShowInInspector]
+        public Animator animator;
+    }
 }
 

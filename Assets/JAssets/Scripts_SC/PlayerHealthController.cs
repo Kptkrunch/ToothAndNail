@@ -40,12 +40,9 @@ namespace JAssets.Scripts_SC
             StartCoroutine(HitEffect());
             playerUi.TakeDamage(damage);
 
-            if (currentHealth <= 0)
-            {
-                currentHealth = 0;
-                // you are dead
-                animator.Play("Death");
-            }
+            if (currentHealth > 0) return;
+            currentHealth = 0;
+            animator.Play("Death");
         }
 
         public void GetHealed(int healAmount)
@@ -54,7 +51,6 @@ namespace JAssets.Scripts_SC
             if (currentHealth > _maxHealth) currentHealth = _maxHealth;
             playerUi.HealDamage(healAmount);
         }
-        
         private void SetAllHealthValues()
         {
             currentHealth = _maxHealth;
@@ -67,7 +63,6 @@ namespace JAssets.Scripts_SC
             spriteRenderer.material = uniqueMaterial;
             shader.SetFloat(HitEffectBlend, 0.0f);
         }
-        
         private IEnumerator HitEffect()
         {
             for (var i = 0; i < 2; i++)
@@ -78,7 +73,6 @@ namespace JAssets.Scripts_SC
                 yield return new WaitForSeconds(WaitTimeHitEffect);
             }
         }
-
         private void InvulnerableHandler()
         {
             if (!_canBeDamaged) _invulTimer -= Time.deltaTime;

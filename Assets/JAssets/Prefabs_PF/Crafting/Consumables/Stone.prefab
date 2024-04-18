@@ -10,9 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 2526046936991436674}
   - component: {fileID: 9173479576339615020}
-  m_Layer: 0
+  m_Layer: 19
   m_Name: Stone
-  m_TagString: Untagged
+  m_TagString: Consumable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -44,8 +44,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b78f5f9d86a1d24d9749d8e81433b62, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  name: Stone
-  primaryValue: 1
-  SecondaryValue: 1
+  isWeapon: 0
+  isConsumable: 0
+  itemName: 
   sprite: {fileID: -680107979, guid: 212bd3de0e8797c419eb6ba8597c5e2c, type: 3}
   animator: {fileID: 0}

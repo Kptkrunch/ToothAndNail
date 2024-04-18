@@ -52,8 +52,6 @@ MonoBehaviour:
   parent: {fileID: 4578394708835662227}
   itemName: BattleAx
   itemType: Weapon
-  remainingDurability: 3
-  remainingUses: 3
 --- !u!212 &8897239904252296947
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -178,7 +176,7 @@ PolygonCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -213,7 +211,7 @@ GameObject:
   - component: {fileID: 5463299922561261387}
   m_Layer: 19
   m_Name: PBattleAx
-  m_TagString: Weapon
+  m_TagString: Pickup
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

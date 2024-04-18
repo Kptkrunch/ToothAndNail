@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5929993970722453910}
   m_Layer: 19
   m_Name: PSword
-  m_TagString: Weapon
+  m_TagString: Pickup
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -84,8 +84,6 @@ MonoBehaviour:
   parent: {fileID: 4097251909154221698}
   itemName: Sword
   itemType: Weapon
-  remainingDurability: 3
-  remainingUses: 3
 --- !u!212 &7122863616934949001
 SpriteRenderer:
   m_ObjectHideFlags: 0

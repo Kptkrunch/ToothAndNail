@@ -28,7 +28,6 @@ namespace JAssets.Scripts_SC
 		public Recipe_SO GetRecipeFromMatrix(string row, string item)
 		{
 			var thisRow = matrix[row];
-			Debug.Log(thisRow);
 			var recipe = thisRow.row[item];
 			return recipe;
 		}

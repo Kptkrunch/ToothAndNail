@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 679926822076131085}
   m_Layer: 19
   m_Name: PSpear
-  m_TagString: Weapon
+  m_TagString: Pickup
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -84,8 +84,6 @@ MonoBehaviour:
   parent: {fileID: 4190619623031111737}
   itemName: Spear
   itemType: Weapon
-  remainingDurability: 3
-  remainingUses: 3
 --- !u!212 &8099047554713129073
 SpriteRenderer:
   m_ObjectHideFlags: 0

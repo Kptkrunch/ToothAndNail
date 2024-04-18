@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7335724725147019074}
   m_Layer: 19
   m_Name: PBow
-  m_TagString: Weapon
+  m_TagString: Pickup
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -84,8 +84,6 @@ MonoBehaviour:
   parent: {fileID: 2564236569404926611}
   itemName: Bow
   itemType: Weapon
-  remainingDurability: 2
-  remainingUses: 0
 --- !u!212 &4444620193570775620
 SpriteRenderer:
   m_ObjectHideFlags: 0

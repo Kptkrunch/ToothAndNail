@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6074687292955368002}
   m_Layer: 19
   m_Name: PVine
-  m_TagString: Consumable
+  m_TagString: Pickup
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -84,8 +84,6 @@ MonoBehaviour:
   parent: {fileID: 60419826831055405}
   itemName: Vine
   itemType: Consumable
-  remainingDurability: 1
-  remainingUses: 1
 --- !u!212 &3546590703972769107
 SpriteRenderer:
   m_ObjectHideFlags: 0

@@ -40,13 +40,7 @@ public class AssetsCreationPanel : EditorWindow
         }
         weaponName = GUILayout.TextField(weaponName,  optionsField);
         EditorGUILayout.EndHorizontal();
-
-        EditorGUILayout.BeginHorizontal();
-        if (GUILayout.Button("New Tool", optionsButton))
-        {
-            CreateNewScriptableObject<Tool_SO>(toolName);
-            ClearInputFields();
-        }
+        
         toolName = GUILayout.TextField(toolName, optionsField);
         EditorGUILayout.EndHorizontal();
 
@@ -114,7 +108,7 @@ public class AssetsCreationPanel : EditorWindow
         }
         
         EditorGUILayout.BeginVertical();
-        itemName = EditorGUILayout.TextField("LootItem Name:", itemName);
+        itemName = EditorGUILayout.TextField("LootItem itemName:", itemName);
         itemWeight = EditorGUILayout.IntField("LootItem Weight:", itemWeight);
         EditorGUILayout.EndVertical();
 
@@ -125,14 +119,14 @@ public class AssetsCreationPanel : EditorWindow
             EditorGUILayout.LabelField("Items:");
             for (int i = 0; i < tempItemList.Count; i++)
             {
-                EditorGUILayout.LabelField($"{i + 1}: Name: {tempItemList[i].Name}, Weight: {tempItemList[i].Weight}.");
+                EditorGUILayout.LabelField($"{i + 1}: itemName: {tempItemList[i].itemName}, Weight: {tempItemList[i].itemWeight}.");
             }
         }
         
         if (GUILayout.Button("Generate Random Item", optionsButton))
         {
             LootTable_SO lootTable = CreateInstance<LootTable_SO>();
-            lootTable.LootItems = new List<LootTable_SO.LootItem>(tempItemList);
+            lootTable.lootItems = new List<LootTable_SO.LootItem>(tempItemList);
             string lootItem = lootTable.GetRandomLoot();
             generatedItem = lootItem;
         }
@@ -158,7 +152,7 @@ public class AssetsCreationPanel : EditorWindow
 
     private void AddItem()
     {
-        LootTable_SO.LootItem newItem = new LootTable_SO.LootItem { Name = itemName, Weight = itemWeight };
+        LootTable_SO.LootItem newItem = new LootTable_SO.LootItem { itemName = itemName, itemWeight = itemWeight };
         tempItemList.Add(newItem);
     }
 
@@ -205,7 +199,7 @@ public class AssetsCreationPanel : EditorWindow
         
         if (asset is LootTable_SO lootTable)
         {
-            lootTable.LootItems = new List<LootTable_SO.LootItem>(tempItemList);
+            lootTable.lootItems = new List<LootTable_SO.LootItem>(tempItemList);
             tempItemList.Clear();
         }
 

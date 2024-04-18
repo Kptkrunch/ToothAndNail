@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8202448100063363316}
   m_Layer: 19
   m_Name: PStick
-  m_TagString: Consumable
+  m_TagString: Pickup
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -84,8 +84,6 @@ MonoBehaviour:
   parent: {fileID: 6216568969307624874}
   itemName: Stick
   itemType: Consumable
-  remainingDurability: 1
-  remainingUses: 1
 --- !u!212 &5439323902486546501
 SpriteRenderer:
   m_ObjectHideFlags: 0

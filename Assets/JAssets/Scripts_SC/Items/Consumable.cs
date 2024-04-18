@@ -2,15 +2,13 @@ using UnityEngine;
 
 namespace JAssets.Scripts_SC.Items
 {
-    public class Consumable : MonoBehaviour
+    public class Consumable : Item
     {
-        public string name;
-        public int primaryValue;
-        public int SecondaryValue;
+        public string itemName;
         public Sprite sprite;
         public Animator animator;
 
-        public void Consume()
+        public virtual void Consume()
         {
             // get pooled object
         }

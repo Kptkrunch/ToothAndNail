@@ -50,8 +50,6 @@ MonoBehaviour:
   parent: {fileID: 7995678139077362169}
   itemName: Trap
   itemType: Tool
-  remainingDurability: 0
-  remainingUses: 1
 --- !u!212 &2587942763246860822
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -160,7 +158,7 @@ GameObject:
   - component: {fileID: 1379058377312130240}
   m_Layer: 19
   m_Name: PTrap
-  m_TagString: Tool
+  m_TagString: Pickup
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

@@ -2577,7 +2577,7 @@
             </remarks>
             <param name="myThread">The function to call. Must return true, if it should be called again. Returning false ends the thread.</param>
             <param name="millisecondsInterval">Milliseconds to sleep between calls of myThread. Default: 100ms.</param>
-            <param name="taskName">An optional name for the task to help debugging. Null or empty won't set the thread.Name.</param>
+            <param name="taskName">An optional name for the task to help debugging. Null or empty won't set the thread.itemName.</param>
         </member>
         <member name="M:ExitGames.Client.Photon.SupportClass.StopBackgroundCalls(System.Byte)">
             <summary>

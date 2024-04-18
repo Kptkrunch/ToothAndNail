@@ -52,8 +52,6 @@ MonoBehaviour:
   parent: {fileID: 7832758948921257244}
   itemName: Stone
   itemType: Consumable
-  remainingDurability: 1
-  remainingUses: 1
 --- !u!212 &7170379050975255071
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -205,7 +203,7 @@ GameObject:
   - component: {fileID: 4607137878975550327}
   m_Layer: 19
   m_Name: PStone
-  m_TagString: Consumable
+  m_TagString: Pickup
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

@@ -288,7 +288,7 @@
         </member>
         <member name="P:Fusion.DefaultForPropertyAttribute.PropertyName">
             <summary>
-            Property Name
+            Property itemName
             </summary>
         </member>
         <member name="P:Fusion.DefaultForPropertyAttribute.WordOffset">
@@ -385,7 +385,7 @@
         </member>
         <member name="P:Fusion.NetworkedAttribute.Default">
             <summary>
-            Name of the field that holds the default value for this networked property.
+            itemName of the field that holds the default value for this networked property.
             </summary>
         </member>
         <member name="M:Fusion.NetworkedAttribute.#ctor">
@@ -511,7 +511,7 @@
         </member>
         <member name="P:Fusion.NetworkSerializeMethodAttribute.MaxSize">
             <summary>
-            If set, this changes expected Wrap method signature to int Name(NetworkRunner, T, byte*) and Unwrap to int Name(NetworkRunner, byte*, ref T).
+            If set, this changes expected Wrap method signature to int itemName(NetworkRunner, T, byte*) and Unwrap to int itemName(NetworkRunner, byte*, ref T).
             In both cases, the result is the number of bytes written/read and can not be greater than what's declared here.
             </summary>
         </member>
@@ -939,15 +939,15 @@
              Make the local Peer Create/Join a Room based on Start Game Arguments
              
                            --------------------->Yes--->CreateOrJoin
-             SharedMode--->| Valid Room Name |
+             SharedMode--->| Valid Room itemName |
                            --------------------->No---->[RandomRoomName]-->JoinRandomOrCreate
             
                            --------------------->Yes--->CreateOrJoin
-             ClientMode--->| Valid Room Name |
+             ClientMode--->| Valid Room itemName |
                            --------------------->No---->[RandomRoomName]-->JoinRandom
              
              ServerMode--  --------------------->Yes----------------------------|
-                        |->| Valid Room Name |                                  v
+                        |->| Valid Room itemName |                                  v
              HostMode----  --------------------->No---->[RandomRoomName]-->CreateOrJoin
              
              </summary>
@@ -1321,9 +1321,9 @@
             This is only true if the peer is currently connected to a Lobby.
             </summary>
         </member>
-        <member name="P:Fusion.LobbyInfo.Name">
+        <member name="P:Fusion.LobbyInfo.itemName">
             <summary>
-            Lobby Name
+            Lobby itemName
             </summary>
         </member>
         <member name="P:Fusion.LobbyInfo.Region">
@@ -1353,7 +1353,7 @@
         </member>
         <member name="F:Fusion.SessionLobby.Custom">
             <summary>
-            Custom Lobby - works in conjuction with a Lobby Name/ID
+            Custom Lobby - works in conjuction with a Lobby itemName/ID
             </summary>
         </member>
         <member name="T:Fusion.SessionInfo">
@@ -1366,9 +1366,9 @@
             Flag to signal if the <see cref="T:Fusion.SessionInfo"/> is ready for use
             </summary>
         </member>
-        <member name="P:Fusion.SessionInfo.Name">
+        <member name="P:Fusion.SessionInfo.itemName">
             <summary>
-            Stores the current Room Name
+            Stores the current Room itemName
             </summary>
         </member>
         <member name="P:Fusion.SessionInfo.Region">
@@ -9532,7 +9532,7 @@
             Array of all <see cref="T:Fusion.NetworkBehaviour"/>s associated with this network entity.
             </summary>
         </member>
-        <member name="P:Fusion.NetworkObject.Name">
+        <member name="P:Fusion.NetworkObject.itemName">
             <summary>
             The ID + Unity GameObject name for this entity.
             </summary>
@@ -12805,7 +12805,7 @@
             <summary>
             Loads a scene
             </summary>
-            <param name="sceneName">Name of the scene to load</param>
+            <param name="sceneName">itemName of the scene to load</param>
             <param name="parameters">Parameters to use when loading the scene</param>
             <param name="setActiveOnLoad">Should the scene be set as active when loaded</param>
             <returns>Scene Load operation</returns>
@@ -12814,7 +12814,7 @@
             <summary>
             Loads a scene
             </summary>
-            <param name="sceneName">Name of the scene to load</param>
+            <param name="sceneName">itemName of the scene to load</param>
             <param name="loadSceneMode">Scene load mode</param>
             <param name="localPhysicsMode">Scene physics mode</param>
             <param name="setActiveOnLoad">Should the scene be set as active when loaded</param>
@@ -12834,7 +12834,7 @@
             <summary>
             Unloads a scene
             </summary>
-            <param name="sceneName">Name of the scene to unload</param>
+            <param name="sceneName">itemName of the scene to unload</param>
             <returns>Scene Unload operation</returns>
         </member>
         <member name="M:Fusion.NetworkRunner.LoadScene(Fusion.SceneRef,UnityEngine.SceneManagement.LoadSceneParameters,System.Boolean)">
@@ -14420,14 +14420,14 @@
         </member>
         <member name="F:Fusion.StartGameArgs.SessionName">
             <summary>
-            Photon Cloud Session Name used either to Create or Join a Session.
+            Photon Cloud Session itemName used either to Create or Join a Session.
             
             Default: null (random session matching)
             </summary>
         </member>
         <member name="F:Fusion.StartGameArgs.SessionNameGenerator">
             <summary>
-            Used to generate a new Session Name when creating a Session.
+            Used to generate a new Session itemName when creating a Session.
             
             Default: null (a random session name is generated based on a GUID)
             </summary>
@@ -14596,7 +14596,7 @@
         </member>
         <member name="F:Fusion.StartGameArgs.EnableClientSessionCreation">
             <summary>
-            Enables the Session creation when starting a Client with an specific Session Name
+            Enables the Session creation when starting a Client with an specific Session itemName
             
             Default: false (clients *can not* create new Sessions)
             </summary>

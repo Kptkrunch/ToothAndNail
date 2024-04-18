@@ -566,7 +566,7 @@ namespace Photon.Chat.Demo
         /// <summary>
         /// New status of another user (you get updates for users set in your friends list).
         /// </summary>
-        /// <param name="user">Name of the user.</param>
+        /// <param name="user">itemName of the user.</param>
         /// <param name="status">New status of that user.</param>
         /// <param name="gotMessage">True if the status contains a message you should cache locally. False: This status update does not include a
         /// message (keep any you have).</param>

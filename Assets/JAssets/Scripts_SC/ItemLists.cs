@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using JAssets.Scripts_SC.Items;
 using MoreMountains.Tools;
 using Sirenix.OdinInspector;
 using UnityEngine;
@@ -10,12 +9,8 @@ namespace JAssets.Scripts_SC
     {
         public static ItemLists instance;
 
-        [Header("Weapons List")] [ShowInInspector]
-        public List<Weapon> weaponsList = new();
-
-        [Header("Tools List")] [ShowInInspector]
-        public List<Tool> toolList = new();
-
+        [Header("All Items List")] [ShowInInspector]
+        public List<GameObject> itemList;
         [Header("Particles List")] [ShowInInspector]
         public List<MMSimpleObjectPooler> particleList = new();
 
@@ -48,10 +43,11 @@ namespace JAssets.Scripts_SC
 
         private void PopulateLibrary()
         {
-            foreach (var w in weaponsList) Library.instance.weaponsDict[w.name] = w;
-
-            foreach (var t in toolList) Library.instance.toolsDict[t.name] = t;
-
+            foreach (var i in itemList)
+            {
+                Library.instance.itemDict[i.name] = i;
+            }
+            
             foreach (var p in pickupList) Library.instance.pickupsDict[p.GameObjectToPool.name] = p;
 
             foreach (var p in particleList) Library.instance.particleDict[p.GameObjectToPool.name] = p;

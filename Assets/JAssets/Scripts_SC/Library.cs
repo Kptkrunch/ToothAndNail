@@ -9,11 +9,9 @@ namespace JAssets.Scripts_SC
     public class Library : MonoBehaviour
     {
         public static Library instance;
-        
-        [Header("Tools")][ShowInInspector]
-        public Dictionary<string, Tool> toolsDict = new();
-        [Header("Weapons")] [ShowInInspector]
-        public Dictionary<string, Weapon> weaponsDict = new();
+
+        [Header("All Items List")] [ShowInInspector]
+        public Dictionary<string, GameObject> itemDict = new();
         [Header("Particles")][ShowInInspector]
         public Dictionary<string, MMSimpleObjectPooler> particleDict = new();
         [Header("Pickups")][ShowInInspector]
@@ -34,16 +32,6 @@ namespace JAssets.Scripts_SC
             {
                 Destroy(gameObject);
             }
-        }
-
-        public void AddWeapon(string name, Weapon weapon)
-        {
-            weaponsDict.Add(name, weapon);
-        }
-
-        public void AddTool(string name, Tool tool)
-        {
-            toolsDict.Add(name, tool);
         }
 
         public void AddPickup(string name, MMSimpleObjectPooler pickupPool)

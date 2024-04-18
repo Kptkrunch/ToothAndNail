@@ -62,8 +62,7 @@ namespace JAssets.Scripts_SC
         private bool isOnSlope;
         private bool canWalkOnSlope;
         private bool canLedgeHang;
-
-
+        
         private void Start()
         {
             mainCamera = FindObjectOfType<Camera>();
