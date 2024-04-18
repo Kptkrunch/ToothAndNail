@@ -9,6 +9,8 @@ namespace JAssets.Scripts_SC
 	{
 		public static CraftingMatrix instance;
 		
+		[ShowInInspector] [SerializeField] private Recipe_SO defaultRecipe;
+		
 		[Header("Crafting Matrix")][ShowInInspector]
 		public SerializableDictionary <string, MatrixRow> matrix = new();
 
@@ -25,11 +27,16 @@ namespace JAssets.Scripts_SC
 			}
 		}
 
-		public Recipe_SO GetRecipeFromMatrix(string row, string item)
+		public string GetRecipeFromMatrix(string row, string item)
 		{
-			var thisRow = matrix[row];
-			var recipe = thisRow.row[item];
-			return recipe;
+			if (!matrix[row].row.TryGetValue(item, out var fromMatrix)) return "";
+			Debug.Log(row);
+			Debug.Log(item);
+			Debug.Log(fromMatrix);
+			Debug.Log(4);
+
+			return fromMatrix.name;
+
 		}
 	}
 }
