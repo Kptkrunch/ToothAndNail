@@ -8438,6 +8438,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 426677681532256883, guid: c07ae8c799fe89640b773da0eaae6832, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 735259728347585690, guid: c07ae8c799fe89640b773da0eaae6832, type: 3}
+      propertyPath: weaponSo
+      value: 
+      objectReference: {fileID: 11400000, guid: ae21be490a889a742ad913638e76aa56, type: 2}
     - target: {fileID: 1218538772949114083, guid: c07ae8c799fe89640b773da0eaae6832, type: 3}
       propertyPath: playerUi
       value: 
@@ -8445,6 +8453,18 @@ PrefabInstance:
     - target: {fileID: 1763886344771000372, guid: c07ae8c799fe89640b773da0eaae6832, type: 3}
       propertyPath: sceneViewId
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1897137291426686899, guid: c07ae8c799fe89640b773da0eaae6832, type: 3}
+      propertyPath: weaponSo
+      value: 
+      objectReference: {fileID: 11400000, guid: f269018b63bc5de4bbc34717d58a2f30, type: 2}
+    - target: {fileID: 2513212934836722649, guid: c07ae8c799fe89640b773da0eaae6832, type: 3}
+      propertyPath: itemName
+      value: Vine
+      objectReference: {fileID: 0}
+    - target: {fileID: 2513212934836722649, guid: c07ae8c799fe89640b773da0eaae6832, type: 3}
+      propertyPath: isConsumable
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2736073799170279430, guid: c07ae8c799fe89640b773da0eaae6832, type: 3}
       propertyPath: m_LocalPosition.x
@@ -8486,10 +8506,58 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2753536109529694373, guid: c07ae8c799fe89640b773da0eaae6832, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3219322933212198842, guid: c07ae8c799fe89640b773da0eaae6832, type: 3}
       propertyPath: playerUi
       value: 
       objectReference: {fileID: 518654461}
+    - target: {fileID: 3270680454655135086, guid: c07ae8c799fe89640b773da0eaae6832, type: 3}
+      propertyPath: itemName
+      value: SmokeBomb
+      objectReference: {fileID: 0}
+    - target: {fileID: 3270680454655135086, guid: c07ae8c799fe89640b773da0eaae6832, type: 3}
+      propertyPath: isConsumable
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3486919661541623221, guid: c07ae8c799fe89640b773da0eaae6832, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4151623077343188904, guid: c07ae8c799fe89640b773da0eaae6832, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.165
+      objectReference: {fileID: 0}
+    - target: {fileID: 4151623077343188904, guid: c07ae8c799fe89640b773da0eaae6832, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.179
+      objectReference: {fileID: 0}
+    - target: {fileID: 4178740677930680041, guid: c07ae8c799fe89640b773da0eaae6832, type: 3}
+      propertyPath: itemName
+      value: Trap
+      objectReference: {fileID: 0}
+    - target: {fileID: 4178740677930680041, guid: c07ae8c799fe89640b773da0eaae6832, type: 3}
+      propertyPath: isConsumable
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4827482593380676186, guid: c07ae8c799fe89640b773da0eaae6832, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.136
+      objectReference: {fileID: 0}
+    - target: {fileID: 4827482593380676186, guid: c07ae8c799fe89640b773da0eaae6832, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.206
+      objectReference: {fileID: 0}
+    - target: {fileID: 5349368127912265477, guid: c07ae8c799fe89640b773da0eaae6832, type: 3}
+      propertyPath: itemName
+      value: Stick
+      objectReference: {fileID: 0}
+    - target: {fileID: 5349368127912265477, guid: c07ae8c799fe89640b773da0eaae6832, type: 3}
+      propertyPath: isConsumable
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5463843908085795211, guid: c07ae8c799fe89640b773da0eaae6832, type: 3}
       propertyPath: sceneViewId
       value: 1
@@ -8502,9 +8570,45 @@ PrefabInstance:
       propertyPath: m_ActionEvents.Array.data[1].m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: OnRightStick
       objectReference: {fileID: 0}
+    - target: {fileID: 6113769880421091464, guid: c07ae8c799fe89640b773da0eaae6832, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.058
+      objectReference: {fileID: 0}
+    - target: {fileID: 6113769880421091464, guid: c07ae8c799fe89640b773da0eaae6832, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.035
+      objectReference: {fileID: 0}
+    - target: {fileID: 6650227190620571361, guid: c07ae8c799fe89640b773da0eaae6832, type: 3}
+      propertyPath: weaponSo
+      value: 
+      objectReference: {fileID: 11400000, guid: 06710564cb9c317489cbe3f18b4d0349, type: 2}
     - target: {fileID: 7153567257255601789, guid: c07ae8c799fe89640b773da0eaae6832, type: 3}
       propertyPath: m_Name
       value: Player_PF_New
+      objectReference: {fileID: 0}
+    - target: {fileID: 7260291346469886695, guid: c07ae8c799fe89640b773da0eaae6832, type: 3}
+      propertyPath: itemName
+      value: Stone
+      objectReference: {fileID: 0}
+    - target: {fileID: 7260291346469886695, guid: c07ae8c799fe89640b773da0eaae6832, type: 3}
+      propertyPath: isConsumable
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8520468397636162051, guid: c07ae8c799fe89640b773da0eaae6832, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.16
+      objectReference: {fileID: 0}
+    - target: {fileID: 8520468397636162051, guid: c07ae8c799fe89640b773da0eaae6832, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.23
+      objectReference: {fileID: 0}
+    - target: {fileID: 8698905867889685571, guid: c07ae8c799fe89640b773da0eaae6832, type: 3}
+      propertyPath: weaponSo
+      value: 
+      objectReference: {fileID: 11400000, guid: f91d13815d3ae414488d8a15e705cf3d, type: 2}
+    - target: {fileID: 8710083985376273093, guid: c07ae8c799fe89640b773da0eaae6832, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9213196047854192972, guid: c07ae8c799fe89640b773da0eaae6832, type: 3}
       propertyPath: sceneViewId

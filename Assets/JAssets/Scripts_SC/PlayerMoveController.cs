@@ -62,7 +62,13 @@ namespace JAssets.Scripts_SC
         private bool isOnSlope;
         private bool canWalkOnSlope;
         private bool canLedgeHang;
-        
+        private static readonly int Slide = Animator.StringToHash("WallSlide");
+        private static readonly int Walking = Animator.StringToHash("Walking");
+        private static readonly int Jumping = Animator.StringToHash("Jumping");
+        private static readonly int Crouch1 = Animator.StringToHash("Crouch");
+        private static readonly int Grounded = Animator.StringToHash("Grounded");
+        private static readonly int WallJump1 = Animator.StringToHash("WallJump");
+
         private void Start()
         {
             mainCamera = FindObjectOfType<Camera>();
@@ -71,7 +77,7 @@ namespace JAssets.Scripts_SC
         private void Update()
         {
             // if (isGrounded && animator.GetBool("Jumping")) animator.SetBool("Jumping", false);
-            if (isWallSliding) animator.SetBool("WallSlide", true);
+            if (isWallSliding) animator.SetBool(Slide, true);
             
             targetVelocity = velocity * maxSpeed;
             rb2d.velocity = Vector2.MoveTowards(rb2d.velocity, new Vector2(targetVelocity, rb2d.velocity.y),
@@ -92,7 +98,7 @@ namespace JAssets.Scripts_SC
             mainCamera.transform.position = new Vector3(transform.position.x, transform.position.y, -10);
             if (!(Mathf.Abs(velocity) <= .1f)) return;
             rb2d.velocity = Vector2.MoveTowards(rb2d.velocity, Vector2.zero, deceleration * Time.deltaTime);
-            animator.SetFloat("Walking", 0);
+            animator.SetFloat(Walking, 0);
         }
 
         public void Move(InputAction.CallbackContext context)
@@ -102,7 +108,7 @@ namespace JAssets.Scripts_SC
 
             if (isGrounded)
             {
-                animator.SetFloat("Walking", Mathf.Abs(rb2d.velocity.x));
+                animator.SetFloat(Walking, Mathf.Abs(rb2d.velocity.x));
                 currentAcceleration = acceleration;
                 velocity = context.ReadValue<Vector2>().x;
                 
@@ -111,7 +117,7 @@ namespace JAssets.Scripts_SC
                     currentAcceleration * Time.deltaTime);
             } else if (!isGrounded)
             {
-                animator.SetFloat("Walking", Mathf.Abs(rb2d.velocity.x));
+                animator.SetFloat(Walking, Mathf.Abs(rb2d.velocity.x));
                 currentAcceleration = acceleration * 0.5f;
                 velocity = context.ReadValue<Vector2>().x;
 
@@ -130,7 +136,7 @@ namespace JAssets.Scripts_SC
             {
                 coyoteTime = 0;
                 rb2d.velocity = new Vector2(rb2d.velocity.x, jumpForce);
-                animator.SetBool("Jumping", true);
+                animator.SetBool(Jumping, true);
             }
             else if (rb2d.velocity.y < 0 && context.canceled && !isGrounded) 
             {
@@ -140,7 +146,7 @@ namespace JAssets.Scripts_SC
             {
                 jumpBufferTimer = 0;
                 rb2d.velocity = new Vector2(rb2d.velocity.x, jumpForce);
-                animator.SetBool("Jumping", true);
+                animator.SetBool(Jumping, true);
             }
             
             if (context.canceled && !isGrounded && rb2d.velocity.y > 0.0f)
@@ -155,13 +161,13 @@ namespace JAssets.Scripts_SC
             if (context.performed && isGrounded)
             {
                 isCrouching = true;
-                animator.SetBool("Crouch", true);
+                animator.SetBool(Crouch1, true);
             }
 
             if (context.canceled)
             {
                 isCrouching = false;
-                animator.SetBool("Crouch", false);
+                animator.SetBool(Crouch1, false);
             }
 
         }
@@ -174,11 +180,11 @@ namespace JAssets.Scripts_SC
             if (hit.collider) 
             {
                 isGrounded = true;
-                animator.SetBool("Grounded", true);
+                animator.SetBool(Grounded, true);
             } else
             {
                 isGrounded = false;
-                animator.SetBool("Grounded", false);
+                animator.SetBool(Grounded, false);
             }
         }
 
@@ -269,7 +275,7 @@ namespace JAssets.Scripts_SC
             }
             else
             {
-                animator.SetBool("WallSlide", false);
+                animator.SetBool(Slide, false);
                 isTouchingWall = false;
                 isWallSliding = false;
             }
@@ -297,10 +303,10 @@ namespace JAssets.Scripts_SC
                     wallJumpDirection.x * -transform.localScale.x, wallJumpDirection.y) * wallJumpForce;
 
                 rb2d.velocity = forceAdd;
-                animator.SetBool("WallJump", true);
+                animator.SetBool(WallJump1, true);
             }
             
-            if (context.canceled || isGrounded) animator.SetBool("WallJump", false);
+            if (context.canceled || isGrounded) animator.SetBool(WallJump1, false);
         }
     }
 }
