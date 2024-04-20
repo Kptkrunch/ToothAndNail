@@ -1,15 +1,17 @@
 using System.Collections.Generic;
-using JAssets.Scripts_SC.SOScripts;
+using MoreMountains.Tools;
+using Sirenix.OdinInspector;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace JAssets.Scripts_SC
 {
 	public class SpawnerController : MonoBehaviour
 	{
-		private static SpawnerController instance { get; set; }
-		[SerializeField] private LootTable_SO lootTableSo;
-
-		[SerializeField] private readonly List<ISpawnLocationItems> spawnLocationList = new();
+		public static SpawnerController instance;
+		
+		[ShowInInspector] [Header("Spawn Location List")] private List<SpawnLocation> spawnLocationList = new();
+		[ShowInInspector] [Header("Node List")] public List<MMSimpleObjectPooler> nodeList = new();
 
 		private void Awake()
 		{
@@ -24,40 +26,28 @@ namespace JAssets.Scripts_SC
 			}
 		}
 
-		public static void RegisterSpawnPoint(ISpawnLocationItems spawnLocationSpawnPoint)
+		private void Start()
 		{
-			spawnLocationSpawnPoint.requestItemSpawn += HandleSpawnRequested;
+			RandomizeActiveSpawnLocations(spawnLocationList.Count);
 		}
-
-		public static void UnregisterSpawnPoint(ISpawnLocationItems spawnLocationSpawnPoint)
-		{
-			spawnLocationSpawnPoint.requestItemSpawn -= HandleSpawnRequested;
-		}
-
-		private static void HandleSpawnRequested(ISpawnLocationItems spawnLocationSpawnPoint)
-		{
-			// Spawn object at spawnLocationSpawnPoint here
-		}
-
-
-		public void RandomizeActiveSpawnPoints(int activeSpawnPointCount)
+		
+		private void RandomizeActiveSpawnLocations(int activeSpawnLocationCount)
 		{
 			// Initially deactivate all spawn points
-			foreach (var spawnPoint in spawnLocationList)
+			foreach (var spawnLocation in spawnLocationList)
 			{
-				spawnPoint.IsActive = false;
+				Debug.Log(spawnLocation.name);
+				spawnLocation.gameObject.SetActive(false);
 			}
 
 			// Randomly decide which spawn points are active
-			for (int i = 0; i < activeSpawnPointCount; i++)
+			for (int i = 0; i < activeSpawnLocationCount; i++)
 			{
-				int index;
-				do
-				{
-					index = Random.Range(0, spawnLocationList.Count);
-				} while (spawnLocationList[index].IsActive);
-
-				spawnLocationList[index].IsActive = true;
+				Debug.Log("testing");
+				Debug.Log(spawnLocationList[i]);
+				// var node = Random.Range(0, nodeList.Count);
+				spawnLocationList[activeSpawnLocationCount].gameObject.SetActive(true);
+				
 			}
 		}
 	}

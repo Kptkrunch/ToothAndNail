@@ -10,6 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 32e694c6a7115c843916498cd3a9bc39, type: 3}
-  m_Name: WeaponLootTable_SO
+  m_Name: GrassNode_SO
   m_EditorClassIdentifier: 
-  lootItems: []
+  lootItems:
+  - itemName: Vine
+    itemWeight: 5
+  - itemName: Stick
+    itemWeight: 2
+  - itemName: Stone
+    itemWeight: 1

@@ -18,9 +18,9 @@ TagManager:
   - Particle
   - Weapon
   - Pickup
-  - Tool
   - Bullet
   - Consumable
+  - Interactable
   layers:
   - Default
   - TransparentFX
@@ -28,21 +28,19 @@ TagManager:
   - 
   - Water
   - UI
-  - 
-  - 
-  - Background
-  - Ground
-  - Player2
-  - Player3
-  - Player4
-  - Player1
-  - Walls
-  - Particles
   - EditorStuff
   - Transforms
-  - Player
-  - Pickups
+  - Background
+  - Ground
+  - 
+  - 
+  - 
   - Consumables
+  - Walls
+  - 
+  - 
+  - 
+  - Player
   - 
   - 
   - 
@@ -50,10 +48,12 @@ TagManager:
   - 
   - 
   - 
+  - Particles
+  - Pickups
   - 
   - 
   - 
-  - 
+  - UI
   m_SortingLayers:
   - name: Default
     uniqueID: 0
@@ -73,6 +73,9 @@ TagManager:
   - name: Transforms
     uniqueID: 4061882341
     locked: 0
+  - name: SpawnLayerBack
+    uniqueID: 1816448335
+    locked: 0
   - name: Player1
     uniqueID: 3413144399
     locked: 0
@@ -90,6 +93,9 @@ TagManager:
     locked: 0
   - name: Player
     uniqueID: 1388011171
+    locked: 0
+  - name: SpawnLayerFront
+    uniqueID: 3237188171
     locked: 0
   - name: Pickups
     uniqueID: 2835104823

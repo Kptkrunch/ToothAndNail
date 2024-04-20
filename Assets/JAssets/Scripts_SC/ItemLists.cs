@@ -33,7 +33,6 @@ namespace JAssets.Scripts_SC
                 Destroy(gameObject);
             }
         }
-
         private void Start()
         {
             PopulateLibrary();

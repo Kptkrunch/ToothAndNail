@@ -1,29 +1,11 @@
-using System;
+using JAssets.Scripts_SC.Spawners;
+using JetBrains.Annotations;
 using UnityEngine;
 
 namespace JAssets.Scripts_SC
 {
-	public class SpawnLocation : MonoBehaviour, ISpawnLocationItems
+	public class SpawnLocation : MonoBehaviour
 	{
-		public event Action<ISpawnLocationItems> SpawnRequested = delegate { };
-		public string locationType;
-		[SerializeField] private SpriteRenderer sprite;
-		private void Start()
-		{
-			SpawnerController.RegisterSpawnPoint(this);
-		}
-
-		private void OnDestroy()
-		{
-			SpawnerController.UnregisterSpawnPoint(this);
-		}
-
-		public void RequestSpawn()
-		{
-			SpawnRequested(this);
-		}
-
-		public event Action<ISpawnLocationItems> requestItemSpawn;
-		public bool IsActive { get; set; }
+		[CanBeNull] public ItemNode itemNode;
 	}
 }
