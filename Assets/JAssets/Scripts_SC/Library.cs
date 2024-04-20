@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using JAssets.Scripts_SC.Items;
+using JAssets.Scripts_SC.SOScripts;
 using MoreMountains.Tools;
 using Sirenix.OdinInspector;
 using UnityEngine;
@@ -17,9 +18,9 @@ namespace JAssets.Scripts_SC
         [Header("Pickups")][ShowInInspector]
         public Dictionary<string, MMSimpleObjectPooler> pickupsDict = new();
         [Header("Tool Effects")][ShowInInspector]
-        public Dictionary<string, MMSimpleObjectPooler> toolEffectsDict = new();
-        [Header("Consumables")] [ShowInInspector]
         public Dictionary<string, MMSimpleObjectPooler> consumableDict = new();
+        [Header("Loot Tables")] [ShowInInspector]
+        public Dictionary<string, LootTable_SO> lootTableDict = new();
 
         private void Awake()
         {
@@ -37,11 +38,6 @@ namespace JAssets.Scripts_SC
         public void AddPickup(string name, MMSimpleObjectPooler pickupPool)
         {
             pickupsDict.Add(name, pickupPool);
-        }
-
-        public void AddToolEffect(string name, MMSimpleObjectPooler toolEffectPool)
-        {
-            toolEffectsDict.Add(name, toolEffectPool);
         }
 
         public void AddParticle(string name, MMSimpleObjectPooler particlePool)

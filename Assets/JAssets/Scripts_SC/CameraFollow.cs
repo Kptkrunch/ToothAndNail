@@ -10,9 +10,9 @@ namespace JAssets.Scripts_SC
 
 		private void LateUpdate()
 		{
-			Vector3 desiredPosition = playerTransform.position + offset;
-			Vector3 smoothedPosition = Vector3.Lerp(transform.position, desiredPosition, smoothSpeed);
-			transform.position = smoothedPosition;
+
+			// Vector3 smoothedPosition = Vector3.Lerp(transform.position, desiredPosition, smoothSpeed);
+			// transform.position = smoothedPosition;
 		}
 	}
 }

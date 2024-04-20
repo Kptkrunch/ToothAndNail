@@ -9,7 +9,7 @@ namespace JAssets.Scripts_SC
 		private static SpawnerController instance { get; set; }
 		[SerializeField] private LootTable_SO lootTableSo;
 
-		[SerializeField] private List<ISpawnLocationSpawnLoot> spawnLocationList = new();
+		[SerializeField] private readonly List<ISpawnLocationItems> spawnLocationList = new();
 
 		private void Awake()
 		{
@@ -24,17 +24,17 @@ namespace JAssets.Scripts_SC
 			}
 		}
 
-		public static void RegisterSpawnPoint(ISpawnLocationSpawnLoot spawnLocationSpawnPoint)
+		public static void RegisterSpawnPoint(ISpawnLocationItems spawnLocationSpawnPoint)
 		{
 			spawnLocationSpawnPoint.requestItemSpawn += HandleSpawnRequested;
 		}
 
-		public static void UnregisterSpawnPoint(ISpawnLocationSpawnLoot spawnLocationSpawnPoint)
+		public static void UnregisterSpawnPoint(ISpawnLocationItems spawnLocationSpawnPoint)
 		{
 			spawnLocationSpawnPoint.requestItemSpawn -= HandleSpawnRequested;
 		}
 
-		private static void HandleSpawnRequested(ISpawnLocationSpawnLoot spawnLocationSpawnPoint)
+		private static void HandleSpawnRequested(ISpawnLocationItems spawnLocationSpawnPoint)
 		{
 			// Spawn object at spawnLocationSpawnPoint here
 		}

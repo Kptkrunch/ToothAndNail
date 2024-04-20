@@ -1,7 +1,7 @@
-using Fusion;
 using JAssets.Scripts_SC.SOScripts;
 using Sirenix.OdinInspector;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 namespace JAssets.Scripts_SC
 {
@@ -12,7 +12,7 @@ namespace JAssets.Scripts_SC
 		[ShowInInspector] [SerializeField] private Recipe_SO defaultRecipe;
 		
 		[Header("Crafting Matrix")][ShowInInspector]
-		public SerializableDictionary <string, MatrixRow> matrix = new();
+		public SerializedDictionary<string, MatrixRow> matrix = new();
 
 		private void Awake()
 		{

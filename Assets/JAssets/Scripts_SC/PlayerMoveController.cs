@@ -46,7 +46,7 @@ namespace JAssets.Scripts_SC
         [SerializeField] private CapsuleCollider2D cc2d;
         [SerializeField] private BoxCollider2D bc2d;
         [SerializeField] private Animator animator;
-        [SerializeField] private Camera mainCamera;
+        [SerializeField] private Camera playerCamera;
 
         private Vector2 rightStick;
         
@@ -68,17 +68,11 @@ namespace JAssets.Scripts_SC
         private static readonly int Crouch1 = Animator.StringToHash("Crouch");
         private static readonly int Grounded = Animator.StringToHash("Grounded");
         private static readonly int WallJump1 = Animator.StringToHash("WallJump");
-
-        private void Start()
-        {
-            mainCamera = FindObjectOfType<Camera>();
-        }
-
+        
         private void Update()
         {
-            // if (isGrounded && animator.GetBool("Jumping")) animator.SetBool("Jumping", false);
             if (isWallSliding) animator.SetBool(Slide, true);
-            
+        
             targetVelocity = velocity * maxSpeed;
             rb2d.velocity = Vector2.MoveTowards(rb2d.velocity, new Vector2(targetVelocity, rb2d.velocity.y),
                 acceleration * Time.deltaTime);
@@ -95,15 +89,19 @@ namespace JAssets.Scripts_SC
 
         private void LateUpdate()
         {
-            mainCamera.transform.position = new Vector3(transform.position.x, transform.position.y, -10);
-            if (!(Mathf.Abs(velocity) <= .1f)) return;
+            Vector3 desiredPosition = new Vector3(transform.position.x, transform.position.y + 0.25f, -10);
+            playerCamera.gameObject.transform.position = desiredPosition;
+            
+            if (!(Mathf.Abs(velocity) <= 0.1f)) return;
+            if (isCrouching) rb2d.velocity = Vector2.zero;
+            
             rb2d.velocity = Vector2.MoveTowards(rb2d.velocity, Vector2.zero, deceleration * Time.deltaTime);
             animator.SetFloat(Walking, 0);
         }
 
         public void Move(InputAction.CallbackContext context)
         {
-            if (!context.performed) return;
+            if (!context.performed || isCrouching) return;
             float currentAcceleration;
 
             if (isGrounded)
@@ -126,6 +124,7 @@ namespace JAssets.Scripts_SC
                     currentAcceleration * Time.deltaTime);
                 cc2d.sharedMaterial = slippery_MT;
             }
+
         }
         
         public void Jump(InputAction.CallbackContext context)
@@ -162,6 +161,8 @@ namespace JAssets.Scripts_SC
             {
                 isCrouching = true;
                 animator.SetBool(Crouch1, true);
+                rb2d.velocity = Vector2.zero;
+                targetVelocity = 0;
             }
 
             if (context.canceled)

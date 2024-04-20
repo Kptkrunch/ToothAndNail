@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using JAssets.Scripts_SC.SOScripts;
 using MoreMountains.Tools;
 using Sirenix.OdinInspector;
 using UnityEngine;
@@ -13,15 +14,12 @@ namespace JAssets.Scripts_SC
         public List<GameObject> itemList;
         [Header("Particles List")] [ShowInInspector]
         public List<MMSimpleObjectPooler> particleList = new();
-
         [Header("Pickups List")] [ShowInInspector]
         public List<MMSimpleObjectPooler> pickupList = new();
-
-        [Header("Tool Effects List")] [ShowInInspector]
-        public List<MMSimpleObjectPooler> toolEffectsList = new();        
-        
         [Header("Consumables List")] [ShowInInspector]
         public List<MMSimpleObjectPooler> consumablesList = new();
+
+        public List<LootTable_SO> lootTableList = new();
 
         private void Awake()
         {
@@ -51,10 +49,13 @@ namespace JAssets.Scripts_SC
             foreach (var p in pickupList) Library.instance.pickupsDict[p.GameObjectToPool.name] = p;
 
             foreach (var p in particleList) Library.instance.particleDict[p.GameObjectToPool.name] = p;
-
-            foreach (var t in toolEffectsList) Library.instance.toolEffectsDict[t.GameObjectToPool.name] = t;
             
             foreach (var c in consumablesList) Library.instance.consumableDict[c.GameObjectToPool.name] =  c;
+
+            foreach (var l in lootTableList)
+            {
+                Library.instance.lootTableDict[l.name] = l;
+            }
         }
     }
 }
