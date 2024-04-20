@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 8384352733782212088}
   - component: {fileID: 97343816422440513}
   - component: {fileID: 3836486928553559640}
-  m_Layer: 19
+  m_Layer: 10
   m_Name: BattleAx
   m_TagString: Pickup
   m_Icon: {fileID: 0}
@@ -209,7 +209,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5463299922561261387}
-  m_Layer: 19
+  m_Layer: 10
   m_Name: PBattleAx
   m_TagString: Pickup
   m_Icon: {fileID: 0}
@@ -242,11 +242,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 182753893698774511, guid: 302b15f9b2cc68e428834e8ce57b2961, type: 3}
       propertyPath: m_Layer
-      value: 19
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 182753893698781565, guid: 302b15f9b2cc68e428834e8ce57b2961, type: 3}
       propertyPath: m_Layer
-      value: 19
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 1431524522856451246, guid: 302b15f9b2cc68e428834e8ce57b2961, type: 3}
       propertyPath: m_LocalPosition.x
@@ -258,7 +258,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5355933885024790224, guid: 302b15f9b2cc68e428834e8ce57b2961, type: 3}
       propertyPath: m_Layer
-      value: 19
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 182753893679185091, guid: c044585625fab3c478437a2e67237feb, type: 3}
       propertyPath: ShapeModule.m_Rotation.y

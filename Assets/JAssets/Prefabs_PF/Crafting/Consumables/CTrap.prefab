@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 7137831122288149679}
   - component: {fileID: -5559536651128618037}
   - component: {fileID: 8586471395987567595}
-  m_Layer: 19
+  m_Layer: 8
   m_Name: CTrap
   m_TagString: Consumable
   m_Icon: {fileID: 0}

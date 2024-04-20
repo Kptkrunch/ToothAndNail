@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7335724725147019074}
-  m_Layer: 19
+  m_Layer: 10
   m_Name: PBow
   m_TagString: Pickup
   m_Icon: {fileID: 0}
@@ -46,7 +46,7 @@ GameObject:
   - component: {fileID: 2135067731327555450}
   - component: {fileID: 8032697209689461348}
   - component: {fileID: 2077364863174901994}
-  m_Layer: 19
+  m_Layer: 10
   m_Name: Bow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -123,7 +123,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1459862473
-  m_SortingLayer: 12
+  m_SortingLayer: 14
   m_SortingOrder: 0
   m_Sprite: {fileID: 1466026959, guid: 212bd3de0e8797c419eb6ba8597c5e2c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -234,11 +234,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 182753893698774511, guid: 302b15f9b2cc68e428834e8ce57b2961, type: 3}
       propertyPath: m_Layer
-      value: 19
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 182753893698781565, guid: 302b15f9b2cc68e428834e8ce57b2961, type: 3}
       propertyPath: m_Layer
-      value: 19
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 1431524522856451246, guid: 302b15f9b2cc68e428834e8ce57b2961, type: 3}
       propertyPath: m_LocalPosition.x
@@ -262,7 +262,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5355933885024790224, guid: 302b15f9b2cc68e428834e8ce57b2961, type: 3}
       propertyPath: m_Layer
-      value: 19
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 5355933885024790224, guid: 302b15f9b2cc68e428834e8ce57b2961, type: 3}
       propertyPath: m_IsActive

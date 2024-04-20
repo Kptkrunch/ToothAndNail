@@ -34,19 +34,5 @@ namespace JAssets.Scripts_SC
                 Destroy(gameObject);
             }
         }
-
-        public void AddPickup(string name, MMSimpleObjectPooler pickupPool)
-        {
-            pickupsDict.Add(name, pickupPool);
-        }
-
-        public void AddParticle(string name, MMSimpleObjectPooler particlePool)
-        {
-            particleDict.Add(name, particlePool);
-        }
-        public void AddConsumable(string name, MMSimpleObjectPooler consumablesPool)
-        {
-            particleDict.Add(name, consumablesPool);
-        }
     }
 }

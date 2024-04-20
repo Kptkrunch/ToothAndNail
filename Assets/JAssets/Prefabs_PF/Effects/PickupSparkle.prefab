@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 485530}
   - component: {fileID: 19863182}
   - component: {fileID: 19961108}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: GoldSparkleLinger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4763,7 +4763,7 @@ ParticleSystemRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1706356427
-  m_SortingLayer: 3
+  m_SortingLayer: 0
   m_SortingOrder: 0
   m_RenderMode: 0
   m_MeshDistribution: 0
@@ -4808,7 +4808,7 @@ GameObject:
   - component: {fileID: 412002}
   - component: {fileID: 19972824}
   - component: {fileID: 19811672}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: PickupSparkle
   m_TagString: Particle
   m_Icon: {fileID: 0}
@@ -4871,7 +4871,7 @@ ParticleSystemRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1706356427
-  m_SortingLayer: 3
+  m_SortingLayer: 0
   m_SortingOrder: 0
   m_RenderMode: 2
   m_MeshDistribution: 0

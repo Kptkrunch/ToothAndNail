@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 1103337590369813625}
   - component: {fileID: 6527602491797603273}
   - component: {fileID: 6316306351680601167}
-  m_Layer: 11
+  m_Layer: 8
   m_Name: Spear
   m_TagString: Weapon
   m_Icon: {fileID: 0}
@@ -50,7 +50,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 0}
-  weapon_so: {fileID: 11400000, guid: ae21be490a889a742ad913638e76aa56, type: 2}
+  weaponSo: {fileID: 0}
   controller: {fileID: 0}
   hitBox: {fileID: 6316306351680601167}
 --- !u!95 &301197388363239041
@@ -113,7 +113,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1388011171
-  m_SortingLayer: 11
+  m_SortingLayer: 12
   m_SortingOrder: 2
   m_Sprite: {fileID: -845120621, guid: 7418e7fc3b9ecae4f91389179b79c1f8, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

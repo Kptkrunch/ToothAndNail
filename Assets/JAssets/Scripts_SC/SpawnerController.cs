@@ -2,7 +2,6 @@ using System.Collections.Generic;
 using MoreMountains.Tools;
 using Sirenix.OdinInspector;
 using UnityEngine;
-using Random = UnityEngine.Random;
 
 namespace JAssets.Scripts_SC
 {
@@ -33,19 +32,15 @@ namespace JAssets.Scripts_SC
 		
 		private void RandomizeActiveSpawnLocations(int activeSpawnLocationCount)
 		{
-			// Initially deactivate all spawn points
 			foreach (var spawnLocation in spawnLocationList)
 			{
 				Debug.Log(spawnLocation.name);
 				spawnLocation.gameObject.SetActive(false);
 			}
 
-			// Randomly decide which spawn points are active
 			for (int i = 0; i < activeSpawnLocationCount; i++)
 			{
-				Debug.Log("testing");
 				Debug.Log(spawnLocationList[i]);
-				// var node = Random.Range(0, nodeList.Count);
 				spawnLocationList[activeSpawnLocationCount].gameObject.SetActive(true);
 				
 			}

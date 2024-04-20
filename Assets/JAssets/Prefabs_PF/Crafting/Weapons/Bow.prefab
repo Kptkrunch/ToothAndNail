@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: -464491108092526722}
   - component: {fileID: 4238031826511144875}
   - component: {fileID: 5899106432665398397}
-  m_Layer: 19
+  m_Layer: 8
   m_Name: Bow
   m_TagString: Weapon
   m_Icon: {fileID: 0}
@@ -51,7 +51,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 9216142084548104134}
-  weapon_so: {fileID: 11400000, guid: f91d13815d3ae414488d8a15e705cf3d, type: 2}
+  weaponSo: {fileID: 0}
   controller: {fileID: 0}
   hitBox: {fileID: -464491108092526722}
 --- !u!212 &6692815371797141548
@@ -93,7 +93,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1388011171
-  m_SortingLayer: 11
+  m_SortingLayer: 12
   m_SortingOrder: 0
   m_Sprite: {fileID: 1466026959, guid: 212bd3de0e8797c419eb6ba8597c5e2c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

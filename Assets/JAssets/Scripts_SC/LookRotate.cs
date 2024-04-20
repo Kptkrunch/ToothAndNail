@@ -9,7 +9,8 @@ public class LookRotate : MonoBehaviour
     private Vector2 rightStick; // Variable to hold the Vector2 value from the right stick
 
     [SerializeField] private PolygonCollider2D coneOfView;
-    void Update()
+
+    private void Update()
     {
         if (rightStick != Vector2.zero)
         {

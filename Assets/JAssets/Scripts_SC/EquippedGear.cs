@@ -20,10 +20,13 @@ namespace JAssets.Scripts_SC
         private void PopulatePlayerDictionaries()
         {
             items = new Dictionary<string, GameObject>();
-            
+
             foreach (var item in itemList)
             {
-                items.Add(item.name, item);
+                if (!items.ContainsKey(item.name))
+                {
+                    items.Add(item.name, item);
+                }
             }
         }
     }

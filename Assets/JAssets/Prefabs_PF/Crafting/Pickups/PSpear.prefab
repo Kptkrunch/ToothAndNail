@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 679926822076131085}
-  m_Layer: 19
+  m_Layer: 10
   m_Name: PSpear
   m_TagString: Pickup
   m_Icon: {fileID: 0}
@@ -46,7 +46,7 @@ GameObject:
   - component: {fileID: 1066485177999538343}
   - component: {fileID: 5907142783050925117}
   - component: {fileID: 6473092671737518978}
-  m_Layer: 19
+  m_Layer: 10
   m_Name: Spear
   m_TagString: Weapon
   m_Icon: {fileID: 0}
@@ -123,7 +123,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1459862473
-  m_SortingLayer: 12
+  m_SortingLayer: 14
   m_SortingOrder: 0
   m_Sprite: {fileID: -845120621, guid: 7418e7fc3b9ecae4f91389179b79c1f8, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -244,11 +244,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 182753893698774511, guid: 302b15f9b2cc68e428834e8ce57b2961, type: 3}
       propertyPath: m_Layer
-      value: 19
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 182753893698781565, guid: 302b15f9b2cc68e428834e8ce57b2961, type: 3}
       propertyPath: m_Layer
-      value: 19
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 1431524522856451246, guid: 302b15f9b2cc68e428834e8ce57b2961, type: 3}
       propertyPath: m_LocalPosition.x
@@ -296,7 +296,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5355933885024790224, guid: 302b15f9b2cc68e428834e8ce57b2961, type: 3}
       propertyPath: m_Layer
-      value: 19
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 5355933885024790224, guid: 302b15f9b2cc68e428834e8ce57b2961, type: 3}
       propertyPath: m_IsActive

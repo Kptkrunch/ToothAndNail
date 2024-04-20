@@ -58,10 +58,6 @@ namespace JAssets.Scripts_SC
             {
                 CheckForCraftableHandler();
             }
-            else
-            {
-                playerUi.UpdateItemsUi("C", noIdeasSprite);
-            }
             
             var sprite = item.GetComponent<SpriteRenderer>().sprite;
             if (item.itemType == "Consumable")
@@ -103,11 +99,14 @@ namespace JAssets.Scripts_SC
             
             itemSlotB = item.itemName;
 
-            if (CraftingMatrix.instance.matrix.ContainsKey(itemSlotA) &&
+            if (itemSlotB != null &&
+                itemSlotA != null &&
+                CraftingMatrix.instance.matrix.ContainsKey(itemSlotA) &&
                 CraftingMatrix.instance.matrix.ContainsKey(itemSlotB))
             {
                 CheckForCraftableHandler();
             }
+
             
             var sprite = item.GetComponent<SpriteRenderer>().sprite;
             if (item.itemType == "Consumable")

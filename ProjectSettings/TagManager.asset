@@ -21,6 +21,7 @@ TagManager:
   - Bullet
   - Consumable
   - Interactable
+  - Interactible
   layers:
   - Default
   - TransparentFX
@@ -28,32 +29,32 @@ TagManager:
   - 
   - Water
   - UI
-  - EditorStuff
-  - Transforms
-  - Background
-  - Ground
   - 
-  - 
-  - 
-  - Consumables
   - Walls
-  - 
-  - 
-  - 
   - Player
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - Particles
+  - Ground
   - Pickups
+  - Particles
   - 
   - 
   - 
-  - UI
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - Background
+  - Consumables
+  - 
+  - 
+  - 
+  - 
+  - EditorStuff
+  - 
   m_SortingLayers:
   - name: Default
     uniqueID: 0

@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 8777029962865742828}
   - component: {fileID: 4013311219629487163}
   - component: {fileID: 4260591251672848604}
-  m_Layer: 19
+  m_Layer: 10
   m_Name: SmokeBomb
   m_TagString: Pickup
   m_Icon: {fileID: 0}
@@ -91,7 +91,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1459862473
-  m_SortingLayer: 12
+  m_SortingLayer: 14
   m_SortingOrder: 0
   m_Sprite: {fileID: 1880412864, guid: 212bd3de0e8797c419eb6ba8597c5e2c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -201,7 +201,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7073712126103600303}
-  m_Layer: 19
+  m_Layer: 10
   m_Name: PSmokeBomb
   m_TagString: Pickup
   m_Icon: {fileID: 0}
@@ -232,6 +232,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2650996515623193765}
     m_Modifications:
+    - target: {fileID: 182753893698774511, guid: 302b15f9b2cc68e428834e8ce57b2961, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 182753893698781565, guid: 302b15f9b2cc68e428834e8ce57b2961, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 1431524522856451246, guid: 302b15f9b2cc68e428834e8ce57b2961, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.25
@@ -254,7 +262,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5355933885024790224, guid: 302b15f9b2cc68e428834e8ce57b2961, type: 3}
       propertyPath: m_Layer
-      value: 13
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 5355933885024790224, guid: 302b15f9b2cc68e428834e8ce57b2961, type: 3}
       propertyPath: m_IsActive

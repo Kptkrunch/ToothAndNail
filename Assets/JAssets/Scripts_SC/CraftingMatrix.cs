@@ -1,7 +1,7 @@
+using System.Collections.Generic;
 using JAssets.Scripts_SC.SOScripts;
 using Sirenix.OdinInspector;
 using UnityEngine;
-using UnityEngine.Rendering;
 
 namespace JAssets.Scripts_SC
 {
@@ -12,7 +12,7 @@ namespace JAssets.Scripts_SC
 		[ShowInInspector] [SerializeField] private Recipe_SO defaultRecipe;
 		
 		[Header("Crafting Matrix")][ShowInInspector]
-		public SerializedDictionary<string, MatrixRow> matrix = new();
+		public Dictionary<string, MatrixRow> matrix = new();
 
 		private void Awake()
 		{
@@ -29,11 +29,15 @@ namespace JAssets.Scripts_SC
 
 		public string GetRecipeFromMatrix(string row, string item)
 		{
-			if (!matrix[row].row.TryGetValue(item, out var fromMatrix)) return "";
-			Debug.Log(row);
-			Debug.Log(item);
-			Debug.Log(fromMatrix);
-			Debug.Log(4);
+			var fromMatrix = defaultRecipe;
+			if (matrix.ContainsKey(row))
+			{
+				if (matrix[row].row.ContainsKey(item))
+				{
+					fromMatrix = matrix[row].row[item];
+					return fromMatrix.name;
+				}
+			}
 
 			return fromMatrix.name;
 

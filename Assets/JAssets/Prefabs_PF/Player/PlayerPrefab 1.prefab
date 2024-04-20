@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8095773117020751032}
-  m_Layer: 13
+  m_Layer: 8
   m_Name: GroundCheckRayOrigin
   m_TagString: Untagged
   m_Icon: {fileID: 2488908585195742037, guid: 0000000000000000d000000000000000, type: 0}
@@ -40,7 +40,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7837350171264415186}
-  m_Layer: 18
+  m_Layer: 8
   m_Name: Weapons
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -82,7 +82,7 @@ GameObject:
   - component: {fileID: 8761698815543581352}
   - component: {fileID: 9154161147434375870}
   - component: {fileID: 6243964725874949744}
-  m_Layer: 18
+  m_Layer: 8
   m_Name: Bow
   m_TagString: Weapon
   m_Icon: {fileID: 0}
@@ -306,7 +306,7 @@ GameObject:
   - component: {fileID: 743432167756671670}
   - component: {fileID: 6831868096759261040}
   - component: {fileID: 5793567940176484984}
-  m_Layer: 16
+  m_Layer: 8
   m_Name: VisualController
   m_TagString: EditorOnly
   m_Icon: {fileID: 0}
@@ -387,8 +387,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 572814919
-  m_SortingLayer: 4
+  m_SortingLayerID: -1459862473
+  m_SortingLayer: 14
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: a2250d41aca5cd24aa43271d02689953, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -429,7 +429,7 @@ GameObject:
   - component: {fileID: 9012546900615355927}
   - component: {fileID: 8336745075981787839}
   - component: {fileID: 7990663663335225582}
-  m_Layer: 18
+  m_Layer: 8
   m_Name: Trap
   m_TagString: Consumable
   m_Icon: {fileID: 0}
@@ -506,8 +506,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 1388011171
-  m_SortingLayer: 12
+  m_SortingLayerID: 572814919
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: -498480651, guid: db843a4bc39aebc478bf17b94f8757ca, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -553,7 +553,7 @@ GameObject:
   - component: {fileID: 6967976051241392571}
   - component: {fileID: 5430305219487750564}
   - component: {fileID: 325514822386767595}
-  m_Layer: 18
+  m_Layer: 8
   m_Name: SmokeBomb
   m_TagString: Consumable
   m_Icon: {fileID: 0}
@@ -630,8 +630,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -1459862473
-  m_SortingLayer: 14
+  m_SortingLayerID: 572814919
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: 1880412864, guid: 212bd3de0e8797c419eb6ba8597c5e2c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -675,7 +675,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8309823872682508934}
   - component: {fileID: 3985731766907094565}
-  m_Layer: 18
+  m_Layer: 8
   m_Name: ViewLight
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -758,9 +758,9 @@ GameObject:
   - component: {fileID: 4423599999398960457}
   - component: {fileID: 4344752102093988907}
   - component: {fileID: 5870265603194142084}
-  m_Layer: 16
+  m_Layer: 8
   m_Name: Lights
-  m_TagString: EditorOnly
+  m_TagString: Interactable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -855,7 +855,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3852202836589136899}
-  m_Layer: 17
+  m_Layer: 8
   m_Name: WallCheckPoint
   m_TagString: Transforms
   m_Icon: {fileID: -5487077368411116049, guid: 0000000000000000d000000000000000, type: 0}
@@ -887,7 +887,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4197071457079790622}
   - component: {fileID: 5742759223356922133}
-  m_Layer: 18
+  m_Layer: 8
   m_Name: SurroundingLight
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -968,7 +968,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4675206182448751998}
-  m_Layer: 16
+  m_Layer: 8
   m_Name: CheckTransforms
   m_TagString: EditorOnly
   m_Icon: {fileID: 0}
@@ -1007,7 +1007,7 @@ GameObject:
   - component: {fileID: 4453425052128938167}
   - component: {fileID: 61685667319918738}
   - component: {fileID: 8086297464456929075}
-  m_Layer: 18
+  m_Layer: 8
   m_Name: Stick
   m_TagString: Consumable
   m_Icon: {fileID: 0}
@@ -1084,18 +1084,18 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 572814919
+  m_SortingLayer: 4
   m_SortingOrder: 0
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 1993929215, guid: 212bd3de0e8797c419eb6ba8597c5e2c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.5, y: 0.5}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!95 &8086297464456929075
@@ -1131,7 +1131,7 @@ GameObject:
   - component: {fileID: 7654386096878791915}
   - component: {fileID: 2627287489671742513}
   - component: {fileID: 7788931171006672828}
-  m_Layer: 18
+  m_Layer: 8
   m_Name: Stone
   m_TagString: Consumable
   m_Icon: {fileID: 0}
@@ -1208,18 +1208,18 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 572814919
+  m_SortingLayer: 4
   m_SortingOrder: 0
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 788456192, guid: 212bd3de0e8797c419eb6ba8597c5e2c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.5, y: 0.5}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!95 &7788931171006672828
@@ -1254,7 +1254,7 @@ GameObject:
   - component: {fileID: 8762500723309361792}
   - component: {fileID: 2988239462947990143}
   - component: {fileID: 2330719878110801616}
-  m_Layer: 18
+  m_Layer: 8
   m_Name: EquipmentController
   m_TagString: EditorOnly
   m_Icon: {fileID: 0}
@@ -1291,15 +1291,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemList:
-  - {fileID: 1724138426616308443}
-  - {fileID: 1678293168742980670}
-  - {fileID: 3785238511088695315}
-  - {fileID: 3795497883259577744}
-  - {fileID: 9201958648570357928}
   - {fileID: 7332728657046937873}
   - {fileID: 5226376347875979931}
   - {fileID: 4097654121709387735}
   - {fileID: 1065354654858607416}
+  - {fileID: 1678293168742980670}
+  - {fileID: 1724138426616308443}
+  - {fileID: 3785238511088695315}
+  - {fileID: 3795497883259577744}
+  - {fileID: 9201958648570357928}
 --- !u!114 &2330719878110801616
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1316,7 +1316,7 @@ MonoBehaviour:
   gear: {fileID: 2988239462947990143}
   pickupLayer:
     serializedVersion: 2
-    m_Bits: 524288
+    m_Bits: 1024
   weaponAnimator: {fileID: 0}
   noIdeasSprite: {fileID: 0}
   itemSlotA: 
@@ -1351,7 +1351,7 @@ GameObject:
   - component: {fileID: 8116825185337306448}
   - component: {fileID: 4338887473906634596}
   - component: {fileID: 2082544799129125463}
-  m_Layer: 18
+  m_Layer: 8
   m_Name: Sword
   m_TagString: Weapon
   m_Icon: {fileID: 0}
@@ -1650,7 +1650,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5993318697728951409}
-  m_Layer: 18
+  m_Layer: 8
   m_Name: Consumables
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1692,7 +1692,7 @@ GameObject:
   - component: {fileID: 45601543489014706}
   - component: {fileID: 80357989862801450}
   - component: {fileID: 1189867845459319289}
-  m_Layer: 18
+  m_Layer: 8
   m_Name: Spear
   m_TagString: Weapon
   m_Icon: {fileID: 0}
@@ -1901,7 +1901,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7206653847396447323}
   - component: {fileID: 122060850083919920}
-  m_Layer: 18
+  m_Layer: 8
   m_Name: HealthController
   m_TagString: GameController
   m_Icon: {fileID: 0}
@@ -1951,7 +1951,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8154905047716201757}
-  m_Layer: 16
+  m_Layer: 8
   m_Name: slopeCheckPoint
   m_TagString: EditorOnly
   m_Icon: {fileID: 4422084297763085224, guid: 0000000000000000d000000000000000, type: 0}
@@ -1986,7 +1986,8 @@ GameObject:
   - component: {fileID: 6164171004236308561}
   - component: {fileID: 1001803530523821398}
   - component: {fileID: 6547788023365308321}
-  m_Layer: 18
+  - component: {fileID: 1375724046706980827}
+  m_Layer: 8
   m_Name: PlayerController
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -2049,7 +2050,7 @@ MonoBehaviour:
     m_Bits: 512
   wallLayerMask:
     serializedVersion: 2
-    m_Bits: 16384
+    m_Bits: 0
   coyoteTime: 0.15
   preLandingJumpBuffer: 0.15
   rb2d: {fileID: 1001803530523821398}
@@ -2297,7 +2298,19 @@ MonoBehaviour:
     m_ActionId: 5d8a6850-b081-4265-a890-f8c1671e8b06
     m_ActionName: Player/Craft
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1375724046706980827}
+        m_TargetAssemblyTypeName: JAssets.Scripts_SC.PlayerResourceCollector, Assembly-CSharp
+        m_MethodName: CollectFromNode
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 0b86e79a-cfd5-4bcb-963e-44a6e09d16a8
     m_ActionName: Player/Interact
   m_NeverAutoSwitchControlSchemes: 0
@@ -2367,6 +2380,18 @@ CapsuleCollider2D:
   m_Offset: {x: -0.10114813, y: -0.10719347}
   m_Size: {x: 0.20138085, y: 0.70957017}
   m_Direction: 0
+--- !u!114 &1375724046706980827
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6352549162616551743}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b7dbd770ee39a44eb38542bd6826d55, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6989873614823604278
 GameObject:
   m_ObjectHideFlags: 0
@@ -2376,7 +2401,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7700449238017754691}
-  m_Layer: 18
+  m_Layer: 8
   m_Name: PlayerPrefab 1
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -2417,7 +2442,7 @@ GameObject:
   - component: {fileID: 4856099826807329428}
   - component: {fileID: 2704491698348944924}
   - component: {fileID: 268504706705175050}
-  m_Layer: 18
+  m_Layer: 8
   m_Name: BattleAx
   m_TagString: Weapon
   m_Icon: {fileID: 0}
@@ -2658,7 +2683,7 @@ GameObject:
   - component: {fileID: 2346451994568311082}
   - component: {fileID: 7769463652543439532}
   - component: {fileID: 3726333022137435753}
-  m_Layer: 16
+  m_Layer: 8
   m_Name: Main Camera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
@@ -2817,7 +2842,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5357128912906579708}
-  m_Layer: 17
+  m_Layer: 8
   m_Name: LedgeCheckPoint
   m_TagString: Transforms
   m_Icon: {fileID: 4162164826716764455, guid: 0000000000000000d000000000000000, type: 0}
@@ -2849,7 +2874,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1408315541284432388}
   - component: {fileID: 8948208731291979329}
-  m_Layer: 17
+  m_Layer: 8
   m_Name: GroundCheckPoint
   m_TagString: Transforms
   m_Icon: {fileID: 2974397684917235467, guid: 0000000000000000d000000000000000, type: 0}
@@ -2928,7 +2953,7 @@ GameObject:
   - component: {fileID: 6041666930366167339}
   - component: {fileID: 4764744105845630680}
   - component: {fileID: 1430225254866302843}
-  m_Layer: 18
+  m_Layer: 8
   m_Name: Vine
   m_TagString: Consumable
   m_Icon: {fileID: 0}
@@ -2984,7 +3009,7 @@ SpriteRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 0
   m_RayTraceProcedural: 0
-  m_RenderingLayerMask: 1
+  m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
@@ -3005,18 +3030,18 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 572814919
+  m_SortingLayer: 4
   m_SortingOrder: 0
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: -627153095, guid: 212bd3de0e8797c419eb6ba8597c5e2c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.5, y: 0.5}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!95 &1430225254866302843

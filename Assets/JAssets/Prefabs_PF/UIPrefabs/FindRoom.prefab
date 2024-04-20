@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3855765103043226214}
   - component: {fileID: 2274109458237607102}
   - component: {fileID: 4670268676861025528}
-  m_Layer: 5
+  m_Layer: 31
   m_Name: FindRoom
   m_TagString: EditorOnly
   m_Icon: {fileID: 0}
@@ -132,7 +132,7 @@ GameObject:
   - component: {fileID: 991432743896335119}
   - component: {fileID: 2193333711972972249}
   - component: {fileID: 8602580992730041741}
-  m_Layer: 5
+  m_Layer: 31
   m_Name: FindRoomText
   m_TagString: Untagged
   m_Icon: {fileID: 0}

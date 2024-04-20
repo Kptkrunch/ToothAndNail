@@ -20,7 +20,7 @@ namespace JAssets.Scripts_SC.UI
 
 		public Image imageSlotA;
 		public Image imageSlotB;
-		public Image recipteImage;
+		public Image recipeImage;
 		public void SetBarValues(int maxHealth)
 		{
 			_maxHealth = maxHealth;
@@ -47,7 +47,7 @@ namespace JAssets.Scripts_SC.UI
 					imageSlotB.sprite = sprite;
 					break;
 				case "C":
-					recipteImage.sprite = sprite;
+					recipeImage.sprite = sprite;
 					break;
 			}
 		}
@@ -56,7 +56,7 @@ namespace JAssets.Scripts_SC.UI
 		{
 			imageSlotA.sprite = null;
 			imageSlotB.sprite = null;
-			recipteImage.sprite = null;
+			recipeImage.sprite = null;
 		}
 	}
 }
