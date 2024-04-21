@@ -1,0 +1,87 @@
+using System.Collections;
+using System.Collections.Generic;
+using JAssets.Scripts_SC;
+using JAssets.Scripts_SC.Items;
+using JetBrains.Annotations;
+using UnityEngine;
+using UnityEngine.InputSystem;
+
+public class AttackController : MonoBehaviour
+{
+    [SerializeField] [CanBeNull] public Animator weaponAnimator;
+    [SerializeField] public EquippedGear gear;
+    
+    [SerializeField] public string itemSlotA;
+    [SerializeField] public string itemSlotB;
+    
+    [SerializeField] public float attackCd;
+    [SerializeField] public float specialCd;
+    [SerializeField] public bool canAttack;
+    [SerializeField] public bool canSpecial;
+    [SerializeField] public string attackString;
+    [SerializeField] public string specString;
+    [SerializeField] public string weaponHand;
+
+    private void Start()
+    {
+        itemSlotA = "";
+        itemSlotB = "";
+        canAttack = true;
+        canSpecial = true;
+    }
+    
+    public void Attack(InputAction.CallbackContext context)
+    {
+        if (!context.performed) return;
+        gear.items[weaponHand].GetComponentInChildren<Weapon>().Attack();
+        weaponAnimator.SetBool(attackString, true);
+        StartCoroutine(AttackCooldownTimer());
+    }
+    public void Special(InputAction.CallbackContext context)
+    {
+        if (!context.performed) return;
+        gear.items[weaponHand].GetComponentInChildren<Weapon>().Special();
+        weaponAnimator.SetBool(specString, true);
+        StartCoroutine(SpecialCooldownTimer());
+    }
+
+    private IEnumerator AttackCooldownTimer()
+    {
+        canAttack = false;
+        gear.items[weaponHand].GetComponentInChildren<Weapon>().Attack();
+        yield return new WaitForSeconds(attackCd);
+        canAttack = true;
+    }
+
+    private IEnumerator SpecialCooldownTimer()
+    {
+        canSpecial = false;
+        gear.items[weaponHand].GetComponentInChildren<Weapon>().Special();
+        yield return new WaitForSeconds(specialCd);
+        canSpecial = true;
+    }
+
+    private void UpdateGearStats(string slotToUpdate, string newItem)
+    {
+        var weapon = gear.items[newItem].GetComponentInChildren<Weapon>();
+        
+        switch (slotToUpdate)
+        {
+            case "A":
+                itemSlotA = newItem;
+                if (weapon) weaponHand = "itemSlotA";
+                break;
+            case "B":
+                itemSlotB = newItem;
+                if (weapon) weaponHand = "itemSlotB";
+                break;
+        }
+
+        if (weapon == null) return;
+        weaponAnimator = gear.items[newItem].GetComponentInChildren<Animator>();
+        attackString = weapon.rtso.attackAnimString;
+        specString = weapon.rtso.specAnimString;
+        attackCd = weapon.rtso.attackCd;
+        specialCd = weapon.rtso.specialCd;
+    }
+}

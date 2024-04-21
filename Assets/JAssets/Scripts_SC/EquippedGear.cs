@@ -6,7 +6,6 @@ namespace JAssets.Scripts_SC
 {
     public class EquippedGear : MonoBehaviour
     {
-
         [Header("Items")] [ShowInInspector] 
         public Dictionary<string, GameObject> items = new();
         

@@ -36,21 +36,6 @@ namespace JAssets.Scripts_SC.UI
 			_currentHealth -= healAmount;
 			_currentHealth = Mathf.Min(_maxHealth, _currentHealth);
 		}
-		public void UpdateItemsUi(string imageSlot, Sprite sprite)
-		{
-			switch (imageSlot)
-			{
-				case "A":
-					imageSlotA.sprite = sprite;
-					break;
-				case "B":
-					imageSlotB.sprite = sprite;
-					break;
-				case "C":
-					recipeImage.sprite = sprite;
-					break;
-			}
-		}
 
 		public void ClearImagesUi()
 		{

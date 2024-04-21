@@ -38,7 +38,6 @@ namespace JAssets.Scripts_SC.Items
             if (rtso.durability <= 0)
             {
                 gameObject.SetActive(false);
-                controller.weaponHand = "";
                 
                 var particle = WorldParticleSpawner.instance.weaponsBreakParticle.GetPooledGameObject();
                 particle.SetActive(true);
@@ -79,7 +78,6 @@ namespace JAssets.Scripts_SC.Items
                 rtso.durability = rtso.fullDurability;
                 
                 gameObject.SetActive(false);
-                controller.weaponHand = "";
                 
                 var particle = WorldParticleSpawner.instance.weaponPickupParticle.GetPooledGameObject();
                 particle.SetActive(true);
