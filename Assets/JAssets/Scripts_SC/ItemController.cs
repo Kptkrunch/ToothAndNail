@@ -33,20 +33,17 @@ namespace JAssets.Scripts_SC
 
             if (!item) return;
             item.PickupItem();
-            Debug.Log("A" + itemSlotA);
 
             DropEquippedGear(itemSlotA, "itemSlotA");
             
             itemSlotA = item.itemName;
             if (itemSlotA == "") return;
-
+            
             imageA.sprite = Library.instance.itemDict[itemSlotA].GetComponent<SpriteRenderer>().sprite;
-            Debug.Log("AA" + itemSlotA);
-            
-            Debug.Log("Checking");
-
             CheckForCraftableHandler(itemSlotA, itemSlotB);
-            
+            if (item.itemType == "Consumable") return;
+            Debug.Log("item type: " + item.itemType);
+            attackController.UpdateGearStats("A", item.itemName);
         }
 
         public void GetItemB(InputAction.CallbackContext context)
@@ -54,7 +51,7 @@ namespace JAssets.Scripts_SC
             if (!context.performed) return;
             var pickup = Physics2D.OverlapCircle(transform.position, 1f, pickupLayer);
             var item = pickup.GetComponent<Pickup>();
-
+            Debug.Log("pickup: " + pickup + ", " + item);
             if (!item) return;
             item.PickupItem();
             
@@ -62,10 +59,12 @@ namespace JAssets.Scripts_SC
             
             itemSlotB = item.itemName;
             if (itemSlotB == "") return;
-            imageB.sprite = Library.instance.itemDict[itemSlotB].GetComponent<SpriteRenderer>().sprite;
 
+            imageB.sprite = Library.instance.itemDict[itemSlotB].GetComponent<SpriteRenderer>().sprite;
             CheckForCraftableHandler(itemSlotA, itemSlotB);
-            Debug.Log("active recipe:" + activeRecipeName);
+            if (item.itemType == "Consumable") return;
+            Debug.Log("item name: " + item.itemName);
+            attackController.UpdateGearStats("B", item.itemName);
         }
         
         private void DropEquippedGear(string itemName, string itemSlot)
@@ -85,15 +84,17 @@ namespace JAssets.Scripts_SC
                     break;
             }
             
-            var itemToDrop = Library.instance.pickupsDict["P" + itemName].GetPooledGameObject();
+            var itemToDrop = Library.instance.pickupsDict["P" + itemName + "-0"].GetPooledGameObject();
             itemToDrop.transform.position = transform.position;
             itemToDrop.SetActive(true);
         }
 
         private void CheckForCraftableHandler(string a, string b)
         {
+
             if (a == "" || b == "") return;
             var recipe = CraftingMatrix.instance.GetRecipeFromMatrix(a, b);
+            if (recipe == "") return;
             activeRecipeName = recipe;
             imageC.sprite = Library.instance.itemDict[recipe].GetComponent<SpriteRenderer>().sprite;
             Debug.Log("Image C: " + imageC.sprite);
@@ -109,10 +110,17 @@ namespace JAssets.Scripts_SC
             newItem.transform.position = transform.position;
             newItem.SetActive(true);
 
+            ClearItemSlots();
+        }
+
+        private void ClearItemSlots()
+        {
             activeRecipeName = "";
             itemSlotA = "";
             itemSlotB = "";
-            playerUi.ClearImagesUi();
+            imageA.sprite = null;
+            imageB.sprite = null;
+            imageC.sprite = null;
         }
     }
 }

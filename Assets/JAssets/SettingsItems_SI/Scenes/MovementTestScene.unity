@@ -7144,11 +7144,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5463299922561261387, guid: 1cab5d508d309404d8d195e269606bf3, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 4.8792157
+      value: 12.18
       objectReference: {fileID: 0}
     - target: {fileID: 5463299922561261387, guid: 1cab5d508d309404d8d195e269606bf3, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.95459574
+      value: -1.51
       objectReference: {fileID: 0}
     - target: {fileID: 5463299922561261387, guid: 1cab5d508d309404d8d195e269606bf3, type: 3}
       propertyPath: m_LocalPosition.z
@@ -36722,7 +36722,6 @@ MonoBehaviour:
   - {fileID: 8923171664900888625}
   - {fileID: 832992712910050685}
   - {fileID: 4438946871074804114}
-  - {fileID: 0}
   - {fileID: 2648105588991051889}
   - {fileID: 564487748376384185}
   - {fileID: 576172628800573242}
@@ -37673,7 +37672,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee158225ee1e59f4791627785501d950, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shaderTypes: 3
+  shaderTypes: 0
   normalStrength: 5
   normalSmoothing: 1
   computingNormal: 0
@@ -37852,7 +37851,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee158225ee1e59f4791627785501d950, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shaderTypes: 4
+  shaderTypes: 0
   normalStrength: 5
   normalSmoothing: 1
   computingNormal: 0
@@ -38590,8 +38589,8 @@ MonoBehaviour:
     m_ActionName: Player/Crouch[/XInputControllerWindows/leftStick/down]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1372130735252915322}
-        m_TargetAssemblyTypeName: JAssets.Scripts_SC.GearController, Assembly-CSharp
+      - m_Target: {fileID: 1659806528}
+        m_TargetAssemblyTypeName: AttackController, Assembly-CSharp
         m_MethodName: Attack
         m_Mode: 0
         m_Arguments:
@@ -38610,8 +38609,8 @@ MonoBehaviour:
     m_ActionName: Player/Tool[/XInputControllerWindows/buttonEast]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1372130735252915322}
-        m_TargetAssemblyTypeName: JAssets.Scripts_SC.GearController, Assembly-CSharp
+      - m_Target: {fileID: 1659806528}
+        m_TargetAssemblyTypeName: AttackController, Assembly-CSharp
         m_MethodName: Special
         m_Mode: 0
         m_Arguments:
@@ -38913,7 +38912,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee158225ee1e59f4791627785501d950, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shaderTypes: 3
+  shaderTypes: 0
   normalStrength: 5
   normalSmoothing: 1
   computingNormal: 0
@@ -39227,9 +39226,9 @@ GameObject:
   - component: {fileID: 6828609808409943898}
   - component: {fileID: 6689878830338475596}
   - component: {fileID: 4772613402376892507}
-  - component: {fileID: 3742678892792930584}
   - component: {fileID: 3625351424465578624}
   - component: {fileID: 2581101636887393107}
+  - component: {fileID: 3742678892792930584}
   m_Layer: 8
   m_Name: Spear
   m_TagString: Weapon

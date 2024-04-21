@@ -61,10 +61,13 @@ public class AttackController : MonoBehaviour
         canSpecial = true;
     }
 
-    private void UpdateGearStats(string slotToUpdate, string newItem)
+    public void UpdateGearStats(string slotToUpdate, string newItem)
     {
+        Debug.Log("slot to update: " + slotToUpdate);
+        Debug.Log("newItem: " + newItem);
+
         var weapon = gear.items[newItem].GetComponentInChildren<Weapon>();
-        
+
         switch (slotToUpdate)
         {
             case "A":
@@ -76,12 +79,19 @@ public class AttackController : MonoBehaviour
                 if (weapon) weaponHand = "itemSlotB";
                 break;
         }
+        Debug.Log("new item 2: " + newItem);
+        Debug.Log("gear at item: " + gear.items.ContainsKey(newItem));
 
+        gear.items[newItem].gameObject.SetActive(true);
+        
         if (weapon == null) return;
-        weaponAnimator = gear.items[newItem].GetComponentInChildren<Animator>();
+        gear.items[newItem].SetActive(true);
+        weaponHand = weapon.name;
+        weaponAnimator = gear.items[newItem].GetComponent<Animator>();
         attackString = weapon.rtso.attackAnimString;
         specString = weapon.rtso.specAnimString;
         attackCd = weapon.rtso.attackCd;
         specialCd = weapon.rtso.specialCd;
+        Debug.Log(attackString);
     }
 }

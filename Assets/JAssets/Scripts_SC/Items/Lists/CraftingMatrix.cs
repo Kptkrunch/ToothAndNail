@@ -28,6 +28,7 @@ namespace JAssets.Scripts_SC
 		public string GetRecipeFromMatrix(string row, string item)
 		{
 			var craftingDictionary = matrix[row + "Row"];
+			if (craftingDictionary == null) return "";
 			var recipeItem = craftingDictionary.row[item].name;
 			return recipeItem;
 		}

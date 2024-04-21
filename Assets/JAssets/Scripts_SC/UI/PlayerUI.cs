@@ -36,12 +36,6 @@ namespace JAssets.Scripts_SC.UI
 			_currentHealth -= healAmount;
 			_currentHealth = Mathf.Min(_maxHealth, _currentHealth);
 		}
-
-		public void ClearImagesUi()
-		{
-			imageSlotA.sprite = null;
-			imageSlotB.sprite = null;
-			recipeImage.sprite = null;
-		}
+		
 	}
 }
