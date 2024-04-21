@@ -1,15 +1,15 @@
 using System.Collections.Generic;
-using MoreMountains.Tools;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
-namespace JAssets.Scripts_SC
+namespace JAssets.Scripts_SC.Spawners
 {
 	public class SpawnerController : MonoBehaviour
 	{
 		private static SpawnerController instance;
 		
-		[ShowInInspector] [Header("Spawn Location List")] private List<Transform> spawnLocationList = new();
+		[ShowInInspector] [Header("Spawn Location List")] public List<GameObject> spawnLocationList = new();
+		public  List<ItemNode> nodesList;
 
 		private void Awake()
 		{
@@ -28,6 +28,17 @@ namespace JAssets.Scripts_SC
 		{
 			RandomizeActiveSpawnLocations(spawnLocationList.Count);
 		}
+
+		private void RandomizeNodeType(GameObject spawnLocation)
+		{
+			int randomIndex = Random.Range(0, nodesList.Count);
+			var theNode = Library.instance.nodesDict[nodesList[randomIndex].name + "-0"].GetPooledGameObject();
+			if (theNode)
+			{
+				theNode.transform.position = spawnLocation.transform.position;
+				theNode.SetActive(true);
+			}
+		}
 		
 		private void RandomizeActiveSpawnLocations(int activeSpawnLocationCount)
 		{
@@ -37,11 +48,17 @@ namespace JAssets.Scripts_SC
 				spawnLocation.gameObject.SetActive(false);
 			}
 
-			for (int i = 0; i < activeSpawnLocationCount; i++)
+			foreach (var spawnLocation in spawnLocationList)
 			{
-				Debug.Log(spawnLocationList[i]);
-				spawnLocationList[activeSpawnLocationCount].gameObject.SetActive(true);
-				
+				Debug.Log(spawnLocation.name);
+				var activationChance = Random.Range(0, 10);
+				if (activationChance >= 2)
+				{
+					Debug.Log(spawnLocation.activeInHierarchy);
+					Debug.Log(activationChance);
+
+					RandomizeNodeType(spawnLocation.gameObject);
+				}
 			}
 		}
 	}

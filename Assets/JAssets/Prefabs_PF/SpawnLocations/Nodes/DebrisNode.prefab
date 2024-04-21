@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2365844609467988461}
   - component: {fileID: 7053094247303539302}
   - component: {fileID: 5793140169756792442}
-  m_Layer: 18
+  m_Layer: 6
   m_Name: DebrisNode
   m_TagString: Interactible
   m_Icon: {fileID: 0}
@@ -149,7 +149,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee158225ee1e59f4791627785501d950, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shaderTypes: 3
+  shaderTypes: 0
   normalStrength: 5
   normalSmoothing: 1
   computingNormal: 0
