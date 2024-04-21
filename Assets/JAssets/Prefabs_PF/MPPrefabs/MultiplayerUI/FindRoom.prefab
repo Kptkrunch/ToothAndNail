@@ -148,7 +148,7 @@ GameObject:
   - component: {fileID: 386865819267691739}
   m_Layer: 31
   m_Name: FindRoom
-  m_TagString: Untagged
+  m_TagString: EditorOnly
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

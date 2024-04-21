@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 4544980927958956509}
   - component: {fileID: 7839702720602209623}
   - component: {fileID: 7587972743025881763}
-  m_Layer: 19
+  m_Layer: 10
   m_Name: Stone
   m_TagString: Pickup
   m_Icon: {fileID: 0}
@@ -52,8 +52,6 @@ MonoBehaviour:
   parent: {fileID: 7832758948921257244}
   itemName: Stone
   itemType: Consumable
-  remainingDurability: 1
-  remainingUses: 1
 --- !u!212 &7170379050975255071
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -93,7 +91,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1459862473
-  m_SortingLayer: 12
+  m_SortingLayer: 14
   m_SortingOrder: 0
   m_Sprite: {fileID: -680107979, guid: 212bd3de0e8797c419eb6ba8597c5e2c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -203,9 +201,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4607137878975550327}
-  m_Layer: 19
+  m_Layer: 10
   m_Name: PStone
-  m_TagString: Consumable
+  m_TagString: Pickup
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -236,11 +234,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 182753893698774511, guid: 302b15f9b2cc68e428834e8ce57b2961, type: 3}
       propertyPath: m_Layer
-      value: 19
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 182753893698781565, guid: 302b15f9b2cc68e428834e8ce57b2961, type: 3}
       propertyPath: m_Layer
-      value: 19
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 1431524522856451246, guid: 302b15f9b2cc68e428834e8ce57b2961, type: 3}
       propertyPath: m_LocalPosition.x
@@ -264,7 +262,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5355933885024790224, guid: 302b15f9b2cc68e428834e8ce57b2961, type: 3}
       propertyPath: m_Layer
-      value: 19
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 5355933885024790224, guid: 302b15f9b2cc68e428834e8ce57b2961, type: 3}
       propertyPath: m_IsActive

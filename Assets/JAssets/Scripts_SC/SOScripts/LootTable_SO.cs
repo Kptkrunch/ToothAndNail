@@ -1,32 +1,35 @@
-using UnityEngine;
 using System.Collections.Generic;
+using UnityEngine;
 
-[CreateAssetMenu(fileName = "New LootTable", menuName = "LootTable")]
-public class LootTable_SO : ScriptableObject
+namespace JAssets.Scripts_SC.SOScripts
 {
-	[System.Serializable]
-	public struct LootItem
+	[CreateAssetMenu(fileName = "New LootTable", menuName = "LootTable")]
+	public class LootTable_SO : ScriptableObject
 	{
-		public string Name;
-		public int Weight;
-	}
-
-	public List<LootItem> LootItems;
-
-	public string GetRandomLoot()
-	{
-		int totalWeight = 0;
-		foreach (LootItem item in LootItems)
+		[System.Serializable]
+		public struct LootItem
 		{
-			totalWeight += item.Weight;
+			public string itemName;
+			public int itemWeight;
 		}
 
-		int randomNumber = Random.Range(0, totalWeight);
-		foreach (LootItem item in LootItems) 
+		public List<LootItem> lootItems;
+
+		public string GetRandomLoot()
 		{
-			if(randomNumber < item.Weight) return item.Name;
-			randomNumber -= item.Weight;
+			var totalWeight = 0;
+			foreach (var item in lootItems)
+			{
+				totalWeight += item.itemWeight;
+			}
+
+			var randomNumber = Random.Range(0, totalWeight);
+			foreach (var item in lootItems) 
+			{
+				if(randomNumber < item.itemWeight) return item.itemName;
+				randomNumber -= item.itemWeight;
+			}
+			return null;
 		}
-		return null;
 	}
 }

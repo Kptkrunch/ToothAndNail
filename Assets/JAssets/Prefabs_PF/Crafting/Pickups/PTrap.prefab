@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 9108562847168526969}
   - component: {fileID: 2587942763246860822}
   - component: {fileID: 8098768827353638929}
-  m_Layer: 19
+  m_Layer: 10
   m_Name: Trap
   m_TagString: Pickup
   m_Icon: {fileID: 0}
@@ -50,8 +50,6 @@ MonoBehaviour:
   parent: {fileID: 7995678139077362169}
   itemName: Trap
   itemType: Tool
-  remainingDurability: 0
-  remainingUses: 1
 --- !u!212 &2587942763246860822
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -91,7 +89,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1459862473
-  m_SortingLayer: 12
+  m_SortingLayer: 14
   m_SortingOrder: 0
   m_Sprite: {fileID: -498480651, guid: db843a4bc39aebc478bf17b94f8757ca, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -158,9 +156,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1379058377312130240}
-  m_Layer: 19
+  m_Layer: 10
   m_Name: PTrap
-  m_TagString: Tool
+  m_TagString: Pickup
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -191,11 +189,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 182753893698774511, guid: 302b15f9b2cc68e428834e8ce57b2961, type: 3}
       propertyPath: m_Layer
-      value: 19
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 182753893698781565, guid: 302b15f9b2cc68e428834e8ce57b2961, type: 3}
       propertyPath: m_Layer
-      value: 19
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 1431524522856451246, guid: 302b15f9b2cc68e428834e8ce57b2961, type: 3}
       propertyPath: m_LocalPosition.x
@@ -219,7 +217,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5355933885024790224, guid: 302b15f9b2cc68e428834e8ce57b2961, type: 3}
       propertyPath: m_Layer
-      value: 19
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 5355933885024790224, guid: 302b15f9b2cc68e428834e8ce57b2961, type: 3}
       propertyPath: m_IsActive

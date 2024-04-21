@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7491879478012094742}
   - component: {fileID: 1059923186898278170}
   - component: {fileID: 8582585644792108103}
-  m_Layer: 5
+  m_Layer: 31
   m_Name: LeaveRoomText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -146,9 +146,9 @@ GameObject:
   - component: {fileID: 1671377226128855228}
   - component: {fileID: 4808829128814402513}
   - component: {fileID: 5820043042768952219}
-  m_Layer: 5
+  m_Layer: 31
   m_Name: UI Button
-  m_TagString: Untagged
+  m_TagString: EditorOnly
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

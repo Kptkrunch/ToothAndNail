@@ -8,9 +8,6 @@ namespace JAssets.Scripts_SC.Items
         public string itemName;
         public string itemType;
         
-        public int remainingDurability;
-        public int remainingUses;
-
         public void PickupItem()
         {
             parent.SetActive(false);

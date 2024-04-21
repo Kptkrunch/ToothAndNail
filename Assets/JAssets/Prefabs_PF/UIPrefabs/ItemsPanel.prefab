@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 910673424963718943}
   - component: {fileID: 5117040550952846287}
   - component: {fileID: 144224688222922238}
-  m_Layer: 5
+  m_Layer: 31
   m_Name: WeaponBackground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -87,7 +87,7 @@ GameObject:
   - component: {fileID: 3361396466233073377}
   - component: {fileID: 5415133172020431936}
   - component: {fileID: 8623391719940808022}
-  m_Layer: 5
+  m_Layer: 31
   m_Name: CraftableBackground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -163,7 +163,7 @@ GameObject:
   - component: {fileID: 6692975582095311369}
   - component: {fileID: 4011334763913838453}
   - component: {fileID: 3721052946894761543}
-  m_Layer: 5
+  m_Layer: 31
   m_Name: ActiveWeapon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -238,7 +238,7 @@ GameObject:
   - component: {fileID: 4067868955325752785}
   - component: {fileID: 7184303216937547436}
   - component: {fileID: 1431133706464079425}
-  m_Layer: 5
+  m_Layer: 31
   m_Name: CraftableItem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -313,7 +313,7 @@ GameObject:
   - component: {fileID: 2114980645572024651}
   - component: {fileID: 4448039871517769586}
   - component: {fileID: 1891883146379816048}
-  m_Layer: 5
+  m_Layer: 31
   m_Name: ActiveTool
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -389,9 +389,9 @@ GameObject:
   - component: {fileID: 3771580096271526309}
   - component: {fileID: 7747323268236698639}
   - component: {fileID: 3261951697580600389}
-  m_Layer: 5
+  m_Layer: 31
   m_Name: ItemsPanel
-  m_TagString: Untagged
+  m_TagString: EditorOnly
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -493,7 +493,7 @@ GameObject:
   - component: {fileID: 2121621586741207619}
   - component: {fileID: 409842589331002541}
   - component: {fileID: 5736136620696857303}
-  m_Layer: 5
+  m_Layer: 31
   m_Name: ToolBackground
   m_TagString: Untagged
   m_Icon: {fileID: 0}

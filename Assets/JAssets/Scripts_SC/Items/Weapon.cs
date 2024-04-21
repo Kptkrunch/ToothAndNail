@@ -1,22 +1,21 @@
-using System;
 using JAssets.Scripts_SC.Spawners;
 using MoreMountains.Feedbacks;
-using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace JAssets.Scripts_SC.Items
 {
     public class Weapon : MonoBehaviour
     {
+        
         public Animator animator;
-        public Weapon_SO weapon_so;
+        public Weapon_SO weaponSo;
         internal Weapon_SO rtso;
         public ItemController controller;
         public Collider2D hitBox;
 
         private void OnEnable()
         {
-            rtso = Instantiate(weapon_so);
+            rtso = Instantiate(weaponSo);
         }
 
         public virtual void OnCollisionEnter2D(Collision2D other)
@@ -39,7 +38,8 @@ namespace JAssets.Scripts_SC.Items
             if (rtso.durability <= 0)
             {
                 gameObject.SetActive(false);
-                controller.activeWeapon = "";
+                controller.weaponHand = "";
+                
                 var particle = WorldParticleSpawner.instance.weaponsBreakParticle.GetPooledGameObject();
                 particle.SetActive(true);
                 particle.gameObject.transform.position = transform.position;
@@ -61,7 +61,7 @@ namespace JAssets.Scripts_SC.Items
             print("Special");
         }
 
-        public void DealDamageAndSpawnDmgText(Collision2D other)
+        protected void DealDamageAndSpawnDmgText(Collision2D other)
         {
             rtso.durability--;
             var otherPlayer = other.gameObject.GetComponentInChildren<PlayerHealthController>();
@@ -76,11 +76,11 @@ namespace JAssets.Scripts_SC.Items
         {
             if (rtso.durability <= 0)
             {
-                Debug.Log("dur");
                 rtso.durability = rtso.fullDurability;
-                Debug.Log(rtso.durability);
+                
                 gameObject.SetActive(false);
-                controller.activeWeapon = "";
+                controller.weaponHand = "";
+                
                 var particle = WorldParticleSpawner.instance.weaponPickupParticle.GetPooledGameObject();
                 particle.SetActive(true);
                 particle.transform.position = transform.position;

@@ -18,15 +18,14 @@ namespace JAssets.Scripts_SC.UI
 
 		public GameObject barChunk;
 
-		public Image weaponImage;
-		public Image toolImage;
-		public Image craftableImage;
+		public Image imageSlotA;
+		public Image imageSlotB;
+		public Image recipeImage;
 		public void SetBarValues(int maxHealth)
 		{
-			this._maxHealth = maxHealth;
-			_currentHealth = this._maxHealth;
+			_maxHealth = maxHealth;
+			_currentHealth = _maxHealth;
 		}
-
 		public void TakeDamage(int damage)
 		{
 			_currentHealth -= damage;
@@ -37,47 +36,27 @@ namespace JAssets.Scripts_SC.UI
 			_currentHealth -= healAmount;
 			_currentHealth = Mathf.Min(_maxHealth, _currentHealth);
 		}
-
-		public void UpdateItemsUi(string itemType, string itemSlot, Sprite sprite)
+		public void UpdateItemsUi(string imageSlot, Sprite sprite)
 		{
-			
-			switch (itemType)
+			switch (imageSlot)
 			{
-				case "All":
-					weaponImage.sprite = null;
-					toolImage.sprite = null;
-					craftableImage = null;
+				case "A":
+					imageSlotA.sprite = sprite;
 					break;
-				case "Weapon":
-					weaponImage.sprite = sprite;
-					Debug.Log(sprite.name);
-					Debug.Log(weaponImage.sprite.name);
+				case "B":
+					imageSlotB.sprite = sprite;
 					break;
-				case "Tool":
-					toolImage.sprite = sprite;
-					break;
-				case "Consumable":
-					switch (itemSlot)
-					{
-						case "Weapon":
-							weaponImage.sprite = sprite;
-							break;
-						case "Tool":
-							toolImage.sprite = sprite;
-							break;
-						default:
-							craftableImage.sprite = sprite;
-							break;
-					}
+				case "C":
+					recipeImage.sprite = sprite;
 					break;
 			}
-
 		}
-		
-		public void UpdateCraftable(Sprite sprite)
+
+		public void ClearImagesUi()
 		{
-			Debug.Log(sprite.name);
-			craftableImage.sprite = sprite;
+			imageSlotA.sprite = null;
+			imageSlotB.sprite = null;
+			recipeImage.sprite = null;
 		}
 	}
 }

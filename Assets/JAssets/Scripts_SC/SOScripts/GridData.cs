@@ -1,22 +1,19 @@
 using System;
 using System.Collections.Generic;
-using UnityEngine;
 using Sirenix.OdinInspector;
+using UnityEngine;
 
-[Serializable]
-[CreateAssetMenu(fileName = "New GridData", menuName = "GridData")]
-public class GridData : SerializedScriptableObject
+namespace JAssets.Scripts_SC.SOScripts
 {
-	//test
-	[SerializeField] public int gridWidth = 3;
+	[Serializable]
+	[CreateAssetMenu(fileName = "New GridData", menuName = "GridData")]
+	public class GridData : SerializedScriptableObject
+	{
+		//test
+		[SerializeField] public int gridWidth = 3;
 
-	[SerializeField] public int gridHeight = 3;
+		[SerializeField] public int gridHeight = 3;
 
-	[ShowInInspector] public Dictionary<string, GameObject> grid = new();
+		[ShowInInspector] public Dictionary<string, GameObject> grid = new();
+	}
 }
-
-
-// 	public string GetRecipe(string dictionary, string itemToMatch)
-// 	{
-// 	}
-// }

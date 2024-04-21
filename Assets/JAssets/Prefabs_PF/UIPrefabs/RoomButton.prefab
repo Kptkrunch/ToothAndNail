@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4112791235168045573}
   - component: {fileID: 5989486883963596898}
   - component: {fileID: 8987574783644115477}
-  m_Layer: 5
+  m_Layer: 31
   m_Name: RoomNameText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -147,9 +147,9 @@ GameObject:
   - component: {fileID: 1035689204697645361}
   - component: {fileID: 5587256094550442416}
   - component: {fileID: 3579605010805859361}
-  m_Layer: 5
+  m_Layer: 31
   m_Name: RoomButton
-  m_TagString: Untagged
+  m_TagString: EditorOnly
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

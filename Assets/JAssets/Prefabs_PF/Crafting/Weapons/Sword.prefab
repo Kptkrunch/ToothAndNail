@@ -18,7 +18,7 @@ GameObject:
   - component: {fileID: 425450721290313687}
   - component: {fileID: -5569426899169568434}
   - component: {fileID: -8238911902129077060}
-  m_Layer: 11
+  m_Layer: 8
   m_Name: Sword
   m_TagString: Weapon
   m_Icon: {fileID: 0}
@@ -53,7 +53,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 0}
-  weapon_so: {fileID: 11400000, guid: 06710564cb9c317489cbe3f18b4d0349, type: 2}
+  weaponSo: {fileID: 0}
   controller: {fileID: 0}
   hitBox: {fileID: 919180615067223627}
 --- !u!95 &8343379803038319267
@@ -116,7 +116,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1388011171
-  m_SortingLayer: 11
+  m_SortingLayer: 12
   m_SortingOrder: 0
   m_Sprite: {fileID: 1507090716, guid: 212bd3de0e8797c419eb6ba8597c5e2c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

@@ -1,4 +1,5 @@
 #if UNITY_EDITOR
+using JAssets.Scripts_SC.SOScripts;
 using UnityEditor;
 using UnityEngine;
 
@@ -11,7 +12,7 @@ namespace JAssets.Scripts_SC.Editor
         {
             var pickupSo = (Pickup_SO)target;
 
-            EditorGUILayout.LabelField("Gear Name:", EditorStyles.boldLabel);
+            EditorGUILayout.LabelField("Gear itemName:", EditorStyles.boldLabel);
             pickupSo.gearName = EditorGUILayout.TextField(pickupSo.gearName, GUILayout.Height(30));
 
             EditorGUILayout.Space();

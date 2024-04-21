@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3937940853597942901}
   - component: {fileID: 2909740550019372851}
   - component: {fileID: 2726137591421083873}
-  m_Layer: 13
+  m_Layer: 11
   m_Name: TallGlow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4794,7 +4794,7 @@ ParticleSystemRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 132148973
-  m_SortingLayer: 4
+  m_SortingLayer: 0
   m_SortingOrder: 0
   m_RenderMode: 0
   m_MeshDistribution: 0
@@ -4839,7 +4839,7 @@ GameObject:
   - component: {fileID: 1251377601450170211}
   - component: {fileID: 7232214328207447993}
   - component: {fileID: 7720062382338573213}
-  m_Layer: 13
+  m_Layer: 11
   m_Name: TallCenter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9586,7 +9586,7 @@ ParticleSystemRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 132148973
-  m_SortingLayer: 4
+  m_SortingLayer: 0
   m_SortingOrder: 0
   m_RenderMode: 0
   m_MeshDistribution: 0
@@ -9631,7 +9631,7 @@ GameObject:
   - component: {fileID: 3790652626342399264}
   - component: {fileID: 7403450959458872769}
   - component: {fileID: 5347650325272304776}
-  m_Layer: 13
+  m_Layer: 11
   m_Name: Swirly
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14445,7 +14445,7 @@ ParticleSystemRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 132148973
-  m_SortingLayer: 4
+  m_SortingLayer: 0
   m_SortingOrder: 0
   m_RenderMode: 4
   m_MeshDistribution: 0
@@ -14490,7 +14490,7 @@ GameObject:
   - component: {fileID: 1735488212210700547}
   - component: {fileID: 382770489364299514}
   - component: {fileID: 6639772151740980569}
-  m_Layer: 13
+  m_Layer: 11
   m_Name: LensFlare
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -19291,7 +19291,7 @@ ParticleSystemRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 132148973
-  m_SortingLayer: 4
+  m_SortingLayer: 0
   m_SortingOrder: 0
   m_RenderMode: 0
   m_MeshDistribution: 0
@@ -19336,9 +19336,9 @@ GameObject:
   - component: {fileID: 3722215506359999744}
   - component: {fileID: 9075793578681465043}
   - component: {fileID: 1442771662989750131}
-  m_Layer: 13
+  m_Layer: 11
   m_Name: PickupFlash
-  m_TagString: Untagged
+  m_TagString: Particle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -24132,7 +24132,7 @@ ParticleSystemRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 132148973
-  m_SortingLayer: 4
+  m_SortingLayer: 0
   m_SortingOrder: 0
   m_RenderMode: 0
   m_MeshDistribution: 0

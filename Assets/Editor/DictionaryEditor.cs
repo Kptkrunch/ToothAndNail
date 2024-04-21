@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Reflection;
+using JAssets.Scripts_SC.SOScripts;
 using UnityEditor;
 using UnityEngine;
 

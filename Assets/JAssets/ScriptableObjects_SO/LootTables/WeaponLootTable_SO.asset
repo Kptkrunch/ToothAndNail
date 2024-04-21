@@ -12,10 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32e694c6a7115c843916498cd3a9bc39, type: 3}
   m_Name: WeaponLootTable_SO
   m_EditorClassIdentifier: 
-  LootItems:
-  - Name: Sword
-    Weight: 5
-  - Name: Spear
-    Weight: 5
-  - Name: BattleAx
-    Weight: 5
+  lootItems: []
