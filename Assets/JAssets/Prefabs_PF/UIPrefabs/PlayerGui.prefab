@@ -479,7 +479,7 @@ MonoBehaviour:
   barChunk: {fileID: 0}
   imageSlotA: {fileID: 4689429406757281803}
   imageSlotB: {fileID: 3309123964322019889}
-  recipeImage: {fileID: 0}
+  recipeImage: {fileID: 6924121665439635007}
 --- !u!1 &6053113729760987284
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,3 +1,4 @@
+using System;
 using Photon.Pun;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -32,6 +33,9 @@ namespace JAssets.Scripts_SC
         [SerializeField] private Transform wallCheckPoint;
         [SerializeField] private Transform ledgeCheckPoint;
         [SerializeField] private Transform groundCheckPoint;
+        [SerializeField] private Transform viewPoint;
+        public GameObject coneOfVision;
+
         
         [SerializeField] private LayerMask groundLayerMask;
         [SerializeField] private LayerMask wallLayerMask;
@@ -47,6 +51,9 @@ namespace JAssets.Scripts_SC
         [SerializeField] private BoxCollider2D bc2d;
         [SerializeField] private Animator animator;
         [SerializeField] private Camera playerCamera;
+        [SerializeField] private PlayerInput playerInput;
+        private InputActionAsset inputActionAsset;
+        private InputActionMap player;
 
         private Vector2 rightStick;
         
@@ -68,7 +75,13 @@ namespace JAssets.Scripts_SC
         private static readonly int Crouch1 = Animator.StringToHash("Crouch");
         private static readonly int Grounded = Animator.StringToHash("Grounded");
         private static readonly int WallJump1 = Animator.StringToHash("WallJump");
-        
+
+        private void Awake()
+        {
+            playerInput = GetComponent<PlayerInput>();
+            playerCamera = GetComponentInChildren<Camera>();
+        }
+
         private void Update()
         {
             if (isWallSliding) animator.SetBool(Slide, true);
@@ -89,9 +102,9 @@ namespace JAssets.Scripts_SC
 
         private void LateUpdate()
         {
-            Vector3 desiredPosition = new Vector3(transform.position.x, transform.position.y + 0.25f, -10);
-            playerCamera.gameObject.transform.position = desiredPosition;
-            
+            coneOfVision.gameObject.transform.position = viewPoint.position;
+            // Vector3 desiredPosition = new Vector3(transform.position.x, transform.position.y + 0.25f, -10);
+            // playerCamera.gameObject.transform.position = desiredPosition;
             if (!(Mathf.Abs(velocity) <= 0.1f)) return;
             if (isCrouching) rb2d.velocity = Vector2.zero;
             
