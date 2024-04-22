@@ -15,6 +15,7 @@ using UnityEditor.Callbacks;
 using UnityEditor.Rendering.Universal;
 #endif
 using UnityEngine;
+using ErrorEventArgs = Newtonsoft.Json.Serialization.ErrorEventArgs;
 using PackageInfo = UnityEditor.PackageManager.PackageInfo;
 using Random = UnityEngine.Random;
 
@@ -22,7 +23,7 @@ namespace AssetInventory
 {
     public static class AssetInventory
     {
-        public const string TOOL_VERSION = "2.0.0";
+        public const string TOOL_VERSION = "2.1.1";
         public const string ASSET_STORE_LINK = "https://u3d.as/3e4D";
         public const string ASSET_STORE_FOLDER_NAME = "Asset Store-5.x";
         public const string DEFINE_SYMBOL = "ASSET_INVENTORY";
@@ -97,6 +98,7 @@ namespace AssetInventory
         }
 
         private static AssetInventorySettings _config;
+        public static List<string> ConfigErrors = new List<string>();
 
         public static bool IndexingInProgress { get; set; }
         public static bool ClearCacheInProgress { get; private set; }
@@ -130,6 +132,13 @@ namespace AssetInventory
         {
             // this will be run after a recompile so keep to a minimum, e.g. ensure third party tools can work
             EditorApplication.delayCall += () => Init();
+        }
+
+        public static void ReInit()
+        {
+            InitDone = false;
+            LoadConfig();
+            Init();
         }
 
         public static void Init(bool secondTry = false)
@@ -239,14 +248,14 @@ namespace AssetInventory
             return IOUtils.PathCombine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), CONFIG_NAME);
         }
 
-        public static string GetPreviewFolder(string customFolder = null)
+        public static string GetPreviewFolder(string customFolder = null, bool noCache = false)
         {
-            if (_previewFolder.TryGetValue(out string path)) return path;
+            if (!noCache && _previewFolder.TryGetValue(out string path)) return path;
 
             string previewPath = IOUtils.PathCombine(customFolder ?? GetStorageFolder(), "Previews");
             if (!Directory.Exists(previewPath)) Directory.CreateDirectory(previewPath);
 
-            _previewFolder.SetValue(previewPath, TimeSpan.FromSeconds(FOLDER_CACHE_TIME));
+            if (!noCache) _previewFolder.SetValue(previewPath, TimeSpan.FromSeconds(FOLDER_CACHE_TIME));
 
             return previewPath;
         }
@@ -361,7 +370,7 @@ namespace AssetInventory
                 return File.Exists(assetFile.GetSourcePath(true)) ? assetFile.GetSourcePath(true) : null;
             }
 
-            if (!string.IsNullOrEmpty(asset.GetLocation(true)) && !File.Exists(asset.GetLocation(true))) return null;
+            if (string.IsNullOrEmpty(asset.GetLocation(true)) || !File.Exists(asset.GetLocation(true))) return null;
 
             string targetPath;
             if (assetFile == null)
@@ -524,6 +533,7 @@ namespace AssetInventory
             {
                 string guid = match.Groups[1].Value;
                 if (result.Any(r => r.Guid == guid)) continue; // break recursion
+                if (guid == info.Guid) continue; // ignore self
 
                 // find file with guid inside of the respective package only, don't look into others that might repackage it
                 // since that can throw errors if the asset was not downloaded yet or has an identical Id although being different
@@ -836,24 +846,21 @@ namespace AssetInventory
             // pass 3: online index
             if (Config.indexAssetStore && Config.downloadAssets && assetId == 0)
             {
-                string assetStoreDownloadCache = GetAssetCacheFolder();
-                if (Directory.Exists(assetStoreDownloadCache))
-                {
-                    List<AssetInfo> assets = LoadAssets()
-                        .Where(info =>
-                            info.AssetSource == Asset.Source.AssetStorePackage &&
-                            !info.IsAbandoned && !info.IsIndexed && !string.IsNullOrEmpty(info.OfficialState)
-                            && !info.Downloaded)
-                        .ToList();
+                List<AssetInfo> assets = LoadAssets()
+                    .Where(info =>
+                        info.AssetSource == Asset.Source.AssetStorePackage &&
+                        !info.Exclude &&
+                        !info.IsAbandoned && !info.IsIndexed && !string.IsNullOrEmpty(info.OfficialState)
+                        && !info.Downloaded)
+                    .ToList();
 
-                    // needs to be started as coroutine due to download triggering which cannot happen outside main thread 
-                    bool done = false;
-                    EditorCoroutineUtility.StartCoroutineOwnerless(new UnityPackageImporter().IndexRoughOnline(assets, () => done = true));
-                    do
-                    {
-                        await Task.Delay(100);
-                    } while (!done);
-                }
+                // needs to be started as coroutine due to download triggering which cannot happen outside main thread 
+                bool done = false;
+                EditorCoroutineUtility.StartCoroutineOwnerless(new UnityPackageImporter().IndexRoughOnline(assets, () => done = true));
+                do
+                {
+                    await Task.Delay(100);
+                } while (!done);
             }
 
             // pass 4: index colors
@@ -990,7 +997,17 @@ namespace AssetInventory
                 return;
             }
 
-            _config = JsonConvert.DeserializeObject<AssetInventorySettings>(File.ReadAllText(configLocation));
+            ConfigErrors.Clear();
+            _config = JsonConvert.DeserializeObject<AssetInventorySettings>(File.ReadAllText(configLocation), new JsonSerializerSettings
+            {
+                Error = delegate(object sender, ErrorEventArgs args)
+                {
+                    ConfigErrors.Add(args.ErrorContext.Error.Message);
+
+                    Debug.LogError("Invalid config file format: " + args.ErrorContext.Error.Message);
+                    args.ErrorContext.Handled = true;
+                }
+            });
             if (_config == null) _config = new AssetInventorySettings();
             if (_config.folders == null) _config.folders = new List<FolderSpec>();
         }
@@ -1419,7 +1436,7 @@ namespace AssetInventory
                 EditorUtility.ClearProgressBar();
 
                 EditorUtility.DisplayProgressBar("Moving Preview Images", "Copying preview images to new location...", 0.4f);
-                IOUtils.CopyDirectory(GetPreviewFolder(), GetPreviewFolder(targetFolder));
+                IOUtils.CopyDirectory(GetPreviewFolder(), GetPreviewFolder(targetFolder, true));
                 EditorUtility.ClearProgressBar();
 
                 // set new location
@@ -1428,6 +1445,7 @@ namespace AssetInventory
             }
             catch
             {
+                EditorUtility.ClearProgressBar();
                 EditorUtility.DisplayDialog("Error Moving Data",
                     "There were errors moving the existing database to a new location. Check the error log for details. Current database location remains unchanged.",
                     "OK");
@@ -1526,7 +1544,7 @@ namespace AssetInventory
                 {
                     case 0:
                         // put into subfolder if multiple files are affected
-                        if (withDependencies)
+                        if (withDependencies && info.Dependencies != null && info.Dependencies.Count > 0)
                         {
                             finalPath = Path.Combine(finalPath.RemoveTrailing("."), Path.GetFileNameWithoutExtension(info.FileName)).Trim().RemoveTrailing(".");
                             if (!Directory.Exists(finalPath)) Directory.CreateDirectory(finalPath);
@@ -1973,21 +1991,20 @@ namespace AssetInventory
             return result;
         }
 
-        public static async Task RemoveDuplicateMediaIndexes()
+        public static async Task<List<AssetInfo>> GatherReassignedMediaIndexes()
         {
+            List<AssetInfo> result = new List<AssetInfo>();
             Asset noAsset = DBAdapter.DB.Find<Asset>(a => a.SafeName == Asset.NONE);
-            if (noAsset == null) return;
+            if (noAsset == null) return result;
 
             List<AssetInfo> files = DBAdapter.DB.Query<AssetInfo>("select *, AssetFile.Id as Id from AssetFile left join Asset on Asset.Id = AssetFile.AssetId where Asset.AssetSource=2");
             List<AssetInfo> unlinked = files.Where(f => f.AssetId == noAsset.Id).ToList();
             List<AssetInfo> linked = files.Where(f => f.AssetId != noAsset.Id).ToList();
-            if (linked.Count == 0) return;
+            if (linked.Count == 0) return result;
 
-            int cleanedFiles = 0;
             int progress = 0;
             int count = unlinked.Count;
-
-            int progressId = MetaProgress.Start("Removing duplicate indexed media files");
+            int progressId = MetaProgress.Start("Gathering duplicate indexed media files");
 
             foreach (AssetInfo file in unlinked)
             {
@@ -1998,47 +2015,77 @@ namespace AssetInventory
                 // if file does not exist under a different asset continue
                 if (linked.All(f => f.Path != file.Path)) continue;
 
-                DBAdapter.DB.Delete<AssetFile>(file.Id);
-
-                cleanedFiles++;
+                result.Add(file);
             }
-
             MetaProgress.Remove(progressId);
-            Debug.Log($"Cleaned up duplicate indexed media files: {cleanedFiles}");
+
+            return result;
         }
 
-        public static async Task RemoveOrphans()
+        public static async Task RemoveReassignedMediaIndexes(List<AssetInfo> duplicates)
         {
+            int progress = 0;
+            int count = duplicates.Count;
+            int progressId = MetaProgress.Start("Removing duplicate indexed media files");
+
+            foreach (AssetInfo file in duplicates)
+            {
+                progress++;
+                MetaProgress.Report(progressId, progress, count, file.FileName);
+                if (progress % 1000 == 0) await Task.Yield();
+
+                DBAdapter.DB.Delete<AssetFile>(file.Id);
+            }
+            MetaProgress.Remove(progressId);
+        }
+
+        public static async Task<List<string>> GatherOrphanedPreviews()
+        {
+            List<string> result = new List<string>();
             List<string> files = IOUtils.GetFiles(GetPreviewFolder(), new[]
             {
                 "af-*.png"
             }, SearchOption.AllDirectories).ToList();
 
-            int cleanedFiles = 0;
+            // gather existing asset files in memory for faster processing
+            Dictionary<int, AssetFile> existing = AssetImporter.ToIdDict(DBAdapter.DB.Table<AssetFile>());
+
             int progress = 0;
             int count = files.Count;
+            int progressId = MetaProgress.Start("Gathering orphaned preview files");
 
+            foreach (string file in files)
+            {
+                progress++;
+                MetaProgress.Report(progressId, progress, count, file);
+                if (progress % 50000 == 0) await Task.Yield();
+
+                string[] arr = Path.GetFileNameWithoutExtension(file).Split('-');
+
+                int assetFileId = int.Parse(arr[1]);
+                if (!existing.ContainsKey(assetFileId)) result.Add(file);
+            }
+            MetaProgress.Remove(progressId);
+
+            return result;
+        }
+
+        public static async Task RemoveOrphanedPreviews(List<string> files)
+        {
+            int progress = 0;
+            int count = files.Count;
             int progressId = MetaProgress.Start("Removing orphaned preview files");
 
             foreach (string file in files)
             {
                 progress++;
                 MetaProgress.Report(progressId, progress, count, file);
-                if (progress % 1000 == 0) await Task.Yield();
+                if (progress % 50 == 0) await Task.Yield();
 
-                string[] arr = Path.GetFileNameWithoutExtension(file).Split('-');
-
-                int assetFileId = int.Parse(arr[1]);
-                AssetFile af = DBAdapter.DB.Find<AssetFile>(assetFileId);
-                if (af == null)
-                {
-                    cleanedFiles++;
-                    File.Delete(file);
-                }
+                File.Delete(file);
             }
 
             MetaProgress.Remove(progressId);
-            Debug.Log($"Cleaned up orphaned preview files: {cleanedFiles}");
         }
 
         public static string GetSystemId()

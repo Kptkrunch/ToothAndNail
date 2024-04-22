@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-#if UNITY_2021_2_OR_NEWER
+#if UNITY_2021_2_OR_NEWER && UNITY_EDITOR_WIN
 using System.Drawing.Imaging;
 #endif
 using System.IO;
@@ -199,7 +199,7 @@ namespace AssetInventory
                     string sourceFile = af.GetSourcePath(true);
                     bool legacyPreviews = true;
 
-                    #if UNITY_2021_2_OR_NEWER
+                    #if UNITY_2021_2_OR_NEWER && UNITY_EDITOR_WIN
                     if (ImageUtils.SYSTEM_IMAGE_TYPES.Contains(af.Type))
                     {
                         // scale up preview already during import

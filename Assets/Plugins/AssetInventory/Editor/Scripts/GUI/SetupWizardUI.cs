@@ -53,6 +53,7 @@ namespace AssetInventory
             AssetInventory.Config.indexPackageContents = EditorGUILayout.Toggle(AssetInventory.Config.indexPackageContents, GUILayout.MaxWidth(cbWidth));
             GUILayout.EndHorizontal();
 
+            #if UNITY_EDITOR_WIN
             EditorGUILayout.Space(20);
             EditorGUILayout.LabelField("Previews are usually extracted from the packages. These are limited to 128x128 dimensions though. Activating the upscaling will provide larger previews for image files at the cost of additional storage space.", EditorStyles.wordWrappedLabel);
             EditorGUILayout.Space();
@@ -65,11 +66,12 @@ namespace AssetInventory
             if (AssetInventory.Config.upscalePreviews)
             {
                 GUILayout.BeginHorizontal();
-                EditorGUILayout.LabelField(UIStyles.Content(AssetInventory.Config.upscaleLossless ? "  Target Size" : "  Minimum Size", "Minimum size the preview image should have. Bigger images are not changed."), EditorStyles.boldLabel, GUILayout.Width(labelWidth));
+                EditorGUILayout.LabelField(UIStyles.Content(AssetInventory.Config.upscaleLossless ? $"{UIStyles.INDENT}Target Size" : $"{UIStyles.INDENT}Minimum Size", "Minimum size the preview image should have. Bigger images are not changed."), EditorStyles.boldLabel, GUILayout.Width(labelWidth));
                 AssetInventory.Config.upscaleSize = EditorGUILayout.DelayedIntField(AssetInventory.Config.upscaleSize, GUILayout.Width(50));
                 EditorGUILayout.LabelField("px", EditorStyles.miniLabel);
                 GUILayout.EndHorizontal();
             }
+            #endif
 
             if (EditorGUI.EndChangeCheck())
             {

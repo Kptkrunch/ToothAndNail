@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Threading;
+using System.Threading.Tasks;
 using Unity.Profiling;
 using UnityEditor;
 using UnityEditor.IMGUI.Controls;
@@ -121,7 +123,14 @@ namespace AssetInventory
                 {
                     if (string.IsNullOrWhiteSpace(info.DownloadedActual))
                     {
-                        EditorGUILayout.HelpBox("Not cached currently. Download the asset to access its content.", MessageType.Warning);
+                        if (info.PackageSize > 0)
+                        {
+                            EditorGUILayout.HelpBox($"Not cached currently. Download the asset to access its content ({EditorUtility.FormatBytes(info.PackageSize)}).", MessageType.Warning);
+                        }
+                        else
+                        {
+                            EditorGUILayout.HelpBox("Not cached currently. Download the asset to access its content.", MessageType.Warning);
+                        }
                     }
                     else
                     {
@@ -185,7 +194,7 @@ namespace AssetInventory
             int labelWidth = 95;
             if (startNewSection)
             {
-                GUILayout.BeginVertical("Package Details", "window", GUILayout.Width(GetInspectorWidth()));
+                GUILayout.BeginVertical("Package Details", "window", GUILayout.Width(GetInspectorWidth()), GUILayout.ExpandWidth(false));
                 EditorGUILayout.Space();
             }
             else
@@ -197,35 +206,42 @@ namespace AssetInventory
             GUILabelWithText("Name", info.GetDisplayName(), labelWidth, info.Location, true);
             if (info.AssetSource == Asset.Source.RegistryPackage)
             {
-                GUILabelWithText("Id", $"{info.SafeName}");
+                GUILabelWithText("Id", info.SafeName, labelWidth, info.SafeName, true);
 
-                GUILayout.BeginHorizontal();
-                EditorGUILayout.LabelField("Version", EditorStyles.boldLabel, GUILayout.Width(labelWidth));
-                if (EditorGUILayout.DropdownButton(AssetStore.IsInstalled(info) ? UIStyles.Content(info.InstalledPackageVersion(), "Version to use") : UIStyles.Content("not installed, select version"), FocusType.Keyboard, GUILayout.ExpandWidth(false)))
+                if (info.PackageSource == PackageSource.Local)
                 {
-                    VersionSelectionUI versionUI = new VersionSelectionUI();
-                    versionUI.Init(info, newVersion =>
+                    GUILabelWithText("Version", info.Version, labelWidth);
+                }
+                else
+                {
+                    GUILayout.BeginHorizontal();
+                    EditorGUILayout.LabelField("Version", EditorStyles.boldLabel, GUILayout.Width(labelWidth));
+                    if (EditorGUILayout.DropdownButton(AssetStore.IsInstalled(info) ? UIStyles.Content(info.InstalledPackageVersion(), "Version to use") : UIStyles.Content("not installed, select version"), FocusType.Keyboard, GUILayout.ExpandWidth(false)))
                     {
-                        info.ForceTargetVersion(newVersion);
+                        VersionSelectionUI versionUI = new VersionSelectionUI();
+                        versionUI.Init(info, newVersion =>
+                        {
+                            info.ForceTargetVersion(newVersion);
 
-                        ImportUI importUI = ImportUI.ShowWindow();
-                        importUI.Init(new List<AssetInfo> {info}, true);
-                    });
-                    PopupWindow.Show(_versionButtonRect, versionUI);
-                }
-                if (Event.current.type == EventType.Repaint) _versionButtonRect = GUILayoutUtility.GetLastRect();
-                GUILayout.EndHorizontal();
+                            ImportUI importUI = ImportUI.ShowWindow();
+                            importUI.Init(new List<AssetInfo> {info}, true);
+                        });
+                        PopupWindow.Show(_versionButtonRect, versionUI);
+                    }
+                    if (Event.current.type == EventType.Repaint) _versionButtonRect = GUILayoutUtility.GetLastRect();
+                    GUILayout.EndHorizontal();
 
-                GUILayout.BeginHorizontal();
-                EditorGUILayout.LabelField("Updates", EditorStyles.boldLabel, GUILayout.Width(labelWidth));
-                EditorGUI.BeginChangeCheck();
-                info.UpdateStrategy = (Asset.Strategy)EditorGUILayout.EnumPopup(info.UpdateStrategy, GUILayout.ExpandWidth(false));
-                if (EditorGUI.EndChangeCheck())
-                {
-                    AssetInventory.SetAssetUpdateStrategy(info, info.UpdateStrategy);
-                    _requireAssetTreeRebuild = true;
+                    GUILayout.BeginHorizontal();
+                    EditorGUILayout.LabelField("Updates", EditorStyles.boldLabel, GUILayout.Width(labelWidth));
+                    EditorGUI.BeginChangeCheck();
+                    info.UpdateStrategy = (Asset.Strategy)EditorGUILayout.EnumPopup(info.UpdateStrategy, GUILayout.ExpandWidth(false));
+                    if (EditorGUI.EndChangeCheck())
+                    {
+                        AssetInventory.SetAssetUpdateStrategy(info, info.UpdateStrategy);
+                        _requireAssetTreeRebuild = true;
+                    }
+                    GUILayout.EndHorizontal();
                 }
-                GUILayout.EndHorizontal();
             }
             if (!string.IsNullOrWhiteSpace(info.License)) GUILabelWithText("License", $"{info.License}");
             if (!string.IsNullOrWhiteSpace(info.GetDisplayPublisher()))
@@ -388,7 +404,7 @@ namespace AssetInventory
 
             if (info.SafeName == Asset.NONE) EditorGUILayout.HelpBox("This is an automatically created package for managing indexed media files that are not associated with any other package.", MessageType.Info);
             if (info.IsDeprecated) EditorGUILayout.HelpBox("This asset is deprecated.", MessageType.Warning);
-            if (info.IsAbandoned) EditorGUILayout.HelpBox("This asset is no longer available.", MessageType.Error);
+            if (info.IsAbandoned) EditorGUILayout.HelpBox("This asset is no longer available for download.", MessageType.Error);
 
             if (showActions)
             {
@@ -475,7 +491,7 @@ namespace AssetInventory
                         AssetStore.OpenInPackageManager(info);
                     }
 
-                    if (_tab == 0 && _selectedAsset == 0 && GUILayout.Button("Filter for this Package only")) OpenInSearch(info, true);
+                    if (_tab == 0 && _selectedAsset == 0 && GUILayout.Button("Filter for this package only")) OpenInSearch(info, true);
                     if (_tab != 1 && ShowAdvanced() && GUILayout.Button("Show in Package View")) OpenInPackageView(info);
                     if (_tab > 0 && info.IsIndexed && info.FileCount > 0)
                     {
@@ -577,6 +593,7 @@ namespace AssetInventory
                                 info.CurrentState = Asset.State.New;
                                 info.Refresh();
                                 DBAdapter.DB.Execute("update Asset set Location=null, PackageSize=0, CurrentState=? where Id=?", info.AssetId, Asset.State.New);
+                                _requireAssetTreeRebuild = true;
                             }
                         }
                     }
@@ -641,7 +658,9 @@ namespace AssetInventory
                             {
                                 if (_mediaRect.Contains(Event.current.mousePosition))
                                 {
-                                    Application.OpenURL(info.ToAsset().GetMediaFile(info.Media[_selectedMedia], AssetInventory.GetPreviewFolder()));
+                                    // start process from thread as otherwise GUI reports layouting errors
+                                    string path = info.ToAsset().GetMediaFile(info.Media[_selectedMedia], AssetInventory.GetPreviewFolder());
+                                    Task _ = Task.Run(() => Process.Start(path));
                                 }
                             }
 
@@ -945,11 +964,11 @@ namespace AssetInventory
                 EditorGUILayout.Space();
                 int labelWidth = 130;
                 GUILabelWithText("Indexed Packages", $"{_indexedPackageCount:N0}/{_assets.Count:N0}", labelWidth);
-                if (_purchasedAssetsCount > 0) GUILabelWithText("  Asset Store", $"{_purchasedAssetsCount:N0}", labelWidth);
-                if (_registryPackageCount > 0) GUILabelWithText("  Registries", $"{_registryPackageCount:N0}", labelWidth);
-                if (_customPackageCount > 0) GUILabelWithText("  Other Sources", $"{_customPackageCount:N0}", labelWidth);
-                if (_deprecatedAssetsCount > 0) GUILabelWithText("  Deprecated", $"{_deprecatedAssetsCount:N0}", labelWidth);
-                if (_excludedAssetsCount > 0) GUILabelWithText("  Excluded", $"{_excludedAssetsCount:N0}", labelWidth);
+                if (_purchasedAssetsCount > 0) GUILabelWithText($"{UIStyles.INDENT}Asset Store", $"{_purchasedAssetsCount:N0}", labelWidth);
+                if (_registryPackageCount > 0) GUILabelWithText($"{UIStyles.INDENT}Registries", $"{_registryPackageCount:N0}", labelWidth);
+                if (_customPackageCount > 0) GUILabelWithText($"{UIStyles.INDENT}Other Sources", $"{_customPackageCount:N0}", labelWidth);
+                if (_deprecatedAssetsCount > 0) GUILabelWithText($"{UIStyles.INDENT}Deprecated", $"{_deprecatedAssetsCount:N0}", labelWidth);
+                if (_excludedAssetsCount > 0) GUILabelWithText($"{UIStyles.INDENT}Excluded", $"{_excludedAssetsCount:N0}", labelWidth);
                 if (_packageFileCount > 0) GUILabelWithText("Indexed Files", $"{_packageFileCount:N0}", labelWidth);
 
                 if (_selectedTreeAsset == null && (_selectedTreeAssets == null || _selectedTreeAssets.Count == 0)) RenderExpandButton();
@@ -1003,8 +1022,8 @@ namespace AssetInventory
                 }
                 if (storeCosts > 0 && totalCosts > storeCosts)
                 {
-                    GUILabelWithText("  Asset Store", bulkAssets[0].GetPriceText(storeCosts), labelWidth);
-                    GUILabelWithText("  Other Sources", bulkAssets[0].GetPriceText(totalCosts - storeCosts), labelWidth);
+                    GUILabelWithText($"{UIStyles.INDENT}Asset Store", bulkAssets[0].GetPriceText(storeCosts), labelWidth);
+                    GUILabelWithText($"{UIStyles.INDENT}Other Sources", bulkAssets[0].GetPriceText(totalCosts - storeCosts), labelWidth);
                     EditorGUILayout.Space();
                 }
             }

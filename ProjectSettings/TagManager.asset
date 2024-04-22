@@ -29,11 +29,11 @@ TagManager:
   - 
   - Water
   - UI
-  - Interactable
-  - Walls
+  - 
+  - EditorStuff
+  - 
+  - 
   - Player
-  - Ground
-  - Pickups
   - Particles
   - 
   - 
@@ -41,20 +41,20 @@ TagManager:
   - 
   - 
   - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Interactable
   - Background
+  - 
+  - 
+  - Pickups
+  - 
+  - 
   - Consumables
   - 
   - 
   - 
   - 
-  - EditorStuff
-  - 
+  - Walls
+  - Ground
   m_SortingLayers:
   - name: Default
     uniqueID: 0

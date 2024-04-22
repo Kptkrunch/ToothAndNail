@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Newtonsoft.Json;
 using UnityEditor;
 using UnityEditor.PackageManager;
 using UnityEngine;
@@ -10,15 +11,17 @@ namespace AssetInventory
 {
     public sealed class VersionSelectionUI : PopupWindowContent
     {
-        private AssetInfo _assetInfo;
+        private AssetInfo _info;
         private PackageInfo _packageInfo;
         private Vector2 _scrollPos;
         private Action<string> _callback;
+        private Repository _repository;
 
         public void Init(AssetInfo info, Action<string> callback)
         {
-            _assetInfo = info;
+            _info = info;
             _callback = callback;
+            if (info?.Repository != null) _repository = JsonConvert.DeserializeObject<Repository>(info.Repository);
         }
 
         public override Vector2 GetWindowSize()
@@ -28,23 +31,36 @@ namespace AssetInventory
 
         public override void OnGUI(Rect rect)
         {
-            if (_assetInfo == null) return;
+            if (_info == null) return;
             if (!AssetStore.IsMetadataAvailable())
             {
                 EditorGUILayout.HelpBox("Loading package metadata...", MessageType.Info);
                 return;
             }
-            if (_packageInfo == null) _packageInfo = AssetStore.GetPackageInfo(_assetInfo.SafeName);
+            if (_packageInfo == null) _packageInfo = AssetStore.GetPackageInfo(_info.SafeName);
             if (_packageInfo == null)
             {
-                EditorGUILayout.HelpBox("Could not find matching package metadata.", MessageType.Warning);
-                EditorGUILayout.Space();
-                if (!string.IsNullOrWhiteSpace(_assetInfo.LatestVersion))
+                if (_info.PackageSource == PackageSource.Git)
                 {
-                    if (GUILayout.Button(UIStyles.Content($"Install indexed {_assetInfo.LatestVersion}"), GUILayout.Width(140)))
+                    EditorGUILayout.HelpBox($"This is a Git reference to {_repository.url}", MessageType.Info);
+                    EditorGUILayout.Space();
+                    if (GUILayout.Button(UIStyles.Content($"Install indexed {_info.Version}"), GUILayout.Width(140)))
                     {
-                        _callback?.Invoke(_assetInfo.LatestVersion);
+                        _callback?.Invoke(_info.LatestVersion);
                         editorWindow.Close();
+                    }
+                }
+                else
+                {
+                    EditorGUILayout.HelpBox("Could not find matching package metadata.", MessageType.Warning);
+                    EditorGUILayout.Space();
+                    if (!string.IsNullOrWhiteSpace(_info.LatestVersion))
+                    {
+                        if (GUILayout.Button(UIStyles.Content($"Install indexed {_info.LatestVersion}"), GUILayout.Width(140)))
+                        {
+                            _callback?.Invoke(_info.LatestVersion);
+                            editorWindow.Close();
+                        }
                     }
                 }
                 return;
@@ -103,10 +119,10 @@ namespace AssetInventory
                     editorWindow.Close();
                 }
                 EditorGUI.EndDisabledGroup();
-                EditorGUI.BeginDisabledGroup(_assetInfo.GetChangeLogURL(version) == null);
+                EditorGUI.BeginDisabledGroup(_info.GetChangeLogURL(version) == null);
                 if (GUILayout.Button(UIStyles.Content("?", "Changelog"), GUILayout.Width(20)))
                 {
-                    Application.OpenURL(_assetInfo.GetChangeLogURL(version));
+                    Application.OpenURL(_info.GetChangeLogURL(version));
                 }
                 EditorGUI.EndDisabledGroup();
                 if (attributes.Count > 0) GUILayout.Label(string.Join(", ", attributes));

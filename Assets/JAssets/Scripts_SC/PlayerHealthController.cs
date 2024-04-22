@@ -9,7 +9,6 @@ namespace JAssets.Scripts_SC
         private const float InvulTime = 0.75f;
         private const float HitEffectBlendValue = 0.25f;
         private const float WaitTimeHitEffect = 0.1f;
-        public GameObject player;
         public Animator animator;
         public Material shader;
         public SpriteRenderer spriteRenderer;

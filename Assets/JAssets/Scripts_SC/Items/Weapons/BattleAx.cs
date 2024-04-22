@@ -7,6 +7,7 @@ namespace JAssets.Scripts_SC.Items.Weapons
     public class BattleAx : Weapon
     {
         private bool _specialTrigger;
+        private static readonly int MegaChop = Animator.StringToHash("MegaChop");
 
         public override void OnCollisionEnter2D(Collision2D other)
         {
@@ -36,7 +37,7 @@ namespace JAssets.Scripts_SC.Items.Weapons
 
         public void MegaChopOff()
         {
-            animator.SetBool("MegaChop", false);
+            animator.SetBool(MegaChop, false);
         }
 
         public override void Attack()
@@ -48,7 +49,7 @@ namespace JAssets.Scripts_SC.Items.Weapons
             }
             else if (_specialTrigger)
             {
-                animator.SetBool("MegaChop", true);
+                animator.SetBool(MegaChop, true);
                 _specialTrigger = false;
             }
         }

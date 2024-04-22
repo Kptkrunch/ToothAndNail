@@ -939,6 +939,8 @@ namespace AssetInventory
                 GUILayout.EndVertical();
                 GUILayout.EndHorizontal();
 
+                HandleKeyboardCommands();
+
                 if (dirty)
                 {
                     _requireSearchUpdate = true;
@@ -972,15 +974,6 @@ namespace AssetInventory
             }
             if (Event.current.type == EventType.Repaint) _tag2ButtonRect = GUILayoutUtility.GetLastRect();
             GUILayout.Space(15);
-        }
-
-        private void HandleKeyboardActions()
-        {
-            if (Event.current.modifiers == EventModifiers.Control && Event.current.keyCode == KeyCode.A)
-            {
-                // select all
-                _gridSelection.Populate(UIStyles.selectedTileContent);
-            }
         }
 
         private void HandleMouseClicks()
@@ -1025,6 +1018,21 @@ namespace AssetInventory
                 _gridSelectionMax = Mathf.Max(_gridSelectionMax, _gridSelectionTile);
                 _lastGridSelectionTile = _gridSelectionTile;
 
+                CalculateBulkSelection();
+            }
+        }
+
+        private void HandleKeyboardCommands()
+        {
+            if (Event.current.modifiers == EventModifiers.Control && Event.current.keyCode == KeyCode.A)
+            {
+                // select all
+                _gridSelection.Populate(UIStyles.selectedTileContent);
+                MarkGridSelection();
+
+                _gridSelectionMin = 0;
+                _gridSelectionMax = _gridSelectionCount - 1;
+                
                 CalculateBulkSelection();
             }
         }
@@ -1075,6 +1083,13 @@ namespace AssetInventory
                     // download on-demand
                     if (!info.Downloaded)
                     {
+                        if (info.IsAbandoned)
+                        {
+                            Debug.LogError($"Cannot download {info.GetDisplayName()} as it is an abandoned package.");
+                            _lockSelection = false;
+                            return;
+                        }
+
                         AssetInventory.GetObserver().Attach(info);
                         if (info.PackageDownloader.IsDownloadSupported())
                         {
@@ -1099,6 +1114,7 @@ namespace AssetInventory
 
                     if (!info.InProject)
                     {
+                        Debug.LogError("The file could not be materialized into the project.");
                         _lockSelection = false;
                         return;
                     }

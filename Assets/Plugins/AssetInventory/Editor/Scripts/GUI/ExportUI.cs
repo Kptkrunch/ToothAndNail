@@ -242,6 +242,11 @@ namespace AssetInventory
 
                 if (!info.Downloaded)
                 {
+                    if (info.IsAbandoned)
+                    {
+                        Debug.LogWarning($"Package '{info}' is not locally available and also abandoned and cannot be downloaded anymore. Continuing with next package.");
+                        continue;
+                    }
                     if (!_autoDownload)
                     {
                         Debug.LogWarning($"Package '{info}' is not downloaded and cannot be exported. Continuing with next package.");

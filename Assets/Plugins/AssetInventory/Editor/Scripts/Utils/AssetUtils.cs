@@ -124,9 +124,9 @@ namespace AssetInventory
                 dlHandler.streamAudio = false; // otherwise tracker files won't work
                 if (dlHandler.isDone)
                 {
-                    // can fail if FMOD encounters incorrect file, will return null then, error cannot be suppressed
+                    // can fail if FMOD encounters incorrect file, will return zero-length then, error cannot be suppressed
                     AudioClip clip = dlHandler.audioClip;
-                    if (!clip) Debug.LogError($"Non-suppressible Unity error handling audio clip '{filePath} ({fileUri})'");
+                    if (clip == null || (clip.channels == 0 && clip.length == 0)) Debug.LogError($"Unity could not load incompatible audio clip '{filePath} ({fileUri})'");
 
                     return clip;
                 }
@@ -236,11 +236,19 @@ namespace AssetInventory
                     string newEtag = uwr.GetResponseHeader("ETag");
                     if (!string.IsNullOrEmpty(newEtag) && newEtag != etag) eTagCallback?.Invoke(newEtag);
 
-                    return JsonConvert.DeserializeObject<T>(uwr.downloadHandler.text);
+                    try
+                    {
+                        return JsonConvert.DeserializeObject<T>(uwr.downloadHandler.text);
+                    }
+                    catch (Exception e)
+                    {
+                        // can happen if deserializers in local project have been added/altered
+                        Debug.LogError($"Error parsing API data from {uri}: {e.Message}");
+                    }
                 }
             }
 
-            return default;
+            return default(T);
         }
 
         public static async Task LoadImageAsync(string imageUrl, string targetFile)

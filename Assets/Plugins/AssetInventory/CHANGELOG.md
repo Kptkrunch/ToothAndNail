@@ -1,3 +1,35 @@
+## 2.1.1 (2024-04-09)
+- Handle edge case of asset cache directory not existing
+- Show download size in package view next to download button
+- Report file details when fmod encounters an incompatible audio file
+- Spelling and some more label wrapping
+- Show package to be downloaded before download starts
+- Have auto-downloads react to exclude flag
+- Fix selected UI refresh issues
+- Fix files without dependencies being imported into sub folders anyway
+- Fix opening media images on Mac in system app showing only -50
+- Fix lossless not being visible on Mac to force lossy preview upscaling
+- Fix indexed files reporting not being available anymore
+- Fix moving database showing error state
+
+## 2.1.0 (2024-04-08)
+- New Maintenance Wizard to consolidate all clean-up and fix operations
+  - New validator: Orphaned asset file clean-up
+  - New validator: Duplicate Media Indexes
+  - Much faster orphaned preview image clean-up
+- Show lossless upscale only on Windows
+- Don't mark preview erroneous during recreation if original preview still is available
+- Handle config syntax errors and show UI to guide user where to fix
+- Use included package preview file in case resized preview could not be created
+- Support CTRL + A in search view to select all tiles
+- Allow limiting auto-downloads by size
+- Upgrade sharplib to eliminate experimental dependency
+- Better handling of local packages
+- Install support for Git URL packages
+- Handle deserialization errors due to reconfigured json converters
+- Fix edge case of resize error thrown when creating preview images
+- Fix opening media images on Mac in system app showing only -50 
+
 ## 2.0.1 (2024-03-25)
 - Support specifying custom Package cache folders
 - Add package maintenance view: Downloaded

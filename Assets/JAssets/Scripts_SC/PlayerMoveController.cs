@@ -17,7 +17,7 @@ namespace JAssets.Scripts_SC
         [SerializeField] private float massFactor = 0.05f;
 
         [SerializeField] private float jumpForce = 5f;
-        [SerializeField] private const float jumpHoldMultiplier = 0.5f;
+        [SerializeField] private float jumpHoldMultiplier = 0.5f;
         [SerializeField] private float wallSlideSpeed = 0.5f;
         [SerializeField] private float wallJumpForce = 10f;
         [SerializeField] private Vector2 wallJumpDirection = new(1f, 2f);

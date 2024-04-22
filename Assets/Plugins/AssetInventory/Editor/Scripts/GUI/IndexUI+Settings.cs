@@ -317,8 +317,20 @@ namespace AssetInventory
                 if (AssetInventory.Config.downloadAssets)
                 {
                     GUILayout.BeginHorizontal();
-                    EditorGUILayout.LabelField(UIStyles.Content("Keep Downloaded Assets", "Will not delete automatically downloaded assets after indexing but keep them in the cache instead."), EditorStyles.boldLabel, GUILayout.Width(labelWidth));
+                    EditorGUILayout.LabelField(UIStyles.Content($"{UIStyles.INDENT}Keep Downloaded Assets", "Will not delete automatically downloaded assets after indexing but keep them in the cache instead."), EditorStyles.boldLabel, GUILayout.Width(labelWidth));
                     AssetInventory.Config.keepAutoDownloads = EditorGUILayout.Toggle(AssetInventory.Config.keepAutoDownloads, GUILayout.MaxWidth(cbWidth));
+                    GUILayout.EndHorizontal();
+
+                    GUILayout.BeginHorizontal();
+                    EditorGUILayout.LabelField(UIStyles.Content($"{UIStyles.INDENT}Limit Package Size", "Will not automatically download packages larger than specified."), EditorStyles.boldLabel, GUILayout.Width(labelWidth));
+                    AssetInventory.Config.limitAutoDownloads = EditorGUILayout.Toggle(AssetInventory.Config.limitAutoDownloads, GUILayout.Width(15));
+
+                    if (AssetInventory.Config.limitAutoDownloads)
+                    {
+                        GUILayout.Label("to", GUILayout.ExpandWidth(false));
+                        AssetInventory.Config.downloadLimit = EditorGUILayout.DelayedIntField(AssetInventory.Config.downloadLimit, GUILayout.Width(40));
+                        GUILayout.Label("Mb", GUILayout.ExpandWidth(false));
+                    }
                     GUILayout.EndHorizontal();
                 }
 
@@ -460,12 +472,12 @@ namespace AssetInventory
                 if (AssetInventory.Config.upscalePreviews)
                 {
                     GUILayout.BeginHorizontal();
-                    EditorGUILayout.LabelField(UIStyles.Content("  Lossless", "Only create upscaled versions if base resolution is bigger. This will then mostly only affect images which can be previewed at a higher scale but leave prefab previews at the resolution they have through Unity, avoiding scaling artifacts."), EditorStyles.boldLabel, GUILayout.Width(labelWidth));
+                    EditorGUILayout.LabelField(UIStyles.Content($"{UIStyles.INDENT}Lossless" + (Application.platform == RuntimePlatform.WindowsEditor ? " (Windows only)" : ""), "Only create upscaled versions if base resolution is bigger. This will then mostly only affect images which can be previewed at a higher scale but leave prefab previews at the resolution they have through Unity, avoiding scaling artifacts."), EditorStyles.boldLabel, GUILayout.Width(labelWidth));
                     AssetInventory.Config.upscaleLossless = EditorGUILayout.Toggle(AssetInventory.Config.upscaleLossless, GUILayout.MaxWidth(cbWidth));
                     GUILayout.EndHorizontal();
 
                     GUILayout.BeginHorizontal();
-                    EditorGUILayout.LabelField(UIStyles.Content(AssetInventory.Config.upscaleLossless ? "  Target Size" : "  Minimum Size", "Minimum size the preview image should have. Bigger images are not changed."), EditorStyles.boldLabel, GUILayout.Width(labelWidth));
+                    EditorGUILayout.LabelField(UIStyles.Content(AssetInventory.Config.upscaleLossless ? $"{UIStyles.INDENT}Target Size" : $"{UIStyles.INDENT}Minimum Size", "Minimum size the preview image should have. Bigger images are not changed."), EditorStyles.boldLabel, GUILayout.Width(labelWidth));
                     AssetInventory.Config.upscaleSize = EditorGUILayout.DelayedIntField(AssetInventory.Config.upscaleSize, GUILayout.Width(50));
                     EditorGUILayout.LabelField("px", EditorStyles.miniLabel);
                     GUILayout.EndHorizontal();
@@ -648,7 +660,7 @@ namespace AssetInventory
                     EditorGUILayout.LabelField("Package", EditorStyles.boldLabel);
 
                     string package = !string.IsNullOrEmpty(AssetProgress.CurrentMain) ? Path.GetFileName(AssetProgress.CurrentMain) : "scanning...";
-                    EditorGUILayout.LabelField(UIStyles.Content(package, package));
+                    EditorGUILayout.LabelField(UIStyles.Content(package, package), EditorStyles.wordWrappedLabel);
                 }
 
                 if (AssetProgress.SubCount > 0)
@@ -689,7 +701,7 @@ namespace AssetInventory
             GUILabelWithText("Indexed Files", $"{_packageFileCount:N0}", labelWidth2);
             GUILabelWithText("Database Size", EditorUtility.FormatBytes(_dbSize), labelWidth2);
 
-            if (_indexedPackageCount < _packageCount - _deprecatedAssetsCount - _registryPackageCount && !AssetInventory.IndexingInProgress)
+            if (_indexedPackageCount < _packageCount - _deprecatedAssetsCount - _registryPackageCount && !AssetInventory.IndexingInProgress && !AssetInventory.Config.downloadAssets)
             {
                 EditorGUILayout.Space();
                 EditorGUILayout.HelpBox("To index the remaining assets, download them first. Tip: You can multi-select packages in the Packages view to start a bulk download.", MessageType.Info);
@@ -744,17 +756,14 @@ namespace AssetInventory
             if (_showMaintenance)
             {
                 EditorGUI.BeginDisabledGroup(AssetInventory.CurrentMain != null || AssetInventory.IndexingInProgress);
-                if (GUILayout.Button("Recreate Missing Previews")) RecreatePreviews(null, true, false);
-                if (GUILayout.Button("Reindex Audio With Missing Length"))
+                if (GUILayout.Button("Maintenance Wizard..."))
                 {
-                    int fileCount = AssetInventory.MarkAudioWithMissingLengthForIndexing();
-                    EditorUtility.DisplayDialog("Success", $"During the next index update, up to {fileCount} audio files will be reindexed to try to read the length again.", "OK");
+                    MaintenanceUI maintenanceUI = MaintenanceUI.ShowWindow();
+                    maintenanceUI.Prepare();
                 }
+                if (GUILayout.Button("Recreate Missing Previews")) RecreatePreviews(null, true, false);
 
                 EditorGUI.BeginDisabledGroup(_cleanupInProgress);
-                if (ShowAdvanced() && GUILayout.Button(UIStyles.Content("Remove Orphaned Preview Images", "Will remove all preview image files which don't have a corresponding database entry anymore."))) RemoveOrphans();
-                if (ShowAdvanced() && GUILayout.Button(UIStyles.Content("Remove Duplicate Media Indexes", "Will check if media files were previously stored with no package assignment but have one in the meantime and will remove the references without package assignment."))) RemoveDuplicateMediaIndexes();
-
                 if (GUILayout.Button("Optimize Database"))
                 {
                     long savings = DBAdapter.Compact();
@@ -840,25 +849,6 @@ namespace AssetInventory
                 }
                 AssetInventory.LoadRelativeLocations();
             }
-        }
-
-        private async void RemoveOrphans()
-        {
-            _cleanupInProgress = true;
-            await AssetInventory.RemoveOrphans();
-            _cleanupInProgress = false;
-        }
-
-        private async void RemoveDuplicateMediaIndexes()
-        {
-            _cleanupInProgress = true;
-
-            await AssetInventory.RemoveDuplicateMediaIndexes();
-            _requireLookupUpdate = true;
-            _requireSearchUpdate = true;
-            _requireAssetTreeRebuild = true;
-
-            _cleanupInProgress = false;
         }
 
         private void SelectBackupFolder()

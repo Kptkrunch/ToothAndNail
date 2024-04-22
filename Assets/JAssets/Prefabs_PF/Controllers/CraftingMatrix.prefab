@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7281018589875669837}
   - component: {fileID: 90232111937850330}
-  m_Layer: 30
+  m_Layer: 7
   m_Name: ScrapRow
   m_TagString: EditorOnly
   m_Icon: {fileID: 0}
@@ -63,7 +63,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6674370617585600490}
   - component: {fileID: 2272522332730112284}
-  m_Layer: 30
+  m_Layer: 7
   m_Name: VineRow
   m_TagString: EditorOnly
   m_Icon: {fileID: 0}
@@ -116,7 +116,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7475547136692150116}
   - component: {fileID: 5533847179081938092}
-  m_Layer: 30
+  m_Layer: 7
   m_Name: BoneRow
   m_TagString: EditorOnly
   m_Icon: {fileID: 0}
@@ -169,7 +169,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7532921767415568827}
   - component: {fileID: 8373867294483220895}
-  m_Layer: 30
+  m_Layer: 7
   m_Name: StoneRow
   m_TagString: EditorOnly
   m_Icon: {fileID: 0}
@@ -222,7 +222,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4551356074400808887}
   - component: {fileID: 2069657518748863456}
-  m_Layer: 30
+  m_Layer: 7
   m_Name: StickRow
   m_TagString: EditorOnly
   m_Icon: {fileID: 0}
@@ -275,9 +275,9 @@ GameObject:
   m_Component:
   - component: {fileID: 5123281619743517654}
   - component: {fileID: 7808966872389582342}
-  m_Layer: 30
+  m_Layer: 7
   m_Name: CraftingMatrix
-  m_TagString: EditorOnly
+  m_TagString: GameController
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

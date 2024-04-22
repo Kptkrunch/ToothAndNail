@@ -1,4 +1,5 @@
 using System.Collections;
+using JAssets.Scripts_SC.Lists;
 using JAssets.Scripts_SC.SOScripts;
 using Sirenix.OdinInspector;
 using UnityEngine;

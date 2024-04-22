@@ -2,18 +2,21 @@ using System.Collections.Generic;
 using MoreMountains.Tools;
 using UnityEngine;
 
-public class GetRandomParticle : MonoBehaviour
+namespace JAssets.Scripts_SC.Spawners
 {
-	 private List<MMSimpleObjectPooler> bloodParticlesList = new();
+	public class GetRandomParticle : MonoBehaviour
+	{
+		private readonly List<MMSimpleObjectPooler> bloodParticlesList = new();
 	 
-	 public GameObject RandomParticleHandler()
-	 {
-		 if (bloodParticlesList.Count == 0)
-		 {
-			 return null;
-		 }
+		public GameObject RandomParticleHandler()
+		{
+			if (bloodParticlesList.Count == 0)
+			{
+				return null;
+			}
 
-		 int randomIndex = Random.Range(0, bloodParticlesList.Count);
-		 return bloodParticlesList[randomIndex].GetPooledGameObject();
-	 }
+			int randomIndex = Random.Range(0, bloodParticlesList.Count);
+			return bloodParticlesList[randomIndex].GetPooledGameObject();
+		}
+	}
 }

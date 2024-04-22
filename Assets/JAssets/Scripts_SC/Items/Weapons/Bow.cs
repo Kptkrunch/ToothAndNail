@@ -1,14 +1,15 @@
-using JAssets.Scripts_SC.Items;
-
-public class Bow : Weapon
+namespace JAssets.Scripts_SC.Items.Weapons
 {
-	private void NockArrow()
+	public class Bow : Weapon
 	{
-		// do a thing
-	}
+		private void NockArrow()
+		{
+			// do a thing
+		}
 
-	private void FireArrow()
-	{
-		// do a thing
+		private void FireArrow()
+		{
+			// do a thing
+		}
 	}
 }

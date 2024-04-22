@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2437749291713596981}
   - component: {fileID: 7986340625637875922}
-  m_Layer: 6
+  m_Layer: 10
   m_Name: ViewLight
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -94,7 +94,7 @@ GameObject:
   - component: {fileID: 4160332275512901382}
   - component: {fileID: 6243654028439169816}
   - component: {fileID: 7722231008406356892}
-  m_Layer: 5
+  m_Layer: 10
   m_Name: SlotBImage
   m_TagString: EditorStuff
   m_Icon: {fileID: 0}
@@ -186,7 +186,7 @@ GameObject:
   - component: {fileID: 9060137259045631201}
   - component: {fileID: 992389987450116985}
   - component: {fileID: 1524989664273953149}
-  m_Layer: 8
+  m_Layer: 10
   m_Name: Stick
   m_TagString: Consumable
   m_Icon: {fileID: 0}
@@ -309,7 +309,7 @@ GameObject:
   - component: {fileID: 7767397796953340109}
   - component: {fileID: 5608119387796088523}
   - component: {fileID: 1067973693314907437}
-  m_Layer: 5
+  m_Layer: 10
   m_Name: ItemSlotB
   m_TagString: EditorStuff
   m_Icon: {fileID: 0}
@@ -389,7 +389,7 @@ GameObject:
   - component: {fileID: 1779369425832814407}
   - component: {fileID: 1631191159401980256}
   - component: {fileID: 357101012502834236}
-  m_Layer: 8
+  m_Layer: 10
   m_Name: Spear
   m_TagString: Weapon
   m_Icon: {fileID: 0}
@@ -598,7 +598,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2833947897667615359}
   - component: {fileID: 5792593973355063685}
-  m_Layer: 5
+  m_Layer: 10
   m_Name: ForegroundBar
   m_TagString: EditorStuff
   m_Icon: {fileID: 0}
@@ -645,7 +645,7 @@ GameObject:
   - component: {fileID: 3946752172753030803}
   - component: {fileID: 8311562055018123558}
   - component: {fileID: 1321536041835337800}
-  m_Layer: 5
+  m_Layer: 10
   m_Name: SlotAImage
   m_TagString: EditorStuff
   m_Icon: {fileID: 0}
@@ -735,7 +735,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1921159176726234218}
   - component: {fileID: 7650371038070154775}
-  m_Layer: 8
+  m_Layer: 10
   m_Name: GroundCheckPoint
   m_TagString: Transforms
   m_Icon: {fileID: 2974397684917235467, guid: 0000000000000000d000000000000000, type: 0}
@@ -789,7 +789,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.1528821, y: 0.05503744}
+  m_Offset: {x: -0.23678695, y: 0.05503744}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -800,7 +800,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.26208782, y: 0.08270657}
+  m_Size: {x: 0.09427813, y: 0.08270657}
   m_EdgeRadius: 0
 --- !u!1 &1781455064343752487
 GameObject:
@@ -820,7 +820,7 @@ GameObject:
   - component: {fileID: 7205515012845794966}
   - component: {fileID: 8126925039950886726}
   - component: {fileID: 6924261622883188624}
-  m_Layer: 8
+  m_Layer: 10
   m_Name: Sword
   m_TagString: Weapon
   m_Icon: {fileID: 0}
@@ -1121,7 +1121,7 @@ GameObject:
   - component: {fileID: 7884628611517836446}
   - component: {fileID: 5950638684286439024}
   - component: {fileID: 3481557061583692091}
-  m_Layer: 5
+  m_Layer: 10
   m_Name: PlayerGui
   m_TagString: EditorStuff
   m_Icon: {fileID: 0}
@@ -1160,12 +1160,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d94354019718fc43b17f7574e767e17, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  emptyHand: {fileID: 21300000, guid: edb0297afb0d82e489b24c70bdfe2b05, type: 3}
   healthBar: {fileID: 8440593490214646364}
   decreaseBar: {fileID: 9196857665488613287}
   increaseBar: {fileID: 1612148821716087300}
   foregroundBar: {fileID: 4371712345144773833}
-  barChunk: {fileID: 0}
   imageSlotA: {fileID: 8311562055018123558}
   imageSlotB: {fileID: 6243654028439169816}
   recipeImage: {fileID: 3308989747508250420}
@@ -1192,37 +1190,6 @@ Canvas:
   m_SortingLayerID: -1459862473
   m_SortingOrder: 0
   m_TargetDisplay: 0
---- !u!1 &2470273652525663812
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1470658638112439245}
-  m_Layer: 8
-  m_Name: slopeCheckPoint
-  m_TagString: EditorOnly
-  m_Icon: {fileID: 4422084297763085224, guid: 0000000000000000d000000000000000, type: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1470658638112439245
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2470273652525663812}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.014000006, y: -0.417, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 2170760419709079517}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2665800927114686046
 GameObject:
   m_ObjectHideFlags: 0
@@ -1240,7 +1207,7 @@ GameObject:
   - component: {fileID: 8658369725690050326}
   - component: {fileID: 1930508015593903375}
   - component: {fileID: 7222323335449312152}
-  m_Layer: 8
+  m_Layer: 10
   m_Name: BattleAx
   m_TagString: Weapon
   m_Icon: {fileID: 0}
@@ -1478,9 +1445,9 @@ GameObject:
   m_Component:
   - component: {fileID: 2995411406636419045}
   - component: {fileID: 3323326005642654502}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: AttackController
-  m_TagString: Untagged
+  m_TagString: GameController
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1532,7 +1499,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 658112795706614471}
-  m_Layer: 8
+  m_Layer: 10
   m_Name: LedgeCheckPoint
   m_TagString: Transforms
   m_Icon: {fileID: 4162164826716764455, guid: 0000000000000000d000000000000000, type: 0}
@@ -1565,7 +1532,7 @@ GameObject:
   - component: {fileID: 559513651070283532}
   - component: {fileID: 5939881363588992587}
   - component: {fileID: 405474871001753672}
-  m_Layer: 5
+  m_Layer: 10
   m_Name: ItemSlotA
   m_TagString: EditorStuff
   m_Icon: {fileID: 0}
@@ -1642,7 +1609,7 @@ GameObject:
   - component: {fileID: 4469265934307966130}
   - component: {fileID: 9196857665488613287}
   - component: {fileID: 6296976461118842696}
-  m_Layer: 5
+  m_Layer: 10
   m_Name: BackgroundColor
   m_TagString: EditorStuff
   m_Icon: {fileID: 0}
@@ -1733,7 +1700,7 @@ GameObject:
   - component: {fileID: 5330627061688027117}
   - component: {fileID: 8408379020844519223}
   - component: {fileID: 1919119301596772544}
-  m_Layer: 8
+  m_Layer: 10
   m_Name: Lights
   m_TagString: Interactable
   m_Icon: {fileID: 0}
@@ -1830,9 +1797,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2289483909231141402}
-  m_Layer: 8
+  m_Layer: 10
   m_Name: ViewPoint
-  m_TagString: Untagged
+  m_TagString: Transforms
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1862,7 +1829,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3750938070961924745}
   - component: {fileID: 7357259585763345297}
-  m_Layer: 8
+  m_Layer: 10
   m_Name: HealthController
   m_TagString: GameController
   m_Icon: {fileID: 0}
@@ -1915,7 +1882,7 @@ GameObject:
   - component: {fileID: 5456703016280488712}
   - component: {fileID: 58430754554573846}
   - component: {fileID: 3088441896715853026}
-  m_Layer: 8
+  m_Layer: 10
   m_Name: Stone
   m_TagString: Consumable
   m_Icon: {fileID: 0}
@@ -2037,9 +2004,9 @@ GameObject:
   m_Component:
   - component: {fileID: 2714751800640537679}
   - component: {fileID: 1303738199236593497}
-  m_Layer: 30
+  m_Layer: 10
   m_Name: ResourceController
-  m_TagString: EditorOnly
+  m_TagString: GameController
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2073,7 +2040,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   layerMask:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 262144
 --- !u!1 &4292953386516649427
 GameObject:
   m_ObjectHideFlags: 0
@@ -2086,7 +2053,7 @@ GameObject:
   - component: {fileID: 6158711080329164905}
   - component: {fileID: 4371712345144773833}
   - component: {fileID: 2666070658950903461}
-  m_Layer: 5
+  m_Layer: 10
   m_Name: BackgroundColor
   m_TagString: EditorStuff
   m_Icon: {fileID: 0}
@@ -2177,7 +2144,7 @@ GameObject:
   - component: {fileID: 505948512116593888}
   - component: {fileID: 4765705836796277870}
   - component: {fileID: 6844628937708871978}
-  m_Layer: 5
+  m_Layer: 10
   m_Name: UIBackground
   m_TagString: EditorStuff
   m_Icon: {fileID: 0}
@@ -2252,9 +2219,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2876676058853689825}
-  m_Layer: 8
+  m_Layer: 10
   m_Name: Consumables
-  m_TagString: Untagged
+  m_TagString: EditorOnly
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2291,7 +2258,7 @@ GameObject:
   - component: {fileID: 1060606339711540803}
   - component: {fileID: 5573773888643582496}
   - component: {fileID: 6681804047495327283}
-  m_Layer: 8
+  m_Layer: 10
   m_Name: PlayerController
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -2617,10 +2584,10 @@ MonoBehaviour:
   coneOfVision: {fileID: 9167194159407159408}
   groundLayerMask:
     serializedVersion: 2
-    m_Bits: 512
+    m_Bits: 0
   wallLayerMask:
     serializedVersion: 2
-    m_Bits: 128
+    m_Bits: 0
   coyoteTime: 0.15
   preLandingJumpBuffer: 0.15
   rb2d: {fileID: 5573773888643582496}
@@ -2703,7 +2670,7 @@ GameObject:
   m_Component:
   - component: {fileID: 252052213422785520}
   - component: {fileID: 8985788569965448180}
-  m_Layer: 8
+  m_Layer: 10
   m_Name: SurroundingLight
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -2791,7 +2758,7 @@ GameObject:
   - component: {fileID: 4645885162795448650}
   - component: {fileID: 4592470880542037985}
   - component: {fileID: 2271481551338070716}
-  m_Layer: 8
+  m_Layer: 10
   m_Name: Bow
   m_TagString: Weapon
   m_Icon: {fileID: 0}
@@ -3015,7 +2982,7 @@ GameObject:
   - component: {fileID: 4585111848996929400}
   - component: {fileID: 3977923705261262990}
   - component: {fileID: 5039032482547516}
-  m_Layer: 8
+  m_Layer: 10
   m_Name: Vine
   m_TagString: Consumable
   m_Icon: {fileID: 0}
@@ -3139,7 +3106,7 @@ GameObject:
   - component: {fileID: 6315947528406775579}
   - component: {fileID: 597421082602658835}
   - component: {fileID: 5772975599141213775}
-  m_Layer: 5
+  m_Layer: 10
   m_Name: BackgroundColor
   m_TagString: EditorStuff
   m_Icon: {fileID: 0}
@@ -3228,7 +3195,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4287095716530023924}
-  m_Layer: 8
+  m_Layer: 10
   m_Name: PlayerPrefab
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -3264,9 +3231,9 @@ GameObject:
   - component: {fileID: 7213685715412470678}
   - component: {fileID: 5117127478354843514}
   - component: {fileID: 8423396056300993508}
-  m_Layer: 8
+  m_Layer: 10
   m_Name: EquipmentController
-  m_TagString: EditorOnly
+  m_TagString: GameController
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3326,9 +3293,9 @@ MonoBehaviour:
   pickupLayer:
     serializedVersion: 2
     m_Bits: 1024
-  imageA: {fileID: 0}
-  imageB: {fileID: 0}
-  imageC: {fileID: 0}
+  imageA: {fileID: 8311562055018123558}
+  imageB: {fileID: 6243654028439169816}
+  imageC: {fileID: 3308989747508250420}
   itemSlotA: 
   itemSlotB: 
   activeRecipeName: 
@@ -3342,7 +3309,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4503291896452529328}
   - component: {fileID: 4224528390900113787}
-  m_Layer: 5
+  m_Layer: 10
   m_Name: DelayDecreaseBar
   m_TagString: EditorStuff
   m_Icon: {fileID: 0}
@@ -3386,9 +3353,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2496012583210869139}
-  m_Layer: 8
+  m_Layer: 10
   m_Name: Weapons
-  m_TagString: Untagged
+  m_TagString: EditorOnly
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3424,9 +3391,9 @@ GameObject:
   - component: {fileID: 2076924977088747893}
   - component: {fileID: 5956352218593942960}
   - component: {fileID: 7782063060178191460}
-  m_Layer: 8
+  m_Layer: 10
   m_Name: VisualController
-  m_TagString: Player
+  m_TagString: GameController
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3505,8 +3472,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -1459862473
-  m_SortingLayer: 14
+  m_SortingLayerID: 1388011171
+  m_SortingLayer: 12
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: a2250d41aca5cd24aa43271d02689953, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -3531,7 +3498,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee158225ee1e59f4791627785501d950, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shaderTypes: 3
+  shaderTypes: 0
   normalStrength: 5
   normalSmoothing: 1
   computingNormal: 0
@@ -3546,7 +3513,7 @@ GameObject:
   - component: {fileID: 5526072016624049100}
   - component: {fileID: 715060793228558556}
   - component: {fileID: 8440593490214646364}
-  m_Layer: 5
+  m_Layer: 10
   m_Name: HealthBar
   m_TagString: EditorStuff
   m_Icon: {fileID: 0}
@@ -3859,7 +3826,7 @@ GameObject:
   - component: {fileID: 4035705357889670555}
   - component: {fileID: 3587743906467712643}
   - component: {fileID: 3964784991822526175}
-  m_Layer: 5
+  m_Layer: 10
   m_Name: ReciptBackground
   m_TagString: EditorStuff
   m_Icon: {fileID: 0}
@@ -3933,7 +3900,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2170760419709079517}
-  m_Layer: 8
+  m_Layer: 10
   m_Name: CheckTransforms
   m_TagString: EditorOnly
   m_Icon: {fileID: 0}
@@ -3954,9 +3921,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 658112795706614471}
-  - {fileID: 6384259129262542164}
   - {fileID: 3640111461472811711}
-  - {fileID: 1470658638112439245}
   - {fileID: 2289483909231141402}
   - {fileID: 1921159176726234218}
   m_Father: {fileID: 4713710906471424983}
@@ -3973,7 +3938,7 @@ GameObject:
   - component: {fileID: 817269325791944811}
   - component: {fileID: 1612148821716087300}
   - component: {fileID: 7215805692984733788}
-  m_Layer: 5
+  m_Layer: 10
   m_Name: BackgroundColor
   m_TagString: EditorStuff
   m_Icon: {fileID: 0}
@@ -4065,7 +4030,7 @@ GameObject:
   - component: {fileID: 97980632524091213}
   - component: {fileID: 7002218182195911805}
   - component: {fileID: 4389599937082482741}
-  m_Layer: 5
+  m_Layer: 10
   m_Name: LifeBarAndItemCanvas
   m_TagString: EditorStuff
   m_Icon: {fileID: 0}
@@ -4154,7 +4119,7 @@ MonoBehaviour:
   m_BlockingObjects: 0
   m_BlockingMask:
     serializedVersion: 2
-    m_Bits: 3895
+    m_Bits: 3127
 --- !u!1 &7753453360667048062
 GameObject:
   m_ObjectHideFlags: 0
@@ -4167,7 +4132,7 @@ GameObject:
   - component: {fileID: 1417515371719627131}
   - component: {fileID: 3082473715295665730}
   - component: {fileID: 6793509103385062643}
-  m_Layer: 5
+  m_Layer: 10
   m_Name: ItemsPanel
   m_TagString: EditorStuff
   m_Icon: {fileID: 0}
@@ -4272,7 +4237,7 @@ GameObject:
   - component: {fileID: 1215555857477223547}
   - component: {fileID: 6969804974729771176}
   - component: {fileID: 905824140425502516}
-  m_Layer: 8
+  m_Layer: 10
   m_Name: SmokeBomb
   m_TagString: Consumable
   m_Icon: {fileID: 0}
@@ -4393,7 +4358,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3640111461472811711}
-  m_Layer: 8
+  m_Layer: 10
   m_Name: WallCheckPoint
   m_TagString: Transforms
   m_Icon: {fileID: -5487077368411116049, guid: 0000000000000000d000000000000000, type: 0}
@@ -4409,7 +4374,7 @@ Transform:
   m_GameObject: {fileID: 8208685543429563469}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.000000007450581, y: 0, z: 0}
+  m_LocalPosition: {x: 0.037, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4425,7 +4390,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5866066853436907451}
   - component: {fileID: 8395966724004491736}
-  m_Layer: 5
+  m_Layer: 10
   m_Name: DelayIncreaseBar
   m_TagString: EditorStuff
   m_Icon: {fileID: 0}
@@ -4460,37 +4425,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8270501328306002699}
   m_CullTransparentMesh: 1
---- !u!1 &8402183690495599919
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 6384259129262542164}
-  m_Layer: 8
-  m_Name: GroundCheckRayOrigin
-  m_TagString: Untagged
-  m_Icon: {fileID: 2488908585195742037, guid: 0000000000000000d000000000000000, type: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &6384259129262542164
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8402183690495599919}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.033, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 2170760419709079517}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8648635217601599618
 GameObject:
   m_ObjectHideFlags: 0
@@ -4500,7 +4434,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5140415219125351385}
-  m_Layer: 5
+  m_Layer: 10
   m_Name: HealthBarPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4542,7 +4476,7 @@ GameObject:
   - component: {fileID: 6009334133018336455}
   - component: {fileID: 3604495745124130922}
   - component: {fileID: 1915723867026875652}
-  m_Layer: 8
+  m_Layer: 10
   m_Name: Main Camera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
@@ -4686,7 +4620,7 @@ GameObject:
   - component: {fileID: 8189740114657180074}
   - component: {fileID: 3308989747508250420}
   - component: {fileID: 1018495228245733700}
-  m_Layer: 5
+  m_Layer: 10
   m_Name: RecipeImage
   m_TagString: EditorStuff
   m_Icon: {fileID: 0}
@@ -4775,9 +4709,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4584939610248848041}
-  m_Layer: 8
+  m_Layer: 10
   m_Name: ConeOfVision
-  m_TagString: Player
+  m_TagString: Interactable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

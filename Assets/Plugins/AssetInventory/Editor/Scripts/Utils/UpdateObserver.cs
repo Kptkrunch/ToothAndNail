@@ -26,6 +26,8 @@ namespace AssetInventory
 
         public UpdateObserver(string path, IEnumerable<string> fileTypes)
         {
+            if (!Directory.Exists(path)) return; // will throw error otherwise
+
             _fileTypes = fileTypes.Select(ft => "." + ft).ToArray(); // ensure fileTypes include the dot prefix
 
             _watcher = new FileSystemWatcher();
@@ -222,7 +224,7 @@ namespace AssetInventory
             // enabling the events will scan the directory which can lock up the main thread
             await Task.Run(() =>
             {
-                _watcher.EnableRaisingEvents = true;
+                if (!string.IsNullOrEmpty(_watcher?.Path)) _watcher.EnableRaisingEvents = true;
             });
         }
 
@@ -230,7 +232,7 @@ namespace AssetInventory
         {
             await Task.Run(() =>
             {
-                _watcher.EnableRaisingEvents = false;
+                if (_watcher != null && _watcher.EnableRaisingEvents) _watcher.EnableRaisingEvents = false;
             });
         }
     }

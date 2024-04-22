@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-#if UNITY_2021_2_OR_NEWER
+#if UNITY_2021_2_OR_NEWER && UNITY_EDITOR_WIN
 using System.Drawing.Imaging;
 #endif
 using System.IO;
@@ -56,7 +56,10 @@ namespace AssetInventory
                 // check if previewable at all
                 if (!PreviewGenerator.IsPreviewable(info.FileName, true))
                 {
-                    DBAdapter.DB.Execute("update AssetFile set PreviewState=? where Id=?", AssetFile.PreviewOptions.None, info.Id);
+                    if (info.PreviewState != AssetFile.PreviewOptions.Supplied)
+                    {
+                        DBAdapter.DB.Execute("update AssetFile set PreviewState=? where Id=?", AssetFile.PreviewOptions.None, info.Id);
+                    }
                     continue;
                 }
 
@@ -64,20 +67,38 @@ namespace AssetInventory
                 string sourcePath = await AssetInventory.EnsureMaterializedAsset(info);
                 if (sourcePath == null)
                 {
-                    DBAdapter.DB.Execute("update AssetFile set PreviewState=? where Id=?", AssetFile.PreviewOptions.Error, info.Id);
+                    if (info.PreviewState != AssetFile.PreviewOptions.Supplied)
+                    {
+                        DBAdapter.DB.Execute("update AssetFile set PreviewState=? where Id=?", AssetFile.PreviewOptions.Error, info.Id);
+                    }
                     continue;
                 }
 
                 if (SubProgress % 10 == 0) await Task.Yield(); // let editor breath
 
                 // from Unity 2021.2+ we can take a shortcut for images since the drawing library is supported in C#
-                #if UNITY_2021_2_OR_NEWER
+                #if UNITY_2021_2_OR_NEWER && UNITY_EDITOR_WIN
                 if (ImageUtils.SYSTEM_IMAGE_TYPES.Contains(info.Type))
                 {
                     // take shortcut for images and skip Unity importer
-                    ImageUtils.ResizeImage(sourcePath, previewFile, AssetInventory.Config.upscaleSize, !AssetInventory.Config.upscaleLossless, ImageFormat.Png);
-                    StorePreviewResult(new PreviewRequest {DestinationFile = previewFile, Id = info.Id, Icon = Texture2D.grayTexture, SourceFile = sourcePath});
-                    created++;
+                    if (ImageUtils.ResizeImage(sourcePath, previewFile, AssetInventory.Config.upscaleSize, !AssetInventory.Config.upscaleLossless, ImageFormat.Png))
+                    {
+                        StorePreviewResult(new PreviewRequest {DestinationFile = previewFile, Id = info.Id, Icon = Texture2D.grayTexture, SourceFile = sourcePath});
+                        created++;
+                    }
+                    else
+                    {
+                        // try to use original preview
+                        string originalPreviewFile = Path.Combine(Path.GetDirectoryName(Path.GetDirectoryName(sourcePath)), "preview.png");
+                        if (File.Exists(originalPreviewFile))
+                        {
+                            File.Copy(originalPreviewFile, previewFile, true);
+                            StorePreviewResult(new PreviewRequest {DestinationFile = previewFile, Id = info.Id, Icon = Texture2D.grayTexture, SourceFile = originalPreviewFile});
+                            info.PreviewState = AssetFile.PreviewOptions.Supplied;
+                            DBAdapter.DB.Execute("update AssetFile set PreviewState=? where Id=?", AssetFile.PreviewOptions.Supplied, info.Id);
+                            created++;
+                        }
+                    }
                 }
                 else
                 {
@@ -97,7 +118,7 @@ namespace AssetInventory
 
                     PreviewGenerator.EnsureProgress();
                     if (PreviewGenerator.ActiveRequestCount() > MAX_REQUESTS) await PreviewGenerator.ExportPreviews(OPEN_REQUESTS);
-                #if UNITY_2021_2_OR_NEWER
+                #if UNITY_2021_2_OR_NEWER && UNITY_EDITOR_WIN
                 }
                 #endif
             }
@@ -184,7 +205,8 @@ namespace AssetInventory
                 }
             }
 
-            af.PreviewState = req.Icon != null ? AssetFile.PreviewOptions.Custom : AssetFile.PreviewOptions.Error;
+            // do not remove originally supplied previews even in case of error
+            af.PreviewState = req.Icon != null ? AssetFile.PreviewOptions.Custom : (af.PreviewState != AssetFile.PreviewOptions.Supplied ? AssetFile.PreviewOptions.Error : AssetFile.PreviewOptions.Supplied);
             af.Hue = -1;
 
             DBAdapter.DB.Update(af);

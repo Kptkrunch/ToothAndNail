@@ -10,9 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 7116467626337013722}
   - component: {fileID: 873787731829211177}
-  m_Layer: 30
+  m_Layer: 7
   m_Name: GameController
-  m_TagString: EditorOnly
+  m_TagString: GameController
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -74,7 +74,7 @@ MonoBehaviour:
         m_Flags: 0
       m_Flags: 0
     m_Reference: {fileID: 9050046350933893652, guid: 650ad5b10ec76f24f8ddd5dd243a6cc1, type: 3}
-  m_PlayerPrefab: {fileID: 2015284212534810262, guid: 5770e1cefd9fdae408d632614b467742, type: 3}
+  m_PlayerPrefab: {fileID: 8318088345308018347, guid: ad732d9c444e5ce40b6a0be47609e67b, type: 3}
   m_SplitScreen: 1
   m_MaintainAspectRatioInSplitScreen: 0
   m_FixedNumberOfSplitScreens: -1

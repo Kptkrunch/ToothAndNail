@@ -8,16 +8,12 @@ namespace JAssets.Scripts_SC.UI
 	{
 		private int _maxHealth = 100;
 		private int _currentHealth = 100;
-
-		[SerializeField] private Sprite emptyHand;
-
+		
 		public MMProgressBar healthBar;
 		public Image decreaseBar;
 		public Image increaseBar;
 		public Image foregroundBar;
-
-		public GameObject barChunk;
-
+		
 		public Image imageSlotA;
 		public Image imageSlotB;
 		public Image recipeImage;
