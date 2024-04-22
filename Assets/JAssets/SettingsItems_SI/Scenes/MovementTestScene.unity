@@ -7111,6 +7111,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 22
       objectReference: {fileID: 0}
+    - target: {fileID: 223206002016087228, guid: 1cab5d508d309404d8d195e269606bf3, type: 3}
+      propertyPath: m_TagString
+      value: Weapon
+      objectReference: {fileID: 0}
     - target: {fileID: 1648946051229719746, guid: 1cab5d508d309404d8d195e269606bf3, type: 3}
       propertyPath: m_Layer
       value: 22
@@ -8588,7 +8592,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6877069455555534154, guid: bcd0c07cb4560794a9810cd6f899aadc, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6877069455555534154, guid: bcd0c07cb4560794a9810cd6f899aadc, type: 3}
+      propertyPath: m_TagString
+      value: Pickup
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -35962,6 +35970,18 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2823647822134530511, guid: ad732d9c444e5ce40b6a0be47609e67b, type: 3}
+      propertyPath: wallLayerMask.m_Bits
+      value: 1073741824
+      objectReference: {fileID: 0}
+    - target: {fileID: 2823647822134530511, guid: ad732d9c444e5ce40b6a0be47609e67b, type: 3}
+      propertyPath: groundLayerMask.m_Bits
+      value: 2147483648
+      objectReference: {fileID: 0}
+    - target: {fileID: 4303628470210770479, guid: ad732d9c444e5ce40b6a0be47609e67b, type: 3}
+      propertyPath: pickupLayer.m_Bits
+      value: 4194304
+      objectReference: {fileID: 0}
     - target: {fileID: 4320037412430122241, guid: ad732d9c444e5ce40b6a0be47609e67b, type: 3}
       propertyPath: sceneViewId
       value: 1
@@ -35985,6 +36005,14 @@ PrefabInstance:
     - target: {fileID: 5540621032365424612, guid: ad732d9c444e5ce40b6a0be47609e67b, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5779190126905040677, guid: ad732d9c444e5ce40b6a0be47609e67b, type: 3}
+      propertyPath: m_Size.x
+      value: 0.19271083
+      objectReference: {fileID: 0}
+    - target: {fileID: 5779190126905040677, guid: ad732d9c444e5ce40b6a0be47609e67b, type: 3}
+      propertyPath: m_Offset.x
+      value: -0.1875706
       objectReference: {fileID: 0}
     - target: {fileID: 6630223388740688651, guid: ad732d9c444e5ce40b6a0be47609e67b, type: 3}
       propertyPath: m_AnchorMax.y

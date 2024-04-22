@@ -13,15 +13,7 @@ namespace JAssets.Scripts_SC.Lists
 
 		private void Awake()
 		{
-			if (instance == null)
-			{
-				instance = this;
-				DontDestroyOnLoad(gameObject);
-			}
-			else
-			{
-				Destroy(gameObject);
-			}
+			instance = this;
 		}
 
 		public string GetRecipeFromMatrix(string row, string item)

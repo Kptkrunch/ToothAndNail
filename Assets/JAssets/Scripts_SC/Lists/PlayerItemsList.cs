@@ -28,7 +28,7 @@ namespace JAssets.Scripts_SC.Lists
 			foreach (var item in itemsList)
 			{
 				var currentItem = item.name;
-				if (Library.instance.itemDict != null && !Library.instance.itemDict.ContainsKey(currentItem)) ;
+				if (Library.instance.itemDict != null && !Library.instance.itemDict.ContainsKey(currentItem)) 
 				if (Library.instance.itemDict != null) Library.instance.itemDict.Add(currentItem, item);
 			}
 		}

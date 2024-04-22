@@ -32,7 +32,7 @@ public class ParticlePoolList : MonoBehaviour
 		foreach (var pool in particleList)
 		{
 			var currentPool = pool.GetPooledGameObject().name;
-			if (Library.instance.particleDict != null && !Library.instance.particleDict.ContainsKey(currentPool)) ;
+			if (Library.instance.particleDict != null && !Library.instance.particleDict.ContainsKey(currentPool))
 			if (Library.instance.particleDict != null) Library.instance.particleDict.Add(currentPool, pool);
 		}
 	}

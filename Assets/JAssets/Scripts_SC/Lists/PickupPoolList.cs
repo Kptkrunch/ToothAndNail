@@ -28,8 +28,8 @@ namespace JAssets.Scripts_SC.Lists
 			foreach (var pool in pickupList)
 			{
 				var currentPool = pool.GetPooledGameObject().name;
-				if (Library.instance.pickupsDict != null && !Library.instance.pickupsDict.ContainsKey(currentPool)) ;
-				if (Library.instance.pickupsDict != null) Library.instance.pickupsDict.Add(currentPool, pool);
+				if (Library.instance.pickupsDict != null)
+				Library.instance.pickupsDict.TryAdd(currentPool, pool);
 			}
 		}
 

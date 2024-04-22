@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using JAssets.Scripts_SC.Items;
 using MoreMountains.Tools;
 using UnityEngine;
 
@@ -31,14 +32,17 @@ namespace JAssets.Scripts_SC.Lists
 			foreach (var pool in consumableList)
 			{
 				var currentPool = pool.GetPooledGameObject().name;
-				if (Library.instance.consumableDict != null && !Library.instance.consumableDict.ContainsKey(currentPool)) ;
+				if (Library.instance.consumableDict != null && !Library.instance.consumableDict.ContainsKey(currentPool)) 
 				if (Library.instance.consumableDict != null) Library.instance.consumableDict.Add(currentPool, pool);
 			}
 		}
 
 		private void PopulateList()
 		{
-
+			foreach (var item in consumableList)
+			{
+				Library.instance.consumableDict.TryAdd(item.name, item);
+			}
 		}
 	}
 }

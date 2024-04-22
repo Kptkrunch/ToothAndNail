@@ -136,7 +136,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b222132de0d9e574284b393e2d5b8a54, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 4023296954105386733}
   animator: {fileID: 5920561531143619385}
   shader: {fileID: 2100000, guid: 5c9552bee3197f340a20ed37e6ae720f, type: 2}
   spriteRenderer: {fileID: 7112601341914527681}
@@ -1519,7 +1518,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.23678695, y: 0.05503744}
+  m_Offset: {x: -0.2062766, y: 0.05503744}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -1530,7 +1529,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.09427813, y: 0.08270657}
+  m_Size: {x: 0.15529883, y: 0.08270657}
   m_EdgeRadius: 0
 --- !u!1 &2482624731084531872
 GameObject:
@@ -2328,6 +2327,7 @@ MonoBehaviour:
   deceleration: 20
   massFactor: 0.25
   jumpForce: 15
+  jumpHoldMultiplier: 0.5
   wallSlideSpeed: 0.5
   wallJumpForce: 10
   wallJumpDirection: {x: 1, y: 2}
