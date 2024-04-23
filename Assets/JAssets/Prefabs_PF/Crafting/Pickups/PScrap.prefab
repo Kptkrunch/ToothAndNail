@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8202448100063363316}
-  m_Layer: 10
+  m_Layer: 22
   m_Name: PScrap
   m_TagString: Pickup
   m_Icon: {fileID: 0}
@@ -46,7 +46,7 @@ GameObject:
   - component: {fileID: 4403682117652182178}
   - component: {fileID: 7817711183319345656}
   - component: {fileID: 1831657755638755910}
-  m_Layer: 10
+  m_Layer: 22
   m_Name: Stick
   m_TagString: Pickup
   m_Icon: {fileID: 0}
@@ -234,11 +234,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 182753893698774511, guid: 302b15f9b2cc68e428834e8ce57b2961, type: 3}
       propertyPath: m_Layer
-      value: 10
+      value: 22
       objectReference: {fileID: 0}
     - target: {fileID: 182753893698781565, guid: 302b15f9b2cc68e428834e8ce57b2961, type: 3}
       propertyPath: m_Layer
-      value: 10
+      value: 22
       objectReference: {fileID: 0}
     - target: {fileID: 1431524522856451246, guid: 302b15f9b2cc68e428834e8ce57b2961, type: 3}
       propertyPath: m_LocalPosition.x
@@ -262,7 +262,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5355933885024790224, guid: 302b15f9b2cc68e428834e8ce57b2961, type: 3}
       propertyPath: m_Layer
-      value: 10
+      value: 22
       objectReference: {fileID: 0}
     - target: {fileID: 5355933885024790224, guid: 302b15f9b2cc68e428834e8ce57b2961, type: 3}
       propertyPath: m_IsActive

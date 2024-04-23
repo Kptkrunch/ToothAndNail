@@ -13,9 +13,9 @@ GameObject:
   - component: {fileID: 2365844609467988461}
   - component: {fileID: 7053094247303539302}
   - component: {fileID: 5793140169756792442}
-  m_Layer: 6
+  m_Layer: 18
   m_Name: BoneNode
-  m_TagString: Interactible
+  m_TagString: Interactable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -48,7 +48,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spriteRenderer: {fileID: 7053094247303539302}
-  lootTable: {fileID: 0}
+  lootTable: {fileID: 11400000, guid: ecebed9deb347434c8df6a75f71dcd24, type: 2}
   refreshCd: 0
 --- !u!58 &2365844609467988461
 CircleCollider2D:

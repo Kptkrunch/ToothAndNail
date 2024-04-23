@@ -20,6 +20,7 @@ namespace JAssets.Scripts_SC.Lists
 		public MMSimpleObjectPooler cStick;
 		public MMSimpleObjectPooler cStone;
 		public MMSimpleObjectPooler cVine;
+		public MMSimpleObjectPooler arrow;
 	
 		private void Start()
 		{

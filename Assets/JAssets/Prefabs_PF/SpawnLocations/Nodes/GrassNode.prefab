@@ -13,9 +13,9 @@ GameObject:
   - component: {fileID: 2365844609467988461}
   - component: {fileID: 7053094247303539302}
   - component: {fileID: 5793140169756792442}
-  m_Layer: 6
+  m_Layer: 18
   m_Name: GrassNode
-  m_TagString: Interactible
+  m_TagString: Interactable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

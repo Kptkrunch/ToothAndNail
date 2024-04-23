@@ -692,7 +692,7 @@ Canvas:
   m_VertexColorAlwaysGammaSpace: 1
   m_AdditionalShaderChannelsFlag: -1
   m_UpdateRectTransformForStandalone: 0
-  m_SortingLayerID: -1459862473
+  m_SortingLayerID: 1388011171
   m_SortingOrder: 0
   m_TargetDisplay: 0
 --- !u!1 &812230166541221100
@@ -1339,7 +1339,7 @@ MonoBehaviour:
   m_BlendStyleIndex: 0
   m_FalloffIntensity: 1
   m_Color: {r: 0.9622642, g: 0.9622642, b: 0.9622642, a: 1}
-  m_Intensity: 1.1
+  m_Intensity: 0.41
   m_LightVolumeIntensity: 0
   m_LightVolumeIntensityEnabled: 0
   m_ApplyToSortingLayers: b9b8169b159558e3c7d0f1c247762422e5671bf2e122e36b1b33efd50181a6652fe2f40d3744fca8
@@ -1518,7 +1518,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.2062766, y: 0.05503744}
+  m_Offset: {x: -0.1875706, y: 0.05503744}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -1529,7 +1529,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.15529883, y: 0.08270657}
+  m_Size: {x: 0.19271083, y: 0.08270657}
   m_EdgeRadius: 0
 --- !u!1 &2482624731084531872
 GameObject:
@@ -1729,7 +1729,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 0}
+  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 1}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -2344,10 +2344,10 @@ MonoBehaviour:
   coneOfVision: {fileID: 9079385923981105982}
   groundLayerMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 2147483648
   wallLayerMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 1073741824
   coyoteTime: 0.15
   preLandingJumpBuffer: 0.15
   rb2d: {fileID: 1835638504327017159}
@@ -3221,7 +3221,7 @@ GameObject:
   - component: {fileID: 836914852581215234}
   - component: {fileID: 4702343677867728657}
   - component: {fileID: 5975328122496195847}
-  m_Layer: 10
+  m_Layer: 22
   m_Name: Lights
   m_TagString: Interactable
   m_Icon: {fileID: 0}
@@ -4389,7 +4389,7 @@ MonoBehaviour:
   attackController: {fileID: 506106849963986366}
   pickupLayer:
     serializedVersion: 2
-    m_Bits: 1024
+    m_Bits: 4194304
   imageA: {fileID: 8576608064984657868}
   imageB: {fileID: 2846413252447114978}
   imageC: {fileID: 1196907785836531055}
@@ -4709,7 +4709,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1796341210223138737}
-  m_Layer: 10
+  m_Layer: 31
   m_Name: ConeOfVision
   m_TagString: Interactable
   m_Icon: {fileID: 0}
