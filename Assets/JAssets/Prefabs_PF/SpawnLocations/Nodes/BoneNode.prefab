@@ -49,7 +49,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spriteRenderer: {fileID: 7053094247303539302}
   lootTable: {fileID: 11400000, guid: ecebed9deb347434c8df6a75f71dcd24, type: 2}
-  refreshCd: 0
+  refreshCd: 20
 --- !u!58 &2365844609467988461
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -105,7 +105,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: ff5fa6afe06d8224793fe61ff6a29eb9, type: 2}
+  - {fileID: 2100000, guid: a3a2ab6d6734b0b4394c2f8bf55ce0d0, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -126,7 +126,7 @@ SpriteRenderer:
   m_SortingLayerID: 1388011171
   m_SortingLayer: 12
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: a3091efa330d39b488dd26b0f5d204d2, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 2c27934d9dab0c54ea3e9e02fce7d4b5, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

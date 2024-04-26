@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: be4192a2a959f00478fe351e2f555206, type: 3}
-  m_Name: Bow
+  m_Name: scrap
   m_EditorClassIdentifier: 
   sprite: {fileID: 1466026959, guid: 212bd3de0e8797c419eb6ba8597c5e2c, type: 3}
   resultItem: Bow

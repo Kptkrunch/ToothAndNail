@@ -1,0 +1,45 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 522a1d0a50e63e546856b002e4cce518, type: 3}
+  m_Name: MatrixRow_SO
+  m_EditorClassIdentifier: 
+  rowList: []
+  VineRow: {fileID: 0}
+  StoneRow: {fileID: 0}
+  StickRow: {fileID: 0}
+  BoneRow: {fileID: 0}
+  ScrapRow: {fileID: 0}
+  stone1: 
+  stone2: 
+  stone3: 
+  stone4: 
+  stone5: 
+  vine1: 
+  vine2: 
+  vine3: 
+  vine4: 
+  vine5: 
+  stick1: 
+  stick2: 
+  stick3: 
+  stick4: 
+  stick5: 
+  bone1: 
+  bone2: 
+  bone3: 
+  bone4: 
+  bone5: 
+  scrap1: 
+  scrap2: 
+  scrap3: 
+  scrap4: 
+  scrap5: 

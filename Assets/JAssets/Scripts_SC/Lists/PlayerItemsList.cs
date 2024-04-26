@@ -9,6 +9,12 @@ namespace JAssets.Scripts_SC.Lists
 		public List<GameObject> itemsList = new();
 
 		public GameObject battleAx;
+		public GameObject handAx;
+		public GameObject whip;
+		public GameObject sledge;
+		public GameObject buckler;
+		public GameObject towerShield;
+		public GameObject knife;
 		public GameObject spear;
 		public GameObject sword;
 		public GameObject bow;

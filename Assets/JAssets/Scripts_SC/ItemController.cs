@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using JAssets.ScriptableObjects_SO;
 using JAssets.Scripts_SC.Items;
 using JAssets.Scripts_SC.Lists;
 using JAssets.Scripts_SC.Spawners;
@@ -70,6 +71,9 @@ namespace JAssets.Scripts_SC
         
         private void DropEquippedGear(string itemName, string itemSlot)
         {
+            Debug.Log("item in drop gear" + itemName);
+            Debug.Log("item slot" + itemSlot);
+
             if (itemName == "") return;
             switch (itemSlot)
             {
@@ -84,14 +88,18 @@ namespace JAssets.Scripts_SC
                     itemSlotB = "";
                     break;
             }
-            
+            Debug.Log("item name" + itemName);
             var itemToDrop = Library.instance.pickupsDict["P" + itemName + "-0"].GetPooledGameObject();
+            Debug.Log("item to drop" + itemToDrop);
+
             itemToDrop.transform.position = transform.position;
             itemToDrop.SetActive(true);
         }
 
         private void CheckForCraftableHandler(string a, string b)
         {
+            Debug.Log("A" + a);
+            Debug.Log("B" + b);
 
             if (a == "" || b == "") return;
             var recipe = CraftingMatrix.instance.GetRecipeFromMatrix(a, b);

@@ -8,6 +8,7 @@ namespace JAssets.Scripts_SC.Lists
 	public class ConsumablePoolList : MonoBehaviour
 	{
 		public List<MMSimpleObjectPooler> consumableList = new();
+		
 		public MMSimpleObjectPooler cBolos;
 		public MMSimpleObjectPooler cBone;
 		public MMSimpleObjectPooler cCaltrops;
@@ -20,8 +21,9 @@ namespace JAssets.Scripts_SC.Lists
 		public MMSimpleObjectPooler cStick;
 		public MMSimpleObjectPooler cStone;
 		public MMSimpleObjectPooler cVine;
-		public MMSimpleObjectPooler arrow;
+		public MMSimpleObjectPooler cArrow;
 	
+		
 		private void Start()
 		{
 			PopulateList();
@@ -30,20 +32,34 @@ namespace JAssets.Scripts_SC.Lists
 		
 		private void PopulateLibrary()
 		{
+			Debug.Log("outside lib");
 			foreach (var pool in consumableList)
 			{
 				var currentPool = pool.GetPooledGameObject().name;
-				if (Library.instance.consumableDict != null && !Library.instance.consumableDict.ContainsKey(currentPool)) 
-				if (Library.instance.consumableDict != null) Library.instance.consumableDict.Add(currentPool, pool);
+				Debug.Log(currentPool);
+				if (Library.instance.consumableDict != null &&
+					!Library.instance.consumableDict.ContainsKey(currentPool))
+				{
+					Library.instance.consumableDict.TryAdd(currentPool, pool);
+				}
 			}
 		}
 
 		private void PopulateList()
 		{
-			foreach (var item in consumableList)
-			{
-				Library.instance.consumableDict.TryAdd(item.name, item);
-			}
+			consumableList.Add(cArrow);
+			consumableList.Add(cBolos);
+			consumableList.Add(cBone);
+			consumableList.Add(cCaltrops);
+			consumableList.Add(cCross);
+			consumableList.Add(cNet);
+			consumableList.Add(cScrap);
+			consumableList.Add(cSmokeBomb);
+			consumableList.Add(cSnareTrap);
+			consumableList.Add(cSpikeTrap);
+			consumableList.Add(cStick);
+			consumableList.Add(cStone);
+			consumableList.Add(cVine);
 		}
 	}
 }

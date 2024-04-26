@@ -6,22 +6,20 @@ namespace JAssets.Scripts_SC
 	public class Projectile : MonoBehaviour
 	{
 		public float lifespan = 10f;
+		public CircleCollider2D hitbox;
 		public int damage = 1;
 		private float age = 0f;
 		
 
-		private Rigidbody rb2d;
+		public Rigidbody2D rb2d;
 		private Vector3 lastVelocity;
 
-		private void Awake()
+		private void Start()
 		{
-			rb2d = GetComponent<Rigidbody>();
 		}
 
 		private void Update()
-		{
-			lastVelocity = rb2d.velocity;
-
+		{ 
 			age += Time.deltaTime;
 			if (age > lifespan) {
 				gameObject.SetActive(false);
@@ -41,7 +39,6 @@ namespace JAssets.Scripts_SC
 			{
 				other.gameObject.GetComponent<PlayerHealthController>().GetDamaged(damage);
 				gameObject.SetActive(false);
-				// play breaking animation
 			}
 		}
 	}

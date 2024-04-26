@@ -12,12 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be3ec4f5c1cbbe34c88bfad187fc58f0, type: 3}
   m_Name: Bow_SO
   m_EditorClassIdentifier: 
-  sprite: {fileID: 0}
+  sprite: {fileID: -1885008689, guid: b058b98bd04830d4ca44d5dd9691bafa, type: 3}
   weight: 1
   damage: 1
   durability: 2
   fullDurability: 2
-  attackAnimString: Fire
-  specAnimString: NockArrow
+  attackAnimString: ChargeBow
+  specAnimString: Nock
   attackCd: 5
-  specialCd: 1
+  specialCd: 2

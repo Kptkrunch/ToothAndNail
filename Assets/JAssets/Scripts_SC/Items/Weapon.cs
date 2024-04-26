@@ -1,5 +1,6 @@
 using JAssets.Scripts_SC.SOScripts;
 using JAssets.Scripts_SC.Spawners;
+using JetBrains.Annotations;
 using MoreMountains.Feedbacks;
 using UnityEngine;
 
@@ -12,7 +13,7 @@ namespace JAssets.Scripts_SC.Items
         public Weapon_SO weaponSo;
         internal Weapon_SO rtso;
         public ItemController controller;
-        public Collider2D hitBox;
+        [CanBeNull] public Collider2D hitBox;
 
         private void OnEnable()
         {

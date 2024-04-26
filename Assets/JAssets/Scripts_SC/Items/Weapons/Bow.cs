@@ -1,84 +1,64 @@
-using System;
 using JAssets.Scripts_SC.Lists;
-using JAssets.Scripts_SC.SOScripts;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 namespace JAssets.Scripts_SC.Items.Weapons
 {
 	public class Bow : Weapon
 	{
-		public GameObject arrowPrefab; // reference to the arrow prefab
-		public Transform animationEndTransform; // reference to the animation end position and rotation
-		private bool isCharging;
-		private bool arrowIsNocked;
-		private float chargeStartTime;
-		public float maxForce = 500f;  // Maximum force when charged fully
-		public float maxChargeTime = 2f; // Maximum time for charge (in seconds)
-		public float chargeDuration;
-		public float chargeRatio;
-		public float force;
-		public Weapon_SO rtso;
+		public SpriteRenderer spriteRenderer;
+		public Rigidbody2D playerRigidbody2D;
+		public GameObject arrow;
+		
+		public bool isCharging; 
+		public bool arrowIsNocked;
+		public float speed = 7;
 
 		private void Start()
 		{
-			rtso = Instantiate(rtso);
+			spriteRenderer.sharedMaterial = Instantiate(spriteRenderer.sharedMaterial);
 		}
 
-		private void Update()
+		public override void Attack()
 		{
-			if (!(Time.time > chargeDuration || !isCharging)) return;
-			arrowIsNocked = false;
-			chargeRatio = Mathf.Clamp01(chargeDuration / maxChargeTime);
-			force = maxForce * chargeRatio;
-			isCharging = false;
-			Attack();
+			if (isCharging)
+			{
+				isCharging = false;
+				FireArrow();
+			}
+
+			if (arrowIsNocked)
+			{
+				isCharging = true;
+				animator.SetBool("ChargeBow", true);
+			}
 		}
+
 		public override void Special()
 		{
 			NockArrow();
 		}
 
-		public void Attack()
+		private void FireArrow()
 		{
-			var arrow = Library.instance.consumableDict["arrow"].GetPooledGameObject();
-			var arrowRigidbody = arrow.GetComponent<Rigidbody>();
-
-			if (arrowRigidbody)
-			{
-				arrow.GetComponent<Projectile>().damage = rtso.damage;
-				arrow.transform.position = animationEndTransform.position;
-				arrow.transform.rotation = animationEndTransform.rotation;
-				arrowRigidbody.AddForce(arrow.transform.forward * force);
-			}
-			else
-			{
-				Debug.LogError("Arrow prefab does not have Rigidbody component");
-			}
+			arrowIsNocked = false;
+			arrow.SetActive(false);
+			animator.SetBool("ChargeBow", false);
+			var projectilePrefab = Library.instance.consumableDict["CArrow-0"].GetPooledGameObject();
+			if (!projectilePrefab) return;
+			
+			projectilePrefab.transform.localScale = new Vector3(playerRigidbody2D.transform.localScale.x,
+				transform.localScale.y, transform.localScale.z);
+			projectilePrefab.SetActive(true);
+			projectilePrefab.transform.position = arrow.transform.position;
+			projectilePrefab.transform.rotation = arrow.transform.rotation;
+			projectilePrefab.GetComponent<Rigidbody2D>().AddForce(new  Vector2(playerRigidbody2D.transform.localScale.x * speed, 5f), ForceMode2D.Impulse);
 		}
 
-		public void ChargeBow(InputAction.CallbackContext context)
-		{
-			if (context.started)
-			{
-				// pull back animation
-				isCharging = true;
-				chargeStartTime = Time.time;
-			}
-			else if (context.canceled)
-			{
-				// release animation
-				isCharging = false;
-				chargeDuration = Time.time - chargeStartTime;
-				arrowIsNocked = false;
-				chargeRatio = Mathf.Clamp01(chargeDuration / maxChargeTime);
-				force = maxForce * chargeRatio;
-			}
-		}
 		private void NockArrow()
 		{
+			if (arrowIsNocked) return;
 			arrowIsNocked = true;
-			// set animation
+			arrow.SetActive(true);
 		}
-	}
+	}	
 }

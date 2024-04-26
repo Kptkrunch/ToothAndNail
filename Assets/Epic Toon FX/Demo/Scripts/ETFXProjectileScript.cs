@@ -5,7 +5,7 @@ namespace EpicToonFX
 {
     public class ETFXProjectileScript : MonoBehaviour
     {
-        public GameObject impactParticle; // Effect spawned when projectile hits a collider
+        public GameObject impactParticle; // Effect spawned when projectile hits a hitbox
         public GameObject projectileParticle; // Effect attached to the gameobject as child
         public GameObject muzzleParticle; // Effect instantly spawned when gameobject is spawned
         [Header("Adjust if not using Sphere Collider")]
