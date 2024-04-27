@@ -37,7 +37,7 @@ namespace JAssets.Scripts_SC
             if (weaponAnimator != null) weaponAnimator.SetBool(attackString, true);
             StartCoroutine(AttackCooldownTimer());
         }
-        public void Special(InputAction.CallbackContext context)
+        public virtual void Special(InputAction.CallbackContext context)
         {
             if (!context.performed) return;
             gear.items[weaponHand].GetComponentInChildren<Weapon>().Special();

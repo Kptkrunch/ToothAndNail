@@ -138,7 +138,7 @@ MonoBehaviour:
   arrow: {fileID: 6306868221102619664}
   isCharging: 0
   arrowIsNocked: 0
-  speed: 7
+  speed: 10
 --- !u!212 &7924253309307688694
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -6040,10 +6040,10 @@ MonoBehaviour:
   acceleration: 6
   deceleration: 20
   massFactor: 0.25
-  jumpForce: 15
+  jumpForce: 20
   jumpHoldMultiplier: 0.5
   wallSlideSpeed: 0.5
-  wallJumpForce: 15
+  wallJumpForce: 10
   wallJumpDirection: {x: 1, y: 2}
   ledgeClimbSpeed: 1
   slopeNormalPerp: {x: 0, y: 0}
