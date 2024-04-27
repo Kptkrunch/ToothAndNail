@@ -36300,7 +36300,7 @@ MonoBehaviour:
   arrowIsNocked: 0
   speed: 10
   chargeLevel: 0
-  maxChargeLevel: 5
+  maxChargeLevel: 3
 --- !u!114 &830403785135037752
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -41304,7 +41304,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &6782857056565900212
 RectTransform:
   m_ObjectHideFlags: 0

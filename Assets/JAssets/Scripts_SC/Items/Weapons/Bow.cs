@@ -10,7 +10,7 @@ namespace JAssets.Scripts_SC.Items.Weapons
 		public Rigidbody2D playerRigidbody2D;
 		public GameObject arrow;
 
-		public bool isCharging; 
+		public bool isCharging;
 		public bool arrowIsNocked;
 		public float speed = 7;
 		public float chargeLevel;
@@ -19,6 +19,7 @@ namespace JAssets.Scripts_SC.Items.Weapons
 		private static readonly int Glow = Shader.PropertyToID("_Glow");
 		private static readonly int Fire = Animator.StringToHash("Fire");
 		private static readonly int Nock = Animator.StringToHash("Nock");
+		private static readonly int Idle = Animator.StringToHash("Idle");
 
 		private void Start()
 		{
@@ -29,19 +30,23 @@ namespace JAssets.Scripts_SC.Items.Weapons
 		{
 			MaybeChargeBow();
 		}
-		
+
 		private void OnDisable()
 		{
 			ResetBow();
+			ResetAnimator();
 		}
 
 		public override void Attack()
 		{
+			if (!arrowIsNocked) animator.SetBool(ChargeBow, false);
 			if (!arrowIsNocked || !isCharging) return;
+			animator.SetBool(ChargeBow, false);
 			animator.SetBool(Fire, true);
+			arrow.SetActive(false);
+
 			var projectilePrefab = Library.instance.consumableDict["CArrow-0"].GetPooledGameObject();
 			if (!projectilePrefab) return;
-
 			projectilePrefab.transform.localScale = new Vector3(playerRigidbody2D.transform.localScale.x,
 				transform.localScale.y, transform.localScale.z);
 			projectilePrefab.SetActive(true);
@@ -50,15 +55,53 @@ namespace JAssets.Scripts_SC.Items.Weapons
 			projectilePrefab.GetComponent<Rigidbody2D>()
 				.AddForce(new Vector2(playerRigidbody2D.transform.localScale.x * speed * chargeLevel, 5f),
 					ForceMode2D.Impulse);
-			
+			animator.SetBool(Fire, false);
 			ResetBow();
+		}
+
+		private void ResetAnimator()
+		{
+			AttackOff();
+			SpecialOff();
+			animator.SetBool(ChargeBow, false);
 		}
 
 		public override void Special()
 		{
-			if (arrowIsNocked) isCharging = true;
+			if (arrowIsNocked)
+			{
+				isCharging = true;
+				animator.SetBool(Nock, false);
+				animator.SetBool(ChargeBow, true);
+			}
+			else if (!arrowIsNocked)
+			{
+				animator.SetBool(Nock, true);
+			}
+		}
+		
+		private void NockArrow()
+		{
+			if (arrowIsNocked) return;
+			arrowIsNocked = true;
+			arrow.SetActive(true);
 		}
 
+		private void MaybeChargeBow()
+		{
+			if (isCharging)
+			{
+				spriteRenderer.sharedMaterial.SetFloat(Glow, chargeLevel);
+				chargeLevel += Time.deltaTime;
+			}
+
+			if (chargeLevel >= maxChargeLevel)
+			{
+				chargeLevel = 0;
+				Attack();
+			}
+		}
+		
 		private void ResetBow()
 		{
 			spriteRenderer.sharedMaterial.SetFloat(Glow, 0);
@@ -66,32 +109,6 @@ namespace JAssets.Scripts_SC.Items.Weapons
 			arrow.SetActive(false);
 			arrowIsNocked = false;
 			isCharging = false;
-			animator.SetBool(ChargeBow, false);
-			animator.SetBool(Fire, false);
-			animator.SetBool(Nock, false);
 		}
-
-		private void NockArrow()
-		{
-			if (arrowIsNocked)
-			{
-				Debug.Log("arrow is knocked: " + arrowIsNocked);
-				isCharging = true;
-			}
-			if (arrowIsNocked) return;
-			arrowIsNocked = true;
-			arrow.SetActive(true);
-		}
-		
-		private void MaybeChargeBow()
-		{
-			if (isCharging)
-			{
-				spriteRenderer.sharedMaterial.SetFloat(Glow, chargeLevel);
-				chargeLevel += Time.deltaTime;
-			} 
-			
-			if (chargeLevel >= maxChargeLevel) Attack();
-		}
-	}	
+	}
 }
