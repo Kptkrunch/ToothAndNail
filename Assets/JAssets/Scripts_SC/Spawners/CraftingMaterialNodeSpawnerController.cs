@@ -37,19 +37,14 @@ namespace JAssets.Scripts_SC.Spawners
 		{
 			foreach (var spawnLocation in spawnLocationList)
 			{
-				Debug.Log(spawnLocation.name);
 				spawnLocation.gameObject.SetActive(false);
 			}
 
 			foreach (var spawnLocation in spawnLocationList)
 			{
-				Debug.Log(spawnLocation.name);
 				var activationChance = Random.Range(0, 10);
 				if (activationChance >= 2)
 				{
-					Debug.Log(spawnLocation.activeInHierarchy);
-					Debug.Log(activationChance);
-
 					RandomizeNodeType(spawnLocation.gameObject);
 				}
 			}

@@ -1,5 +1,6 @@
 using System.Collections;
 using JAssets.Scripts_SC.UI;
+using MoreMountains.Feedbacks;
 using UnityEngine;
 
 namespace JAssets.Scripts_SC
@@ -19,7 +20,6 @@ namespace JAssets.Scripts_SC
         private float _invulTimer;
         private static readonly int HitEffectBlend = Shader.PropertyToID("_HitEffectBlend");
 
-
         private void Start()
         {
             SetAllHealthValues();
@@ -33,8 +33,9 @@ namespace JAssets.Scripts_SC
 
         public void GetDamaged(int damage)
         {
+            Debug.Log("take damage: " + damage);
             if (!_canBeDamaged) return;
-            currentHealth -= damage; // Using property to update health and check for death
+            currentHealth -= damage;
             if (damage > 0) _canBeDamaged = false;
             StartCoroutine(HitEffect());
             playerUi.TakeDamage(damage);
@@ -46,7 +47,7 @@ namespace JAssets.Scripts_SC
 
         public void GetHealed(int healAmount)
         {
-            currentHealth += healAmount; // Using property to prevent exceeding max health
+            currentHealth += healAmount; 
             if (currentHealth > _maxHealth) currentHealth = _maxHealth;
             playerUi.HealDamage(healAmount);
         }

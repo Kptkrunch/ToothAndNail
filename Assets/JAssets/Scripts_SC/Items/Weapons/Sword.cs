@@ -15,7 +15,7 @@ namespace JAssets.Scripts_SC.Items.Weapons
             weaponDamage = rtso.damage;
         }
 
-        public override void OnCollisionEnter2D(Collision2D other)
+        public override void OnTriggerEnter2D(Collider2D other)
         {
             var thisId = gameObject.GetComponentInParent<PhotonView>().ViewID;
             if (thisId == other.gameObject.GetComponentInParent<PhotonView>().ViewID) return;

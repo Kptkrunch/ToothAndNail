@@ -29,9 +29,7 @@ namespace JAssets.Scripts_SC
         {
             if (!context.performed) return;
             var pickup = Physics2D.OverlapCircle(transform.position, 1f, pickupLayer);
-            Debug.Log("Pickup: " + pickup);
             var item = pickup.GetComponent<Pickup>();
-            Debug.Log("item: " + item);
 
             if (!item) return;
             item.PickupItem();
@@ -44,7 +42,6 @@ namespace JAssets.Scripts_SC
             imageA.sprite = Library.instance.itemDict[itemSlotA].GetComponent<SpriteRenderer>().sprite;
             CheckForCraftableHandler(itemSlotA, itemSlotB);
             if (item.itemType == "Consumable") return;
-            Debug.Log("item type: " + item.itemType);
             attackController.UpdateGearStats("A", item.itemName);
         }
 
@@ -53,7 +50,6 @@ namespace JAssets.Scripts_SC
             if (!context.performed) return;
             var pickup = Physics2D.OverlapCircle(transform.position, 1f, pickupLayer);
             var item = pickup.GetComponent<Pickup>();
-            Debug.Log("pickup: " + pickup + ", " + item);
             if (!item) return;
             item.PickupItem();
             
@@ -65,15 +61,11 @@ namespace JAssets.Scripts_SC
             imageB.sprite = Library.instance.itemDict[itemSlotB].GetComponent<SpriteRenderer>().sprite;
             CheckForCraftableHandler(itemSlotA, itemSlotB);
             if (item.itemType == "Consumable") return;
-            Debug.Log("item name: " + item.itemName);
             attackController.UpdateGearStats("B", item.itemName);
         }
         
         private void DropEquippedGear(string itemName, string itemSlot)
         {
-            Debug.Log("item in drop gear" + itemName);
-            Debug.Log("item slot" + itemSlot);
-
             if (itemName == "") return;
             switch (itemSlot)
             {
@@ -88,9 +80,7 @@ namespace JAssets.Scripts_SC
                     itemSlotB = "";
                     break;
             }
-            Debug.Log("item name" + itemName);
             var itemToDrop = Library.instance.pickupsDict["P" + itemName + "-0"].GetPooledGameObject();
-            Debug.Log("item to drop" + itemToDrop);
 
             itemToDrop.transform.position = transform.position;
             itemToDrop.SetActive(true);
@@ -98,15 +88,11 @@ namespace JAssets.Scripts_SC
 
         private void CheckForCraftableHandler(string a, string b)
         {
-            Debug.Log("A" + a);
-            Debug.Log("B" + b);
-
             if (a == "" || b == "") return;
             var recipe = CraftingMatrix.instance.GetRecipeFromMatrix(a, b);
             if (recipe == "") return;
             activeRecipeName = recipe;
             imageC.sprite = Library.instance.itemDict[recipe].GetComponent<SpriteRenderer>().sprite;
-            Debug.Log("Image C: " + imageC.sprite);
         }
 
         public void CraftItem(InputAction.CallbackContext context)

@@ -20,7 +20,7 @@ namespace JAssets.Scripts_SC.Items
             rtso = Instantiate(weaponSo);
         }
 
-        public virtual void OnCollisionEnter2D(Collision2D other)
+        public virtual void OnTriggerEnter2D(Collider2D other)
         {
             if (other.gameObject.CompareTag("Player"))
             {
@@ -62,15 +62,15 @@ namespace JAssets.Scripts_SC.Items
             print("Special");
         }
 
-        protected void DealDamageAndSpawnDmgText(Collision2D other)
+        protected void DealDamageAndSpawnDmgText(Collider2D other)
         {
             rtso.durability--;
             var otherPlayer = other.gameObject.GetComponentInChildren<PlayerHealthController>();
             otherPlayer.GetDamaged(rtso.damage);
 
-            var dmgText = DamageTextController.instance.player.GetFeedbackOfType<MMF_FloatingText>();
+            var dmgText = DamageNumberController.instance.player.GetFeedbackOfType<MMF_FloatingText>();
             dmgText.Value = rtso.damage.ToString();
-            DamageTextController.instance.player.PlayFeedbacks(otherPlayer.transform.position);
+            DamageNumberController.instance.player.PlayFeedbacks(otherPlayer.transform.position);
         }
 
         public virtual void DurabilityCheck()

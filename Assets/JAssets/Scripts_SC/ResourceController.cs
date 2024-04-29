@@ -13,9 +13,6 @@ namespace JAssets.Scripts_SC
 			if (!context.performed) return;
 			var interactable = Physics2D.OverlapCircle(transform.position, 1f, layerMask);
 			if (!interactable) return;
-			Debug.Log(interactable);
-			Debug.Log(interactable.GetComponent<ItemNode>().name);
-			Debug.Log(interactable.GetComponent<ItemNode>());
 			
 			interactable.GetComponent<ItemNode>().ActivateNode();
 		}

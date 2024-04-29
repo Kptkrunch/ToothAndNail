@@ -63,9 +63,6 @@ namespace JAssets.Scripts_SC
 
         public void UpdateGearStats(string slotToUpdate, string newItem)
         {
-            Debug.Log("slot to update: " + slotToUpdate);
-            Debug.Log("newItem: " + newItem);
-
             var weapon = gear.items[newItem].GetComponentInChildren<Weapon>();
 
             switch (slotToUpdate)
@@ -79,9 +76,6 @@ namespace JAssets.Scripts_SC
                     if (weapon) weaponHand = "itemSlotB";
                     break;
             }
-            Debug.Log("new item 2: " + newItem);
-            Debug.Log("gear at item: " + gear.items.ContainsKey(newItem));
-
             gear.items[newItem].gameObject.SetActive(true);
         
             if (weapon == null) return;
@@ -92,7 +86,6 @@ namespace JAssets.Scripts_SC
             specString = weapon.rtso.specAnimString;
             attackCd = weapon.rtso.attackCd;
             specialCd = weapon.rtso.specialCd;
-            Debug.Log(attackString);
         }
     }
 }

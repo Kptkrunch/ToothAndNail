@@ -1,11 +1,12 @@
-using System;
+using JAssets.Scripts_SC.Items;
+using MoreMountains.Feedbacks;
 using UnityEngine;
 
 namespace JAssets.Scripts_SC
 {
-	public class Projectile : MonoBehaviour
+	public class Projectile : Consumable
 	{
-		public float lifespan = 10f;
+		// public float lifespan = 10f;
 		public CircleCollider2D hitbox;
 		public int damage = 1;
 		private float age = 0f;
@@ -14,17 +15,13 @@ namespace JAssets.Scripts_SC
 		public Rigidbody2D rb2d;
 		private Vector3 lastVelocity;
 
-		private void Start()
-		{
-		}
-
-		private void Update()
-		{ 
-			age += Time.deltaTime;
-			if (age > lifespan) {
-				gameObject.SetActive(false);
-			}
-		}
+		// private void Update()
+		// { 
+		// 	age += Time.deltaTime;
+		// 	if (age > lifespan) {
+		// 		gameObject.SetActive(false);
+		// 	}
+		// }
 
 		private void LateUpdate()
 		{
@@ -33,13 +30,22 @@ namespace JAssets.Scripts_SC
 			}
 		}
 
-		private void OnCollisionEnter2D(Collision2D other)
+		private void OnTriggerEnter2D(Collider2D other)
 		{
 			if (other.gameObject.CompareTag("Player"))
 			{
-				other.gameObject.GetComponent<PlayerHealthController>().GetDamaged(damage);
-				gameObject.SetActive(false);
+				DealDamageAndSpawnDmgText(other);
 			}
+		}
+		
+		protected void DealDamageAndSpawnDmgText(Collider2D other)
+		{
+			var otherPlayer = other.gameObject.GetComponentInChildren<PlayerHealthController>();
+			otherPlayer.GetDamaged(damage);
+
+			var dmgText = DamageNumberController.instance.player.GetFeedbackOfType<MMF_FloatingText>();
+			dmgText.Value = damage.ToString();
+			DamageNumberController.instance.player.PlayFeedbacks(other.transform.position);
 		}
 	}
 }
