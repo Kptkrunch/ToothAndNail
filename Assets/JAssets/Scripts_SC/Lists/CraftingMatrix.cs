@@ -28,8 +28,6 @@ namespace JAssets.ScriptableObjects_SO
 
         public string GetRecipeFromMatrix(string row, string material)
         {
-            Debug.Log(row + ", mat: " + material);
-
             return !matrixDict[row][material] ? "" : matrixDict[row][material].resultItem;
         }
 

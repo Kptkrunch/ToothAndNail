@@ -33,14 +33,13 @@ namespace JAssets.Scripts_SC
 
             if (!item) return;
             item.PickupItem();
-
             DropEquippedGear(itemSlotA, "itemSlotA");
             
             itemSlotA = item.itemName;
             if (itemSlotA == "") return;
             
             imageA.sprite = Library.instance.itemDict[itemSlotA].GetComponent<SpriteRenderer>().sprite;
-            CheckForCraftableHandler(itemSlotA, itemSlotB);
+            CheckForCraftableHandler(itemSlotA, itemSlotB, item);
             if (item.itemType == "Consumable") return;
             attackController.UpdateGearStats("A", item.itemName);
         }
@@ -50,22 +49,23 @@ namespace JAssets.Scripts_SC
             if (!context.performed) return;
             var pickup = Physics2D.OverlapCircle(transform.position, 1f, pickupLayer);
             var item = pickup.GetComponent<Pickup>();
+            
             if (!item) return;
             item.PickupItem();
-            
             DropEquippedGear(itemSlotB, "itemSlotB");
             
             itemSlotB = item.itemName;
             if (itemSlotB == "") return;
 
             imageB.sprite = Library.instance.itemDict[itemSlotB].GetComponent<SpriteRenderer>().sprite;
-            CheckForCraftableHandler(itemSlotA, itemSlotB);
+            CheckForCraftableHandler(itemSlotA, itemSlotB, item);
             if (item.itemType == "Consumable") return;
             attackController.UpdateGearStats("B", item.itemName);
         }
         
         private void DropEquippedGear(string itemName, string itemSlot)
         {
+            Debug.Log(itemName + ",  " + itemSlot);
             if (itemName == "") return;
             switch (itemSlot)
             {
@@ -86,9 +86,14 @@ namespace JAssets.Scripts_SC
             itemToDrop.SetActive(true);
         }
 
-        private void CheckForCraftableHandler(string a, string b)
+        private void CheckForCraftableHandler(string a, string b, Pickup item)
         {
-            if (a == "" || b == "") return;
+            if (item.itemType == "Weapon" || a == "" || b == "")
+            {
+                activeRecipeName = "";
+                imageC.sprite = null;
+                return;
+            }
             var recipe = CraftingMatrix.instance.GetRecipeFromMatrix(a, b);
             if (recipe == "") return;
             activeRecipeName = recipe;

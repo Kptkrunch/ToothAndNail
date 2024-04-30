@@ -32,11 +32,9 @@ namespace JAssets.Scripts_SC.Lists
 		
 		private void PopulateLibrary()
 		{
-			Debug.Log("outside lib");
 			foreach (var pool in consumableList)
 			{
 				var currentPool = pool.GetPooledGameObject().name;
-				Debug.Log(currentPool);
 				if (Library.instance.consumableDict != null &&
 					!Library.instance.consumableDict.ContainsKey(currentPool))
 				{

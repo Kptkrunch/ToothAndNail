@@ -47,7 +47,7 @@ GameObject:
   - component: {fileID: 7817711183319345656}
   - component: {fileID: 1831657755638755910}
   m_Layer: 22
-  m_Name: Stick
+  m_Name: Scrap
   m_TagString: Pickup
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
