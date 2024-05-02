@@ -14,7 +14,7 @@ namespace JAssets.Scripts_SC
         public Material shader;
         public SpriteRenderer spriteRenderer;
         public PlayerUI playerUi;
-        [SerializeField] private int currentHealth;
+        [SerializeField] public int currentHealth;
         [SerializeField] private int _maxHealth = 5;
         private bool _canBeDamaged = true;
         private float _invulTimer;
@@ -23,6 +23,7 @@ namespace JAssets.Scripts_SC
         private void Start()
         {
             SetAllHealthValues();
+            playerUi.SetBarValues(_maxHealth);
             SetShaderAndInvul();
         }
 

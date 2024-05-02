@@ -6,8 +6,8 @@ namespace JAssets.Scripts_SC.UI
 {
 	public class PlayerUI : MonoBehaviour
 	{
-		private int _maxHealth = 100;
-		private int _currentHealth = 100;
+		private int _maxHealth = 5;
+		private int _currentHealth = 5;
 		
 		public MMProgressBar healthBar;
 		public Image decreaseBar;
@@ -25,12 +25,17 @@ namespace JAssets.Scripts_SC.UI
 		public void TakeDamage(int damage)
 		{
 			_currentHealth -= damage;
-			_currentHealth = Mathf.Max(0, _currentHealth);
+			if (_currentHealth <= 0) _currentHealth = 0;
+			healthBar.UpdateBar(_currentHealth, 0, _maxHealth);
+			// _currentHealth = Mathf.Max(0, _currentHealth);
 		}
 		public void HealDamage(int healAmount)
 		{
-			_currentHealth -= healAmount;
-			_currentHealth = Mathf.Min(_maxHealth, _currentHealth);
+			_currentHealth += healAmount;
+			if (_currentHealth >= _maxHealth) _currentHealth = _maxHealth;
+			healthBar.UpdateBar(_currentHealth, 0, _maxHealth);
+			// _currentHealth = Mathf.Min(_maxHealth, _currentHealth);
+
 		}
 		
 	}

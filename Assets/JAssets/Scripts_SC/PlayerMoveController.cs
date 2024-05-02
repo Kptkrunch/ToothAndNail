@@ -7,6 +7,7 @@ namespace JAssets.Scripts_SC
 {
     public class PlayerMoveController : MonoBehaviourPunCallbacks
     {
+        public int playerNumber;
         [SerializeField] private float moveSpeed = 5f;
         [SerializeField] private float maxSpeed;
         [SerializeField] private float velocity;
@@ -52,6 +53,7 @@ namespace JAssets.Scripts_SC
         [SerializeField] private Animator animator;
         [SerializeField] private Camera playerCamera;
         [SerializeField] private PlayerInput playerInput;
+        [SerializeField] private PlayerHealthController healthController;
         private InputActionAsset inputActionAsset;
         private InputActionMap player;
 
@@ -80,6 +82,11 @@ namespace JAssets.Scripts_SC
         {
             playerInput = GetComponent<PlayerInput>();
             playerCamera = GetComponentInChildren<Camera>();
+        }
+
+        private void Start()
+        {
+            playerNumber = PlayerList.instance.AddPlayerToList(gameObject);
         }
 
         private void Update()
@@ -114,7 +121,7 @@ namespace JAssets.Scripts_SC
 
         public void Move(InputAction.CallbackContext context)
         {
-            if (!context.performed || isCrouching) return;
+            if (!context.performed || isCrouching || healthController.currentHealth <= 0) return;
             float currentAcceleration;
 
             if (isGrounded)
@@ -142,7 +149,7 @@ namespace JAssets.Scripts_SC
         
         public void Jump(InputAction.CallbackContext context)
         {
-            if (!context.performed) return;
+            if (!context.performed || healthController.currentHealth <= 0) return;
             
             if (isGrounded || coyoteTimeTimer > 0 || jumpBufferTimer > 0)
             {
@@ -170,6 +177,7 @@ namespace JAssets.Scripts_SC
         
         public void Crouch(InputAction.CallbackContext context)
         {
+            if (healthController.currentHealth <= 0) return;
             if (context.performed && isGrounded)
             {
                 isCrouching = true;
@@ -310,7 +318,7 @@ namespace JAssets.Scripts_SC
 
         public void WallJump(InputAction.CallbackContext context)
         {
-            if (!context.performed) return;
+            if (!context.performed || healthController.currentHealth <= 0) return;
             if (isWallSliding)
             {
                 var forceAdd = new Vector2(

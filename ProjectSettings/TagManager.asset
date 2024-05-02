@@ -29,12 +29,12 @@ TagManager:
   - 
   - Water
   - UI
+  - NotRuntime
+  - Player4
+  - Player3
+  - Player2
+  - Player1
   - 
-  - EditorStuff
-  - 
-  - 
-  - Player
-  - Particles
   - 
   - 
   - 
@@ -44,7 +44,7 @@ TagManager:
   - Interactable
   - Background
   - 
-  - 
+  - Particles
   - Pickups
   - 
   - 
@@ -52,7 +52,7 @@ TagManager:
   - 
   - 
   - 
-  - 
+  - ForeGround
   - Walls
   - Ground
   m_SortingLayers:
@@ -100,4 +100,7 @@ TagManager:
     locked: 0
   - name: Pickups
     uniqueID: 2835104823
+    locked: 0
+  - name: UI
+    uniqueID: 1507941
     locked: 0

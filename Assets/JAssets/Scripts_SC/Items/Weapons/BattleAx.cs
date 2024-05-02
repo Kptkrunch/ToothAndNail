@@ -13,6 +13,7 @@ namespace JAssets.Scripts_SC.Items.Weapons
         {
             var thisId = gameObject.GetComponentInParent<PhotonView>().ViewID;
             if (thisId == other.gameObject.GetComponentInParent<PhotonView>().ViewID) return;
+            
             if (other.gameObject.CompareTag("Player"))
             {
                 DealDamageAndSpawnDmgText(other);
