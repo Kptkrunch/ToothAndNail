@@ -8,6 +8,8 @@ namespace JAssets.Scripts_SC
     public class PlayerMoveController : MonoBehaviourPunCallbacks
     {
         public int playerNumber;
+        public string playerTag;
+        public bool isPlayer;
         [SerializeField] private float moveSpeed = 5f;
         [SerializeField] private float maxSpeed;
         [SerializeField] private float velocity;
@@ -86,7 +88,10 @@ namespace JAssets.Scripts_SC
 
         private void Start()
         {
-            playerNumber = PlayerList.instance.AddPlayerToList(gameObject);
+            DataTypeController.PlayerNumAndTagData playerData;
+            playerData = PlayerList.instance.AddPlayerToList(gameObject);
+            playerNumber = playerData.PlayerNumber;
+            playerTag = playerData.PlayerTag;
         }
 
         private void Update()

@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3609767150290068054}
   - component: {fileID: 6495328457261477392}
   - component: {fileID: 263188899073470872}
-  m_Layer: 5
+  m_Layer: 11
   m_Name: LifeBarAndItemCanvas
   m_TagString: EditorStuff
   m_Icon: {fileID: 0}
@@ -101,7 +101,7 @@ MonoBehaviour:
   m_BlockingObjects: 0
   m_BlockingMask:
     serializedVersion: 2
-    m_Bits: 3127
+    m_Bits: 1079
 --- !u!1 &194293795841043389
 GameObject:
   m_ObjectHideFlags: 0
@@ -113,7 +113,7 @@ GameObject:
   - component: {fileID: 7221589422546663648}
   - component: {fileID: 7212233825277737039}
   - component: {fileID: 2110790454109927501}
-  m_Layer: 5
+  m_Layer: 11
   m_Name: ReciptBackground
   m_TagString: EditorStuff
   m_Icon: {fileID: 0}
@@ -190,7 +190,7 @@ GameObject:
   - component: {fileID: 7155759587521284011}
   - component: {fileID: 5142129379830962847}
   - component: {fileID: 5825435672250052430}
-  m_Layer: 5
+  m_Layer: 11
   m_Name: PlayerGui
   m_TagString: EditorStuff
   m_Icon: {fileID: 0}
@@ -336,6 +336,7 @@ MonoBehaviour:
   animator: {fileID: 0}
   hitbox: {fileID: 3611444802017842051}
   damage: 1
+  playerTag: 
   rb2d: {fileID: 4367957238920326456}
 --- !u!114 &6111175309051600591
 MonoBehaviour:
@@ -451,7 +452,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5402507842643607828}
   - component: {fileID: 4490549043415330424}
-  m_Layer: 6
+  m_Layer: 11
   m_Name: ResourceController
   m_TagString: GameController
   m_Icon: {fileID: 0}
@@ -497,7 +498,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 353511457228752863}
-  m_Layer: 5
+  m_Layer: 11
   m_Name: HealthBarPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -579,7 +580,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 054427a397f04dd0b9c403dec34d101f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerController: {fileID: 0}
+  playerController: {fileID: 788245375472460701}
   animator: {fileID: 7017240733360952998}
   weaponSo: {fileID: 11400000, guid: 9dc28a42f6b0abd4c8cd6710f3821c44, type: 2}
   controller: {fileID: 8632252379354708894}
@@ -905,7 +906,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 262136203878331046}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: WallCheckPoint
   m_TagString: Transforms
   m_Icon: {fileID: -5487077368411116049, guid: 0000000000000000d000000000000000, type: 0}
@@ -939,7 +940,7 @@ GameObject:
   - component: {fileID: 3753103417160744619}
   - component: {fileID: 1124220192774244155}
   - component: {fileID: 1022350856724555579}
-  m_Layer: 5
+  m_Layer: 11
   m_Name: BackgroundColor
   m_TagString: EditorStuff
   m_Icon: {fileID: 0}
@@ -1028,7 +1029,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9197826455818452043}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: LedgeCheckPoint
   m_TagString: Transforms
   m_Icon: {fileID: 4162164826716764455, guid: 0000000000000000d000000000000000, type: 0}
@@ -1061,7 +1062,7 @@ GameObject:
   - component: {fileID: 6812082365975017082}
   - component: {fileID: 3147536950732607288}
   - component: {fileID: 4345741901116824494}
-  m_Layer: 18
+  m_Layer: 11
   m_Name: Lights
   m_TagString: Interactable
   m_Icon: {fileID: 0}
@@ -1161,7 +1162,7 @@ GameObject:
   - component: {fileID: 6244337649236706185}
   - component: {fileID: 5261157712446707527}
   - component: {fileID: 1823226381153822800}
-  m_Layer: 6
+  m_Layer: 11
   m_Name: Main Camera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
@@ -1303,7 +1304,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7080598779701769438}
   - component: {fileID: 891227535295921730}
-  m_Layer: 18
+  m_Layer: 11
   m_Name: SurroundingLight
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -1387,7 +1388,7 @@ GameObject:
   - component: {fileID: 6935572404890291559}
   - component: {fileID: 6967591363680073108}
   - component: {fileID: 885160233005636497}
-  m_Layer: 6
+  m_Layer: 11
   m_Name: VisualController
   m_TagString: GameController
   m_Icon: {fileID: 0}
@@ -1547,7 +1548,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c484c345eab0cc5488f010a4af0eadb3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerController: {fileID: 0}
+  playerController: {fileID: 788245375472460701}
   animator: {fileID: 6883314791527793435}
   weaponSo: {fileID: 11400000, guid: f91d13815d3ae414488d8a15e705cf3d, type: 2}
   controller: {fileID: 8632252379354708894}
@@ -1681,7 +1682,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6158175143117694022}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: CheckTransforms
   m_TagString: EditorOnly
   m_Icon: {fileID: 0}
@@ -1718,7 +1719,7 @@ GameObject:
   - component: {fileID: 4307566476828481810}
   - component: {fileID: 534255311623965791}
   - component: {fileID: 1374014319984281415}
-  m_Layer: 5
+  m_Layer: 11
   m_Name: ItemSlotA
   m_TagString: EditorStuff
   m_Icon: {fileID: 0}
@@ -1795,7 +1796,7 @@ GameObject:
   - component: {fileID: 7499670266829818740}
   - component: {fileID: 1198475801807538034}
   - component: {fileID: 2237300757581016401}
-  m_Layer: 5
+  m_Layer: 11
   m_Name: BackgroundColor
   m_TagString: EditorStuff
   m_Icon: {fileID: 0}
@@ -1927,7 +1928,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 054427a397f04dd0b9c403dec34d101f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerController: {fileID: 0}
+  playerController: {fileID: 788245375472460701}
   animator: {fileID: 830806606598691811}
   weaponSo: {fileID: 11400000, guid: ec0dfdbcf2a45004aaba57dd193edee4, type: 2}
   controller: {fileID: 8632252379354708894}
@@ -2195,7 +2196,7 @@ GameObject:
   - component: {fileID: 447511581457847622}
   - component: {fileID: 4270614086054981760}
   - component: {fileID: 6701824373488453121}
-  m_Layer: 5
+  m_Layer: 11
   m_Name: UIBackground
   m_TagString: EditorStuff
   m_Icon: {fileID: 0}
@@ -2310,7 +2311,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2e3b4514f268cb448f9a1a8cd330d3c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerController: {fileID: 0}
+  playerController: {fileID: 788245375472460701}
   animator: {fileID: 1018309696144097860}
   weaponSo: {fileID: 11400000, guid: ae21be490a889a742ad913638e76aa56, type: 2}
   controller: {fileID: 8632252379354708894}
@@ -2527,7 +2528,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6040012823663648514}
   - component: {fileID: 3740244630511336900}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: GroundCheckPoint
   m_TagString: Transforms
   m_Icon: {fileID: 2974397684917235467, guid: 0000000000000000d000000000000000, type: 0}
@@ -2646,7 +2647,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 054427a397f04dd0b9c403dec34d101f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerController: {fileID: 0}
+  playerController: {fileID: 788245375472460701}
   animator: {fileID: 1740777582504983178}
   weaponSo: {fileID: 11400000, guid: 6623dab53062fd840b3e4dcd4bff8c05, type: 2}
   controller: {fileID: 8632252379354708894}
@@ -2913,7 +2914,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7671504163688683854}
   - component: {fileID: 6849782936543582471}
-  m_Layer: 5
+  m_Layer: 11
   m_Name: DelayIncreaseBar
   m_TagString: EditorStuff
   m_Icon: {fileID: 0}
@@ -2957,7 +2958,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2641679326549299900}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: PlayerPrefab 1
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -2993,7 +2994,7 @@ GameObject:
   - component: {fileID: 7149419446438444253}
   - component: {fileID: 4367874355291250637}
   - component: {fileID: 6340732430328614394}
-  m_Layer: 5
+  m_Layer: 11
   m_Name: HealthBar
   m_TagString: EditorStuff
   m_Icon: {fileID: 0}
@@ -3308,7 +3309,7 @@ GameObject:
   - component: {fileID: 788245375472460701}
   - component: {fileID: 3355887460590615747}
   - component: {fileID: 8290806901761418372}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: PlayerController
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -3611,6 +3612,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerNumber: 0
+  playerTag: 
+  isPlayer: 1
   moveSpeed: 5
   maxSpeed: 6
   velocity: 0
@@ -3765,7 +3768,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 054427a397f04dd0b9c403dec34d101f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerController: {fileID: 0}
+  playerController: {fileID: 788245375472460701}
   animator: {fileID: 6467406174607934021}
   weaponSo: {fileID: 11400000, guid: bb66fa4e6b747a940af9395600a28e28, type: 2}
   controller: {fileID: 8632252379354708894}
@@ -4034,7 +4037,7 @@ GameObject:
   - component: {fileID: 1233163836963136781}
   - component: {fileID: 4000202975935431080}
   - component: {fileID: 6587865518109501797}
-  m_Layer: 5
+  m_Layer: 11
   m_Name: BackgroundColor
   m_TagString: EditorStuff
   m_Icon: {fileID: 0}
@@ -4126,7 +4129,7 @@ GameObject:
   - component: {fileID: 6240880841272097853}
   - component: {fileID: 5509099060541616282}
   - component: {fileID: 1022040028565530513}
-  m_Layer: 5
+  m_Layer: 11
   m_Name: RecipeImage
   m_TagString: EditorStuff
   m_Icon: {fileID: 0}
@@ -4215,7 +4218,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 314623510297869445}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: ViewPoint
   m_TagString: Transforms
   m_Icon: {fileID: 0}
@@ -4249,7 +4252,7 @@ GameObject:
   - component: {fileID: 5496304757515091087}
   - component: {fileID: 3954932864936724344}
   - component: {fileID: 8633062286261771162}
-  m_Layer: 5
+  m_Layer: 11
   m_Name: SlotAImage
   m_TagString: EditorStuff
   m_Icon: {fileID: 0}
@@ -4339,7 +4342,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9045685293606778116}
   - component: {fileID: 2045655316177843524}
-  m_Layer: 18
+  m_Layer: 11
   m_Name: ViewLight
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -4462,7 +4465,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9526b144963198f46af3deba94a221c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerController: {fileID: 0}
+  playerController: {fileID: 788245375472460701}
   animator: {fileID: 171613197776393583}
   weaponSo: {fileID: 11400000, guid: f269018b63bc5de4bbc34717d58a2f30, type: 2}
   controller: {fileID: 8632252379354708894}
@@ -4669,7 +4672,7 @@ GameObject:
   - component: {fileID: 54254856979377255}
   - component: {fileID: 1096693627351558703}
   - component: {fileID: 2592774660899133853}
-  m_Layer: 25
+  m_Layer: 11
   m_Name: SmokeBomb
   m_TagString: Consumable
   m_Icon: {fileID: 0}
@@ -4793,7 +4796,7 @@ GameObject:
   - component: {fileID: 3174376694193801754}
   - component: {fileID: 8650218266473647529}
   - component: {fileID: 8879699744812331320}
-  m_Layer: 5
+  m_Layer: 11
   m_Name: ItemsPanel
   m_TagString: EditorStuff
   m_Icon: {fileID: 0}
@@ -4938,7 +4941,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 054427a397f04dd0b9c403dec34d101f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerController: {fileID: 0}
+  playerController: {fileID: 788245375472460701}
   animator: {fileID: 990357297702447113}
   weaponSo: {fileID: 11400000, guid: 06710564cb9c317489cbe3f18b4d0349, type: 2}
   controller: {fileID: 8632252379354708894}
@@ -5205,7 +5208,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4300232563194513968}
-  m_Layer: 18
+  m_Layer: 11
   m_Name: ConeOfVision
   m_TagString: Interactable
   m_Icon: {fileID: 0}
@@ -5240,7 +5243,7 @@ GameObject:
   - component: {fileID: 601718570503024812}
   - component: {fileID: 3016749770501614822}
   - component: {fileID: 810535268142042003}
-  m_Layer: 5
+  m_Layer: 11
   m_Name: BackgroundColor
   m_TagString: EditorStuff
   m_Icon: {fileID: 0}
@@ -5372,7 +5375,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 054427a397f04dd0b9c403dec34d101f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerController: {fileID: 0}
+  playerController: {fileID: 788245375472460701}
   animator: {fileID: 3825983852715282087}
   weaponSo: {fileID: 11400000, guid: 198f2b70e2d97b94db126815d36cb0db, type: 2}
   controller: {fileID: 8632252379354708894}
@@ -5639,7 +5642,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1889640534957896009}
   - component: {fileID: 1686488709100242392}
-  m_Layer: 6
+  m_Layer: 11
   m_Name: HealthController
   m_TagString: GameController
   m_Icon: {fileID: 0}
@@ -5731,7 +5734,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 054427a397f04dd0b9c403dec34d101f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerController: {fileID: 0}
+  playerController: {fileID: 788245375472460701}
   animator: {fileID: 8085805825236863800}
   weaponSo: {fileID: 11400000, guid: 8b8e51636b3f8f040905020edc77abfa, type: 2}
   controller: {fileID: 8632252379354708894}
@@ -5997,7 +6000,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7718769974077502295}
-  m_Layer: 25
+  m_Layer: 11
   m_Name: Consumables
   m_TagString: EditorOnly
   m_Icon: {fileID: 0}
@@ -6035,7 +6038,7 @@ GameObject:
   - component: {fileID: 7869858191109986220}
   - component: {fileID: 8871973389415363248}
   - component: {fileID: 7773277295635280419}
-  m_Layer: 25
+  m_Layer: 11
   m_Name: Vine
   m_TagString: Consumable
   m_Icon: {fileID: 0}
@@ -6157,7 +6160,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4108832094941905253}
   - component: {fileID: 5498998544470003846}
-  m_Layer: 5
+  m_Layer: 11
   m_Name: ForegroundBar
   m_TagString: EditorStuff
   m_Icon: {fileID: 0}
@@ -6204,7 +6207,7 @@ GameObject:
   - component: {fileID: 5089168122900337231}
   - component: {fileID: 1646535827156022131}
   - component: {fileID: 3146070154920664115}
-  m_Layer: 25
+  m_Layer: 11
   m_Name: Stick
   m_TagString: Consumable
   m_Icon: {fileID: 0}
@@ -6327,7 +6330,7 @@ GameObject:
   - component: {fileID: 8411288049967662487}
   - component: {fileID: 8880512119812772109}
   - component: {fileID: 8632252379354708894}
-  m_Layer: 6
+  m_Layer: 11
   m_Name: EquipmentController
   m_TagString: GameController
   m_Icon: {fileID: 0}
@@ -6405,7 +6408,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4979269512607660138}
   - component: {fileID: 8946222205046294437}
-  m_Layer: 5
+  m_Layer: 11
   m_Name: DelayDecreaseBar
   m_TagString: EditorStuff
   m_Icon: {fileID: 0}
@@ -6451,7 +6454,7 @@ GameObject:
   - component: {fileID: 7880316707154603249}
   - component: {fileID: 6662690861318278800}
   - component: {fileID: 4384690340004777708}
-  m_Layer: 5
+  m_Layer: 11
   m_Name: ItemSlotB
   m_TagString: EditorStuff
   m_Icon: {fileID: 0}
@@ -6526,7 +6529,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1884095316400569964}
   - component: {fileID: 341396536587054628}
-  m_Layer: 6
+  m_Layer: 11
   m_Name: AttackController
   m_TagString: GameController
   m_Icon: {fileID: 0}
@@ -6583,7 +6586,7 @@ GameObject:
   - component: {fileID: 7624739474479921181}
   - component: {fileID: 5910436900483639528}
   - component: {fileID: 4444067006317211165}
-  m_Layer: 25
+  m_Layer: 11
   m_Name: Stone
   m_TagString: Consumable
   m_Icon: {fileID: 0}
@@ -6707,7 +6710,7 @@ GameObject:
   - component: {fileID: 6887521654324670362}
   - component: {fileID: 5689138163653437417}
   - component: {fileID: 1039243217856918939}
-  m_Layer: 5
+  m_Layer: 11
   m_Name: SlotBImage
   m_TagString: EditorStuff
   m_Icon: {fileID: 0}

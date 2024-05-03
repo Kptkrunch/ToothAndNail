@@ -9,6 +9,7 @@ namespace JAssets.Scripts_SC
 		// public float lifespan = 10f;
 		public CircleCollider2D hitbox;
 		public int damage = 1;
+		public string playerTag;
 		private float age = 0f;
 		
 
@@ -32,7 +33,7 @@ namespace JAssets.Scripts_SC
 
 		private void OnTriggerEnter2D(Collider2D other)
 		{
-			if (other.gameObject.CompareTag("Player"))
+			if (other.GetComponent<PlayerMoveController>().isPlayer && other.CompareTag(playerTag) == false)
 			{
 				DealDamageAndSpawnDmgText(other);
 			}

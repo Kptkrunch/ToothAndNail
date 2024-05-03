@@ -15,12 +15,18 @@ public class PlayerList : MonoBehaviour
 
 	public List<GameObject> playersList = new();
 
-	public int AddPlayerToList(GameObject playerPrefab)
+	public DataTypeController.PlayerNumAndTagData AddPlayerToList(GameObject playerPrefab)
 	{
+		DataTypeController.PlayerNumAndTagData playerData;
 		playersList.Add(playerPrefab);
-		playerPrefab.layer = LayerMask.NameToLayer("Player" + playersList.Count);
-		playerPrefab.gameObject.tag = "Player" + playersList.Count;
-		return playersList.Count;
+		var playerLayer = LayerMask.NameToLayer("Player" + playersList.Count);
+		var playerTag = "Player" + playersList.Count;
+		playerPrefab.tag = playerTag;
+		playerPrefab.gameObject.layer = playerLayer;
+		playerData.PlayerNumber = playersList.Count;
+		playerData.PlayerTag = playerTag;
+		playerData.PlayerLayer = playerLayer;
+		return playerData;
 	}
 	
 	public void RemovePlayerFromList(GameObject playerPrefab)

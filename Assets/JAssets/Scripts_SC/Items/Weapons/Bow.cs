@@ -47,6 +47,8 @@ namespace JAssets.Scripts_SC.Items.Weapons
 
 			var projectilePrefab = Library.instance.consumableDict["CArrow-0"].GetPooledGameObject();
 			if (!projectilePrefab) return;
+			var arrowTag = projectilePrefab.GetComponent<Projectile>();
+			arrowTag.playerTag = playerController.playerTag;
 			projectilePrefab.transform.localScale = new Vector3(playerRigidbody2D.transform.localScale.x,
 				transform.localScale.y, transform.localScale.z);
 			projectilePrefab.SetActive(true);

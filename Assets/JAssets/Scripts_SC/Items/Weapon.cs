@@ -9,7 +9,7 @@ namespace JAssets.Scripts_SC.Items
 {
     public class Weapon : MonoBehaviour
     {
-        [SerializeField] private PlayerMoveController playerController;
+        [SerializeField] protected PlayerMoveController playerController;
         public Animator animator;
         public Weapon_SO weaponSo;
         internal Weapon_SO rtso;
@@ -18,12 +18,11 @@ namespace JAssets.Scripts_SC.Items
         private void OnEnable()
         {
             rtso = Instantiate(weaponSo);
-            gameObject.layer = playerController.gameObject.layer;
         }
 
         public virtual void OnTriggerEnter2D(Collider2D other)
         {
-            if (other.gameObject.layer != gameObject.layer)
+            if (other.GetComponent<PlayerMoveController>().isPlayer && other.CompareTag(playerController.tag) == false)
             {
                 DealDamageAndSpawnDmgText(other);
                 ApplyKnockback(other);

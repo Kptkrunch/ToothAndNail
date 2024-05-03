@@ -17,9 +17,7 @@ namespace JAssets.Scripts_SC.Items.Weapons
 
         public override void OnTriggerEnter2D(Collider2D other)
         {
-            var thisId = gameObject.GetComponentInParent<PhotonView>().ViewID;
-            if (thisId == other.gameObject.GetComponentInParent<PhotonView>().ViewID) return;
-            if (other.gameObject.CompareTag("Player"))
+            if (other.GetComponent<PlayerMoveController>().isPlayer && other.CompareTag(playerController.tag) == false)
             {
                 DealDamageAndSpawnDmgText(other);
                 HitParticleSpawner.instance.GetRandomGoo(other.transform.position);
