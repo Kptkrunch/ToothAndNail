@@ -230,17 +230,24 @@ namespace AssetInventory
                 GUILayout.FlexibleSpace();
                 if (info.ImportState == AssetInfo.ImportStateOptions.Missing)
                 {
-                    AssetInventory.GetObserver().Attach(info);
-                    AssetDownloadState state = info.PackageDownloader.GetState();
-                    switch (state.state)
+                    if (info.IsAbandoned)
                     {
-                        case AssetDownloader.State.Unavailable:
-                            if (info.PackageDownloader.IsDownloadSupported() && GUILayout.Button("Download", GUILayout.Width(80))) info.PackageDownloader.Download();
-                            break;
+                        EditorGUILayout.LabelField(UIStyles.Content("Unavailable", "Package got disabled on the Asset Store and is no longer available for download."), GUILayout.Width(80));
+                    }
+                    else
+                    {
+                        AssetInventory.GetObserver().Attach(info);
+                        AssetDownloadState state = info.PackageDownloader.GetState();
+                        switch (state.state)
+                        {
+                            case AssetDownloader.State.Unavailable:
+                                if (info.PackageDownloader.IsDownloadSupported() && GUILayout.Button("Download", GUILayout.Width(80))) info.PackageDownloader.Download();
+                                break;
 
-                        case AssetDownloader.State.Downloading:
-                            EditorGUILayout.LabelField(Mathf.RoundToInt(state.progress * 100f) + "%", GUILayout.Width(80));
-                            break;
+                            case AssetDownloader.State.Downloading:
+                                EditorGUILayout.LabelField(Mathf.RoundToInt(state.progress * 100f) + "%", GUILayout.Width(80));
+                                break;
+                        }
                     }
                 }
                 else

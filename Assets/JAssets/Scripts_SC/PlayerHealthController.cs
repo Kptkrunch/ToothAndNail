@@ -1,5 +1,6 @@
 using System.Collections;
 using JAssets.Scripts_SC.UI;
+using MoreMountains.Feedbacks;
 using UnityEngine;
 
 namespace JAssets.Scripts_SC
@@ -9,21 +10,21 @@ namespace JAssets.Scripts_SC
         private const float InvulTime = 0.75f;
         private const float HitEffectBlendValue = 0.25f;
         private const float WaitTimeHitEffect = 0.1f;
-        public GameObject player;
         public Animator animator;
         public Material shader;
         public SpriteRenderer spriteRenderer;
         public PlayerUI playerUi;
-        [SerializeField] private int currentHealth;
-        [SerializeField] private int _maxHealth = 5;
+        [SerializeField] public int currentHealth;
+        [SerializeField] private int maxHealth = 5;
+        [SerializeField] private GameObject parent;
         private bool _canBeDamaged = true;
         private float _invulTimer;
         private static readonly int HitEffectBlend = Shader.PropertyToID("_HitEffectBlend");
 
-
         private void Start()
         {
             SetAllHealthValues();
+            playerUi.SetBarValues(maxHealth);
             SetShaderAndInvul();
         }
 
@@ -34,8 +35,9 @@ namespace JAssets.Scripts_SC
 
         public void GetDamaged(int damage)
         {
+            Debug.Log("take damage: " + damage);
             if (!_canBeDamaged) return;
-            currentHealth -= damage; // Using property to update health and check for death
+            currentHealth -= damage;
             if (damage > 0) _canBeDamaged = false;
             StartCoroutine(HitEffect());
             playerUi.TakeDamage(damage);
@@ -43,18 +45,19 @@ namespace JAssets.Scripts_SC
             if (currentHealth > 0) return;
             currentHealth = 0;
             animator.Play("Death");
+            Destroy(parent, 3.0f);
         }
 
         public void GetHealed(int healAmount)
         {
-            currentHealth += healAmount; // Using property to prevent exceeding max health
-            if (currentHealth > _maxHealth) currentHealth = _maxHealth;
+            currentHealth += healAmount; 
+            if (currentHealth > maxHealth) currentHealth = maxHealth;
             playerUi.HealDamage(healAmount);
         }
         private void SetAllHealthValues()
         {
-            currentHealth = _maxHealth;
-            playerUi.SetBarValues(_maxHealth);
+            currentHealth = maxHealth;
+            playerUi.SetBarValues(maxHealth);
         }
         private void SetShaderAndInvul()
         {

@@ -1,4 +1,7 @@
+using System;
+using JAssets.Scripts_SC.SOScripts;
 using JAssets.Scripts_SC.Spawners;
+using JetBrains.Annotations;
 using MoreMountains.Feedbacks;
 using UnityEngine;
 
@@ -6,24 +9,25 @@ namespace JAssets.Scripts_SC.Items
 {
     public class Weapon : MonoBehaviour
     {
-        
+        [SerializeField] protected PlayerMoveController playerController;
         public Animator animator;
         public Weapon_SO weaponSo;
         internal Weapon_SO rtso;
         public ItemController controller;
-        public Collider2D hitBox;
-
+        [CanBeNull] public Collider2D hitBox;
         private void OnEnable()
         {
             rtso = Instantiate(weaponSo);
         }
 
-        public virtual void OnCollisionEnter2D(Collision2D other)
+        public virtual void OnTriggerEnter2D(Collider2D other)
         {
-            if (other.gameObject.CompareTag("Player"))
+            if (other.GetComponent<PlayerMoveController>().isPlayer && other.CompareTag(playerController.tag) == false)
             {
                 DealDamageAndSpawnDmgText(other);
-                HitParticleSpawner.instance.GetRandomBlood(other.transform.position);
+                ApplyKnockback(other);
+                Debug.Log("after knockback");
+                HandleBloodParticle(other);
             }
             else if (other.gameObject.CompareTag("Weapon"))
             {
@@ -38,7 +42,6 @@ namespace JAssets.Scripts_SC.Items
             if (rtso.durability <= 0)
             {
                 gameObject.SetActive(false);
-                controller.weaponHand = "";
                 
                 var particle = WorldParticleSpawner.instance.weaponsBreakParticle.GetPooledGameObject();
                 particle.SetActive(true);
@@ -60,31 +63,66 @@ namespace JAssets.Scripts_SC.Items
         {
             print("Special");
         }
+        
+        private static void HandleBloodParticle(Collider2D other)
+        {
+            var blood = GetRandomBloodParticle.instance.RandomBloodParticleHandler();
+            blood.transform.position = other.transform.position;
+            blood.SetActive(true);
+        }
 
-        protected void DealDamageAndSpawnDmgText(Collision2D other)
+        protected void DealDamageAndSpawnDmgText(Collider2D other)
         {
             rtso.durability--;
             var otherPlayer = other.gameObject.GetComponentInChildren<PlayerHealthController>();
             otherPlayer.GetDamaged(rtso.damage);
 
-            var dmgText = DamageTextController.instance.player.GetFeedbackOfType<MMF_FloatingText>();
+            var dmgText = DamageNumberController.instance.player.GetFeedbackOfType<MMF_FloatingText>();
             dmgText.Value = rtso.damage.ToString();
-            DamageTextController.instance.player.PlayFeedbacks(otherPlayer.transform.position);
+            DamageNumberController.instance.player.PlayFeedbacks(otherPlayer.transform.position);
+            DurabilityCheck();
         }
+
 
         public virtual void DurabilityCheck()
         {
             if (rtso.durability <= 0)
             {
+                if (controller.itemSlotA != name)
+                {
+                    controller.imageB.sprite = null;
+                    controller.itemSlotB = "";
+                }
+                else
+                {
+                    controller.imageA.sprite = null;
+                    controller.itemSlotA = "";
+                }
                 rtso.durability = rtso.fullDurability;
                 
                 gameObject.SetActive(false);
-                controller.weaponHand = "";
                 
                 var particle = WorldParticleSpawner.instance.weaponPickupParticle.GetPooledGameObject();
                 particle.SetActive(true);
                 particle.transform.position = transform.position;
             }
+        }
+        
+        private void ApplyKnockback(Collider2D other)
+        {
+            Debug.Log(other.name);
+            // Calculate the Knockback direction (from enemy to player)
+            Vector2 knockbackDirection = (this.transform.position - other.transform.position).normalized;
+
+            // Define the Knockback strength
+            float knockbackStrength = 1000f;
+
+            // Get the player's Rigidbody2D
+            Rigidbody2D playerRigidbody = other.GetComponent<Rigidbody2D>();
+            Debug.Log(playerRigidbody);
+            if (!playerRigidbody) return;
+            // Apply the knockback force to the player's Rigidbody
+            playerRigidbody.AddForce(knockbackDirection * knockbackStrength, ForceMode2D.Impulse);
         }
     }
 }

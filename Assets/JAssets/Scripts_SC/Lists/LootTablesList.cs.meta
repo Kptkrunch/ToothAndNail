@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: 6fc4941200ff96f44a5435fd73b4a262
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - boneNode: {fileID: 11400000, guid: ecebed9deb347434c8df6a75f71dcd24, type: 2}
+  - grassNode: {fileID: 11400000, guid: a7ed80a662a2f7649b33dc6cdf3cfaa8, type: 2}
+  - rootNode: {fileID: 11400000, guid: 7ef55c2cee2f0de4a8d79de6eb0ca18f, type: 2}
+  - weaponNode: {fileID: 11400000, guid: a7ed80a662a2f7649b33dc6cdf3cfaa8, type: 2}
+  - gearNode: {instanceID: 0}
+  - rubbleNode: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

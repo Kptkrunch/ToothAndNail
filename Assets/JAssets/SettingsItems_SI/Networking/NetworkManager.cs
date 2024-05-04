@@ -16,7 +16,7 @@ namespace JAssets.Networking
             Connect();
         }
 
-        void Connect()
+        private void Connect()
         {
             if (PhotonNetwork.IsConnected)
             {
@@ -46,7 +46,7 @@ namespace JAssets.Networking
         // Friends Invite
         public void InvitePlayerToRoom(string friendUserId)
         {
-            PhotonNetwork.FindFriends(new string[] { friendUserId });
+            PhotonNetwork.FindFriends(new[] { friendUserId });
         }
     
         // Player Matchmaking

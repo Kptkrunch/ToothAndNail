@@ -7,21 +7,29 @@ namespace JAssets.Scripts_SC.Items.Weapons
     public class BattleAx : Weapon
     {
         private bool _specialTrigger;
+        private static readonly int MegaChop = Animator.StringToHash("MegaChop");
 
-        public override void OnCollisionEnter2D(Collision2D other)
+        public override void OnTriggerEnter2D(Collider2D other)
         {
-            var thisId = gameObject.GetComponentInParent<PhotonView>().ViewID;
-            if (thisId == other.gameObject.GetComponentInParent<PhotonView>().ViewID) return;
-            if (other.gameObject.CompareTag("Player"))
+            
+            if (other.GetComponent<PlayerMoveController>().isPlayer && other.CompareTag(playerController.tag) == false)
             {
+                Debug.Log(other.name);
                 DealDamageAndSpawnDmgText(other);
-                HitParticleSpawner.instance.GetRandomGoo(other.transform.position);
+                HandleBloodParticle(other);
             }
             else if (other.gameObject.CompareTag("Weapon"))
             {
                 DealDamageAndSpawnDmgText(other);
                 HitParticleSpawner.instance.GetRandomClash(other.transform.position);
             }
+        }
+
+        private static void HandleBloodParticle(Collider2D other)
+        {
+            var blood = GetRandomBloodParticle.instance.RandomBloodParticleHandler();
+            blood.transform.position = other.transform.position;
+            blood.SetActive(true);
         }
 
         public void WindowOpen()
@@ -36,7 +44,7 @@ namespace JAssets.Scripts_SC.Items.Weapons
 
         public void MegaChopOff()
         {
-            animator.SetBool("MegaChop", false);
+            animator.SetBool(MegaChop, false);
         }
 
         public override void Attack()
@@ -48,7 +56,7 @@ namespace JAssets.Scripts_SC.Items.Weapons
             }
             else if (_specialTrigger)
             {
-                animator.SetBool("MegaChop", true);
+                animator.SetBool(MegaChop, true);
                 _specialTrigger = false;
             }
         }

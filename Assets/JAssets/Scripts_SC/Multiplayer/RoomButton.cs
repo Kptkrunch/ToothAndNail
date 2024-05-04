@@ -1,22 +1,23 @@
-using System.Collections;
-using System.Collections.Generic;
 using Photon.Realtime;
 using TMPro;
 using UnityEngine;
 
-public class RoomButton : MonoBehaviour
+namespace JAssets.Scripts_SC.Multiplayer
 {
-    private RoomInfo _info;
-    public TMP_Text buttonText;
-
-    public void SetButtonDetails(RoomInfo inputInfo)
+    public class RoomButton : MonoBehaviour
     {
-        _info = inputInfo;
-        buttonText.text = _info.Name;
-    }
+        private RoomInfo _info;
+        public TMP_Text buttonText;
 
-    public void OpenRoom()
-    {
-        Launcher.instance.JoinRoom(_info);
+        public void SetButtonDetails(RoomInfo inputInfo)
+        {
+            _info = inputInfo;
+            buttonText.text = _info.Name;
+        }
+
+        public void OpenRoom()
+        {
+            Launcher.instance.JoinRoom(_info);
+        }
     }
 }

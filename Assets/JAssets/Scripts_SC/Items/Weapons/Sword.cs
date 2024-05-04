@@ -15,20 +15,25 @@ namespace JAssets.Scripts_SC.Items.Weapons
             weaponDamage = rtso.damage;
         }
 
-        public override void OnCollisionEnter2D(Collision2D other)
+        public override void OnTriggerEnter2D(Collider2D other)
         {
-            var thisId = gameObject.GetComponentInParent<PhotonView>().ViewID;
-            if (thisId == other.gameObject.GetComponentInParent<PhotonView>().ViewID) return;
-            if (other.gameObject.CompareTag("Player"))
+            if (other.GetComponent<PlayerMoveController>().isPlayer && other.CompareTag(playerController.tag) == false)
             {
                 DealDamageAndSpawnDmgText(other);
-                HitParticleSpawner.instance.GetRandomGoo(other.transform.position);
+                HandleBloodParticle(other);
             }
             else if (other.gameObject.CompareTag("Weapon"))
             {
                 DealDamageAndSpawnDmgText(other);
                 HitParticleSpawner.instance.GetRandomClash(other.transform.position);
             }
+        }
+
+        private static void HandleBloodParticle(Collider2D other)
+        {
+            var blood = GetRandomBloodParticle.instance.RandomBloodParticleHandler();
+            blood.transform.position = other.transform.position;
+            blood.SetActive(true);
         }
 
         public void WindowOpen()
@@ -53,7 +58,6 @@ namespace JAssets.Scripts_SC.Items.Weapons
             if (rtso.durability <= 0)
             {
                 gameObject.SetActive(false);
-                controller.weaponHand = "";
                 var particle = WorldParticleSpawner.instance.weaponsBreakParticle.GetPooledGameObject();
                 particle.SetActive(true);
                 particle.gameObject.transform.position = transform.position;

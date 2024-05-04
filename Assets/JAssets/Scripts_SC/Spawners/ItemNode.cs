@@ -1,3 +1,5 @@
+using System.Collections;
+using JAssets.Scripts_SC.Lists;
 using JAssets.Scripts_SC.SOScripts;
 using Sirenix.OdinInspector;
 using UnityEngine;
@@ -10,21 +12,15 @@ namespace JAssets.Scripts_SC.Spawners
         
         [ShowInInspector] public LootTable_SO lootTable;
         [SerializeField] private float refreshCd;
-        private float refreshTimer;
         private bool looted;
         private static readonly int OutlineAlpha = Shader.PropertyToID("_OutlineAlpha");
         private static readonly int OutlineColor = Shader.PropertyToID("_OutlineColor");
+        private static readonly int ColorChangeTolerance = Shader.PropertyToID("_ColorChangeTolerance");
 
         private void Start()
         {
-            refreshTimer = refreshCd;
             lootTable = Instantiate(lootTable);
             spriteRenderer.sharedMaterial = new Material(spriteRenderer.sharedMaterial);
-        }
-        private void FixedUpdate()
-        {
-            if (looted) refreshTimer -= Time.deltaTime;
-            if (refreshTimer <= 0) looted = false;
         }
 
         private void OnTriggerEnter2D(Collider2D other)
@@ -47,14 +43,24 @@ namespace JAssets.Scripts_SC.Spawners
         public void ActivateNode()
         {
             if (looted) return;
-            looted = true;
+            StartCoroutine(NodeRefreshTimer());
+        }
 
-            var lootName = lootTable.GetRandomLoot();
-            Debug.Log(lootName);
-            var pickup = Library.instance.pickupsDict["P" + lootName].GetPooledGameObject();
-            Debug.Log(pickup);
-            pickup.transform.position = transform.position;
-            pickup.SetActive(true);
+        private IEnumerator NodeRefreshTimer()
+        {
+            if (!looted)
+            {
+                looted = true;
+                spriteRenderer.sharedMaterial.SetFloat(ColorChangeTolerance, 0.0f);
+                var lootName = lootTable.GetRandomLoot();
+                var pickup = Library.instance.pickupsDict["P" + lootName + "-0"].GetPooledGameObject();
+                pickup.transform.position = transform.position;
+                pickup.SetActive(true);
+
+                yield return new WaitForSeconds(refreshCd);
+                looted = false;
+                spriteRenderer.sharedMaterial.SetFloat(ColorChangeTolerance, 1.0f);
+            }
         }
     }
 }

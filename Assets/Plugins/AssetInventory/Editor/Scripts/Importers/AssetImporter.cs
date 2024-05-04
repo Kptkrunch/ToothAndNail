@@ -131,6 +131,13 @@ namespace AssetInventory
                 .ToDictionary(g => g.Key, g => g.ToList());
         }
 
+        public static Dictionary<int, AssetFile> ToIdDict(IEnumerable<AssetFile> files)
+        {
+            return files
+                .GroupBy(f => f.Id)
+                .ToDictionary(g => g.Key, g => g.First());
+        }
+
         protected static Dictionary<(string Path, int AssetId), AssetFile> ToPathIdDict(IEnumerable<AssetFile> files)
         {
             return files
@@ -202,7 +209,7 @@ namespace AssetInventory
         protected static async Task ProcessMediaAttributes(string file, AssetFile info, Asset asset)
         {
             // special processing for supported file types, from 2021.2+ more types can be supported
-            #if UNITY_2021_2_OR_NEWER
+            #if UNITY_2021_2_OR_NEWER && UNITY_EDITOR_WIN
             if (ImageUtils.SYSTEM_IMAGE_TYPES.Contains(info.Type))
             #else
             if (info.Type == "png" || info.Type == "jpg")

@@ -1,45 +1,29 @@
 using System;
 using System.Collections;
+using JAssets.ScriptableObjects_SO;
 using JAssets.Scripts_SC.Items;
+using JAssets.Scripts_SC.Lists;
 using JAssets.Scripts_SC.Spawners;
 using JAssets.Scripts_SC.UI;
 using JetBrains.Annotations;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 namespace JAssets.Scripts_SC
 {
     public class ItemController : MonoBehaviour
     {
         [SerializeField] private PlayerUI playerUi;
-        [SerializeField] private EquippedGear gear;
+        [SerializeField] private AttackController attackController;
         [SerializeField] private LayerMask pickupLayer;
-        [SerializeField] private Animator weaponAnimator;
-        [SerializeField] private Sprite noIdeasSprite;
-
-        [CanBeNull] [SerializeField] private string itemSlotA = "";
-        [CanBeNull] [SerializeField] private string itemSlotB = "";
-        [CanBeNull] [SerializeField] private string activeRecipe = "";
-        [SerializeField] private int openSlot;
-
-
-        [SerializeField] private float attackCd;
-        [SerializeField] private float specialCd;
-        [SerializeField] private float consumeCd;
-        [SerializeField] private bool canAttack;
-        [SerializeField] private bool canSpecial;
-        [SerializeField] private bool canConsume;
-        [SerializeField] private string attackString;
-        [SerializeField] private string specString;
-        [SerializeField] private string consumeString;
-        [SerializeField] public string weaponHand;
-
-        private void Start()
-        {
-            canAttack = true;
-            canSpecial = true;
-            canConsume = true;
-        }
+        public Image imageA;
+        public Image imageB;
+        public Image imageC;
+        
+        [CanBeNull] [SerializeField] public string itemSlotA = "";
+        [CanBeNull] [SerializeField] public string itemSlotB = "";
+        [CanBeNull] [SerializeField] private string activeRecipeName = "";
 
         public void GetItemA(InputAction.CallbackContext context)
         {
@@ -49,41 +33,15 @@ namespace JAssets.Scripts_SC
 
             if (!item) return;
             item.PickupItem();
-            
             DropEquippedGear(itemSlotA, "itemSlotA");
-
-            itemSlotA = item.itemName;
-            if (CraftingMatrix.instance.matrix.ContainsKey(itemSlotA) &&
-                CraftingMatrix.instance.matrix.ContainsKey(itemSlotB))
-            {
-                CheckForCraftableHandler();
-            }
             
-            var sprite = item.GetComponent<SpriteRenderer>().sprite;
-            if (item.itemType == "Consumable")
-            {
-                canConsume = true;
-                consumeString = "";
-                consumeCd = 1f;
-                
-            }
-            else
-            {
-                if (itemSlotA != null)
-                {
-                    gear.items[itemSlotA].SetActive(true);
-                    var weapon = gear.items[itemSlotA].GetComponentInChildren<Weapon>();
-                    sprite = weapon.GetComponent<SpriteRenderer>().sprite;
-                    weaponAnimator = weapon.animator;
-                    weaponHand = itemSlotA;
-                    attackString = weapon.rtso.attackAnimString;
-                    specString = weapon.rtso.specAnimString;
-                    attackCd = weapon.rtso.attackCd;
-                    specialCd = weapon.rtso.specialCd;
-                }
-            }
-
-            if (itemSlotA != null) playerUi.UpdateItemsUi("A", sprite);
+            itemSlotA = item.itemName;
+            if (itemSlotA == "") return;
+            
+            imageA.sprite = Library.instance.itemDict[itemSlotA].GetComponent<SpriteRenderer>().sprite;
+            CheckForCraftableHandler(itemSlotA, itemSlotB, item);
+            if (item.itemType == "Consumable") return;
+            attackController.UpdateGearStats("A", item.itemName);
         }
 
         public void GetItemB(InputAction.CallbackContext context)
@@ -91,123 +49,78 @@ namespace JAssets.Scripts_SC
             if (!context.performed) return;
             var pickup = Physics2D.OverlapCircle(transform.position, 1f, pickupLayer);
             var item = pickup.GetComponent<Pickup>();
-
+            
             if (!item) return;
             item.PickupItem();
-            
             DropEquippedGear(itemSlotB, "itemSlotB");
             
             itemSlotB = item.itemName;
+            if (itemSlotB == "") return;
 
-            if (itemSlotB != null &&
-                itemSlotA != null &&
-                CraftingMatrix.instance.matrix.ContainsKey(itemSlotA) &&
-                CraftingMatrix.instance.matrix.ContainsKey(itemSlotB))
-            {
-                CheckForCraftableHandler();
-            }
-
-            
-            var sprite = item.GetComponent<SpriteRenderer>().sprite;
-            if (item.itemType == "Consumable")
-            {
-                canConsume = true;
-                consumeString = "";
-                consumeCd = 1f;
-            }
-            else
-            {
-                if (itemSlotB != null)
-                {
-                    gear.items[itemSlotB].SetActive(true);
-                    var weapon = gear.items[itemSlotB].GetComponent<Weapon>();
-                    sprite = weapon.GetComponent<SpriteRenderer>().sprite;
-                    weaponAnimator = weapon.animator;
-                    weaponHand = itemSlotB;
-                    attackString = weapon.rtso.attackAnimString;
-                    specString = weapon.rtso.specAnimString;
-                    attackCd = weapon.rtso.attackCd;
-                    specialCd = weapon.rtso.specialCd;
-                }
-            }
-
-            if (itemSlotB != null) playerUi.UpdateItemsUi("B", sprite);
+            imageB.sprite = Library.instance.itemDict[itemSlotB].GetComponent<SpriteRenderer>().sprite;
+            CheckForCraftableHandler(itemSlotA, itemSlotB, item);
+            if (item.itemType == "Consumable") return;
+            attackController.UpdateGearStats("B", item.itemName);
         }
         
         private void DropEquippedGear(string itemName, string itemSlot)
         {
+            Debug.Log(itemName + ",  " + itemSlot);
             if (itemName == "") return;
             switch (itemSlot)
             {
                 case "itemSlotA":
                     if (itemSlotA == "") return;
-                    if (itemSlotA != null) gear.items[itemSlotA].gameObject.SetActive(false);
+                    if (itemSlotA != null) attackController.gear.items[itemSlotA].gameObject.SetActive(false);
                     itemSlotA = "";
                     break;
                 case "itemSlotB":
                     if (itemSlotB == "") return;
-                    if (itemSlotB != null) gear.items[itemSlotB].gameObject.SetActive(false);
+                    if (itemSlotB != null) attackController.gear.items[itemSlotB].gameObject.SetActive(false);
                     itemSlotB = "";
                     break;
             }
-            
-            var itemToDrop = Library.instance.pickupsDict["P" + itemName].GetPooledGameObject();
+            var itemToDrop = Library.instance.pickupsDict["P" + itemName + "-0"].GetPooledGameObject();
+
             itemToDrop.transform.position = transform.position;
             itemToDrop.SetActive(true);
         }
 
-        private void CheckForCraftableHandler()
+        private void CheckForCraftableHandler(string a, string b, Pickup item)
         {
-            var recipe = CraftingMatrix.instance.GetRecipeFromMatrix(itemSlotA, itemSlotB);
-            if (recipe == null) return;
-            activeRecipe = recipe;
-            playerUi.UpdateItemsUi("C", gear.items[activeRecipe].GetComponent<SpriteRenderer>().sprite);
-        }
-
-        public void Attack(InputAction.CallbackContext context)
-        {
-            if (!context.performed) return;
-            gear.items[weaponHand].GetComponentInChildren<Weapon>().Attack();
-            weaponAnimator.SetBool(attackString, true);
-            StartCoroutine(AttackCooldownTimer());
-        }
-        public void Special(InputAction.CallbackContext context)
-        {
-            if (!context.performed) return;
-            gear.items[weaponHand].GetComponentInChildren<Weapon>().Special();
-            weaponAnimator.SetBool(specString, true);
-            StartCoroutine(SpecialCooldownTimer());
-        }
-
-        private IEnumerator AttackCooldownTimer()
-        {
-            canAttack = false;
-            gear.items[weaponHand].GetComponentInChildren<Weapon>().Attack();
-            yield return new WaitForSeconds(attackCd);
-            canAttack = true;
-        }
-        private IEnumerator SpecialCooldownTimer()
-        {
-            canSpecial = false;
-            gear.items[weaponHand].GetComponentInChildren<Weapon>().Special();
-            yield return new WaitForSeconds(specialCd);
-            canSpecial = true;
+            if (item.itemType == "Weapon" || a == "" || b == "")
+            {
+                activeRecipeName = "";
+                imageC.sprite = null;
+                return;
+            }
+            var recipe = CraftingMatrix.instance.GetRecipeFromMatrix(a, b);
+            if (recipe == "") return;
+            activeRecipeName = recipe;
+            imageC.sprite = Library.instance.itemDict[recipe].GetComponent<SpriteRenderer>().sprite;
         }
 
         public void CraftItem(InputAction.CallbackContext context)
         {
             if (!context.performed) return;
 
-            var newItem = Library.instance.pickupsDict["P" + activeRecipe].GetPooledGameObject();
+            var newItem = Library.instance.pickupsDict["P" + activeRecipeName + "-0"].GetPooledGameObject();
             if (!newItem) return;
 
             newItem.transform.position = transform.position;
             newItem.SetActive(true);
 
-            activeRecipe = "";
+            ClearItemSlots();
+        }
+
+        private void ClearItemSlots()
+        {
+            activeRecipeName = "";
             itemSlotA = "";
             itemSlotB = "";
-            playerUi.ClearImagesUi();
+            imageA.sprite = null;
+            imageB.sprite = null;
+            imageC.sprite = null;
         }
     }
 }

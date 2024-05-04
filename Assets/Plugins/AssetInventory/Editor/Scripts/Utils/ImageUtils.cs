@@ -2,13 +2,11 @@
 
 using System;
 using System.Collections.Generic;
-#if UNITY_2021_2_OR_NEWER
 using System.IO;
+#if UNITY_2021_2_OR_NEWER && UNITY_EDITOR_WIN
 using System.Drawing;
 using System.Drawing.Imaging;
 using Graphics = System.Drawing.Graphics;
-#else
-using System.IO;
 #endif
 using System.Linq;
 using UnityEngine;
@@ -192,12 +190,12 @@ namespace AssetInventory
 
         public static Tuple<int, int> GetDimensions(string file)
         {
-            #if UNITY_2021_2_OR_NEWER
+            #if UNITY_2021_2_OR_NEWER && UNITY_EDITOR_WIN
             Image originalImage; // leave here as otherwise temp files will be created by FromFile() for unknown reasons 
             #endif
             try
             {
-                #if UNITY_2021_2_OR_NEWER
+                #if UNITY_2021_2_OR_NEWER && UNITY_EDITOR_WIN
                 using (originalImage = Image.FromFile(file))
                 {
                     return new Tuple<int, int>(originalImage.Width, originalImage.Height);
@@ -219,8 +217,8 @@ namespace AssetInventory
             }
         }
 
-        #if UNITY_2021_2_OR_NEWER
-        public static void ResizeImage(string originalFile, string outputFile, int maxSize, bool scaleBeyondSize = true, ImageFormat format = null)
+        #if UNITY_2021_2_OR_NEWER && UNITY_EDITOR_WIN
+        public static bool ResizeImage(string originalFile, string outputFile, int maxSize, bool scaleBeyondSize = true, ImageFormat format = null)
         {
             Image originalImage; // leave here as otherwise temp files will be created by FromFile() for unknown reasons 
             try
@@ -235,8 +233,8 @@ namespace AssetInventory
                     double ratioY = (double)maxSize / originalHeight;
                     double ratio = Math.Min(ratioX, ratioY);
 
-                    int newWidth = (int)(originalWidth * ratio);
-                    int newHeight = (int)(originalHeight * ratio);
+                    int newWidth = Mathf.Max(1, (int)(originalWidth * ratio));
+                    int newHeight = Mathf.Max(1, (int)(originalHeight * ratio));
 
                     if (!scaleBeyondSize && (newWidth > originalWidth || newHeight > originalHeight))
                     {
@@ -265,7 +263,9 @@ namespace AssetInventory
             catch (Exception e)
             {
                 Debug.LogWarning($"Could not resize image '{originalFile}': {e.Message}");
+                return false;
             }
+            return true;
         }
         #endif
 

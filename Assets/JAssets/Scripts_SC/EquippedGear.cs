@@ -6,7 +6,6 @@ namespace JAssets.Scripts_SC
 {
     public class EquippedGear : MonoBehaviour
     {
-
         [Header("Items")] [ShowInInspector] 
         public Dictionary<string, GameObject> items = new();
         
@@ -23,10 +22,7 @@ namespace JAssets.Scripts_SC
 
             foreach (var item in itemList)
             {
-                if (!items.ContainsKey(item.name))
-                {
-                    items.Add(item.name, item);
-                }
+                items.TryAdd(item.name, item);
             }
         }
     }

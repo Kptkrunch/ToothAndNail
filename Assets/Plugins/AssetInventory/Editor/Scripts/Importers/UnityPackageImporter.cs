@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-#if UNITY_2021_2_OR_NEWER
+#if UNITY_2021_2_OR_NEWER && UNITY_EDITOR_WIN
 using System.Drawing.Imaging;
 #endif
 using System.IO;
@@ -62,10 +62,13 @@ namespace AssetInventory
                 // check if metadata is already available for triggering and monitoring
                 if (string.IsNullOrWhiteSpace(info.OriginalLocation)) continue;
 
+                // skip if too large
+                if (AssetInventory.Config.limitAutoDownloads && Mathf.RoundToInt(info.PackageSize / 1024f / 1024f) >= AssetInventory.Config.downloadLimit) continue;
+
                 AssetInventory.GetObserver().Attach(info);
                 if (!info.PackageDownloader.IsDownloadSupported()) continue;
 
-                CurrentMain = "Downloading package...";
+                CurrentMain = $"Downloading package {info.GetDisplayName()}...";
                 MainCount = packages.Count; // set again, can get lost
                 MainProgress = i + 1;
                 CurrentSub = IOUtils.RemoveInvalidChars(info.GetDisplayName());
@@ -110,8 +113,6 @@ namespace AssetInventory
                     }
 
                     File.Delete(info.GetLocation(true));
-                    info.Location = null;
-                    DBAdapter.DB.Execute("update Asset set Location=null where Id=?", info.AssetId);
                 }
 
                 info.Refresh();
@@ -393,14 +394,20 @@ namespace AssetInventory
                     if (!Directory.Exists(targetDir)) Directory.CreateDirectory(targetDir);
 
                     bool copyOriginal = true;
-                    #if UNITY_2021_2_OR_NEWER
+                    #if UNITY_2021_2_OR_NEWER && UNITY_EDITOR_WIN
                     if (AssetInventory.Config.upscalePreviews && ImageUtils.SYSTEM_IMAGE_TYPES.Contains(af.Type))
                     {
                         // scale up preview already during import
-                        ImageUtils.ResizeImage(assetFile, targetFile, AssetInventory.Config.upscaleSize, !AssetInventory.Config.upscaleLossless, ImageFormat.Png);
-                        PreviewImporter.StorePreviewResult(new PreviewRequest {DestinationFile = targetFile, Id = af.Id, Icon = Texture2D.grayTexture, SourceFile = assetFile});
-                        af.PreviewState = AssetFile.PreviewOptions.Custom;
-                        copyOriginal = false;
+                        if (ImageUtils.ResizeImage(assetFile, targetFile, AssetInventory.Config.upscaleSize, !AssetInventory.Config.upscaleLossless, ImageFormat.Png))
+                        {
+                            PreviewImporter.StorePreviewResult(new PreviewRequest {DestinationFile = targetFile, Id = af.Id, Icon = Texture2D.grayTexture, SourceFile = assetFile});
+                            af.PreviewState = AssetFile.PreviewOptions.Custom;
+                            copyOriginal = false;
+                        }
+                        else
+                        {
+                            copyOriginal = true;
+                        }
                     }
                     #endif
                     if (copyOriginal)

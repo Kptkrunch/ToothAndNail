@@ -22,6 +22,8 @@ namespace AssetInventory
         public bool groupLists = true;
         public bool autoHideSettings = true;
         public bool keepAutoDownloads;
+        public bool limitAutoDownloads;
+        public int downloadLimit = 500;
         public bool searchAutomatically = true;
         public int previewVisibility;
         public int tileSize = 150;

@@ -8,7 +8,7 @@ namespace JAssets.Scripts_SC
 		[SerializeField]
 		private GameObject playerPrefab; // set this in Inspector
 
-		void Start()
+		private void Start()
 		{
 			for (int i = 0; i < 4; i++)
 			{

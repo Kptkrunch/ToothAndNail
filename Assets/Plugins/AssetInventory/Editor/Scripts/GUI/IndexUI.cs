@@ -164,6 +164,7 @@ namespace AssetInventory
             EditorApplication.playModeStateChanged += OnPlayModeStateChanged;
             EditorSceneManager.sceneOpened += OnSceneLoaded;
             ImportUI.OnImportDone += OnImportDone;
+            MaintenanceUI.OnMaintenanceDone += OnMaintenanceDone;
             AssetStore.OnPackageListUpdated += OnPackageListUpdated;
             AssetDatabase.importPackageCompleted += ImportCompleted;
             AssetDownloaderUtils.OnDownloadFinished += OnDownloadFinished;
@@ -186,6 +187,7 @@ namespace AssetInventory
             EditorApplication.playModeStateChanged -= OnPlayModeStateChanged;
             EditorSceneManager.sceneOpened -= OnSceneLoaded;
             ImportUI.OnImportDone -= OnImportDone;
+            MaintenanceUI.OnMaintenanceDone -= OnMaintenanceDone;
             AssetStore.OnPackageListUpdated -= OnPackageListUpdated;
             AssetDownloaderUtils.OnDownloadFinished -= OnDownloadFinished;
 
@@ -195,6 +197,13 @@ namespace AssetInventory
 
         private void OnPackagesUpdated()
         {
+            _requireAssetTreeRebuild = true;
+        }
+
+        private void OnMaintenanceDone()
+        {
+            _requireLookupUpdate = true;
+            _requireSearchUpdate = true;
             _requireAssetTreeRebuild = true;
         }
 
@@ -272,7 +281,7 @@ namespace AssetInventory
             _deprecationOptions = new[] {"-all-", "Exclude Deprecated", "Show Only Deprecated"};
             _maintenanceOptions = new[] {"-all-", "Update Available", "Outdated in Unity Cache", "Disabled by Unity", "Custom Asset Store Link", "Indexed", "Not Indexed", "Custom Registry", "Installed", "Downloaded", "Downloading", "Not Downloaded", "Duplicate", "Marked for Backup", "Not Marked for Backup", "Deleted Custom Packages", "Excluded"};
             _importDestinationOptions = new[] {"Into Folder Selected in Project View", "Into Assets Root", "Into Specific Folder"};
-            _importStructureOptions = new[] {"All Files flat in Target Folder", "Keep Original Folder Structure"};
+            _importStructureOptions = new[] {"All Files Flat in Target Folder", "Keep Original Folder Structure"};
             _assetCacheLocationOptions = new[] {"Automatic", "Custom Folder"};
             _currencyOptions = new[] {"EUR", "USD", "CNY"};
             _expertSearchFields = new[]
@@ -327,6 +336,32 @@ namespace AssetInventory
 
             _allowLogic = Event.current.type == EventType.Layout; // nothing must be changed during repaint
             Init(); // in some docking scenarios OnGUI is called before Awake
+
+            // check for config errors
+            if (AssetInventory.ConfigErrors.Count > 0)
+            {
+                EditorGUILayout.HelpBox("Configuration errors detected. These need to be fixed to proceed.", MessageType.Error);
+
+                EditorGUILayout.Space();
+                EditorGUILayout.LabelField($"Config Location: {AssetInventory.UsedConfigLocation}");
+                if (GUILayout.Button("Open", GUILayout.ExpandWidth(false)))
+                {
+                    EditorUtility.RevealInFinder(AssetInventory.UsedConfigLocation);
+                }
+
+                EditorGUILayout.Space();
+                EditorGUILayout.LabelField("Errors", EditorStyles.boldLabel);
+                foreach (string error in AssetInventory.ConfigErrors)
+                {
+                    EditorGUILayout.LabelField($"--> {error}");
+                }
+                EditorGUILayout.Space();
+                if (GUILayout.Button("Reload Settings", GUILayout.Height(30), GUILayout.ExpandWidth(false)))
+                {
+                    AssetInventory.ReInit();
+                }
+                return;
+            }
 
             if (UpgradeUtil.UpgradeRequired)
             {

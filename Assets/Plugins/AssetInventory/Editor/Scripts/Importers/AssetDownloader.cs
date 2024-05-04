@@ -73,6 +73,7 @@ namespace AssetInventory
         public void RefreshState()
         {
             lastRefresh = DateTime.Now;
+            _headerCache.Clear();
 
             CheckState();
 

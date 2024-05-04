@@ -1,3 +1,4 @@
+using System;
 using Photon.Pun;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -6,6 +7,9 @@ namespace JAssets.Scripts_SC
 {
     public class PlayerMoveController : MonoBehaviourPunCallbacks
     {
+        public int playerNumber;
+        public string playerTag;
+        public bool isPlayer;
         [SerializeField] private float moveSpeed = 5f;
         [SerializeField] private float maxSpeed;
         [SerializeField] private float velocity;
@@ -16,7 +20,7 @@ namespace JAssets.Scripts_SC
         [SerializeField] private float massFactor = 0.05f;
 
         [SerializeField] private float jumpForce = 5f;
-        [SerializeField] private const float jumpHoldMultiplier = 0.5f;
+        [SerializeField] private float jumpHoldMultiplier = 0.5f;
         [SerializeField] private float wallSlideSpeed = 0.5f;
         [SerializeField] private float wallJumpForce = 10f;
         [SerializeField] private Vector2 wallJumpDirection = new(1f, 2f);
@@ -32,6 +36,9 @@ namespace JAssets.Scripts_SC
         [SerializeField] private Transform wallCheckPoint;
         [SerializeField] private Transform ledgeCheckPoint;
         [SerializeField] private Transform groundCheckPoint;
+        [SerializeField] private Transform viewPoint;
+        public GameObject coneOfVision;
+
         
         [SerializeField] private LayerMask groundLayerMask;
         [SerializeField] private LayerMask wallLayerMask;
@@ -47,6 +54,10 @@ namespace JAssets.Scripts_SC
         [SerializeField] private BoxCollider2D bc2d;
         [SerializeField] private Animator animator;
         [SerializeField] private Camera playerCamera;
+        [SerializeField] private PlayerInput playerInput;
+        [SerializeField] private PlayerHealthController healthController;
+        private InputActionAsset inputActionAsset;
+        private InputActionMap player;
 
         private Vector2 rightStick;
         
@@ -68,7 +79,21 @@ namespace JAssets.Scripts_SC
         private static readonly int Crouch1 = Animator.StringToHash("Crouch");
         private static readonly int Grounded = Animator.StringToHash("Grounded");
         private static readonly int WallJump1 = Animator.StringToHash("WallJump");
-        
+
+        private void Awake()
+        {
+            playerInput = GetComponent<PlayerInput>();
+            playerCamera = GetComponentInChildren<Camera>();
+        }
+
+        private void Start()
+        {
+            DataTypeController.PlayerNumAndTagData playerData;
+            playerData = PlayerList.instance.AddPlayerToList(gameObject);
+            playerNumber = playerData.PlayerNumber;
+            playerTag = playerData.PlayerTag;
+        }
+
         private void Update()
         {
             if (isWallSliding) animator.SetBool(Slide, true);
@@ -89,9 +114,9 @@ namespace JAssets.Scripts_SC
 
         private void LateUpdate()
         {
-            Vector3 desiredPosition = new Vector3(transform.position.x, transform.position.y + 0.25f, -10);
-            playerCamera.gameObject.transform.position = desiredPosition;
-            
+            coneOfVision.gameObject.transform.position = viewPoint.position;
+            // Vector3 desiredPosition = new Vector3(transform.position.x, transform.position.y + 0.25f, -10);
+            // playerCamera.gameObject.transform.position = desiredPosition;
             if (!(Mathf.Abs(velocity) <= 0.1f)) return;
             if (isCrouching) rb2d.velocity = Vector2.zero;
             
@@ -101,7 +126,7 @@ namespace JAssets.Scripts_SC
 
         public void Move(InputAction.CallbackContext context)
         {
-            if (!context.performed || isCrouching) return;
+            if (!context.performed || isCrouching || healthController.currentHealth <= 0) return;
             float currentAcceleration;
 
             if (isGrounded)
@@ -129,7 +154,7 @@ namespace JAssets.Scripts_SC
         
         public void Jump(InputAction.CallbackContext context)
         {
-            if (!context.performed) return;
+            if (!context.performed || healthController.currentHealth <= 0) return;
             
             if (isGrounded || coyoteTimeTimer > 0 || jumpBufferTimer > 0)
             {
@@ -157,6 +182,7 @@ namespace JAssets.Scripts_SC
         
         public void Crouch(InputAction.CallbackContext context)
         {
+            if (healthController.currentHealth <= 0) return;
             if (context.performed && isGrounded)
             {
                 isCrouching = true;
@@ -297,7 +323,7 @@ namespace JAssets.Scripts_SC
 
         public void WallJump(InputAction.CallbackContext context)
         {
-            if (!context.performed) return;
+            if (!context.performed || healthController.currentHealth <= 0) return;
             if (isWallSliding)
             {
                 var forceAdd = new Vector2(

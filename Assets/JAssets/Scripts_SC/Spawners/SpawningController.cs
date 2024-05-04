@@ -10,8 +10,7 @@ namespace JAssets.Scripts_SC.Spawners
 
         public GameObject[] locationArray;
 
-        [Header("Spawn Locations")]
-        public Dictionary<string, GameObject> locationDictionary = new();
+        [Header("Spawn Locations")] private Dictionary<string, GameObject> locationDictionary = new();
 
         private void Awake()
         {

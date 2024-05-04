@@ -21,6 +21,7 @@ namespace AssetInventory
         public const int INSPECTOR_WIDTH = 300;
         public const int TAG_SIZE_SPACING = 20;
         public const int TAG_OUTER_MARGIN = 20;
+        public const string INDENT = "  ";
 
         public static readonly string[] FolderTypes = {"Unity Packages", "Media Files", "Zip Archives"};
         public static readonly string[] MediaTypes = {"-All-", string.Empty, "Audio", "Images", "Models", string.Empty, "-Custom File Pattern-"};
