@@ -20,7 +20,7 @@ public class ParticlePoolList : MonoBehaviour
 	public MMSimpleObjectPooler WeaponBreak;
 	public MMSimpleObjectPooler ItemPickupFlash;
 	public MMSimpleObjectPooler PickupSparkle;
-	
+	public MMSimpleObjectPooler TrailTrace;
 	private void Start()
 	{
 		PopulateList();
@@ -39,6 +39,7 @@ public class ParticlePoolList : MonoBehaviour
 
 	private void PopulateList()
 	{
+		particleList.Add(TrailTrace);
 		particleList.Add(Blood1);
 		particleList.Add(Blood2);
 		particleList.Add(Blood3);
