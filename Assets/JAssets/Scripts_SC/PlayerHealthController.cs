@@ -15,7 +15,8 @@ namespace JAssets.Scripts_SC
         public SpriteRenderer spriteRenderer;
         public PlayerUI playerUi;
         [SerializeField] public int currentHealth;
-        [SerializeField] private int _maxHealth = 5;
+        [SerializeField] private int maxHealth = 5;
+        [SerializeField] private GameObject parent;
         private bool _canBeDamaged = true;
         private float _invulTimer;
         private static readonly int HitEffectBlend = Shader.PropertyToID("_HitEffectBlend");
@@ -23,7 +24,7 @@ namespace JAssets.Scripts_SC
         private void Start()
         {
             SetAllHealthValues();
-            playerUi.SetBarValues(_maxHealth);
+            playerUi.SetBarValues(maxHealth);
             SetShaderAndInvul();
         }
 
@@ -44,18 +45,19 @@ namespace JAssets.Scripts_SC
             if (currentHealth > 0) return;
             currentHealth = 0;
             animator.Play("Death");
+            Destroy(parent, 3.0f);
         }
 
         public void GetHealed(int healAmount)
         {
             currentHealth += healAmount; 
-            if (currentHealth > _maxHealth) currentHealth = _maxHealth;
+            if (currentHealth > maxHealth) currentHealth = maxHealth;
             playerUi.HealDamage(healAmount);
         }
         private void SetAllHealthValues()
         {
-            currentHealth = _maxHealth;
-            playerUi.SetBarValues(_maxHealth);
+            currentHealth = maxHealth;
+            playerUi.SetBarValues(maxHealth);
         }
         private void SetShaderAndInvul()
         {
