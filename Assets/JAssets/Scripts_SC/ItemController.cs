@@ -21,8 +21,8 @@ namespace JAssets.Scripts_SC
         public Image imageB;
         public Image imageC;
         
-        [CanBeNull] [SerializeField] private string itemSlotA = "";
-        [CanBeNull] [SerializeField] private string itemSlotB = "";
+        [CanBeNull] [SerializeField] public string itemSlotA = "";
+        [CanBeNull] [SerializeField] public string itemSlotB = "";
         [CanBeNull] [SerializeField] private string activeRecipeName = "";
 
         public void GetItemA(InputAction.CallbackContext context)

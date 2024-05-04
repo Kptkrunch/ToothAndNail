@@ -112,8 +112,11 @@ MonoBehaviour:
   itemName: 
   sprite: {fileID: 0}
   animator: {fileID: 0}
+  lifespan: 5
   hitbox: {fileID: 5537229789823413493}
   damage: 1
+  playerTag: 
+  parent: {fileID: 1121769990319361707}
   rb2d: {fileID: 854780692381632707}
 --- !u!114 &7540320626499859554
 MonoBehaviour:

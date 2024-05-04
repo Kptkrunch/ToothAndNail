@@ -27,7 +27,7 @@ namespace JAssets.Scripts_SC.Items
                 DealDamageAndSpawnDmgText(other);
                 ApplyKnockback(other);
                 Debug.Log("after knockback");
-                HitParticleSpawner.instance.GetRandomBlood(other.transform.position);
+                HandleBloodParticle(other);
             }
             else if (other.gameObject.CompareTag("Weapon"))
             {
@@ -63,6 +63,13 @@ namespace JAssets.Scripts_SC.Items
         {
             print("Special");
         }
+        
+        private static void HandleBloodParticle(Collider2D other)
+        {
+            var blood = GetRandomBloodParticle.instance.RandomBloodParticleHandler();
+            blood.transform.position = other.transform.position;
+            blood.SetActive(true);
+        }
 
         protected void DealDamageAndSpawnDmgText(Collider2D other)
         {
@@ -81,6 +88,16 @@ namespace JAssets.Scripts_SC.Items
         {
             if (rtso.durability <= 0)
             {
+                if (controller.itemSlotA != name)
+                {
+                    controller.imageB.sprite = null;
+                    controller.itemSlotB = "";
+                }
+                else
+                {
+                    controller.imageA.sprite = null;
+                    controller.itemSlotA = "";
+                }
                 rtso.durability = rtso.fullDurability;
                 
                 gameObject.SetActive(false);

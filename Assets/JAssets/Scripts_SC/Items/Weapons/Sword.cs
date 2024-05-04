@@ -20,13 +20,20 @@ namespace JAssets.Scripts_SC.Items.Weapons
             if (other.GetComponent<PlayerMoveController>().isPlayer && other.CompareTag(playerController.tag) == false)
             {
                 DealDamageAndSpawnDmgText(other);
-                HitParticleSpawner.instance.GetRandomGoo(other.transform.position);
+                HandleBloodParticle(other);
             }
             else if (other.gameObject.CompareTag("Weapon"))
             {
                 DealDamageAndSpawnDmgText(other);
                 HitParticleSpawner.instance.GetRandomClash(other.transform.position);
             }
+        }
+
+        private static void HandleBloodParticle(Collider2D other)
+        {
+            var blood = GetRandomBloodParticle.instance.RandomBloodParticleHandler();
+            blood.transform.position = other.transform.position;
+            blood.SetActive(true);
         }
 
         public void WindowOpen()
