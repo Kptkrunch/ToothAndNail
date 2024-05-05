@@ -4790,7 +4790,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24aaefbfa8b3e6345ae05047e58acc44, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  trailFadeTime: 10
+  trailFadeTime: 15
   trailParticle: {fileID: 2535146557299510087}
 --- !u!61 &5379556217847004996
 BoxCollider2D:
