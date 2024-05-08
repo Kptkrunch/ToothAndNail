@@ -50,7 +50,6 @@ namespace JAssets.Scripts_SC.Multiplayer
         {
             loadingScreen.gameObject.SetActive(false);
             menuButtons.gameObject.SetActive(false);
-            createRoomScreen.gameObject.SetActive(false);
             roomScreen.SetActive(false);
             errorScreen.SetActive(false);
             roomBrowserScreen.SetActive(false);

@@ -1,7 +1,6 @@
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-using UnityEngine.UIElements;
+using UnityEngine.SceneManagement;
 using Button = UnityEngine.UI.Button;
 using Image = UnityEngine.UI.Image;
 
@@ -14,16 +13,16 @@ public class MenuButton : MonoBehaviour
 	public void OpenLocalMp()
 	{
 		Debug.Log("This");
-		// do a thing
+		SceneManager.LoadScene("JAssets/SettingsItems_SI/Scenes/MovementTestScene");
 	}
 
 	public void OpenOnlineMP()
 	{
-		// do a thing
+		SceneManager.LoadScene("JAssets/SettingsItems_SI/Scenes/MainMenu");
 	}
 	
 	public void OpenOptions()
 	{
-		// do a thing
+		
 	}
 }
