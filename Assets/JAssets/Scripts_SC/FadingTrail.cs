@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 namespace JAssets.Scripts_SC
@@ -8,11 +9,11 @@ namespace JAssets.Scripts_SC
 		[SerializeField] private GameObject trailParticle;
 		private float trailTimer;
 		private bool traceDetected;
-	
-
+		
 		private void OnEnable()
 		{
 			trailTimer = trailFadeTime;
+			tag = "Trail";
 		}
 
 		private void FixedUpdate()
