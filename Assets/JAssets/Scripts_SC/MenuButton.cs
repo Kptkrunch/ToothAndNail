@@ -13,16 +13,17 @@ public class MenuButton : MonoBehaviour
 	public void OpenLocalMp()
 	{
 		Debug.Log("This");
-		SceneManager.LoadScene("JAssets/SettingsItems_SI/Scenes/MovementTestScene");
+		SceneManager.LoadScene(1);
 	}
 
 	public void OpenOnlineMP()
 	{
-		SceneManager.LoadScene("JAssets/SettingsItems_SI/Scenes/MainMenu");
+		SceneManager.LoadScene(2);
 	}
-	
+
 	public void OpenOptions()
 	{
-		
+		// I don't do anything yet
+		Debug.Log("a thing");
 	}
 }

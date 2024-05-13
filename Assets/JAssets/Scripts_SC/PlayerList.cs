@@ -1,36 +1,54 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using JAssets.Scripts_SC;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
-public class PlayerList : MonoBehaviour
+namespace JAssets.Scripts_SC
 {
-	public static PlayerList instance;
-
-	private void Awake()
+	public class PlayerList : MonoBehaviour
 	{
-		instance = this;
-	}
+		public static PlayerList instance;
+		[SerializeField] private GameObject playerObjectToSpawn;
 
-	public List<GameObject> playersList = new();
+		private void Awake()
+		{
+			if (!instance)
+			{
+				instance = this;
+			}
+			DontDestroyOnLoad(instance);
+		}
+		
+		public List<GameObject> playersList = new();
 
-	public DataTypeController.PlayerNumAndTagData AddPlayerToList(GameObject playerPrefab)
-	{
-		DataTypeController.PlayerNumAndTagData playerData;
-		playersList.Add(playerPrefab);
-		var playerLayer = LayerMask.NameToLayer("Player" + playersList.Count);
-		var playerTag = "Player" + playersList.Count;
-		playerPrefab.tag = playerTag;
-		playerPrefab.gameObject.layer = playerLayer;
-		playerData.PlayerNumber = playersList.Count;
-		playerData.PlayerTag = playerTag;
-		playerData.PlayerLayer = playerLayer;
-		return playerData;
-	}
-	
-	public void RemovePlayerFromList(GameObject playerPrefab)
-	{
-		playersList.Remove(playerPrefab);
+		public DataTypeController.PlayerNumAndTagData AddPlayerToList(GameObject playerPrefab)
+		{
+			DataTypeController.PlayerNumAndTagData playerData;
+			playersList.Add(playerPrefab);
+			var playerLayer = LayerMask.NameToLayer("Player" + playersList.Count);
+			var playerTag = "Player" + playersList.Count;
+			playerPrefab.tag = playerTag;
+			playerPrefab.gameObject.layer = playerLayer;
+			playerData.PlayerNumber = playersList.Count;
+			playerData.PlayerTag = playerTag;
+			playerData.PlayerLayer = playerLayer;
+			return playerData;
+		}
+		
+		public void ClearPlayerList()
+		{
+			playersList.Clear();
+		}
+
+		public void AddPlayerToJoinScreen()
+		{
+			var newPlayer = Instantiate(playerObjectToSpawn);
+			newPlayer.SetActive(false);
+			AddPlayerToList(newPlayer);
+		}
+		public void RemovePlayerFromList(InputAction.CallbackContext context, GameObject playerPrefab)
+		{
+			playersList.Remove(playerPrefab);
+		}
 	}
 }

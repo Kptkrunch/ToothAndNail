@@ -17,11 +17,10 @@ namespace JAssets.Scripts_SC
 			interactable.GetComponent<ItemNode>().ActivateNode();
 		}
 		
-		// Add a OnDrawGizmos method to visualize the overlap circle
 		private void OnDrawGizmos() 
 		{
-			Gizmos.color = Color.red; // Set the color of the gizmo
-			Gizmos.DrawWireSphere(transform.position, 1); // Draw a wireframe sphere at the ResourceController's position
+			Gizmos.color = Color.red; 
+			Gizmos.DrawWireSphere(transform.position, 1);
 		}
 	}
 }

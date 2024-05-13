@@ -1,28 +1,27 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using AssetInventory;
 using UnityEngine;
 
-public class DataTypeController : MonoBehaviour
+namespace JAssets.Scripts_SC
 {
-	public static DataTypeController instance;
-
-	private void Awake()
+	public class DataTypeController : MonoBehaviour
 	{
-		if(instance != null)
+		private static DataTypeController instance;
+
+		private void Awake()
 		{
-			Destroy(gameObject);
-			return;
-		}
+			if(instance != null)
+			{
+				Destroy(gameObject);
+				return;
+			}
         
-		instance = this;
-	}
+			instance = this;
+		}
 
-	public struct PlayerNumAndTagData
-	{
-		public string PlayerTag;
-		public int PlayerNumber;
-		public LayerMask PlayerLayer;
-	} 
+		public struct PlayerNumAndTagData
+		{
+			public string PlayerTag;
+			public int PlayerNumber;
+			public LayerMask PlayerLayer;
+		} 
+	}
 }
