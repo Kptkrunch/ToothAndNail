@@ -52,6 +52,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 054427a397f04dd0b9c403dec34d101f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerController: {fileID: 0}
   animator: {fileID: 8343379803038319267}
   weaponSo: {fileID: 11400000, guid: ec0dfdbcf2a45004aaba57dd193edee4, type: 2}
   controller: {fileID: 0}
@@ -97,7 +98,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 7ef4f25fcb2b44242918568379df823b, type: 2}
+  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

@@ -22,6 +22,7 @@ TagManager:
   - Consumable
   - Interactable
   - Interactible
+  - Trail
   layers:
   - Default
   - TransparentFX
