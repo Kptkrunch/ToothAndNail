@@ -92,6 +92,7 @@ namespace JAssets.Scripts_SC
             playerData = PlayerList.instance.AddPlayerToList(gameObject);
             playerNumber = playerData.PlayerNumber;
             playerTag = playerData.PlayerTag;
+            coneOfVision.GetComponentInChildren<LookRotate>().tag = playerData.PlayerTag;
         }
 
         private void Update()
