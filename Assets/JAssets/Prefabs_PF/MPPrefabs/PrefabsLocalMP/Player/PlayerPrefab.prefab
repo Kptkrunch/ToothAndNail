@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9196551739272892261}
   - component: {fileID: 3927468350709236223}
-  m_Layer: 3
+  m_Layer: 5
   m_Name: DelayDecreaseBar
   m_TagString: EditorStuff
   m_Icon: {fileID: 0}
@@ -155,7 +155,7 @@ GameObject:
   - component: {fileID: 4559644154962557718}
   - component: {fileID: 6879375213200817765}
   - component: {fileID: 6113362425565574459}
-  m_Layer: 3
+  m_Layer: 5
   m_Name: ItemSlotA
   m_TagString: EditorStuff
   m_Icon: {fileID: 0}
@@ -848,7 +848,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9210475057110828091}
   - component: {fileID: 7231211908665717275}
-  m_Layer: 3
+  m_Layer: 6
   m_Name: ResourceController
   m_TagString: GameController
   m_Icon: {fileID: 0}
@@ -976,7 +976,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1168090057349466665}
-  m_Layer: 3
+  m_Layer: 6
   m_Name: LedgeCheckPoint
   m_TagString: Transforms
   m_Icon: {fileID: 4162164826716764455, guid: 0000000000000000d000000000000000, type: 0}
@@ -1010,7 +1010,7 @@ GameObject:
   - component: {fileID: 7463907391049889799}
   - component: {fileID: 5810558949584441628}
   - component: {fileID: 8550350906218515658}
-  m_Layer: 3
+  m_Layer: 5
   m_Name: RecipeImage
   m_TagString: EditorStuff
   m_Icon: {fileID: 0}
@@ -1056,7 +1056,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 2100000, guid: 39c171ad13717e04e8642b60eba8eae1, type: 2}
+  m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 0.392}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
@@ -1410,7 +1410,7 @@ GameObject:
   - component: {fileID: 8958126447169750400}
   - component: {fileID: 8859836415173848968}
   - component: {fileID: 5144522731161804931}
-  m_Layer: 3
+  m_Layer: 5
   m_Name: ReciptBackground
   m_TagString: EditorStuff
   m_Icon: {fileID: 0}
@@ -1485,7 +1485,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2467522048652887593}
   - component: {fileID: 4076147458741065729}
-  m_Layer: 3
+  m_Layer: 6
   m_Name: GroundCheckPoint
   m_TagString: Transforms
   m_Icon: {fileID: 2974397684917235467, guid: 0000000000000000d000000000000000, type: 0}
@@ -1564,7 +1564,7 @@ GameObject:
   - component: {fileID: 8221715202275100324}
   - component: {fileID: 5051201523005856501}
   - component: {fileID: 7655588149341735769}
-  m_Layer: 3
+  m_Layer: 5
   m_Name: BackgroundColor
   m_TagString: EditorStuff
   m_Icon: {fileID: 0}
@@ -1904,7 +1904,7 @@ GameObject:
   - component: {fileID: 7128714863791870909}
   - component: {fileID: 6015449205295075383}
   - component: {fileID: 5096121949092167160}
-  m_Layer: 3
+  m_Layer: 5
   m_Name: BackgroundColor
   m_TagString: EditorStuff
   m_Icon: {fileID: 0}
@@ -2302,9 +2302,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6159771832837570776}
-  m_Layer: 3
+  m_Layer: 6
   m_Name: CheckTransforms
-  m_TagString: EditorOnly
+  m_TagString: Transforms
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2337,7 +2337,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6490343512702021780}
-  m_Layer: 3
+  m_Layer: 5
   m_Name: HealthBarPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2500,7 +2500,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3882778408313243467}
-  m_Layer: 3
+  m_Layer: 6
   m_Name: ViewPoint
   m_TagString: Transforms
   m_Icon: {fileID: 0}
@@ -3090,7 +3090,7 @@ GameObject:
   - component: {fileID: 764060358848400668}
   - component: {fileID: 7431311181593028154}
   - component: {fileID: 4870780506975186258}
-  m_Layer: 3
+  m_Layer: 5
   m_Name: BackgroundColor
   m_TagString: EditorStuff
   m_Icon: {fileID: 0}
@@ -3222,8 +3222,11 @@ MonoBehaviour:
   itemName: 
   sprite: {fileID: 0}
   animator: {fileID: 0}
+  lifespan: 5
   hitbox: {fileID: 3442769449967981220}
   damage: 1
+  playerTag: 
+  parent: {fileID: 0}
   rb2d: {fileID: 4896158677808192727}
 --- !u!114 &1179952024956182297
 MonoBehaviour:
@@ -3514,7 +3517,7 @@ GameObject:
   - component: {fileID: 1850528318254243831}
   - component: {fileID: 7857624225953779118}
   - component: {fileID: 8364293018786115261}
-  m_Layer: 3
+  m_Layer: 5
   m_Name: ItemSlotB
   m_TagString: EditorStuff
   m_Icon: {fileID: 0}
@@ -3589,7 +3592,7 @@ GameObject:
   m_Component:
   - component: {fileID: 444822511729532745}
   - component: {fileID: 625357675521701888}
-  m_Layer: 3
+  m_Layer: 6
   m_Name: AttackController
   m_TagString: GameController
   m_Icon: {fileID: 0}
@@ -3629,8 +3632,8 @@ MonoBehaviour:
   itemSlotB: 
   attackCd: 0
   specialCd: 0
-  canAttack: 0
-  canSpecial: 0
+  canAttack: 1
+  canSpecial: 1
   attackString: 
   specString: 
   weaponHand: 
@@ -3892,7 +3895,7 @@ GameObject:
   - component: {fileID: 1837536335504345668}
   - component: {fileID: 1297794499982645883}
   - component: {fileID: 6494168586562176193}
-  m_Layer: 3
+  m_Layer: 5
   m_Name: ItemsPanel
   m_TagString: EditorStuff
   m_Icon: {fileID: 0}
@@ -4037,7 +4040,7 @@ GameObject:
   - component: {fileID: 3504668844092918510}
   - component: {fileID: 4866657461542604369}
   - component: {fileID: 2190618391389639690}
-  m_Layer: 3
+  m_Layer: 5
   m_Name: HealthBar
   m_TagString: EditorStuff
   m_Icon: {fileID: 0}
@@ -4348,7 +4351,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3056982804857059468}
-  m_Layer: 3
+  m_Layer: 6
   m_Name: WallCheckPoint
   m_TagString: Transforms
   m_Icon: {fileID: -5487077368411116049, guid: 0000000000000000d000000000000000, type: 0}
@@ -4380,7 +4383,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7384449538046725370}
   - component: {fileID: 875197211129519382}
-  m_Layer: 3
+  m_Layer: 6
   m_Name: HealthController
   m_TagString: GameController
   m_Icon: {fileID: 0}
@@ -4419,7 +4422,8 @@ MonoBehaviour:
   spriteRenderer: {fileID: 3060317900338422356}
   playerUi: {fileID: 1235483041694034230}
   currentHealth: 0
-  _maxHealth: 5
+  maxHealth: 5
+  parent: {fileID: 7249859774958779853}
 --- !u!1 &6776092835786294265
 GameObject:
   m_ObjectHideFlags: 0
@@ -5112,7 +5116,7 @@ GameObject:
   - component: {fileID: 8033301036213228462}
   - component: {fileID: 6220670072384826420}
   - component: {fileID: 7399480668119812653}
-  m_Layer: 3
+  m_Layer: 11
   m_Name: PlayerController
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -5394,7 +5398,19 @@ MonoBehaviour:
     m_ActionId: 0b86e79a-cfd5-4bcb-963e-44a6e09d16a8
     m_ActionName: Player/Interact
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 7017823304107545656}
+        m_TargetAssemblyTypeName: 
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 7b412515-a606-487c-9641-190da9496727
     m_ActionName: Player/Join[/XInputControllerWindows/start,/XInputControllerWindows1/start]
   m_NeverAutoSwitchControlSchemes: 1
@@ -5414,8 +5430,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 151a7877750255a4cbd64b8b8c999d0b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerTag: 
   playerNumber: 0
+  playerTag: 
+  isPlayer: 0
   moveSpeed: 5
   maxSpeed: 6
   velocity: 0
@@ -5431,7 +5448,7 @@ MonoBehaviour:
   ledgeClimbSpeed: 1
   slopeNormalPerp: {x: 0, y: 0}
   ledgeCheckDistance: 0.25
-  wallCheckDistance: 0.1
+  wallCheckDistance: 0.15
   groundCheckDistance: 0.1
   slopeCheckDistance: 0.1
   wallCheckPoint: {fileID: 3056982804857059468}
@@ -5444,7 +5461,7 @@ MonoBehaviour:
     m_Bits: 2147483648
   wallLayerMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 1073741824
   coyoteTime: 0.15
   preLandingJumpBuffer: 0.15
   rb2d: {fileID: 6220670072384826420}
@@ -5529,7 +5546,7 @@ GameObject:
   - component: {fileID: 7574196674204514651}
   - component: {fileID: 2119007278640729130}
   - component: {fileID: 1861847487729816428}
-  m_Layer: 3
+  m_Layer: 5
   m_Name: UIBackground
   m_TagString: EditorStuff
   m_Icon: {fileID: 0}
@@ -5607,7 +5624,7 @@ GameObject:
   - component: {fileID: 6176078775463709193}
   - component: {fileID: 6654784503352126422}
   - component: {fileID: 3524725242812304056}
-  m_Layer: 3
+  m_Layer: 6
   m_Name: Main Camera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
@@ -5873,7 +5890,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1436946691751996918}
   - component: {fileID: 1185744128125524020}
-  m_Layer: 3
+  m_Layer: 5
   m_Name: ForegroundBar
   m_TagString: EditorStuff
   m_Icon: {fileID: 0}
@@ -5954,7 +5971,7 @@ GameObject:
   - component: {fileID: 3245670193524083057}
   - component: {fileID: 7272054843942440965}
   - component: {fileID: 8815598332071910851}
-  m_Layer: 3
+  m_Layer: 5
   m_Name: LifeBarAndItemCanvas
   m_TagString: EditorStuff
   m_Icon: {fileID: 0}
@@ -6054,7 +6071,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9217429133693903975}
   - component: {fileID: 4857470740036422938}
-  m_Layer: 3
+  m_Layer: 5
   m_Name: DelayIncreaseBar
   m_TagString: EditorStuff
   m_Icon: {fileID: 0}
@@ -6138,7 +6155,7 @@ MonoBehaviour:
   m_BlendStyleIndex: 0
   m_FalloffIntensity: 1
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 0.41
+  m_Intensity: 1
   m_LightVolumeIntensity: 0
   m_LightVolumeIntensityEnabled: 0
   m_ApplyToSortingLayers: b9b8169b159558e3c7d0f1c247762422e5671bf2e122e36b1b33efd50181a6652fe2f40d3744fca8
@@ -6218,7 +6235,7 @@ GameObject:
   - component: {fileID: 1614987236417467222}
   - component: {fileID: 741115128898214521}
   - component: {fileID: 2424256453736730183}
-  m_Layer: 3
+  m_Layer: 5
   m_Name: SlotAImage
   m_TagString: EditorStuff
   m_Icon: {fileID: 0}
@@ -6264,7 +6281,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 2100000, guid: d633ccdeb36a1be4682bb475153fe62d, type: 2}
+  m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 0.392}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
@@ -6310,7 +6327,7 @@ GameObject:
   - component: {fileID: 5645903244889288352}
   - component: {fileID: 7884414350001274586}
   - component: {fileID: 7903805258408635130}
-  m_Layer: 3
+  m_Layer: 5
   m_Name: SlotBImage
   m_TagString: EditorStuff
   m_Icon: {fileID: 0}
@@ -6356,7 +6373,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 2100000, guid: 7288d8d258726a74ca30a230c2ac16fc, type: 2}
+  m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 0.392}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
@@ -6402,7 +6419,7 @@ GameObject:
   - component: {fileID: 1235483041694034230}
   - component: {fileID: 647690886124811764}
   - component: {fileID: 6678538274116273431}
-  m_Layer: 3
+  m_Layer: 5
   m_Name: PlayerGui
   m_TagString: EditorStuff
   m_Icon: {fileID: 0}
@@ -6506,7 +6523,7 @@ GameObject:
   - component: {fileID: 5601346258281157922}
   - component: {fileID: 3060317900338422356}
   - component: {fileID: 1696896424805939032}
-  m_Layer: 3
+  m_Layer: 6
   m_Name: VisualController
   m_TagString: GameController
   m_Icon: {fileID: 0}
@@ -6629,7 +6646,7 @@ GameObject:
   - component: {fileID: 1472870652292095456}
   - component: {fileID: 3949206717415315973}
   - component: {fileID: 7008002153526240705}
-  m_Layer: 3
+  m_Layer: 5
   m_Name: BackgroundColor
   m_TagString: EditorStuff
   m_Icon: {fileID: 0}
@@ -6720,7 +6737,7 @@ GameObject:
   - component: {fileID: 5709908986693255911}
   - component: {fileID: 139345396517306492}
   - component: {fileID: 9133302791503153658}
-  m_Layer: 3
+  m_Layer: 6
   m_Name: EquipmentController
   m_TagString: GameController
   m_Icon: {fileID: 0}
@@ -6781,7 +6798,7 @@ MonoBehaviour:
   attackController: {fileID: 625357675521701888}
   pickupLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 4194304
   imageA: {fileID: 741115128898214521}
   imageB: {fileID: 7884414350001274586}
   imageC: {fileID: 5810558949584441628}

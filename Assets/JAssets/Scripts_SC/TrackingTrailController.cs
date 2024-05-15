@@ -9,19 +9,19 @@ namespace JAssets.Scripts_SC
 		[SerializeField] private Rigidbody2D rb2d;
 		[SerializeField] private Transform groundCheckPoint;
 		[SerializeField] private float footPrintTime;
-		private float footPrintTimer;
+		private float _footPrintTimer;
 
 		private void Start()
 		{
-			footPrintTimer = footPrintTime;
+			_footPrintTimer = footPrintTime;
 		}
 	
 		private void Update()
 		{
-			footPrintTimer -= Time.deltaTime;
-			if (footPrintTimer <= 0)
+			_footPrintTimer -= Time.deltaTime;
+			if (_footPrintTimer <= 0)
 			{
-				footPrintTimer = footPrintTime;
+				_footPrintTimer = footPrintTime;
 				CreateFootPrint();
 			}
 		}

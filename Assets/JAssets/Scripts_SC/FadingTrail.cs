@@ -7,19 +7,19 @@ namespace JAssets.Scripts_SC
 	{
 		[SerializeField] private float trailFadeTime;
 		[SerializeField] private GameObject trailParticle;
-		private float trailTimer;
-		private bool traceDetected;
+		private float _trailTimer;
+		private bool _traceDetected;
 		
 		private void OnEnable()
 		{
-			trailTimer = trailFadeTime;
+			_trailTimer = trailFadeTime;
 			tag = "Trail";
 		}
 
 		private void FixedUpdate()
 		{
-			trailTimer -= Time.deltaTime;
-			if (trailTimer <= 0)
+			_trailTimer -= Time.deltaTime;
+			if (_trailTimer <= 0)
 			{
 				trailParticle.SetActive(false);
 				gameObject.SetActive(false);

@@ -6,7 +6,7 @@ using UnityEngine.InputSystem;
 
 namespace JAssets.Scripts_SC
 {
-    public class AttackController : MonoBehaviour
+    public sealed class AttackController : MonoBehaviour
     {
         [SerializeField] [CanBeNull] public Animator weaponAnimator;
         [SerializeField] public EquippedGear gear;
@@ -33,14 +33,14 @@ namespace JAssets.Scripts_SC
         public void Attack(InputAction.CallbackContext context)
         {
             if (!context.performed) return;
-            if (gear.items != null) gear.items[weaponHand].GetComponentInChildren<Weapon>().Attack();
+            if (gear.Items != null) gear.Items[weaponHand].GetComponentInChildren<Weapon>().Attack();
             if (weaponAnimator != null) weaponAnimator.SetBool(attackString, true);
             StartCoroutine(AttackCooldownTimer());
         }
-        public virtual void Special(InputAction.CallbackContext context)
+        public void Special(InputAction.CallbackContext context)
         {
             if (!context.performed) return;
-            gear.items[weaponHand].GetComponentInChildren<Weapon>().Special();
+            gear.Items[weaponHand].GetComponentInChildren<Weapon>().Special();
             if (weaponAnimator != null) weaponAnimator.SetBool(specString, true);
             StartCoroutine(SpecialCooldownTimer());
         }
@@ -48,7 +48,7 @@ namespace JAssets.Scripts_SC
         private IEnumerator AttackCooldownTimer()
         {
             canAttack = false;
-            gear.items[weaponHand].GetComponentInChildren<Weapon>().Attack();
+            gear.Items[weaponHand].GetComponentInChildren<Weapon>().Attack();
             yield return new WaitForSeconds(attackCd);
             canAttack = true;
         }
@@ -56,14 +56,14 @@ namespace JAssets.Scripts_SC
         private IEnumerator SpecialCooldownTimer()
         {
             canSpecial = false;
-            gear.items[weaponHand].GetComponentInChildren<Weapon>().Special();
+            gear.Items[weaponHand].GetComponentInChildren<Weapon>().Special();
             yield return new WaitForSeconds(specialCd);
             canSpecial = true;
         }
 
         public void UpdateGearStats(string slotToUpdate, string newItem)
         {
-            var weapon = gear.items[newItem].GetComponentInChildren<Weapon>();
+            var weapon = gear.Items[newItem].GetComponentInChildren<Weapon>();
 
             switch (slotToUpdate)
             {
@@ -76,12 +76,12 @@ namespace JAssets.Scripts_SC
                     if (weapon) weaponHand = "itemSlotB";
                     break;
             }
-            gear.items[newItem].gameObject.SetActive(true);
+            gear.Items[newItem].gameObject.SetActive(true);
         
             if (weapon == null) return;
-            gear.items[newItem].SetActive(true);
+            gear.Items[newItem].SetActive(true);
             weaponHand = weapon.name;
-            weaponAnimator = gear.items[newItem].GetComponent<Animator>();
+            weaponAnimator = gear.Items[newItem].GetComponent<Animator>();
             attackString = weapon.rtso.attackAnimString;
             specString = weapon.rtso.specAnimString;
             attackCd = weapon.rtso.attackCd;

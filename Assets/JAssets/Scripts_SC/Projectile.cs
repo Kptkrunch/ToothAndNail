@@ -52,9 +52,9 @@ namespace JAssets.Scripts_SC
 			var otherPlayer = other.gameObject.GetComponentInChildren<PlayerHealthController>();
 			otherPlayer.GetDamaged(damage);
 			HandleBloodParticle(other);
-			var dmgText = DamageNumberController.instance.player.GetFeedbackOfType<MMF_FloatingText>();
+			var dmgText = DamageNumberController.Instance.player.GetFeedbackOfType<MMF_FloatingText>();
 			dmgText.Value = damage.ToString();
-			DamageNumberController.instance.player.PlayFeedbacks(other.transform.position);
+			DamageNumberController.Instance.player.PlayFeedbacks(other.transform.position);
 		}
 		
 		private static void HandleBloodParticle(Collider2D other)

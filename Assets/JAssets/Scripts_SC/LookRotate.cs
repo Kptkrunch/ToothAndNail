@@ -5,13 +5,13 @@ namespace JAssets.Scripts_SC
 {
     public class LookRotate : MonoBehaviour
     {
-        private Vector2 rightStick;
+        private Vector2 _rightStick;
         [SerializeField] private PolygonCollider2D coneOfView;
         private void Update()
         {
-            if (rightStick != Vector2.zero)
+            if (_rightStick != Vector2.zero)
             {
-                float angle = Mathf.Atan2(rightStick.y, rightStick.x) * Mathf.Rad2Deg;
+                float angle = Mathf.Atan2(_rightStick.y, _rightStick.x) * Mathf.Rad2Deg;
                 transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
             }
         }
@@ -27,7 +27,7 @@ namespace JAssets.Scripts_SC
 
         public void OnRightStick(InputAction.CallbackContext context)
         {
-            rightStick = context.ReadValue<Vector2>(); // Read the Vector2 value from the right stick
+            _rightStick = context.ReadValue<Vector2>(); // Read the Vector2 value from the right stick
         }
     }
 }

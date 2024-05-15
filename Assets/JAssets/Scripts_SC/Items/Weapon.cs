@@ -77,9 +77,9 @@ namespace JAssets.Scripts_SC.Items
             var otherPlayer = other.gameObject.GetComponentInChildren<PlayerHealthController>();
             otherPlayer.GetDamaged(rtso.damage);
 
-            var dmgText = DamageNumberController.instance.player.GetFeedbackOfType<MMF_FloatingText>();
+            var dmgText = DamageNumberController.Instance.player.GetFeedbackOfType<MMF_FloatingText>();
             dmgText.Value = rtso.damage.ToString();
-            DamageNumberController.instance.player.PlayFeedbacks(otherPlayer.transform.position);
+            DamageNumberController.Instance.player.PlayFeedbacks(otherPlayer.transform.position);
             DurabilityCheck();
         }
 

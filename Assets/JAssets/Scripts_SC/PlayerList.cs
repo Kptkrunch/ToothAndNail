@@ -7,16 +7,16 @@ namespace JAssets.Scripts_SC
 {
 	public class PlayerList : MonoBehaviour
 	{
-		public static PlayerList instance;
+		public static PlayerList Instance;
 		[SerializeField] private GameObject playerObjectToSpawn;
 
 		private void Awake()
 		{
-			if (!instance)
+			if (!Instance)
 			{
-				instance = this;
+				Instance = this;
 			}
-			DontDestroyOnLoad(instance);
+			DontDestroyOnLoad(Instance);
 		}
 		
 		public List<GameObject> playersList = new();

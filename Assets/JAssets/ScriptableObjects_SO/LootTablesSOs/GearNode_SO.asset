@@ -13,9 +13,19 @@ MonoBehaviour:
   m_Name: GearNode_SO
   m_EditorClassIdentifier: 
   lootItems:
-  - itemName: Scrap
-    itemWeight: 5
-  - itemName: Bone
+  - itemName: HandAx
+    itemWeight: 4
+  - itemName: BattleAx
+    itemWeight: 3
+  - itemName: Spear
     itemWeight: 2
-  - itemName: Stone
+  - itemName: Knife
+    itemWeight: 5
+  - itemName: Sledge
+    itemWeight: 2
+  - itemName: Blade
+    itemWeight: 5
+  - itemName: Buckler
+    itemWeight: 3
+  - itemName: TowerShield
     itemWeight: 1

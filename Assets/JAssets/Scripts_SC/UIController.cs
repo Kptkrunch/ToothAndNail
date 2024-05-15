@@ -11,12 +11,11 @@ namespace JAssets.Scripts_SC
 		void Start()
 		{
 			cam = GetComponentInChildren<Camera>();
-			GameObject playerUI = Instantiate(uiPrefab);
+			GameObject playerUI = Instantiate(uiPrefab, cam.transform, false);
 			uiCanvas = playerUI.GetComponent<Canvas>();
 			uiCanvas.worldCamera = cam;
 
 			// Attach the UI to this player's camera
-			playerUI.transform.SetParent(cam.transform, false);
 			RectTransform rect = playerUI.GetComponent<RectTransform>();
 			rect.localPosition = Vector3.zero;
 			rect.sizeDelta = new Vector2(0, 0);

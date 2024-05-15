@@ -4,26 +4,29 @@ using UnityEngine.SceneManagement;
 using Button = UnityEngine.UI.Button;
 using Image = UnityEngine.UI.Image;
 
-public class MenuButton : MonoBehaviour
+namespace JAssets.Scripts_SC
 {
-	public Button button;
-	[SerializeField] private Image buttonImage;
-	[SerializeField] private TextMeshProUGUI buttonText;
-
-	public void OpenLocalMp()
+	public class MenuButton : MonoBehaviour
 	{
-		Debug.Log("This");
-		SceneManager.LoadScene(1);
-	}
+		public Button button;
+		[SerializeField] private Image buttonImage;
+		[SerializeField] private TextMeshProUGUI buttonText;
 
-	public void OpenOnlineMP()
-	{
-		SceneManager.LoadScene(2);
-	}
+		public void OpenLocalMp()
+		{
+			Debug.Log("This");
+			SceneManager.LoadScene(1);
+		}
 
-	public void OpenOptions()
-	{
-		// I don't do anything yet
-		Debug.Log("a thing");
+		public void OpenOnlineMP()
+		{
+			SceneManager.LoadScene(2);
+		}
+
+		public void OpenOptions()
+		{
+			// I don't do anything yet
+			Debug.Log("a thing");
+		}
 	}
 }

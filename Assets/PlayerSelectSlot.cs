@@ -5,7 +5,7 @@ using UnityEngine.UI;
 public class PlayerSelectSlot : MonoBehaviour
 {
 	[SerializeField] private Image portraitImage;
-	private int portraitIndex = 0;
+	private int _portraitIndex = 0;
 	[SerializeField] private int readyPlayers = 0;
 	[SerializeField] private Button portraitButton;
 	[SerializeField] private Button readyButton;
@@ -36,22 +36,22 @@ public class PlayerSelectSlot : MonoBehaviour
 
 	public void ArrowLeft()
 	{
-		portraitIndex = (portraitIndex - 1 + CharacterSelectController.instance.portraitSprites.Count) %
-						CharacterSelectController.instance.portraitSprites.Count;
+		_portraitIndex = (_portraitIndex - 1 + CharacterSelectController.Instance.portraitSprites.Count) %
+						CharacterSelectController.Instance.portraitSprites.Count;
 		UpdatePortraitSprite();
-		Debug.Log("left: " + portraitIndex);
+		Debug.Log("left: " + _portraitIndex);
 	}
 
 	public void ArrowRight()
 	{
-		portraitIndex = (portraitIndex + 1) % CharacterSelectController.instance.portraitSprites.Count;
+		_portraitIndex = (_portraitIndex + 1) % CharacterSelectController.Instance.portraitSprites.Count;
 		UpdatePortraitSprite();
-		Debug.Log("right: " + portraitIndex);
+		Debug.Log("right: " + _portraitIndex);
 	}
 
 	private void UpdatePortraitSprite()
 	{
-		portraitImage.sprite = CharacterSelectController.instance.portraitSprites[portraitIndex];
+		portraitImage.sprite = CharacterSelectController.Instance.portraitSprites[_portraitIndex];
 	}
 
 	private void LockInPortrait()

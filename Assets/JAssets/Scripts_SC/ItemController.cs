@@ -71,12 +71,12 @@ namespace JAssets.Scripts_SC
             {
                 case "itemSlotA":
                     if (itemSlotA == "") return;
-                    if (itemSlotA != null) attackController.gear.items[itemSlotA].gameObject.SetActive(false);
+                    if (itemSlotA != null) attackController.gear.Items[itemSlotA].gameObject.SetActive(false);
                     itemSlotA = "";
                     break;
                 case "itemSlotB":
                     if (itemSlotB == "") return;
-                    if (itemSlotB != null) attackController.gear.items[itemSlotB].gameObject.SetActive(false);
+                    if (itemSlotB != null) attackController.gear.Items[itemSlotB].gameObject.SetActive(false);
                     itemSlotB = "";
                     break;
             }

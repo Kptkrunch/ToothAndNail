@@ -9,16 +9,16 @@ namespace JAssets.Scripts_SC
 {
 	public class CharacterSelectController : MonoBehaviour
 	{
-		public static CharacterSelectController instance;
+		public static CharacterSelectController Instance;
 
 		[SerializeField] private List<PlayerSelectSlot> playerSlots;
 		public List<Sprite> portraitSprites;
 
 		private void Awake()
 		{
-			if (!instance)
+			if (!Instance)
 			{
-				instance = this;
+				Instance = this;
 			}
 		}
 

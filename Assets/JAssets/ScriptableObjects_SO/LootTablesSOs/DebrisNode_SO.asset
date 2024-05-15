@@ -13,19 +13,9 @@ MonoBehaviour:
   m_Name: DebrisNode_SO
   m_EditorClassIdentifier: 
   lootItems:
-  - itemName: HandAx
-    itemWeight: 4
-  - itemName: BattleAx
-    itemWeight: 3
-  - itemName: Spear
-    itemWeight: 2
-  - itemName: Knife
+  - itemName: Scrap
     itemWeight: 5
-  - itemName: Sledge
+  - itemName: Bone
     itemWeight: 2
-  - itemName: Blade
-    itemWeight: 5
-  - itemName: Buckler
-    itemWeight: 3
-  - itemName: TowerShield
+  - itemName: Stone
     itemWeight: 1

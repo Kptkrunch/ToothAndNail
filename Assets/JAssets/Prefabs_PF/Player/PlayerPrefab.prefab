@@ -1373,7 +1373,7 @@ MonoBehaviour:
   m_BlendStyleIndex: 0
   m_FalloffIntensity: 1
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 0
+  m_Intensity: 1
   m_LightVolumeIntensity: 0
   m_LightVolumeIntensityEnabled: 0
   m_ApplyToSortingLayers: b9b8169b159558e3c7d0f1c247762422e5671bf2e122e36b1b33efd50181a6652fe2f40d3744fca8
@@ -4696,7 +4696,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee158225ee1e59f4791627785501d950, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shaderTypes: 0
+  shaderTypes: 3
   normalStrength: 5
   normalSmoothing: 1
   computingNormal: 0

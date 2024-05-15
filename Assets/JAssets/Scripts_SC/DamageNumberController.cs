@@ -1,12 +1,15 @@
 using MoreMountains.Feedbacks;
 using UnityEngine;
 
-public class DamageNumberController : MonoBehaviour
+namespace JAssets.Scripts_SC
 {
-    public static DamageNumberController instance;
-    public MMF_Player player;
-    private void Awake()
+    public class DamageNumberController : MonoBehaviour
     {
-        instance = this;
+        public static DamageNumberController Instance;
+        public MMF_Player player;
+        private void Awake()
+        {
+            Instance = this;
+        }
     }
 }

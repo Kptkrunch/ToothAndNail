@@ -4,17 +4,17 @@ namespace JAssets.Scripts_SC
 {
 	public class DataTypeController : MonoBehaviour
 	{
-		private static DataTypeController instance;
+		private static DataTypeController _instance;
 
 		private void Awake()
 		{
-			if(instance != null)
+			if(_instance != null)
 			{
 				Destroy(gameObject);
 				return;
 			}
         
-			instance = this;
+			_instance = this;
 		}
 
 		public struct PlayerNumAndTagData
