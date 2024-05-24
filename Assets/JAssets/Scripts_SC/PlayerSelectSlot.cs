@@ -17,19 +17,16 @@ namespace JAssets.Scripts_SC
 
 		public void ReadyUp()
 		{
-			Debug.Log("in the ready up function");
 			DataTypeController.PlayerSlotData slotData = new DataTypeController.PlayerSlotData();
 			PlayerSessionData.PlayersReady++;
 			isReady = true;
-			Debug.Log("2");
 			slotData.Color = slotColorImage.color;
-			Debug.Log("3");
 			slotData.PlayerSlot = slotNumber;
-			Debug.Log("4");
 			PlayerSessionData.PlayerDataList.Add(slotData);
+			readyButton.interactable = false;
 			slotData.Color = PlayerSessionData.PlayerDataList[slotNumber - 1].Color;
 			Debug.Log(PlayerJoinScreen.Instance.teamColors[0]);
-			Debug.Log(PlayerSessionData.PlayerDataList[slotNumber - 1].PlayerSlot);
+			Debug.Log(PlayerSessionData.PlayersReady + " : players ready");
 			Debug.Log(PlayerSessionData.PlayerDataList[slotNumber - 1].Color);
 		}
 

@@ -27,7 +27,14 @@ namespace JAssets.Scripts_SC
 
 		private void FixedUpdate()
 		{
-			startMatchButton.gameObject.SetActive(PlayerSessionData.PlayersReady == PlayerSessionData.TotalPlayers && PlayerSessionData.TotalPlayers > 1);
+			if (PlayerSessionData.TotalPlayers == PlayerSessionData.PlayersReady && PlayerSessionData.TotalPlayers > 1)
+			{
+				startMatchButton.SetActive(true);
+			}
+			else
+			{
+				startMatchButton.SetActive(false);
+			}
 		}
 
 		public Color GetNewColor(int colorIndex)
@@ -79,7 +86,7 @@ namespace JAssets.Scripts_SC
 			playerSlots[PlayerSessionData.TotalPlayers].gameObject.SetActive(true);
 			playerSlots[PlayerSessionData.TotalPlayers].deviceId = Gamepad.current.deviceId;
 			PlayerSessionData.UpdateTotalPlayers();
-			
+			Debug.Log(PlayerSessionData.TotalPlayers + " : total players");
 			Debug.Log(Gamepad.current.deviceId);
 		}
 		
