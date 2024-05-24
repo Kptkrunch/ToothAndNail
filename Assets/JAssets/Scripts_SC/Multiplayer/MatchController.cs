@@ -1,21 +1,23 @@
-using System.Collections.Generic;
 using Photon.Pun;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class MatchController : MonoBehaviour
+namespace JAssets.Scripts_SC.Multiplayer
 {
-    public static MatchController instance;
-    private void Awake()
+    public class MatchController : MonoBehaviour
     {
-        instance = this;
-    }
-
-    private void Start()
-    {
-        if (!PhotonNetwork.IsConnected)
+        public static MatchController Instance;
+        private void Awake()
         {
-            SceneManager.LoadScene(0);
+            Instance = this;
+        }
+
+        private void Start()
+        {
+            if (!PhotonNetwork.IsConnected)
+            {
+                SceneManager.LoadScene(0);
+            }
         }
     }
 }

@@ -1,60 +1,24 @@
 using System.Collections.Generic;
-using UnityEngine;
 
 namespace JAssets.Scripts_SC.Multiplayer
 {
     public static class PlayerSessionData
     {
-        private static List<GameObject> _playerList;
-        public static int PlayerCount => _playerList.Count;
-        public static List<GameObject> PlayerTeam1;
-        public static List<GameObject> PlayerTeam2;
-        public static List<GameObject> PlayerTeam3;
-        public static List<GameObject> PlayerTeam4;
-        
-        public static void AddPlayer(GameObject player)
+        public static int PlayersReady = 0;
+        public static int TotalPlayers = 0;
+        public static List<DataTypeController.PlayerSlotData> PlayerDataList = new();
+        public static void UpdateTotalPlayers()
         {
-            _playerList.Add(player);
+            TotalPlayers++;
+            if (TotalPlayers > 4) TotalPlayers = 4;
+            if (TotalPlayers < 0) TotalPlayers = 0;
         }
 
-        public static void RemovePlayer(GameObject player)
+        public static void UpdateReadyPlayers()
         {
-            _playerList.Remove(player);
-        }
-
-        public static void ChangePlayerTeam(GameObject player, int teamNumber, int newTeamNumber)
-        {
-            switch (teamNumber)
-            {
-                case 1:
-                    PlayerTeam1.Remove(player);
-                    break;
-                case 2:
-                    PlayerTeam2.Remove(player);
-                    break;
-                case 3:
-                    PlayerTeam3.Remove(player);
-                    break;
-                case 4:
-                    PlayerTeam4.Remove(player);
-                    break;
-            }
-
-            switch (newTeamNumber)
-            {
-                case 1:
-                    PlayerTeam1.Add(player);
-                    break;
-                case 2:
-                    PlayerTeam2.Add(player);
-                    break;
-                case 3:
-                    PlayerTeam3.Add(player);
-                    break;
-                case 4:
-                    PlayerTeam4.Add(player);
-                    break;
-            }
+            PlayersReady++;
+            if (PlayersReady > 4) PlayersReady = 4;
+            if (PlayersReady < 0) PlayersReady = 0;
         }
     }
 }

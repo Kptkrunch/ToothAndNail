@@ -22,6 +22,12 @@ namespace JAssets.Scripts_SC
 			public string PlayerTag;
 			public int PlayerNumber;
 			public LayerMask PlayerLayer;
-		} 
+		}
+
+		public struct PlayerSlotData
+		{
+			public Color Color;
+			public int PlayerSlot;
+		}
 	}
 }

@@ -16,10 +16,11 @@ namespace JAssets.Scripts_SC
 			{
 				Instance = this;
 			}
-			DontDestroyOnLoad(Instance);
+			DontDestroyOnLoad(this);
 		}
 		
 		public List<GameObject> playersList = new();
+		
 
 		public DataTypeController.PlayerNumAndTagData AddPlayerToList(GameObject playerPrefab)
 		{
@@ -38,17 +39,6 @@ namespace JAssets.Scripts_SC
 		public void ClearPlayerList()
 		{
 			playersList.Clear();
-		}
-
-		public void AddPlayerToJoinScreen()
-		{
-			var newPlayer = Instantiate(playerObjectToSpawn);
-			newPlayer.SetActive(false);
-			AddPlayerToList(newPlayer);
-		}
-		public void RemovePlayerFromList(InputAction.CallbackContext context, GameObject playerPrefab)
-		{
-			playersList.Remove(playerPrefab);
 		}
 	}
 }
