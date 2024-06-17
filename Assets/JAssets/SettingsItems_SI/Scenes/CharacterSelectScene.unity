@@ -1973,16 +1973,28 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2050916670}
     - target: {fileID: 208500756548081570, guid: 8de392ccee8487c4cace7e2818f85b03, type: 3}
+      propertyPath: m_ActionEvents.Array.data[8].m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 208500756548081570, guid: 8de392ccee8487c4cace7e2818f85b03, type: 3}
       propertyPath: m_ActionEvents.Array.data[8].m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 569248434}
     - target: {fileID: 208500756548081570, guid: 8de392ccee8487c4cace7e2818f85b03, type: 3}
       propertyPath: m_ActionEvents.Array.data[14].m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 569248434}
     - target: {fileID: 208500756548081570, guid: 8de392ccee8487c4cace7e2818f85b03, type: 3}
+      propertyPath: m_ActionEvents.Array.data[8].m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: CancelReadyUp
+      objectReference: {fileID: 0}
+    - target: {fileID: 208500756548081570, guid: 8de392ccee8487c4cace7e2818f85b03, type: 3}
       propertyPath: m_ActionEvents.Array.data[14].m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: PlayerJoin
+      objectReference: {fileID: 0}
+    - target: {fileID: 208500756548081570, guid: 8de392ccee8487c4cace7e2818f85b03, type: 3}
+      propertyPath: m_ActionEvents.Array.data[8].m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: JAssets.Scripts_SC.PlayerJoinScreen, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 208500756548081570, guid: 8de392ccee8487c4cace7e2818f85b03, type: 3}
       propertyPath: m_ActionEvents.Array.data[14].m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName

@@ -45,9 +45,9 @@ namespace JAssets.Scripts_SC
 
 
         [SerializeField] private float coyoteTime = 0.15f;
-        private float coyoteTimeTimer;
+        private float _coyoteTimeTimer;
         [SerializeField] private float preLandingJumpBuffer = 0.15f;
-        private float jumpBufferTimer;
+        private float _jumpBufferTimer;
 
         [SerializeField] private Rigidbody2D rb2d;
         [SerializeField] private CapsuleCollider2D cc2d;
@@ -56,10 +56,10 @@ namespace JAssets.Scripts_SC
         [SerializeField] private Camera playerCamera;
         [SerializeField] private PlayerInput playerInput;
         [SerializeField] private PlayerHealthController healthController;
-        private InputActionAsset inputActionAsset;
-        private InputActionMap player;
+        private InputActionAsset _inputActionAsset;
+        private InputActionMap _player;
 
-        private Vector2 rightStick;
+        private Vector2 _rightStick;
         
         [SerializeField] private PhysicsMaterial2D slippery_MT;
         [SerializeField] private PhysicsMaterial2D grippy_MT;
@@ -157,7 +157,7 @@ namespace JAssets.Scripts_SC
         {
             if (!context.performed || healthController.currentHealth <= 0) return;
             
-            if (isGrounded || coyoteTimeTimer > 0 || jumpBufferTimer > 0)
+            if (isGrounded || _coyoteTimeTimer > 0 || _jumpBufferTimer > 0)
             {
                 coyoteTime = 0;
                 rb2d.velocity = new Vector2(rb2d.velocity.x, jumpForce);
@@ -165,11 +165,11 @@ namespace JAssets.Scripts_SC
             }
             else if (rb2d.velocity.y < 0 && context.canceled && !isGrounded) 
             {
-                jumpBufferTimer = preLandingJumpBuffer;
+                _jumpBufferTimer = preLandingJumpBuffer;
             } 
-            else if (context.performed && jumpBufferTimer > 0)
+            else if (context.performed && _jumpBufferTimer > 0)
             {
-                jumpBufferTimer = 0;
+                _jumpBufferTimer = 0;
                 rb2d.velocity = new Vector2(rb2d.velocity.x, jumpForce);
                 animator.SetBool(Jumping, true);
             }
@@ -270,7 +270,7 @@ namespace JAssets.Scripts_SC
         {
             if (isGrounded)
             {
-                coyoteTimeTimer = coyoteTime;
+                _coyoteTimeTimer = coyoteTime;
             } else if (coyoteTime < 0)
             {
                 isGrounded = false;
@@ -278,12 +278,12 @@ namespace JAssets.Scripts_SC
 
             if (!isGrounded)
             {
-                coyoteTimeTimer -= Time.deltaTime;
+                _coyoteTimeTimer -= Time.deltaTime;
             }
             
-            if (jumpBufferTimer > 0)
+            if (_jumpBufferTimer > 0)
             {
-                jumpBufferTimer -= Time.deltaTime;
+                _jumpBufferTimer -= Time.deltaTime;
             }
         }
         

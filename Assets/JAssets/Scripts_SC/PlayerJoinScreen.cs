@@ -49,10 +49,11 @@ namespace JAssets.Scripts_SC
 			{
 				if (slot.deviceId == Gamepad.current.deviceId)
 				{
-					slot.deviceId = 0;
-					slot.gameObject.SetActive(false);
+					slot.GetComponentInChildren<PlayerSelectSlot>().readyButton.interactable = true;
+					slot.GetComponentInChildren<PlayerSelectSlot>().leftButton.interactable = true;
+					slot.GetComponentInChildren<PlayerSelectSlot>().rightButton.interactable = true;
 					slot.isReady = false;
-					PlayerSessionData.PlayersReady--;
+					PlayerSessionData.RemoveFromReadyPlayers();
 				}
 			}
 		}
@@ -65,6 +66,7 @@ namespace JAssets.Scripts_SC
 		public void StartMatch()
 		{
 			SceneManager.LoadScene(1);
+			Debug.Log("Loaded Scene");
 		}
 		
 		public void OpenSettings()
@@ -85,9 +87,24 @@ namespace JAssets.Scripts_SC
 			if (CheckDevicesInUse(Gamepad.current.deviceId)) return;
 			playerSlots[PlayerSessionData.TotalPlayers].gameObject.SetActive(true);
 			playerSlots[PlayerSessionData.TotalPlayers].deviceId = Gamepad.current.deviceId;
-			PlayerSessionData.UpdateTotalPlayers();
+			PlayerSessionData.AddToTotalPlayers();
 			Debug.Log(PlayerSessionData.TotalPlayers + " : total players");
 			Debug.Log(Gamepad.current.deviceId);
+		}
+
+		public void PlayerLeaveMatch(InputAction.CallbackContext context)
+		{
+			if (!context.performed) return;
+			foreach (var slot in playerSlots)
+			{
+				if (slot.deviceId == Gamepad.current.deviceId)
+				{
+					PlayerSessionData.RemoveFromTotalPlayers();
+					slot.colorIndex = 0;
+					slot.slotColorImage.color = GetNewColor(0);
+					slot.gameObject.SetActive(false);
+				}
+			}
 		}
 		
 		private void FillColorsList()

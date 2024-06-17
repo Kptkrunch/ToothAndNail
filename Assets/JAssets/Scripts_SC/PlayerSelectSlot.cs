@@ -10,24 +10,23 @@ namespace JAssets.Scripts_SC
 		public int colorIndex = 0;
 		public int deviceId;
 		public bool isReady;
-		[SerializeField] private Image slotColorImage;
-		[SerializeField] private Button readyButton;
-		[SerializeField] private Button leftButton;
-		[SerializeField] private Button rightButton;
+		public Image slotColorImage; 
+		public Button readyButton;
+		public Button leftButton;
+		public Button rightButton;
 
 		public void ReadyUp()
 		{
 			DataTypeController.PlayerSlotData slotData = new DataTypeController.PlayerSlotData();
-			PlayerSessionData.PlayersReady++;
+			PlayerSessionData.AddToReadyPlayers();
 			isReady = true;
 			slotData.Color = slotColorImage.color;
 			slotData.PlayerSlot = slotNumber;
-			PlayerSessionData.PlayerDataList.Add(slotData);
 			readyButton.interactable = false;
+			leftButton.interactable = false;
+			rightButton.interactable = false;
+			PlayerSessionData.PlayerDataList.Add(slotData);
 			slotData.Color = PlayerSessionData.PlayerDataList[slotNumber - 1].Color;
-			Debug.Log(PlayerJoinScreen.Instance.teamColors[0]);
-			Debug.Log(PlayerSessionData.PlayersReady + " : players ready");
-			Debug.Log(PlayerSessionData.PlayerDataList[slotNumber - 1].Color);
 		}
 
 		public void ArrowLeft()

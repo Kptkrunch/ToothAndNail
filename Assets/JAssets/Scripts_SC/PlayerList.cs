@@ -1,15 +1,18 @@
-using System;
 using System.Collections.Generic;
+using JAssets.Scripts_SC.Multiplayer;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using Random = UnityEngine.Random;
+
 
 namespace JAssets.Scripts_SC
 {
 	public class PlayerList : MonoBehaviour
 	{
 		public static PlayerList Instance;
+		public List<Transform> playerSpawnPoints;
 		[SerializeField] private GameObject playerObjectToSpawn;
-
+		public PlayerInputManager playerInput;
 		private void Awake()
 		{
 			if (!Instance)
@@ -18,9 +21,13 @@ namespace JAssets.Scripts_SC
 			}
 			DontDestroyOnLoad(this);
 		}
-		
+
+		private void Start()
+		{
+			SpawnInitialPlayers();
+		}
+
 		public List<GameObject> playersList = new();
-		
 
 		public DataTypeController.PlayerNumAndTagData AddPlayerToList(GameObject playerPrefab)
 		{
@@ -35,7 +42,19 @@ namespace JAssets.Scripts_SC
 			playerData.PlayerLayer = playerLayer;
 			return playerData;
 		}
-		
+
+		private void SpawnInitialPlayers()
+		{
+			for (var i = 0; i < PlayerSessionData.TotalPlayers; i++)
+			{
+				var location = Random.Range(0, playerSpawnPoints.Count);
+				// var playerSpawnLocation = playerSpawnPoints[location];
+				playerInput.joinAction();
+			}
+
+			Debug.Log(PlayerSessionData.TotalPlayers + ": total players to spawn");
+		}
+	
 		public void ClearPlayerList()
 		{
 			playersList.Clear();
